@@ -1,0 +1,237 @@
+﻿<Window x:Class="SCMApp.Presentation.Views.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCMApp.Presentation.Views"
+        xmlns:vm ="clr-namespace:SCMApp.Presentation.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
+        Title="MainWindow" Height="900" Width="1500" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" >
+
+    <Border Background="Transparent">
+        <Border CornerRadius="20" BorderThickness="0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
+                    <GradientStop Color="#FF37A0EA" Offset="0.8"/>
+                    <GradientStop Color="#356DD2" Offset="0.9"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Rectangle Grid.Row="0" Height="80" Width="80" RadiusX="10" RadiusY="10" VerticalAlignment="Center">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="/Assets/Logo.png" Stretch="Uniform"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                    <!--#region Menu Grid-->
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Adding Menu buttons-->
+                        <Button Grid.Row="0" Background="Transparent" BorderThickness="0">
+                            <Button.ToolTip>
+                                <TextBlock Text="Tổng quan" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                            </Button.ToolTip>
+                            <Button.Content>
+                                <Image Source="/Assets/monitor.png" Stretch="Uniform" Width="40"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="1" Background="Transparent" BorderThickness="0">
+                            <Button.ToolTip>
+                                <TextBlock Text="Đơn hàng" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                            </Button.ToolTip>
+                            <Button.Content>
+                                <Image Source="/Assets/cart.png" Stretch="Uniform" Width="35"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="2" Background="Transparent" BorderThickness="0">
+                            <Button.ToolTip>
+                                <TextBlock Text="Hàng hoá" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                            </Button.ToolTip>
+                            <Button.Content>
+                                <Image Source="/Assets/list.png" Stretch="Uniform" Width="35"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="3" Background="Transparent" BorderThickness="0">
+                            <Button.ToolTip>
+                                <TextBlock Text="Đối tác" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                            </Button.ToolTip>
+                            <Button.Content>
+                                <Image Source="/Assets/partner.png" Stretch="Uniform" Width="35"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="4" Background="Transparent" BorderThickness="0">
+                            <Button.ToolTip>
+                                <TextBlock Text="Nhập hàng" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                            </Button.ToolTip>
+                            <Button.Content>
+                                <Image Source="/Assets/truck.png" Stretch="Uniform" Width="35"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="5" Background="Transparent" BorderThickness="0">
+                            <Button.ToolTip>
+                                <TextBlock Text="Tồn kho" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                            </Button.ToolTip>
+                            <Button.Content>
+                                <Image Source="/Assets/warehouse.png" Stretch="Uniform" Width="35"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="6" Background="Transparent" BorderThickness="0">
+                            <Button.ToolTip>
+                                <TextBlock Text="Doanh số" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                            </Button.ToolTip>
+                            <Button.Content>
+                                <Image Source="/Assets/chart.png" Stretch="Uniform" Width="35"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="7" Background="Transparent" BorderThickness="0">
+                            <Button.ToolTip>
+                                <TextBlock Text="Lợi nhuận" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                            </Button.ToolTip>
+                            <Button.Content>
+                                <Image Source="/Assets/cash.png" Stretch="Uniform" Width="35"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="8" Background="Transparent" BorderThickness="0">
+                            <Button.ToolTip>
+                                <TextBlock Text="Quản lý nhân sự" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                            </Button.ToolTip>
+                            <Button.Content>
+                                <Image Source="/Assets/human.png" Stretch="Uniform" Width="35"/>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                    <!--#endregion-->
+                </Grid>
+                
+                <Border  Grid.Column="1" Background="Transparent">
+                    <Border Background="#F3F6F9" CornerRadius="20" BorderThickness="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <!--Header-->
+                            <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#aaaaaa" CornerRadius="20,20,0,0" Background="#F1F7FF">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--Name of function-->
+                                    <TextBlock Text="FunctionName" FontSize="20" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <!--#region Searchbar code-->
+                                    <Border Grid.Column="1" Background="Transparent" Visibility="{Binding Visibility}">
+                                        <Border Background="White" Height="50" CornerRadius="10" HorizontalAlignment="Stretch">
+                                            <Grid Height="Auto">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Image Source="/Assets/search.png" Width="25" Stretch="Uniform"/>
+                                                <TextBox Grid.Column="1" x:Name="searchQuery" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                                <TextBlock Grid.Column="1" Margin="3,0,0,0" Text="Search something..." FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="{x:Type TextBlock}">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Text, ElementName=searchQuery}" Value="">
+                                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </Grid>
+                                        </Border>
+                                    </Border>
+                                    <Border Grid.Column="3" CornerRadius="50" Background="Transparent">
+                                        <!--Profile Icon-->
+                                        <Menu Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <MenuItem>
+                                                <MenuItem.Header>
+                                                    <Ellipse StrokeThickness="2" Stroke="White" Height="70" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                        <Ellipse.Fill>
+                                                            <ImageBrush
+                                                                ImageSource="/Assets/news4.jpg"
+                                                                Stretch="UniformToFill"/>
+                                                        </Ellipse.Fill>
+                                                    </Ellipse>
+                                                </MenuItem.Header>
+                                                <MenuItem Header="_Tên tài khoản"/>
+                                                <MenuItem Header="_Chức vụ"/>
+                                                <MenuItem Header="_Thông tin chi tiết"/>
+                                                <Separator />
+                                                <MenuItem Header="_Chỉnh sửa"/>
+                                            </MenuItem>
+                                        </Menu>
+                                    </Border>
+                                    <Grid Grid.Column="4" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2.2*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="2*"/>
+                                            <RowDefinition Height="3.2*"/>
+                                        </Grid.RowDefinitions>
+                                        <Border Grid.Column="1" Grid.Row="0" CornerRadius="0,20,0,20" Background="#2D73AD" >
+                                            <StackPanel Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="6" Orientation="Horizontal">
+                                                <Button x:Name="MinimizeButton" Style="{StaticResource WindowButtonsStyle}" HorizontalAlignment="Left" Content="{StaticResource minimize_ico}" Click="MinimizeButton_Click"/>
+
+                                                <Button x:Name="RestoreButton" Margin="10,0" Click="RestoreButton_Click">
+                                                    <Button.Style>
+                                                        <Style
+                                                    TargetType="{x:Type Button}"
+                                                    BasedOn="{StaticResource WindowButtonsStyle}">
+                                                            <Setter Property="Content" Value="{StaticResource maximize_ico}"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=home, Path=WindowState}" Value="Maximized">
+                                                                    <Setter Property="Content" Value="{StaticResource restore_ico}"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Button.Style>
+                                                </Button>
+                                                <Button x:Name="CloseButton" Style="{StaticResource WindowButtonsStyle}" Content="{StaticResource close_ico}" HorizontalAlignment="Right" Click="CloseButton_Click" Tag="IsCloseButton"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            
+                            <!--User Control for each function-->
+                            <ContentControl Grid.Row="1" Content="{Binding CurrentPageViewModel}"/>
+                        </Grid>
+                    </Border>
+                </Border>
+            </Grid>
+        </Border>
+    </Border>
+</Window>

@@ -1,0 +1,131 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\applogoexample.png" />
+    <None Remove="Assets\apps.png" />
+    <None Remove="Assets\bell.png" />
+    <None Remove="Assets\bell_16.png" />
+    <None Remove="Assets\bell_64.png" />
+    <None Remove="Assets\calendarcolor.png" />
+    <None Remove="Assets\calendarwhite.png" />
+    <None Remove="Assets\cart.png" />
+    <None Remove="Assets\cartcolor.png" />
+    <None Remove="Assets\cartwhite.png" />
+    <None Remove="Assets\cash.png" />
+    <None Remove="Assets\chart.png" />
+    <None Remove="Assets\chatcolor.png" />
+    <None Remove="Assets\chatwhite.png" />
+    <None Remove="Assets\closecolor.png" />
+    <None Remove="Assets\closewhite.png" />
+    <None Remove="Assets\cloud.png" />
+    <None Remove="Assets\contacts.png" />
+    <None Remove="Assets\document.png" />
+    <None Remove="Assets\downloadsfolder.png" />
+    <None Remove="Assets\dropbox.png" />
+    <None Remove="Assets\exit.png" />
+    <None Remove="Assets\folder.png" />
+    <None Remove="Assets\googledrive.png" />
+    <None Remove="Assets\human.png" />
+    <None Remove="Assets\image.png" />
+    <None Remove="Assets\left.png" />
+    <None Remove="Assets\list.png" />
+    <None Remove="Assets\Logo.png" />
+    <None Remove="Assets\logoutwhite.png" />
+    <None Remove="Assets\mailcolor.png" />
+    <None Remove="Assets\mailwhite.png" />
+    <None Remove="Assets\mmc.png" />
+    <None Remove="Assets\monitor.png" />
+    <None Remove="Assets\music.png" />
+    <None Remove="Assets\newdocument.png" />
+    <None Remove="Assets\news4.jpg" />
+    <None Remove="Assets\noimage.png" />
+    <None Remove="Assets\notifcolor.png" />
+    <None Remove="Assets\notifwhite.png" />
+    <None Remove="Assets\onedrive.png" />
+    <None Remove="Assets\partner.png" />
+    <None Remove="Assets\play.png" />
+    <None Remove="Assets\plus.png" />
+    <None Remove="Assets\profile1.jpg" />
+    <None Remove="Assets\profilewhite.png" />
+    <None Remove="Assets\profolder.png" />
+    <None Remove="Assets\recent.png" />
+    <None Remove="Assets\right.png" />
+    <None Remove="Assets\right2.png" />
+    <None Remove="Assets\search.png" />
+    <None Remove="Assets\searchcolor.png" />
+    <None Remove="Assets\searchwhite.png" />
+    <None Remove="Assets\settings.png" />
+    <None Remove="Assets\share.png" />
+    <None Remove="Assets\sms.png" />
+    <None Remove="Assets\star.png" />
+    <None Remove="Assets\todobw.png" />
+    <None Remove="Assets\todocolor.png" />
+    <None Remove="Assets\trash.png" />
+    <None Remove="Assets\truck.png" />
+    <None Remove="Assets\video.png" />
+    <None Remove="Assets\warehouse.png" />
+    <None Remove="Assets\zip.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CustomControls\" />
+    <Folder Include="Presentation\Converters\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.13" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Ninject" Version="3.3.4" />
+    <PackageReference Include="Unnoficial.Microsoft.Expression.Drawing" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\cart.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\cash.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\chart.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\exit.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\human.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\list.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\monitor.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\news4.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\partner.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\search.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\truck.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\warehouse.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

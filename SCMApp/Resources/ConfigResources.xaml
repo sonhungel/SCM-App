@@ -1,0 +1,37 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v ="clr-namespace:SCMApp.Presentation.Views.PageViews"
+                    xmlns:vm ="clr-namespace:SCMApp.Presentation.ViewModels.PageViewModels">
+
+    <DataTemplate DataType="{x:Type vm:ImportStockViewModel}">
+        <v:ImportStockView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:InventoryViewModel}">
+        <v:InventoryView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:OrdersViewModel}">
+        <v:OrdersView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:OverviewViewModel}">
+        <v:OverviewView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:PartnersViewModel}">
+        <v:PartnersView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ProfitViewModel}">
+        <v:ProfitView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:RevenueViewModel}">
+        <v:RevenueView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:StockViewModel}">
+        <v:InventoryView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:StockViewModel}">
+        <v:OrdersView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:HumanResourceManagementViewModel}">
+        <v:HumanResourceManagementView/>
+    </DataTemplate>
+    
+</ResourceDictionary>
