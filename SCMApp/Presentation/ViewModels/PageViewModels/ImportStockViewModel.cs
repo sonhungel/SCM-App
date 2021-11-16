@@ -8,9 +8,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
     {
         public string NamePage => CommonConstants.ImportPageViewName;
 
+        public string FunctionName => CommonConstants.ImportFunctionName;
+
         public void Construct()
         {
-            throw new NotImplementedException();
         }
     }
 }

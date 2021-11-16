@@ -1,7 +1,9 @@
-﻿using SCMApp.Presentation.Commands;
+﻿using SCMApp.Constants;
+using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.PageViewModels;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels
@@ -12,8 +14,9 @@ namespace SCMApp.Presentation.ViewModels
         {
             _allPageViewModels = new List<IPageViewModel>();
             InitAllPageViewModel(_allPageViewModels);
+            CurrentPageViewModel = _allPageViewModels.Find(p => CommonConstants.OverviewPageViewName.Equals(p.NamePage));
 
-            ChangePageCommand = new RelayCommand(p => ChangeViewModel((IPageViewModel)p), p => p is IPageViewModel);
+            ChangePageCommand = new RelayCommand(p => ChangeViewModel((string)p), p => p is string && !p.Equals(CurrentPageViewModel.NamePage));
         }
 
         private IPageViewModel _currentPageViewModel;
@@ -25,20 +28,22 @@ namespace SCMApp.Presentation.ViewModels
             get => _currentPageViewModel;
             set
             {
-                if (_currentPageViewModel != value)
-                {
-                    _currentPageViewModel = value;
-                    OnPropertyChanged(nameof(CurrentPageViewModel));
-                }
+                _currentPageViewModel = value;
+                OnPropertyChanged(nameof(CurrentPageViewModel));
             }
         }
 
+        public string FunctionName => CurrentPageViewModel?.FunctionName;
+
         public ICommand ChangePageCommand { get; set; }
 
-        private void ChangeViewModel(IPageViewModel viewModel)
+        private void ChangeViewModel(string pageName)
         {
-            // new view => constuct
-            // old view => destruct to clear list
+            // destruct
+            //CurrentPageViewModel.destruct
+            CurrentPageViewModel = _allPageViewModels.Find(p => pageName.Equals(p.NamePage));
+            OnPropertyChanged(nameof(FunctionName));
+            CurrentPageViewModel.Construct();
         }
 
         private void InitAllPageViewModel(List<IPageViewModel> pageViewModels)

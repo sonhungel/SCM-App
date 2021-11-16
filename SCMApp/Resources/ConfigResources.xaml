@@ -25,10 +25,7 @@
         <v:RevenueView/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:StockViewModel}">
-        <v:InventoryView/>
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:StockViewModel}">
-        <v:OrdersView/>
+        <v:StockView/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:HumanResourceManagementViewModel}">
         <v:HumanResourceManagementView/>

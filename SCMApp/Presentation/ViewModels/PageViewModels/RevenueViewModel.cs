@@ -8,9 +8,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
     {
         public string NamePage => CommonConstants.RevenuePageViewName;
 
+        public string FunctionName => CommonConstants.RevenueFunctionName;
+
         public void Construct()
         {
-            throw new NotImplementedException();
         }
     }
 }

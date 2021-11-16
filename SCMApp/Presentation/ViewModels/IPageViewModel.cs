@@ -3,6 +3,7 @@
     public interface IPageViewModel
     {
         string NamePage { get; }
+        string FunctionName { get; }
         void Construct();
     }
 }

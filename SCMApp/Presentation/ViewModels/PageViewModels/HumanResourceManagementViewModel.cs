@@ -8,9 +8,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
     {
         public string NamePage => CommonConstants.HRMPageViewName;
 
+        public string FunctionName => CommonConstants.HRMFunctionName;
+
         public void Construct()
         {
-            throw new NotImplementedException();
         }
     }
 }

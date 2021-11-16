@@ -26,21 +26,21 @@ namespace SCMApp
             var window = new MainWindowView();
             window.DataContext = IoC.Get<MainWindowViewModel>();
             MainWindow = window;
-            //var dataContext = window.DataContext as MainWindowViewModel;
-            //if (dataContext != null)
-            //{
-            //    try
-            //    {
-            //        dataContext.CurrentPageViewModel = dataContext.ProjectListViewModel;
-            //    }
-            //    catch (AggregateException ex)
-            //    {
-            //        dataContext.IsHasError = true;
-            //        dataContext.ErrorViewModel.ErrorName = ex.InnerException.Message;
-            //        dataContext.ErrorViewModel.IsInternetCorrupted = true;
-            //        dataContext.CurrentPageViewModel = dataContext.ErrorViewModel;
-            //    }
-            //}
+            var dataContext = window.DataContext as MainWindowViewModel;
+            if (dataContext != null)
+            {
+                //try
+                //{
+                //    dataContext.CurrentPageViewModel = dataContext.ProjectListViewModel;
+                //}
+                //catch (AggregateException ex)
+                //{
+                //    dataContext.IsHasError = true;
+                //    dataContext.ErrorViewModel.ErrorName = ex.InnerException.Message;
+                //    dataContext.ErrorViewModel.IsInternetCorrupted = true;
+                //    dataContext.CurrentPageViewModel = dataContext.ErrorViewModel;
+                //}
+            }
             MainWindow.Show();
         }
     }

@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:SCMApp.Presentation.Views"
         xmlns:vm ="clr-namespace:SCMApp.Presentation.ViewModels"
         mc:Ignorable="d"
+        x:Name="home"
         d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
-        Title="MainWindow" Height="900" Width="1500" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" >
+        Title="Suppy Chain Management System" Height="900" Width="1500" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" >
 
-    <Border Background="Transparent">
+    <!--<Border Background="Transparent">-->
         <Border CornerRadius="20" BorderThickness="0">
             <Border.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
@@ -50,73 +51,73 @@
                         </Grid.RowDefinitions>
 
                         <!--Adding Menu buttons-->
-                        <Button Grid.Row="0" Background="Transparent" BorderThickness="0">
+                        <Button Grid.Row="0" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="OverviewPageView">
                             <Button.ToolTip>
-                                <TextBlock Text="Tổng quan" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                                <TextBlock Text="Tổng quan" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
                             <Button.Content>
                                 <Image Source="/Assets/monitor.png" Stretch="Uniform" Width="40"/>
                             </Button.Content>
                         </Button>
-                        <Button Grid.Row="1" Background="Transparent" BorderThickness="0">
+                        <Button Grid.Row="1" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="OrdersPageView">
                             <Button.ToolTip>
-                                <TextBlock Text="Đơn hàng" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                                <TextBlock Text="Đơn hàng" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
                             <Button.Content>
                                 <Image Source="/Assets/cart.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
                         </Button>
-                        <Button Grid.Row="2" Background="Transparent" BorderThickness="0">
+                        <Button Grid.Row="2" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="StockPageView">
                             <Button.ToolTip>
-                                <TextBlock Text="Hàng hoá" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                                <TextBlock Text="Hàng hoá" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
                             <Button.Content>
                                 <Image Source="/Assets/list.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
                         </Button>
-                        <Button Grid.Row="3" Background="Transparent" BorderThickness="0">
+                        <Button Grid.Row="3" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="PartnersPageView">
                             <Button.ToolTip>
-                                <TextBlock Text="Đối tác" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                                <TextBlock Text="Đối tác" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
                             <Button.Content>
                                 <Image Source="/Assets/partner.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
                         </Button>
-                        <Button Grid.Row="4" Background="Transparent" BorderThickness="0">
+                        <Button Grid.Row="4" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="ImportPageView">
                             <Button.ToolTip>
-                                <TextBlock Text="Nhập hàng" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                                <TextBlock Text="Nhập hàng" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
                             <Button.Content>
                                 <Image Source="/Assets/truck.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
                         </Button>
-                        <Button Grid.Row="5" Background="Transparent" BorderThickness="0">
+                        <Button Grid.Row="5" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="InventoryPageView">
                             <Button.ToolTip>
-                                <TextBlock Text="Tồn kho" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                                <TextBlock Text="Tồn kho" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
                             <Button.Content>
                                 <Image Source="/Assets/warehouse.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
                         </Button>
-                        <Button Grid.Row="6" Background="Transparent" BorderThickness="0">
+                        <Button Grid.Row="6" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="RevenuePageView">
                             <Button.ToolTip>
-                                <TextBlock Text="Doanh số" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                                <TextBlock Text="Doanh số" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
                             <Button.Content>
                                 <Image Source="/Assets/chart.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
                         </Button>
-                        <Button Grid.Row="7" Background="Transparent" BorderThickness="0">
+                        <Button Grid.Row="7" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="ProfitPageView">
                             <Button.ToolTip>
-                                <TextBlock Text="Lợi nhuận" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                                <TextBlock Text="Lợi nhuận" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
                             <Button.Content>
                                 <Image Source="/Assets/cash.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
                         </Button>
-                        <Button Grid.Row="8" Background="Transparent" BorderThickness="0">
+                        <Button Grid.Row="8" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="HumanResourceManagementView">
                             <Button.ToolTip>
-                                <TextBlock Text="Quản lý nhân sự" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                                <TextBlock Text="Quản lý nhân sự" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
                             <Button.Content>
                                 <Image Source="/Assets/human.png" Stretch="Uniform" Width="35"/>
@@ -126,8 +127,8 @@
                     <!--#endregion-->
                 </Grid>
                 
-                <Border  Grid.Column="1" Background="Transparent">
-                    <Border Background="#F3F6F9" CornerRadius="20" BorderThickness="0">
+                <!--<Border  Grid.Column="1" Background="Transparent" CornerRadius="20">-->
+                    <Border Grid.Column="1" Background="#F3F6F9" CornerRadius="20" BorderThickness="0">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="100"/>
@@ -144,9 +145,9 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <!--Name of function-->
-                                    <TextBlock Text="FunctionName" FontSize="20" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding FunctionName}" FontSize="20" FontFamily="Segoe UI" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20,0,0,0"/>
                                     <!--#region Searchbar code-->
-                                    <Border Grid.Column="1" Background="Transparent" Visibility="{Binding Visibility}">
+                                    <Border Grid.Column="1" Background="Transparent">
                                         <Border Background="White" Height="50" CornerRadius="10" HorizontalAlignment="Stretch">
                                             <Grid Height="Auto">
                                                 <Grid.ColumnDefinitions>
@@ -155,8 +156,8 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <Image Source="/Assets/search.png" Width="25" Stretch="Uniform"/>
-                                                <TextBox Grid.Column="1" x:Name="searchQuery" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
-                                                <TextBlock Grid.Column="1" Margin="3,0,0,0" Text="Search something..." FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                                <TextBox Grid.Column="1" x:Name="searchQuery" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                                <TextBlock Grid.Column="1" Margin="3,0,0,0" Text="Search something..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                                     <TextBlock.Style>
                                                         <Style TargetType="{x:Type TextBlock}">
                                                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -184,11 +185,11 @@
                                                         </Ellipse.Fill>
                                                     </Ellipse>
                                                 </MenuItem.Header>
-                                                <MenuItem Header="_Tên tài khoản"/>
-                                                <MenuItem Header="_Chức vụ"/>
-                                                <MenuItem Header="_Thông tin chi tiết"/>
-                                                <Separator />
-                                                <MenuItem Header="_Chỉnh sửa"/>
+                                            <MenuItem Header="_Tên tài khoản" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+                                            <MenuItem Header="_Chức vụ" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+                                            <MenuItem Header="_Thông tin chi tiết" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+                                            <Separator />
+                                            <MenuItem Header="_Chỉnh sửa" FontFamily="Segoe UI" FontWeight="SemiBold"/>
                                             </MenuItem>
                                         </Menu>
                                     </Border>
@@ -201,7 +202,13 @@
                                             <RowDefinition Height="2*"/>
                                             <RowDefinition Height="3.2*"/>
                                         </Grid.RowDefinitions>
-                                        <Border Grid.Column="1" Grid.Row="0" CornerRadius="0,20,0,20" Background="#2D73AD" >
+                                        <Border Grid.Column="1" Grid.Row="0" CornerRadius="0,20,0,20" >
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="1,0" StartPoint="0,1">
+                                                    <GradientStop Color="#FF37A0EA" Offset="0.1"/>
+                                                    <GradientStop Color="#356DD2" Offset="0.7"/>
+                                                </LinearGradientBrush>
+                                            </Border.Background>
                                             <StackPanel Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="6" Orientation="Horizontal">
                                                 <Button x:Name="MinimizeButton" Style="{StaticResource WindowButtonsStyle}" HorizontalAlignment="Left" Content="{StaticResource minimize_ico}" Click="MinimizeButton_Click"/>
 
@@ -227,11 +234,12 @@
                             </Border>
                             
                             <!--User Control for each function-->
-                            <ContentControl Grid.Row="1" Content="{Binding CurrentPageViewModel}"/>
+                            <ContentControl Grid.Row="1" Content="{Binding CurrentPageViewModel, UpdateSourceTrigger=PropertyChanged}"/>
+                            <!--<Grid Grid.Row="1" Background="Red"/>-->
                         </Grid>
                     </Border>
-                </Border>
+                <!--</Border>-->
             </Grid>
         </Border>
-    </Border>
+    <!--</Border>-->
 </Window>
