@@ -140,12 +140,12 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="200"/>
                                         <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="150"/>
                                         <ColumnDefinition Width="100"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <!--Name of function-->
-                                <TextBlock Text="{Binding FunctionName}" FontSize="20" FontFamily="Segoe UI" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20,0,0,0"/>
+                                    <TextBlock Text="{Binding FunctionName}" FontSize="20" FontFamily="Segoe UI" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20,0,0,0"/>
                                     <!--#region Searchbar code-->
                                     <Border Grid.Column="1" Background="Transparent">
                                         <Border Background="White" Height="50" CornerRadius="10" HorizontalAlignment="Stretch">
@@ -157,7 +157,7 @@
 
                                                 <Image Source="/Assets/search.png" Width="25" Stretch="Uniform"/>
                                                 <TextBox Grid.Column="1" x:Name="searchQuery" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
-                                                <TextBlock Grid.Column="1" Margin="3,0,0,0" Text="Search something..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                                <TextBlock Grid.Column="1" Margin="3,0,0,0" Text="Nhập điều bạn muốn tìm kiếm..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                                     <TextBlock.Style>
                                                         <Style TargetType="{x:Type TextBlock}">
                                                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -172,6 +172,8 @@
                                             </Grid>
                                         </Border>
                                     </Border>
+                                    <Button Grid.Column="2" Content="Tìm kiếm" Cursor="Hand" Margin="15,0,15,0" Height="50" Foreground="White" Style="{StaticResource Button3DRounded}" Background="#0167cc"/>
+                                    
                                     <Border Grid.Column="3" CornerRadius="50" Background="Transparent">
                                         <!--Profile Icon-->
                                         <Menu Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -234,7 +236,7 @@
                             </Border>
                             
                             <!--User Control for each function-->
-                            <ContentControl Grid.Row="1" Content="{Binding CurrentPageViewModel, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ContentControl Grid.Row="1" Content="{Binding CurrentPageViewModel}"/>
                             <!--<Grid Grid.Row="1" Background="Red"/>-->
                         </Grid>
                     </Border>

@@ -7,7 +7,6 @@
                 <ResourceDictionary Source="/Resources/Icon.xaml"/>
                 <ResourceDictionary Source="/Resources/StyleResource.xaml"/>
                 <ResourceDictionary Source="/Resources/ConfigResources.xaml"/>
-
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

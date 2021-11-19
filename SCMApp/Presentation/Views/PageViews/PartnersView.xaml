@@ -7,7 +7,233 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:PartnersViewModel}"
              d:DesignHeight="450" d:DesignWidth="800" >
-    <Border CornerRadius="0,0,20,20" Background="Tomato">
+    <Border CornerRadius="0,0,20,20" Background="White">
+        <TabControl Margin="15,10,15,15">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="20" Width="20" Source="/Assets/account.png"/>
+                        <TextBlock Padding="5,0,0,0" Text="Khách hàng" VerticalAlignment="Center" FontFamily="SegoeUI" FontWeight="SemiBold"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="1" Cursor="Hand" Foreground="White" Width="140" Height="37"
+                                Style="{StaticResource Button3DRounded}" Background="#1399ad">
+                                <Button.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Background="Transparent">
+                                            <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Assets/plus.png"/>
+                                        </Border>
+                                        <TextBlock Margin="5,0,0,0" Grid.Column="1" Text="Thêm khách hàng" TextAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="12"/>
+                                    </Grid>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                    <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
+                      AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
+                      SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
+                      CanUserReorderColumns="True">
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="Height" Value="32"/>
+                                <Setter Property="FontFamily" Value="SegoeUI"/>
+                                <Setter Property="Foreground" Value="#FF37A0EA"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="BorderBrush" Value="#dddddd"/>
+                                <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Padding" Value="13,3,0,0"/>
+                            </Style>
 
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Height" Value="44"/>
+                                <Style.Triggers>
+                                    <Trigger Property="DataGridCell.IsSelected" Value="True" >
+                                        <Setter Property="Background" Value="#f4f4f4"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+
+                            <DataTemplate x:Key="SelectProject">
+
+                            </DataTemplate>
+                            <DataTemplate x:Key="NumberProject">
+
+                            </DataTemplate>
+                            <DataTemplate x:Key="NameProject">
+
+                            </DataTemplate>
+                            <DataTemplate x:Key="StatusProject">
+
+                            </DataTemplate>
+                            <DataTemplate x:Key="CustomerProject">
+
+                            </DataTemplate>
+                            <DataTemplate x:Key="StartDateProject">
+
+                            </DataTemplate>
+                            <DataTemplate x:Key="DeleteProject">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <Button Width="17" Height="17" Background="White" BorderThickness="0" Cursor="Hand" Margin="0,0,0,5">
+                                        <Image>
+                                            <Image.Source>
+                                                <BitmapImage UriSource="/Assets/edit.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                            </Image.Source>
+                                        </Image>
+                                    </Button>
+                                    <Button Width="17" Height="17" Background="White" BorderThickness="0" Cursor="Hand" Margin="0,0,0,5">
+                                        <Image>
+                                            <Image.Source>
+                                                <BitmapImage UriSource="/Assets/Red_Bin.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                            </Image.Source>
+                                        </Image>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns >
+                            <DataGridTemplateColumn Width="1*" Header="Mã khách hàng" CellTemplate="{StaticResource NumberProject}"/>
+                            <DataGridTemplateColumn Width="1.1*" Header="Tên khách hàng" CellTemplate="{StaticResource NameProject}"/>
+                            <DataGridTemplateColumn Width="1.4*" Header="Số điện thoại" CellTemplate="{StaticResource StatusProject}"/>
+                            <DataGridTemplateColumn Width="1.2*" Header="Địa chỉ" CellTemplate="{StaticResource CustomerProject}"/>
+                            <DataGridTemplateColumn Width="1.2*" Header="Lần mua cuối cùng" CellTemplate="{StaticResource StartDateProject}"/>
+                            <DataGridTemplateColumn Width="1.2*" Header="Tổng tiền hàng" CellTemplate="{StaticResource DeleteProject}"/>
+                            <DataGridTemplateColumn Width="1.2*" Header="Nợ" CellTemplate="{StaticResource DeleteProject}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="20" Width="20" Source="/Assets/truck-delivery.png" />
+                        <TextBlock Padding="5,0,0,0" Text="Nhà cung cấp" VerticalAlignment="Center" FontFamily="SegoeUI" FontWeight="SemiBold"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="1" Cursor="Hand" Foreground="White" Width="120" Height="37"
+                                Style="{StaticResource Button3DRounded}" Background="#1399ad">
+                                <Button.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Background="Transparent">
+                                            <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Assets/plus.png" />
+                                        </Border>
+                                        <TextBlock Margin="5,0,0,0" Grid.Column="1" Text="Thêm nhà CC" TextAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="12"/>
+                                    </Grid>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                    <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
+                      AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
+                      SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
+                      CanUserReorderColumns="True">
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="Height" Value="32"/>
+                                <Setter Property="FontFamily" Value="SegoeUI"/>
+                                <Setter Property="Foreground" Value="#FF37A0EA"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="BorderBrush" Value="#dddddd"/>
+                                <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Padding" Value="13,3,0,0"/>
+                            </Style>
+
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Height" Value="44"/>
+                                <Style.Triggers>
+                                    <Trigger Property="DataGridCell.IsSelected" Value="True" >
+                                        <Setter Property="Background" Value="#f4f4f4"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+
+                            <DataTemplate x:Key="SelectProject">
+
+                            </DataTemplate>
+                            <DataTemplate x:Key="NumberProject">
+
+                            </DataTemplate>
+                            <DataTemplate x:Key="NameProject">
+
+                            </DataTemplate>
+                            <DataTemplate x:Key="StatusProject">
+
+                            </DataTemplate>
+                            <DataTemplate x:Key="CustomerProject">
+
+                            </DataTemplate>
+                            <DataTemplate x:Key="StartDateProject">
+
+                            </DataTemplate>
+                            <DataTemplate x:Key="DeleteProject">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <Button Width="17" Height="17" Background="White" BorderThickness="0" Cursor="Hand" Margin="0,0,0,5">
+                                        <Image>
+                                            <Image.Source>
+                                                <BitmapImage UriSource="/Assets/edit.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                            </Image.Source>
+                                        </Image>
+                                    </Button>
+                                    <Button Width="17" Height="17" Background="White" BorderThickness="0" Cursor="Hand" Margin="0,0,0,5">
+                                        <Image>
+                                            <Image.Source>
+                                                <BitmapImage UriSource="/Assets/Red_Bin.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                            </Image.Source>
+                                        </Image>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns >
+                            <DataGridTemplateColumn Width="1*" Header="Mã nhà cung cấp" CellTemplate="{StaticResource NumberProject}"/>
+                            <DataGridTemplateColumn Width="1.1*" Header="Tên nhà cung cấp" CellTemplate="{StaticResource NameProject}"/>
+                            <DataGridTemplateColumn Width="1.4*" Header="Số điện thoại" CellTemplate="{StaticResource StatusProject}"/>
+                            <DataGridTemplateColumn Width="1.2*" Header="Địa chỉ" CellTemplate="{StaticResource CustomerProject}"/>
+                            <DataGridTemplateColumn Width="1.2*" Header="Nợ cần trả hiện tại" CellTemplate="{StaticResource StartDateProject}"/>
+                            <DataGridTemplateColumn Width="1.2*" Header="Tổng đã mua" CellTemplate="{StaticResource DeleteProject}"/>
+                            <DataGridTemplateColumn Width="1.2*" Header="Lần nhập hàng cuối cùng" CellTemplate="{StaticResource DeleteProject}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Border>
 </UserControl>

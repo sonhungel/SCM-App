@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:v ="clr-namespace:SCMApp.Presentation.Views.PageViews"
-                    xmlns:vm ="clr-namespace:SCMApp.Presentation.ViewModels.PageViewModels">
+                    xmlns:vm ="clr-namespace:SCMApp.Presentation.ViewModels.PageViewModels"
+                    xmlns:converter ="clr-namespace:SCMApp.Presentation.Converters">
 
     <DataTemplate DataType="{x:Type vm:ImportStockViewModel}">
         <v:ImportStockView/>
@@ -30,5 +31,7 @@
     <DataTemplate DataType="{x:Type vm:HumanResourceManagementViewModel}">
         <v:HumanResourceManagementView/>
     </DataTemplate>
-    
+
+    <converter:IsVisibleConverter x:Key="IsVisibleConverter"/>
+
 </ResourceDictionary>

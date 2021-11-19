@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\account.png" />
     <None Remove="Assets\applogoexample.png" />
     <None Remove="Assets\apps.png" />
     <None Remove="Assets\bell.png" />
@@ -28,6 +29,7 @@
     <None Remove="Assets\document.png" />
     <None Remove="Assets\downloadsfolder.png" />
     <None Remove="Assets\dropbox.png" />
+    <None Remove="Assets\edit.png" />
     <None Remove="Assets\exit.png" />
     <None Remove="Assets\folder.png" />
     <None Remove="Assets\googledrive.png" />
@@ -55,6 +57,7 @@
     <None Remove="Assets\profilewhite.png" />
     <None Remove="Assets\profolder.png" />
     <None Remove="Assets\recent.png" />
+    <None Remove="Assets\Red_Bin.png" />
     <None Remove="Assets\right.png" />
     <None Remove="Assets\right2.png" />
     <None Remove="Assets\search.png" />
@@ -67,15 +70,17 @@
     <None Remove="Assets\todobw.png" />
     <None Remove="Assets\todocolor.png" />
     <None Remove="Assets\trash.png" />
+    <None Remove="Assets\truck-delivery.png" />
     <None Remove="Assets\truck.png" />
     <None Remove="Assets\video.png" />
     <None Remove="Assets\warehouse.png" />
+    <None Remove="Assets\window-close.png" />
     <None Remove="Assets\zip.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="CustomControls\" />
-    <Folder Include="Presentation\Converters\" />
+    <Folder Include="Presentation\ViewModels\PageViewModels\ItemViewModels\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -87,6 +92,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\account.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\cart.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -94,6 +102,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\chart.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\edit.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\exit.png">
@@ -117,13 +128,25 @@
     <Resource Include="Assets\partner.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\plus.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Red_Bin.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\search.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\truck-delivery.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\truck.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\warehouse.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\window-close.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

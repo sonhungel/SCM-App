@@ -7,7 +7,97 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:OrdersViewModel}"
              d:DesignHeight="450" d:DesignWidth="800" >
-    <Border CornerRadius="0,0,20,20" Background="IndianRed">
 
+    <Border CornerRadius="0,0,20,20" Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="0" Background="#97deb0" CornerRadius="10" Height="40" Margin="15,0,15,0" Visibility="{Binding IsHaveNoData, Mode =TwoWay,  Converter={StaticResource IsVisibleConverter}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="10,0,0,0" Grid.Column="0" Orientation="Horizontal">
+                        <TextBlock Text="Chưa có đơn hàng nào. Vui lòng chọn " FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="Bán hàng" FontSize="15" TextAlignment="Right" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                        <TextBlock Text=" để thêm mới !" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Button Grid.Column="1" HorizontalAlignment="Right" Width="25" Height="25" VerticalAlignment="Center" Style="{StaticResource Button3DRounded}" Background="Transparent" Margin="0,0,10,0">
+                        <Button.Content>
+                            <Border Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                <Border Width="20" Height="20" Background="Transparent">
+                                    <Image Source="/Assets/window-close.png" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                </Border>
+
+                            </Border>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+
+            </Border>
+            <DataGrid VerticalAlignment="Top" Grid.Row="1" Margin="15,0,15,15" Style="{StaticResource CustomDataGrid}" x:Name="ListProjectGrid" BorderBrush="#aaaaaa"
+                      AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
+                      SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
+                      CanUserReorderColumns="True">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Height" Value="32"/>
+                        <Setter Property="FontFamily" Value="SegoeUI"/>
+                        <Setter Property="Foreground" Value="#FF37A0EA"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        <Setter Property="BorderBrush" Value="#dddddd"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Padding" Value="13,3,0,0"/>
+                    </Style>
+
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Height" Value="44"/>
+                        <Style.Triggers>
+                            <Trigger Property="DataGridCell.IsSelected" Value="True" >
+                                <Setter Property="Background" Value="#f4f4f4"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <DataTemplate x:Key="SelectProject">
+
+                    </DataTemplate>
+                    <DataTemplate x:Key="NumberProject">
+
+                    </DataTemplate>
+                    <DataTemplate x:Key="NameProject">
+
+                    </DataTemplate>
+                    <DataTemplate x:Key="StatusProject">
+
+                    </DataTemplate>
+                    <DataTemplate x:Key="CustomerProject">
+
+                    </DataTemplate>
+                    <DataTemplate x:Key="StartDateProject">
+
+                    </DataTemplate>
+                    <DataTemplate x:Key="DeleteProject">
+
+                    </DataTemplate>
+                </DataGrid.Resources>
+                <DataGrid.Columns >
+                    <DataGridTemplateColumn Width="1*" Header="Mã hoá đơn" CellTemplate="{StaticResource NumberProject}"/>
+                    <DataGridTemplateColumn Width="1.1*" Header="Thời gian" CellTemplate="{StaticResource NameProject}"/>
+                    <DataGridTemplateColumn Width="1.4*" Header="Khách hàng" CellTemplate="{StaticResource StatusProject}"/>
+                    <DataGridTemplateColumn Width="1.2*" Header="Tổng tiền hàng" CellTemplate="{StaticResource CustomerProject}"/>
+                    <DataGridTemplateColumn Width="1.2*" Header="Giảm giá" CellTemplate="{StaticResource StartDateProject}"/>
+                    <DataGridTemplateColumn Width="1.2*" Header="Tổng sau giảm giá" CellTemplate="{StaticResource DeleteProject}"/>
+                    <DataGridTemplateColumn Width="1.2*" Header="Khách đã trả" CellTemplate="{StaticResource DeleteProject}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Border>
 </UserControl>
