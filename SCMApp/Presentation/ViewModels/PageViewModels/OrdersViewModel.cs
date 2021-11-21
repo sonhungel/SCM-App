@@ -1,12 +1,13 @@
 ﻿using SCMApp.Constants;
 using SCMApp.Presentation.ViewModels.Base;
+using SCMApp.ViewManager;
 using System;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     public class OrdersViewModel : ViewModelBase, IPageViewModel
     {
-        public OrdersViewModel()
+        public OrdersViewModel(IScreenManager screenManager) : base(screenManager)
         {
             _isHaveNoData = true;
         }

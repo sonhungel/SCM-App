@@ -1,4 +1,5 @@
 ﻿using Ninject.Modules;
+using SCMApp.ViewManager;
 using SCMApp.WebAPIClient;
 
 namespace SCMApp.DependencyInjection
@@ -9,6 +10,7 @@ namespace SCMApp.DependencyInjection
         {
             BindWebApiClients();
             BindTransportLayer();
+            BindViewLayer();
         }
 
         private void BindWebApiClients()
@@ -22,6 +24,9 @@ namespace SCMApp.DependencyInjection
         {
             Bind<IHttpClientFactory>().To<HttpClientFactory>().InSingletonScope();
         }
-
+        private void BindViewLayer()
+        {
+            Bind<IScreenManager>().To<ScreenManager>().InSingletonScope();
+        }
     }
 }

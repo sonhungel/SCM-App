@@ -22,5 +22,10 @@
         public const string RevenueFunctionName = "Doanh thu";
         public const string StockFunctionName = "Hàng hoá";
         public const string HRMFunctionName = "Quản lý nhân sự";
+
+        // Title
+
+        public const string EditUser = "Chỉnh sửa thông tin người dùng";
+        public const string UserProfile = "Thông tin người dùng";
     }
 }

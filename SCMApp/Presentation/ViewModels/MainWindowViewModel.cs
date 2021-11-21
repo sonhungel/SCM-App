@@ -2,6 +2,7 @@
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.PageViewModels;
+using SCMApp.ViewManager;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -10,7 +11,7 @@ namespace SCMApp.Presentation.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel()
+        public MainWindowViewModel(IScreenManager screenManager) : base(screenManager)
         {
             _allPageViewModels = new List<IPageViewModel>();
             InitAllPageViewModel(_allPageViewModels);
@@ -48,23 +49,23 @@ namespace SCMApp.Presentation.ViewModels
 
         private void InitAllPageViewModel(List<IPageViewModel> pageViewModels)
         {
-            IPageViewModel pageView = new HumanResourceManagementViewModel();
+            IPageViewModel pageView = new HumanResourceManagementViewModel(ScreenManager);
             pageViewModels.Add(pageView);
-            pageView = new ImportStockViewModel();
+            pageView = new ImportStockViewModel(ScreenManager);
             pageViewModels.Add(pageView);
-            pageView = new InventoryViewModel();
+            pageView = new InventoryViewModel(ScreenManager);
             pageViewModels.Add(pageView);
-            pageView = new OrdersViewModel();
+            pageView = new OrdersViewModel(ScreenManager);
             pageViewModels.Add(pageView);
-            pageView = new OverviewViewModel();
+            pageView = new OverviewViewModel(ScreenManager);
             pageViewModels.Add(pageView);
-            pageView = new PartnersViewModel();
+            pageView = new PartnersViewModel(ScreenManager);
             pageViewModels.Add(pageView);
-            pageView = new ProfitViewModel();
+            pageView = new ProfitViewModel(ScreenManager);
             pageViewModels.Add(pageView);
-            pageView = new RevenueViewModel();
-            pageViewModels.Add(pageView);
-            pageView = new StockViewModel();
+            //pageView = new RevenueViewModel();
+            //pageViewModels.Add(pageView);
+            pageView = new StockViewModel(ScreenManager);
             pageViewModels.Add(pageView);
         }
     }

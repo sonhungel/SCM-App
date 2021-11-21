@@ -1,7 +1,9 @@
 ﻿using Ninject;
 using SCMApp.DependencyInjection;
 using SCMApp.Presentation.ViewModels;
+using SCMApp.Presentation.ViewModels.SubViewModels;
 using SCMApp.Presentation.Views;
+using SCMApp.Presentation.Views.SubViews;
 using System;
 using System.Windows;
 
@@ -23,10 +25,10 @@ namespace SCMApp
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            var window = new MainWindowView();
-            window.DataContext = IoC.Get<MainWindowViewModel>();
+            var window = new UserProfileView();
+            window.DataContext = IoC.Get<UserProfileViewModel>();
             MainWindow = window;
-            var dataContext = window.DataContext as MainWindowViewModel;
+            var dataContext = window.DataContext as UserProfileViewModel;
             if (dataContext != null)
             {
                 //try

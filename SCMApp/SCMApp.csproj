@@ -60,6 +60,7 @@
     <None Remove="Assets\Red_Bin.png" />
     <None Remove="Assets\right.png" />
     <None Remove="Assets\right2.png" />
+    <None Remove="Assets\save.png" />
     <None Remove="Assets\search.png" />
     <None Remove="Assets\searchcolor.png" />
     <None Remove="Assets\searchwhite.png" />
@@ -132,6 +133,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Red_Bin.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\save.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\search.png">

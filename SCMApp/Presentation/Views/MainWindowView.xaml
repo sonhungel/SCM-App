@@ -46,7 +46,6 @@
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="60"/>
-                            <RowDefinition Height="60"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
@@ -99,15 +98,15 @@
                                 <Image Source="/Assets/warehouse.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
                         </Button>
-                        <Button Grid.Row="6" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="RevenuePageView">
+                        <!--<Button Grid.Row="6" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="RevenuePageView">
                             <Button.ToolTip>
                                 <TextBlock Text="Doanh số" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
                             <Button.Content>
                                 <Image Source="/Assets/chart.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
-                        </Button>
-                        <Button Grid.Row="7" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="ProfitPageView">
+                        </Button>-->
+                        <Button Grid.Row="6" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="ProfitPageView">
                             <Button.ToolTip>
                                 <TextBlock Text="Lợi nhuận" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
@@ -115,7 +114,7 @@
                                 <Image Source="/Assets/cash.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
                         </Button>
-                        <Button Grid.Row="8" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="HumanResourceManagementView">
+                        <Button Grid.Row="7" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="HumanResourceManagementView">
                             <Button.ToolTip>
                                 <TextBlock Text="Quản lý nhân sự" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>

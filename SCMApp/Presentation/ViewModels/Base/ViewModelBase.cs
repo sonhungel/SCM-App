@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SCMApp.ViewManager;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 
@@ -13,9 +14,12 @@ namespace SCMApp.Presentation.ViewModels.Base
     {
         #region Constructor
         public delegate bool BoolFunctionOfView();
-        protected ViewModelBase()
+        protected ViewModelBase(IScreenManager screenManager)
         {
+            ScreenManager = screenManager;
         }
+
+        public IScreenManager ScreenManager { get; }
 
         #endregion // Constructor
 
