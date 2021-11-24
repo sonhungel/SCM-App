@@ -25,6 +25,7 @@ namespace SCMApp.Presentation.Views.SubViews
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+            DataContext = null;
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)

@@ -10,21 +10,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SCMApp.Presentation.Views.SubViews
+namespace SCMApp.Presentation.Views
 {
     /// <summary>
-    /// Interaction logic for InsertUserProfileView.xaml
+    /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class InsertUserProfileView : Window
+    public partial class LoginView : Window
     {
-        public InsertUserProfileView()
+        public LoginView()
         {
             InitializeComponent();
         }
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Close(); 
-            DataContext = null;
+            Close();
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)

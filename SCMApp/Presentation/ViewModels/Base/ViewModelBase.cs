@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows;
 
 namespace SCMApp.Presentation.ViewModels.Base
 { 
@@ -20,6 +21,8 @@ namespace SCMApp.Presentation.ViewModels.Base
         }
 
         public IScreenManager ScreenManager { get; }
+
+        public Window View { get; set; }
 
         #endregion // Constructor
 

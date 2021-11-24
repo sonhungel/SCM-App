@@ -120,9 +120,9 @@
                 </Grid>
             </Border>
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,15,5">
-                <Button Content="Đóng" Cursor="Hand" Width="50" Height="34" Foreground="White" Style="{StaticResource Button3DRounded}" Background="#8e9da3"/>
+                <Button Content="Đóng" Cursor="Hand" Width="50" Height="34" Foreground="White" Command="{Binding ICancelCommand}" Style="{StaticResource Button3DRounded}" Background="#8e9da3"/>
                 <Border Width="10"/>
-                <Button Cursor="Hand" Foreground="White" Width="80" Height="34"
+                <Button Cursor="Hand" Foreground="White" Width="80" Height="34" Command="{Binding ISaveCommand}"
                                 Style="{StaticResource Button3DRounded}" Background="#39a36e">
                     <Button.Content>
                         <Grid>

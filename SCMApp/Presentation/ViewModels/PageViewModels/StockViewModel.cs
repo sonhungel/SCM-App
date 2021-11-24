@@ -2,6 +2,7 @@
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using System;
+using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
@@ -11,6 +12,9 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         {
             _isHaveNoData = true;
         }
+
+        public ICommand OpenStockViewCommand { get; set; }
+
         public string NamePage => CommonConstants.StockPageViewName;
 
         public string FunctionName => CommonConstants.StockFunctionName;

@@ -5,6 +5,7 @@ using SCMApp.Presentation.ViewModels.PageViewModels;
 using SCMApp.ViewManager;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels
@@ -14,10 +15,8 @@ namespace SCMApp.Presentation.ViewModels
         public MainWindowViewModel(IScreenManager screenManager) : base(screenManager)
         {
             _allPageViewModels = new List<IPageViewModel>();
-            InitAllPageViewModel(_allPageViewModels);
-            CurrentPageViewModel = _allPageViewModels.Find(p => CommonConstants.OverviewPageViewName.Equals(p.NamePage));
 
-            ChangePageCommand = new RelayCommand(p => ChangeViewModel((string)p), p => p is string && !p.Equals(CurrentPageViewModel.NamePage));
+            //ChangePageCommand = new RelayCommand(p => ChangeViewModel((string)p), p => p is string && !p.Equals(CurrentPageViewModel.NamePage));
         }
 
         private IPageViewModel _currentPageViewModel;
@@ -29,6 +28,7 @@ namespace SCMApp.Presentation.ViewModels
             get => _currentPageViewModel;
             set
             {
+                
                 _currentPageViewModel = value;
                 OnPropertyChanged(nameof(CurrentPageViewModel));
             }
@@ -47,26 +47,29 @@ namespace SCMApp.Presentation.ViewModels
             CurrentPageViewModel.Construct();
         }
 
-        private void InitAllPageViewModel(List<IPageViewModel> pageViewModels)
+        public void InitAllPageViewModel()
         {
-            IPageViewModel pageView = new HumanResourceManagementViewModel(ScreenManager);
-            pageViewModels.Add(pageView);
-            pageView = new ImportStockViewModel(ScreenManager);
-            pageViewModels.Add(pageView);
-            pageView = new InventoryViewModel(ScreenManager);
-            pageViewModels.Add(pageView);
-            pageView = new OrdersViewModel(ScreenManager);
-            pageViewModels.Add(pageView);
-            pageView = new OverviewViewModel(ScreenManager);
-            pageViewModels.Add(pageView);
-            pageView = new PartnersViewModel(ScreenManager);
-            pageViewModels.Add(pageView);
-            pageView = new ProfitViewModel(ScreenManager);
-            pageViewModels.Add(pageView);
+            IPageViewModel pageView = new HumanResourceManagementViewModel(ScreenManager) { View = this.View};
+            _allPageViewModels.Add(pageView);
+            pageView = new ImportStockViewModel(ScreenManager) { View = this.View };
+            _allPageViewModels.Add(pageView);
+            pageView = new InventoryViewModel(ScreenManager) { View = this.View };
+            _allPageViewModels.Add(pageView);
+            pageView = new OrdersViewModel(ScreenManager) { View = this.View };
+            _allPageViewModels.Add(pageView);
+            pageView = new OverviewViewModel(ScreenManager) { View = this.View };
+            _allPageViewModels.Add(pageView);
+            pageView = new PartnersViewModel(ScreenManager) { View = this.View };
+            _allPageViewModels.Add(pageView);
+            pageView = new ProfitViewModel(ScreenManager) { View = this.View };
+            _allPageViewModels.Add(pageView);
             //pageView = new RevenueViewModel();
             //pageViewModels.Add(pageView);
-            pageView = new StockViewModel(ScreenManager);
-            pageViewModels.Add(pageView);
+            pageView = new StockViewModel(ScreenManager) { View = this.View };
+            _allPageViewModels.Add(pageView);
+
+            CurrentPageViewModel = _allPageViewModels.Find(p => CommonConstants.OverviewPageViewName.Equals(p.NamePage));
+            ChangePageCommand = new RelayCommand(p => ChangeViewModel((string)p), p => p is string && !p.Equals(CurrentPageViewModel.NamePage));
         }
     }
 }

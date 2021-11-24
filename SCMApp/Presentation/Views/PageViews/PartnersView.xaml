@@ -27,7 +27,7 @@
                                 <ColumnDefinition Width="4*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="1" Cursor="Hand" Foreground="White" Width="140" Height="37"
+                            <Button Grid.Column="1" Cursor="Hand" Foreground="White" Width="140" Height="37" Command="{Binding OpenCustomerViewCommand}"
                                 Style="{StaticResource Button3DRounded}" Background="#1399ad">
                                 <Button.Content>
                                     <Grid>
@@ -141,7 +141,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Button Grid.Column="1" Cursor="Hand" Foreground="White" Width="120" Height="37"
-                                Style="{StaticResource Button3DRounded}" Background="#1399ad">
+                                Style="{StaticResource Button3DRounded}" Background="#1399ad" Command="{Binding OpenPartnerViewCommand}">
                                 <Button.Content>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
