@@ -15,8 +15,7 @@ namespace SCMApp.Presentation.ViewModels
         public MainWindowViewModel(IScreenManager screenManager) : base(screenManager)
         {
             _allPageViewModels = new List<IPageViewModel>();
-
-            //ChangePageCommand = new RelayCommand(p => ChangeViewModel((string)p), p => p is string && !p.Equals(CurrentPageViewModel.NamePage));
+            OpenUserProfileCommand = new RelayCommand(p => OpenUserProfileView());
         }
 
         private IPageViewModel _currentPageViewModel;
@@ -28,7 +27,6 @@ namespace SCMApp.Presentation.ViewModels
             get => _currentPageViewModel;
             set
             {
-                
                 _currentPageViewModel = value;
                 OnPropertyChanged(nameof(CurrentPageViewModel));
             }
@@ -37,6 +35,7 @@ namespace SCMApp.Presentation.ViewModels
         public string FunctionName => CurrentPageViewModel?.FunctionName;
 
         public ICommand ChangePageCommand { get; set; }
+        public ICommand OpenUserProfileCommand { get; set; }
 
         private void ChangeViewModel(string pageName)
         {
@@ -70,6 +69,11 @@ namespace SCMApp.Presentation.ViewModels
 
             CurrentPageViewModel = _allPageViewModels.Find(p => CommonConstants.OverviewPageViewName.Equals(p.NamePage));
             ChangePageCommand = new RelayCommand(p => ChangeViewModel((string)p), p => p is string && !p.Equals(CurrentPageViewModel.NamePage));
+        }
+
+        private void OpenUserProfileView()
+        {
+            ScreenManager.ShowUserProfileView(View);
         }
     }
 }

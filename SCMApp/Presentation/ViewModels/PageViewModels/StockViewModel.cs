@@ -1,4 +1,5 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using System;
@@ -11,9 +12,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public StockViewModel(IScreenManager screenManager) : base(screenManager)
         {
             _isHaveNoData = true;
+            OpenStockDetailViewCommand = new RelayCommand(p => OpenStockDetailView());
         }
 
-        public ICommand OpenStockViewCommand { get; set; }
+        public ICommand OpenStockDetailViewCommand { get; set; }
 
         public string NamePage => CommonConstants.StockPageViewName;
 
@@ -33,6 +35,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         public void Construct()
         {
+        }
+        private void OpenStockDetailView()
+        {
+            ScreenManager.ShowStockDetailView(View);
         }
     }
 }

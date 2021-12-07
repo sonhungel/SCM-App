@@ -1,7 +1,9 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using System;
+using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
@@ -10,7 +12,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public HumanResourceManagementViewModel(IScreenManager screenManager) : base(screenManager)
         {
             _isHaveNoData = true;
+            OpenInsertUserProfileViewCommand = new RelayCommand(p => OpenInsertUserProfileView());
         }
+
+        public ICommand OpenInsertUserProfileViewCommand { get; set; }
 
         public string NamePage => CommonConstants.HRMPageViewName;
 
@@ -30,6 +35,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         public void Construct()
         {
+        }
+
+        private void OpenInsertUserProfileView()
+        {
+            ScreenManager.ShowInsertUserView(View);
         }
     }
 }

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:PartnersViewModel}"
              d:DesignHeight="450" d:DesignWidth="800" >
-    <Border CornerRadius="0,0,20,20" Background="White">
+    <Border CornerRadius="0,0,10,10" Background="White">
         <TabControl Margin="15,10,15,15">
             <TabItem>
                 <TabItem.Header>

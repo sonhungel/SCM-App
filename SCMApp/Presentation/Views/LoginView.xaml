@@ -10,7 +10,7 @@
         x:Name="Login"
         d:DataContext="{d:DesignInstance Type=vm:LoginViewModel}"
         Title="LoginView" Height="600" Width="500" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
-    <Border CornerRadius="20" BorderThickness="0">
+    <Border CornerRadius="10" BorderThickness="0">
         <Border.Background>
             <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
                 <GradientStop Color="#FF37A0EA" Offset="0.8"/>
@@ -28,7 +28,7 @@
                     <ColumnDefinition Width="80"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Đăng nhập" FontSize="18" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20,0,0,0"/>
-                <Border Grid.Column="1" Grid.Row="0" CornerRadius="20,20,20,20">
+                <Border Grid.Column="1" Grid.Row="0" CornerRadius="10">
                     <Border.Background>
                         <LinearGradientBrush EndPoint="1,0" StartPoint="0,1">
                             <GradientStop Color="#FF37A0EA" Offset="0"/>

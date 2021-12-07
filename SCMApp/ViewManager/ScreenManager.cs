@@ -60,5 +60,14 @@ namespace SCMApp.ViewManager
             view.Owner = parentWindow;
             view.Show();
         }
+
+        public void ShowStockDetailView(Window parentWindow)
+        {
+            var view = new StockDetailView();
+            var viewModel = IoC.Get<StockDetailViewModel>();
+            view.DataContext = viewModel;
+            view.Owner = parentWindow;
+            view.Show();
+        }
     }
 }

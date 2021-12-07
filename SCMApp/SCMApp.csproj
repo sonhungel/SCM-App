@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Presentation\ViewModels\PageViewModels\ItemViewModels\**" />
+    <EmbeddedResource Remove="Presentation\ViewModels\PageViewModels\ItemViewModels\**" />
+    <None Remove="Presentation\ViewModels\PageViewModels\ItemViewModels\**" />
+    <Page Remove="Presentation\ViewModels\PageViewModels\ItemViewModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Assets\account.png" />
     <None Remove="Assets\applogoexample.png" />
     <None Remove="Assets\apps.png" />
@@ -80,15 +87,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Presentation\ViewModels\PageViewModels\ItemViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.13" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Ninject" Version="3.3.4" />
-    <PackageReference Include="Unnoficial.Microsoft.Expression.Drawing" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

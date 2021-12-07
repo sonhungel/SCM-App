@@ -11,7 +11,7 @@
         Title="Suppy Chain Management System" Height="900" Width="1500" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" >
 
     <!--<Border Background="Transparent">-->
-        <Border CornerRadius="20" BorderThickness="0">
+        <Border CornerRadius="10" BorderThickness="0">
             <Border.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
                     <GradientStop Color="#FF37A0EA" Offset="0.8"/>
@@ -127,14 +127,14 @@
                 </Grid>
                 
                 <!--<Border  Grid.Column="1" Background="Transparent" CornerRadius="20">-->
-                    <Border Grid.Column="1" Background="#F3F6F9" CornerRadius="20" BorderThickness="0">
+                    <Border Grid.Column="1" Background="#F3F6F9" CornerRadius="10" BorderThickness="0">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="100"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <!--Header-->
-                            <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#aaaaaa" CornerRadius="20,20,0,0" Background="#F1F7FF">
+                            <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#aaaaaa" CornerRadius="10,10,0,0" Background="#F1F7FF">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="200"/>
@@ -188,9 +188,8 @@
                                                 </MenuItem.Header>
                                             <MenuItem Header="_Tên tài khoản" FontFamily="Segoe UI" FontWeight="SemiBold"/>
                                             <MenuItem Header="_Chức vụ" FontFamily="Segoe UI" FontWeight="SemiBold"/>
-                                            <MenuItem Header="_Thông tin chi tiết" FontFamily="Segoe UI" FontWeight="SemiBold"/>
                                             <Separator />
-                                            <MenuItem Header="_Chỉnh sửa" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+                                            <MenuItem Header="_Chỉnh sửa thông tin" Command="{Binding OpenUserProfileCommand}" FontFamily="Segoe UI" FontWeight="SemiBold"/>
                                             </MenuItem>
                                         </Menu>
                                     </Border>
@@ -203,7 +202,7 @@
                                             <RowDefinition Height="2*"/>
                                             <RowDefinition Height="3.2*"/>
                                         </Grid.RowDefinitions>
-                                        <Border Grid.Column="1" Grid.Row="0" CornerRadius="0,20,0,20" >
+                                        <Border Grid.Column="1" Grid.Row="0" CornerRadius="0,10,0,10" >
                                             <Border.Background>
                                                 <LinearGradientBrush EndPoint="1,0" StartPoint="0,1">
                                                     <GradientStop Color="#FF37A0EA" Offset="0.1"/>

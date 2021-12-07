@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:OverviewViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border CornerRadius="0,0,20,20" Background="Red">
+    <Border CornerRadius="0,0,10,10" Background="Red">
         
     </Border>
 </UserControl>

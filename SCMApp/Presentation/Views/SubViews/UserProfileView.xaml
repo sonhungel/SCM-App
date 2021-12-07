@@ -10,7 +10,7 @@
         d:DataContext="{d:DesignInstance Type=vm:UserProfileViewModel}"
         Title="Thông tin người dùng" Height="500" Width="800" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
 
-    <Border CornerRadius="20" BorderThickness="0">
+    <Border CornerRadius="10" BorderThickness="0">
         <Border.Background>
             <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
                 <GradientStop Color="#FF37A0EA" Offset="0.8"/>
@@ -29,7 +29,7 @@
                     <ColumnDefinition Width="80"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Thông tin người dùng" FontSize="18" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20,0,0,0"/>
-                <Border Grid.Column="1" Grid.Row="0" CornerRadius="20,20,20,20">
+                <Border Grid.Column="1" Grid.Row="0" CornerRadius="10">
                     <Border.Background>
                         <LinearGradientBrush EndPoint="1,0" StartPoint="0,1">
                             <GradientStop Color="#FF37A0EA" Offset="0"/>
@@ -43,7 +43,7 @@
                     </StackPanel>
                 </Border>
             </Grid>
-            <Border Grid.Row="1" Background="#F3F6F9" CornerRadius="10" BorderThickness="0" Margin="10,0,10,5">
+            <Border Grid.Row="1" Background="#F3F6F9" CornerRadius="8" BorderThickness="0" Margin="10,0,10,5">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -68,10 +68,46 @@
 
                     <!--Colum 1-->
                     <Label Grid.Row="0" Grid.Column="0" Content="Họ và tên" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                    <TextBox Grid.Row="1" Grid.Column="0" Template="{StaticResource TextBoxBaseControlTemplate}" Style="{StaticResource TextBox14SegoeUI}"/>
+                    <Border Grid.Row="1" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                        <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
+                            <Grid Height="Auto">
+                                <TextBox x:Name="importName" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBlock Margin="20,0,0,0" Text="Nhập họ và tên..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=importName}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </Border>
 
                     <Label Grid.Row="2" Grid.Column="0" Content="Tên đăng nhập" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                    <TextBox Grid.Row="3" Grid.Column="0" Template="{StaticResource TextBoxBaseControlTemplate}" Style="{StaticResource TextBox14SegoeUI}"/>
+                    <Border Grid.Row="3" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                        <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
+                            <Grid Height="Auto">
+                                <TextBox x:Name="importUserName" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBlock Margin="20,0,0,0" Text="Nhập họ và tên..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=importUserName}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </Border>
 
                     <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                         <Label Content="Vai trò:" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
@@ -82,21 +118,111 @@
                     <Label Grid.Row="5" Grid.Column="0" Content="Đổi mật khẩu" Style="{StaticResource NormalLabel}" Padding="40,0,0,0"/>
 
                     <Label Grid.Row="6" Grid.Column="0" Content="Mật khẩu hiện tại" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                    <TextBox Grid.Row="7" Grid.Column="0" Template="{StaticResource TextBoxBaseControlTemplate}" Style="{StaticResource TextBox14SegoeUI}"/>
+                    <Border Grid.Row="7" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                        <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
+                            <Grid Height="Auto">
+                                <TextBox x:Name="importCurrentPassword" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBlock Margin="20,0,0,0" Text="Nhập mật khẩu hiện tại..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=importCurrentPassword}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </Border>
 
                     <Label Grid.Row="8" Grid.Column="0" Content="Mật khẩu mới" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                    <TextBox Grid.Row="9" Grid.Column="0" Template="{StaticResource TextBoxBaseControlTemplate}" Style="{StaticResource TextBox14SegoeUI}"/>
+                    <Border Grid.Row="9" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                        <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
+                            <Grid Height="Auto">
+                                <TextBox x:Name="importNewPassword" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBlock Margin="20,0,0,0" Text="Nhập mật khẩu mới..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=importNewPassword}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </Border>
 
                     <Label Grid.Row="10" Grid.Column="0" Content="Xác nhận mật khẩu mới" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                    <TextBox Grid.Row="11" Grid.Column="0" Template="{StaticResource TextBoxBaseControlTemplate}" Style="{StaticResource TextBox14SegoeUI}"/>
+                    <Border Grid.Row="11" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                        <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
+                            <Grid Height="Auto">
+                                <TextBox x:Name="validateNewPassword" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBlock Margin="20,0,0,0" Text="Xác nhận mật khẩu..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=validateNewPassword}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </Border>
 
                     <!--Colum 2-->
 
                     <Label Grid.Row="0" Grid.Column="2" Content="Email" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                    <TextBox Grid.Row="1" Grid.Column="2" Template="{StaticResource TextBoxBaseControlTemplate}" Style="{StaticResource TextBox14SegoeUI}"/>
+                    <Border Grid.Row="1" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                        <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
+                            <Grid Height="Auto">
+                                <TextBox x:Name="importEmail" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBlock Margin="20,0,0,0" Text="Nhập email..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=importEmail}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </Border>
 
                     <Label Grid.Row="2" Grid.Column="2" Content="Số điện thoại" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                    <TextBox Grid.Row="3" Grid.Column="2" Template="{StaticResource TextBoxBaseControlTemplate}" Style="{StaticResource TextBox14SegoeUI}"/>
+                    <Border Grid.Row="3" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                        <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
+                            <Grid Height="Auto">
+                                <TextBox x:Name="importPhoneNumber" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBlock Margin="20,0,0,0" Text="Nhập số điện thoại..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=importPhoneNumber}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </Border>
 
                     <Label Grid.Row="4" Grid.Column="2" Content="Ngày sinh" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Stretch" Orientation="Horizontal">
@@ -120,7 +246,25 @@
                     <ComboBox Grid.Row="9" Grid.Column="2" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
 
                     <Label Grid.Row="10" Grid.Column="2" Content="Địa chỉ" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                    <TextBox Grid.Row="11" Grid.Column="2" Template="{StaticResource TextBoxBaseControlTemplate}" Style="{StaticResource TextBox14SegoeUI}"/>
+                    <Border Grid.Row="11" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                        <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
+                            <Grid Height="Auto">
+                                <TextBox x:Name="importAddress" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBlock Margin="20,0,0,0" Text="Nhập địa chỉ..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=importAddress}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </Border>
 
                 </Grid>
             </Border>
