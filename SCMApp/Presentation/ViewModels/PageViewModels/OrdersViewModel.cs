@@ -1,7 +1,9 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using System;
+using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
@@ -10,7 +12,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public OrdersViewModel(IScreenManager screenManager) : base(screenManager)
         {
             _isHaveNoData = true;
+            OpenSellViewCommand = new RelayCommand(p => OpenSellView());
         }
+
+        public ICommand OpenSellViewCommand { get; set; }
+
         public string NamePage => CommonConstants.OrdersPageViewName;
 
         public string FunctionName => CommonConstants.OrdersFunctionName;
@@ -29,6 +35,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         public void Construct()
         {
+        }
+
+        private void OpenSellView()
+        {
+            ScreenManager.ShowSellView(View);
         }
     }
 }

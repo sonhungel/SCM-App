@@ -13,5 +13,7 @@ namespace SCMApp.ViewManager
         void ShowInsertUserView(Window parentWindow);
         void ShowPartnerDetailView(Window parentWindow);
         void ShowStockDetailView(Window parentWindow);
+        void ShowImportStockView(Window parentWindow);
+        void ShowSellView(Window parentWindow);
     }
 }

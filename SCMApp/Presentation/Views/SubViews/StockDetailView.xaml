@@ -20,6 +20,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"/>
                 <RowDefinition/>
+                <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -41,7 +42,7 @@
                     </StackPanel>
                 </Border>
             </Grid>
-            <TabControl Grid.Row="1" Margin="15,10,15,15">
+            <TabControl Grid.Row="1" Margin="10,0,10,5">
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
@@ -310,7 +311,25 @@
                     </Grid>
                 </TabItem>
             </TabControl>
-
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,15,5">
+                <Button Content="Đóng" Cursor="Hand" Width="50" Height="34" Foreground="White" Command="{Binding ICancelCommand}" Style="{StaticResource Button3DRounded}" Background="#8e9da3"/>
+                <Border Width="10"/>
+                <Button Cursor="Hand" Foreground="White" Width="80" Height="34" Command="{Binding ISaveCommand}"
+                                Style="{StaticResource Button3DRounded}" Background="#39a36e">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="Transparent">
+                                <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Assets/save.png" />
+                            </Border>
+                            <TextBlock Margin="5,0,0,0" Grid.Column="1" Text="Lưu" TextAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="12"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
         </Grid>
     </Border>
 </Window>

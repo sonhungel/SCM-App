@@ -69,5 +69,23 @@ namespace SCMApp.ViewManager
             view.Owner = parentWindow;
             view.Show();
         }
+
+        public void ShowImportStockView(Window parentWindow)
+        {
+            var view = new ImportStockSubView();
+            var viewModel = IoC.Get<ImportStockSubViewModel>();
+            view.DataContext = viewModel;
+            view.Owner = parentWindow;
+            view.Show();
+        }
+
+        public void ShowSellView(Window parentWindow)
+        {
+            var view = new SellView();
+            var viewModel = IoC.Get<SellViewModel>();
+            view.DataContext = viewModel;
+            view.Owner = parentWindow;
+            view.Show();
+        }
     }
 }

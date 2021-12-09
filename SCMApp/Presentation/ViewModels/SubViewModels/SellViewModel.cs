@@ -6,13 +6,13 @@ using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
-    public class StockDetailViewModel
+    public class SellViewModel
     {
-        public StockDetailViewModel()
+        public SellViewModel()
         {
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
-        }    
+        }
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
 

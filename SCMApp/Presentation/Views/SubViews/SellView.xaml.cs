@@ -8,19 +8,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SCMApp.Presentation.Views.PageViews
+namespace SCMApp.Presentation.Views.SubViews
 {
     /// <summary>
     /// Interaction logic for SellView.xaml
     /// </summary>
-    public partial class SellView : UserControl
+    public partial class SellView : Window
     {
         public SellView()
         {
             InitializeComponent();
+        }
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            DataContext = null;
+        }
+
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
     }
 }

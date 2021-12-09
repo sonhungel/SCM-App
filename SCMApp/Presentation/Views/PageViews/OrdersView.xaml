@@ -20,7 +20,7 @@
                     <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Cursor="Hand" Foreground="White" Width="100" Height="37"
+                <Button Grid.Column="1" Cursor="Hand" Foreground="White" Width="100" Height="37" Command="{Binding OpenSellViewCommand}"
                                 Style="{StaticResource Button3DRounded}" Background="#1399ad">
                     <Button.Content>
                         <Grid>

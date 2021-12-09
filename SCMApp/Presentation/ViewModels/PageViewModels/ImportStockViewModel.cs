@@ -1,7 +1,9 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using System;
+using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
@@ -10,7 +12,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public ImportStockViewModel(IScreenManager screenManager) : base(screenManager)
         {
             _isHaveNoData = true;
+            OpenImportStockSubViewCommand = new RelayCommand(p => OpenImportStockSubView());
         }
+
+        public ICommand OpenImportStockSubViewCommand { get; set; }
+
         public string NamePage => CommonConstants.ImportPageViewName;
 
         public string FunctionName => CommonConstants.ImportFunctionName;
@@ -29,6 +35,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         public void Construct()
         {
+        }
+
+        private void OpenImportStockSubView()
+        {
+            ScreenManager.ShowImportStockView(View);
         }
     }
 }
