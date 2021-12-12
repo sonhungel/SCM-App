@@ -48,6 +48,7 @@
     <None Remove="Assets\logoutwhite.png" />
     <None Remove="Assets\mailcolor.png" />
     <None Remove="Assets\mailwhite.png" />
+    <None Remove="Assets\minus_black.png" />
     <None Remove="Assets\mmc.png" />
     <None Remove="Assets\monitor.png" />
     <None Remove="Assets\music.png" />
@@ -60,6 +61,7 @@
     <None Remove="Assets\partner.png" />
     <None Remove="Assets\play.png" />
     <None Remove="Assets\plus.png" />
+    <None Remove="Assets\plus_black.png" />
     <None Remove="Assets\profile1.jpg" />
     <None Remove="Assets\profilewhite.png" />
     <None Remove="Assets\profolder.png" />
@@ -121,6 +123,9 @@
     <Resource Include="Assets\Logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\minus_black.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\monitor.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -131,6 +136,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\plus.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\plus_black.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Red_Bin.png">
@@ -154,6 +162,13 @@
     <Resource Include="Assets\window-close.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Presentation\ViewModels\ItemsViewModel\" />
+    <Folder Include="WebAPIClient\PageViewAPIs\" />
+    <Folder Include="WebAPIClient\SubViewAPIs\" />
   </ItemGroup>
 
 </Project>

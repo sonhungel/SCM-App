@@ -4,10 +4,91 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SCMApp.Presentation.ViewModels.PageViewModels"
+             xmlns:CustomControl="clr-namespace:SCMApp.CustomControls"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:OverviewViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border CornerRadius="0,0,10,10" Background="Red">
-        
+    <Border CornerRadius="0,0,10,10" Background="White">
+        <Grid Margin="10,5,10,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="170"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" HeaderTemplate="{StaticResource TextBlock1ForGroupBoxHeader}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <CustomControl:Card Grid.Column="0" Margin="15,0,0,0" text1="Doanh Thu" text2="100.000.000" imageSource="/Assets/cart.png" BackGroundColor="#a0bd69"/>
+                    <CustomControl:Card Grid.Column="2" Margin="15,0,0,0" text1="Lợi nhuận" text2="50.000.000" imageSource="/Assets/cart.png" BackGroundColor="#579bd9"/>
+                    <CustomControl:Card Grid.Column="4" Margin="15,0,0,0" text1="Số lượng nhân sự" text2="12" imageSource="/Assets/cart.png" BackGroundColor="#b5483e"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Row="2" HeaderTemplate="{StaticResource TextBlock2ForGroupBoxHeader}">
+                <Grid>
+
+                </Grid>
+            </GroupBox>
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <GroupBox Grid.Column="0" HeaderTemplate="{StaticResource TextBlock3ForGroupBoxHeader}">
+                    <Grid Margin="40,0,40,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Doanh thu" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="0" Grid.Column="2" Content="1.000.000" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Lợi nhuận" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="1" Grid.Column="2" Content="500.000" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="2" Grid.Column="0" Content="Tổng thu" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="2" Grid.Column="2" Content="10.000.000" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="Tổng chi" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="3" Grid.Column="2" Content="9.000.000" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Grid.Column="2" HeaderTemplate="{StaticResource TextBlock4ForGroupBoxHeader}">
+                    <Grid Margin="40,0,40,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Tồn kho" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="0" Grid.Column="2" Content="10" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Hết hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="1" Grid.Column="2" Content="10" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="2" Grid.Column="0" Content="Sắp hết hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="2" Grid.Column="2" Content="10" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="Hàng bị lỗi kho" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="3" Grid.Column="2" Content="10" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
     </Border>
 </UserControl>
