@@ -377,7 +377,7 @@
         <TextBlock Text="Hoạt động hôm nay" FontSize="14" FontFamily="SegoeUI" Foreground="#FF37A0EA" FontWeight="SemiBold"/>
     </DataTemplate>
     <DataTemplate x:Key="TextBlock2ForGroupBoxHeader">
-        <TextBlock Text="Doanh số" FontSize="14" FontFamily="SegoeUI" Foreground="#FF37A0EA" FontWeight="SemiBold"/>
+        <TextBlock Text="Dòng tiền trong tuần" FontSize="14" FontFamily="SegoeUI" Foreground="#FF37A0EA" FontWeight="SemiBold"/>
     </DataTemplate>
     <DataTemplate x:Key="TextBlock3ForGroupBoxHeader">
         <TextBlock Text="Doanh thu tháng" FontSize="14" FontFamily="SegoeUI" Foreground="#FF37A0EA" FontWeight="SemiBold"/>

@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SCMApp.Presentation.ViewModels.PageViewModels"
              xmlns:CustomControl="clr-namespace:SCMApp.CustomControls"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:OverviewViewModel}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="750" d:DesignWidth="1300">
     <Border CornerRadius="0,0,10,10" Background="White">
         <Grid Margin="10,5,10,5">
             <Grid.RowDefinitions>
@@ -26,14 +27,21 @@
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <CustomControl:Card Grid.Column="0" Margin="15,0,0,0" text1="Doanh Thu" text2="100.000.000" imageSource="/Assets/cart.png" BackGroundColor="#a0bd69"/>
-                    <CustomControl:Card Grid.Column="2" Margin="15,0,0,0" text1="Lợi nhuận" text2="50.000.000" imageSource="/Assets/cart.png" BackGroundColor="#579bd9"/>
-                    <CustomControl:Card Grid.Column="4" Margin="15,0,0,0" text1="Số lượng nhân sự" text2="12" imageSource="/Assets/cart.png" BackGroundColor="#b5483e"/>
+                    <CustomControl:Card Grid.Column="0" Margin="15,0,0,0" text1="Doanh Thu" text2="100.000.000" imageSource="/Assets/cash.png" BackGroundColor="#a0bd69"/>
+                    <CustomControl:Card Grid.Column="2" Margin="15,0,0,0" text1="Lợi nhuận" text2="50.000.000" imageSource="/Assets/cash-100.png" BackGroundColor="#579bd9"/>
+                    <CustomControl:Card Grid.Column="4" Margin="15,0,0,0" text1="Số lượng nhân sự" text2="12" imageSource="/Assets/human.png" BackGroundColor="#b5483e"/>
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Row="2" HeaderTemplate="{StaticResource TextBlock2ForGroupBoxHeader}">
                 <Grid>
-
+                    <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Left" DataTooltip="{x:Null}">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Thu chi trong tuần" Labels="{Binding BarLabels}"/>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Đơn vị Triêu VNĐ" LabelFormatter="{Binding Formatter}"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
                 </Grid>
             </GroupBox>
             <Grid Grid.Row="4">
