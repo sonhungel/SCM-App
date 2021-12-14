@@ -18,7 +18,7 @@
         public const string OrdersFunctionName = "Đơn hàng";
         public const string OverviewFunctionName = "Tổng quan";
         public const string PartnersFunctionName = "Đối tác";
-        public const string ProfitFunctionName = "Lợi nhuận";
+        public const string ProfitFunctionName = "Tài chính";
         public const string RevenueFunctionName = "Doanh thu";
         public const string StockFunctionName = "Hàng hoá";
         public const string HRMFunctionName = "Quản lý nhân sự";
@@ -27,5 +27,13 @@
 
         public const string EditUser = "Chỉnh sửa thông tin người dùng";
         public const string UserProfile = "Thông tin người dùng";
+
+
+        // Profit
+
+        public const string TurnoverInWeek = "Doanh thu trong tuần";
+        public const string TurnoverInMonth = "Doanh thu trong tháng";
+        public const string TurnoverInYear = "Doanh thu trong năm";
+
     }
 }

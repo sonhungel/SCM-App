@@ -4,10 +4,62 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SCMApp.Presentation.ViewModels.PageViewModels"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:ProfitViewModel}"
              d:DesignHeight="450" d:DesignWidth="800" >
-    <Border CornerRadius="0,0,10,10" Background="BurlyWood">
-
+    <Border CornerRadius="0,0,10,10" Background="White">
+        <Grid ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Lọc theo khung thời gian:" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                <Border Width="30"/>
+                <ComboBox Width="200" Height="40" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                <Border Width="60"/>
+                <Button Cursor="Hand" Foreground="White" Width="130" Height="37" Command="{Binding OpenInsertUserProfileViewCommand}"
+                                Style="{StaticResource Button3DRounded}" Background="#1399ad">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="Transparent">
+                                <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Assets/report.png" />
+                            </Border>
+                            <TextBlock Margin="5,0,0,0" Grid.Column="1" Text="Xuất báo cáo" TextAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="12"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <Grid Grid.Row="1" ShowGridLines="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <lvc:PieChart Grid.Column="0" Grid.Row="0" LegendLocation="Bottom" Series="{Binding SeriesCollectionPieChart}" DataTooltip="{x:Null}">
+                    <lvc:PieChart.ChartLegend>
+                        <lvc:DefaultLegend BulletSize="25" Margin="0,0,0,50"/>
+                    </lvc:PieChart.ChartLegend>
+                </lvc:PieChart>
+                <Label Grid.Row="1" Grid.Column="0" Content="Tỉ lệ Thu và Chi" Style="{StaticResource NormalLabel}" HorizontalAlignment="Center"/>
+                <lvc:CartesianChart Grid.Column="1" Grid.Row="0" Series="{Binding SeriesCollectionCartesianChart}" LegendLocation="Left" DataTooltip="{x:Null}" Margin="10">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Khung thời gian" Labels="{Binding BarLabels}"/>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Đơn vị Triêu VNĐ" LabelFormatter="{Binding FormatterCartesianChart}"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+                <Label Grid.Row="1" Grid.Column="1" Content="Doanh thu trong tháng" Style="{StaticResource NormalLabel}" HorizontalAlignment="Center"/>
+            </Grid>
+        </Grid>
     </Border>
 </UserControl>

@@ -108,10 +108,10 @@
                         </Button>-->
                         <Button Grid.Row="6" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="ProfitPageView">
                             <Button.ToolTip>
-                                <TextBlock Text="Lợi nhuận" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                                <TextBlock Text="Tài chính" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
                             <Button.Content>
-                                <Image Source="/Assets/cash.png" Stretch="Uniform" Width="35"/>
+                                <Image Source="/Assets/finance.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
                         </Button>
                         <Button Grid.Row="7" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="HumanResourceManagementView">
@@ -181,7 +181,7 @@
                                                     <Ellipse StrokeThickness="2" Stroke="White" Height="70" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                         <Ellipse.Fill>
                                                             <ImageBrush
-                                                                ImageSource="/Assets/news4.jpg"
+                                                                ImageSource="/Assets/account-circle.png"
                                                                 Stretch="UniformToFill"/>
                                                         </Ellipse.Fill>
                                                     </Ellipse>
