@@ -60,7 +60,7 @@
                 </Grid>
 
             </Border>
-            <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" Style="{StaticResource CustomDataGrid}" x:Name="ListProjectGrid" BorderBrush="#aaaaaa"
+            <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding HRMList}" Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
                       AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
                       SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
                       CanUserReorderColumns="True">
@@ -88,50 +88,52 @@
                         </Style.Triggers>
                     </Style>
 
-                    <DataTemplate x:Key="SelectProject">
-
+                    <DataTemplate x:Key="UserName">
+                        <TextBlock Text="{Binding UserName}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="NumberProject">
-
+                    <DataTemplate x:Key="Name">
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="NameProject">
-
+                    <DataTemplate x:Key="Email">
+                        <TextBlock Text="{Binding Email}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="StatusProject">
-
+                    <DataTemplate x:Key="Title">
+                        <TextBlock Text="{Binding Title}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="CustomerProject">
-
+                    <DataTemplate x:Key="PhoneNumber">
+                        <TextBlock Text="{Binding PhoneNumber}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="StartDateProject">
-
-                    </DataTemplate>
-                    <DataTemplate x:Key="DeleteProject">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                            <Button Width="17" Height="17" Background="White" BorderThickness="0" Cursor="Hand" Margin="0,0,0,5">
-                                <Image>
-                                    <Image.Source>
-                                        <BitmapImage UriSource="/Assets/edit.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                                    </Image.Source>
-                                </Image>
+                    <DataTemplate x:Key="Option">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                            <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25" Command="{Binding EditUserCommand}" CommandParameter="{Binding UserName}"
+                                Background="Transparent">
+                                <Button.Content>
+                                    <Border Grid.Column="0" Background="Transparent">
+                                        <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                               Source="/Assets/circle-edit-outline.png" />
+                                    </Border>
+                                </Button.Content>
                             </Button>
-                            <Button Width="17" Height="17" Background="White" BorderThickness="0" Cursor="Hand" Margin="0,0,0,5">
-                                <Image>
-                                    <Image.Source>
-                                        <BitmapImage UriSource="/Assets/Red_Bin.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                                    </Image.Source>
-                                </Image>
+                            <Border Width="30"/>
+                            <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25" Command="{Binding DeleteUserCommand}" CommandParameter="{Binding UserName}"
+                                Background="Transparent">
+                                <Button.Content>
+                                    <Border Grid.Column="0" Background="Transparent">
+                                        <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                               Source="/Assets/Red_Bin.png" />
+                                    </Border>
+                                </Button.Content>
                             </Button>
                         </StackPanel>
                     </DataTemplate>
                 </DataGrid.Resources>
                 <DataGrid.Columns >
-                    <DataGridTemplateColumn Width="1*" Header="Tên đăng nhập" CellTemplate="{StaticResource NumberProject}"/>
-                    <DataGridTemplateColumn Width="1.1*" Header="Tên người dùng" CellTemplate="{StaticResource NameProject}"/>
-                    <DataGridTemplateColumn Width="1.2*" Header="Email" CellTemplate="{StaticResource CustomerProject}"/>
-                    <DataGridTemplateColumn Width="1.4*" Header="Chức vụ" CellTemplate="{StaticResource StatusProject}"/>
-                    <DataGridTemplateColumn Width="1.2*" Header="Số điện thoại" CellTemplate="{StaticResource CustomerProject}"/>
-                    <DataGridTemplateColumn Width="1.2*" Header="Tuỳ chỉnh" CellTemplate="{StaticResource DeleteProject}"/>
+                    <DataGridTemplateColumn Width="1*" Header="Tên đăng nhập" CellTemplate="{StaticResource UserName}"/>
+                    <DataGridTemplateColumn Width="1.4*" Header="Tên người dùng" CellTemplate="{StaticResource Name}"/>
+                    <DataGridTemplateColumn Width="1.2*" Header="Email" CellTemplate="{StaticResource Email}"/>
+                    <DataGridTemplateColumn Width="0.8*" Header="Chức vụ" CellTemplate="{StaticResource Title}"/>
+                    <DataGridTemplateColumn Width="1*" Header="Số điện thoại" CellTemplate="{StaticResource PhoneNumber}"/>
+                    <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chỉnh" CellTemplate="{StaticResource Option}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

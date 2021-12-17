@@ -60,7 +60,8 @@
                 </Grid>
 
             </Border>
-            <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" Style="{StaticResource CustomDataGrid}" x:Name="ListProjectGrid" BorderBrush="#aaaaaa"
+            <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding ImportStockList}"
+                      Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
                       AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
                       SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
                       CanUserReorderColumns="True">
@@ -87,51 +88,42 @@
                             </Trigger>
                         </Style.Triggers>
                     </Style>
-
-                    <DataTemplate x:Key="SelectProject">
-
+                    <DataTemplate x:Key="ImportStockCode">
+                        <TextBlock Text="{Binding ImportStockCode}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="NumberProject">
-
+                    <DataTemplate x:Key="StockName">
+                        <TextBlock Text="{Binding StockName}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="NameProject">
-
+                    <DataTemplate x:Key="ImportStockTime">
+                        <TextBlock Text="{Binding ImportStockTime}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="StatusProject">
-
+                    <DataTemplate x:Key="Supplier">
+                        <TextBlock Text="{Binding Supplier}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="CustomerProject">
-
+                    <DataTemplate x:Key="Cost">
+                        <TextBlock Text="{Binding Cost}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="StartDateProject">
-
-                    </DataTemplate>
-                    <DataTemplate x:Key="DeleteProject">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                            <Button Width="17" Height="17" Background="White" BorderThickness="0" Cursor="Hand" Margin="0,0,0,5">
-                                <Image>
-                                    <Image.Source>
-                                        <BitmapImage UriSource="/Assets/edit.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                                    </Image.Source>
-                                </Image>
-                            </Button>
-                            <Button Width="17" Height="17" Background="White" BorderThickness="0" Cursor="Hand" Margin="0,0,0,5">
-                                <Image>
-                                    <Image.Source>
-                                        <BitmapImage UriSource="/Assets/Red_Bin.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                                    </Image.Source>
-                                </Image>
+                    <DataTemplate x:Key="Option">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                            <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
+                                Background="Transparent">
+                                <Button.Content>
+                                    <Border Grid.Column="0" Background="Transparent">
+                                        <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                               Source="/Assets/Red_Bin.png" />
+                                    </Border>
+                                </Button.Content>
                             </Button>
                         </StackPanel>
                     </DataTemplate>
                 </DataGrid.Resources>
                 <DataGrid.Columns >
-                    <DataGridTemplateColumn Width="1*" Header="Mã nhập hàng" CellTemplate="{StaticResource NumberProject}"/>
-                    <DataGridTemplateColumn Width="1.1*" Header="Mã đặt hàng nhập" CellTemplate="{StaticResource NameProject}"/>
-                    <DataGridTemplateColumn Width="1.4*" Header="Thời gian" CellTemplate="{StaticResource StatusProject}"/>
-                    <DataGridTemplateColumn Width="1.2*" Header="Nhà cung cấp" CellTemplate="{StaticResource CustomerProject}"/>
-                    <DataGridTemplateColumn Width="1.2*" Header="Chi phí" CellTemplate="{StaticResource CustomerProject}"/>
-                    <DataGridTemplateColumn Width="1.2*" Header="Tuỳ chỉnh" CellTemplate="{StaticResource DeleteProject}"/>
+                    <DataGridTemplateColumn Width="1*" Header="Mã nhập hàng" CellTemplate="{StaticResource ImportStockCode}"/>
+                    <DataGridTemplateColumn Width="1.4*" Header="Tên hàng hoá" CellTemplate="{StaticResource StockName}"/>
+                    <DataGridTemplateColumn Width="1*" Header="Thời gian" CellTemplate="{StaticResource ImportStockTime}"/>
+                    <DataGridTemplateColumn Width="1.2*" Header="Nhà cung cấp" CellTemplate="{StaticResource Supplier}"/>
+                    <DataGridTemplateColumn Width="1*" Header="Chi phí" CellTemplate="{StaticResource Cost}"/>
+                    <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chỉnh" CellTemplate="{StaticResource Option}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

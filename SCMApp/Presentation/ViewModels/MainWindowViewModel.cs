@@ -1,4 +1,5 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.PageViewModels;
@@ -36,6 +37,8 @@ namespace SCMApp.Presentation.ViewModels
 
         public ICommand ChangePageCommand { get; set; }
         public ICommand OpenUserProfileCommand { get; set; }
+
+        public UserProfile MainUser { get; set; }
 
         private void ChangeViewModel(string pageName)
         {

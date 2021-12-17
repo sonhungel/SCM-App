@@ -1,8 +1,11 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
+using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
 using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
@@ -13,10 +16,12 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         {
             _isHaveNoData = true;
             OpenStockDetailViewCommand = new RelayCommand(p => OpenStockDetailView());
+            StockList = new ObservableCollection<StockViewModelItem>() { new StockViewModelItem(new Stock())};
         }
 
         public ICommand OpenStockDetailViewCommand { get; set; }
 
+        public ObservableCollection<StockViewModelItem> StockList { get; set; }
         public string NamePage => CommonConstants.StockPageViewName;
 
         public string FunctionName => CommonConstants.StockFunctionName;

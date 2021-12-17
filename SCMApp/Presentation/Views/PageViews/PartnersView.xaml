@@ -44,7 +44,8 @@
                             </Button>
                         </Grid>
                     </Grid>
-                    <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
+                    <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding CustomerList}"
+                              Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
                       AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
                       SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
                       CanUserReorderColumns="True">
@@ -72,51 +73,60 @@
                                 </Style.Triggers>
                             </Style>
 
-                            <DataTemplate x:Key="SelectProject">
-
+                            <DataTemplate x:Key="CustomerCode">
+                                <TextBlock Text="{Binding CustomerCode}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="NumberProject">
-
+                            <DataTemplate x:Key="CustomerName">
+                                <TextBlock Text="{Binding CustomerName}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="NameProject">
-
+                            <DataTemplate x:Key="CustomerPhoneNumber">
+                                <TextBlock Text="{Binding CustomerPhoneNumber}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="StatusProject">
-
+                            <DataTemplate x:Key="CustomerAddress">
+                                <TextBlock Text="{Binding CustomerAddress}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="CustomerProject">
-
+                            <DataTemplate x:Key="CustomerLastTimeBuy">
+                                <TextBlock Text="{Binding CustomerLastTimeBuy}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="StartDateProject">
-
+                            <DataTemplate x:Key="TotalMoney">
+                                <TextBlock Text="{Binding TotalMoney}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="DeleteProject">
-                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                    <Button Width="17" Height="17" Background="White" BorderThickness="0" Cursor="Hand" Margin="0,0,0,5">
-                                        <Image>
-                                            <Image.Source>
-                                                <BitmapImage UriSource="/Assets/edit.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                                            </Image.Source>
-                                        </Image>
+                            <DataTemplate x:Key="TotalDebts">
+                                <TextBlock Text="{Binding TotalDebts}" Style="{StaticResource DataGridTextBlock}"/>
+                            </DataTemplate>
+                            <DataTemplate x:Key="Option">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
+                                Background="Transparent">
+                                        <Button.Content>
+                                            <Border Grid.Column="0" Background="Transparent">
+                                                <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                               Source="/Assets/circle-edit-outline.png" />
+                                            </Border>
+                                        </Button.Content>
                                     </Button>
-                                    <Button Width="17" Height="17" Background="White" BorderThickness="0" Cursor="Hand" Margin="0,0,0,5">
-                                        <Image>
-                                            <Image.Source>
-                                                <BitmapImage UriSource="/Assets/Red_Bin.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                                            </Image.Source>
-                                        </Image>
+                                    <Border Width="30"/>
+                                    <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
+                                Background="Transparent">
+                                        <Button.Content>
+                                            <Border Grid.Column="0" Background="Transparent">
+                                                <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                               Source="/Assets/Red_Bin.png" />
+                                            </Border>
+                                        </Button.Content>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGrid.Resources>
                         <DataGrid.Columns >
-                            <DataGridTemplateColumn Width="1*" Header="Mã khách hàng" CellTemplate="{StaticResource NumberProject}"/>
-                            <DataGridTemplateColumn Width="1.1*" Header="Tên khách hàng" CellTemplate="{StaticResource NameProject}"/>
-                            <DataGridTemplateColumn Width="1.4*" Header="Số điện thoại" CellTemplate="{StaticResource StatusProject}"/>
-                            <DataGridTemplateColumn Width="1.2*" Header="Địa chỉ" CellTemplate="{StaticResource CustomerProject}"/>
-                            <DataGridTemplateColumn Width="1.2*" Header="Lần mua cuối cùng" CellTemplate="{StaticResource StartDateProject}"/>
-                            <DataGridTemplateColumn Width="1.2*" Header="Tổng tiền hàng" CellTemplate="{StaticResource DeleteProject}"/>
-                            <DataGridTemplateColumn Width="1.2*" Header="Nợ" CellTemplate="{StaticResource DeleteProject}"/>
+                            <DataGridTemplateColumn Width="0.8*" Header="Mã khách hàng" CellTemplate="{StaticResource CustomerCode}"/>
+                            <DataGridTemplateColumn Width="1.4*" Header="Tên khách hàng" CellTemplate="{StaticResource CustomerName}"/>
+                            <DataGridTemplateColumn Width="1*" Header="Số điện thoại" CellTemplate="{StaticResource CustomerPhoneNumber}"/>
+                            <DataGridTemplateColumn Width="1.5*" Header="Địa chỉ" CellTemplate="{StaticResource CustomerAddress}"/>
+                            <DataGridTemplateColumn Width="1*" Header="Lần mua cuối cùng" CellTemplate="{StaticResource CustomerLastTimeBuy}"/>
+                            <DataGridTemplateColumn Width="1.1*" Header="Tổng tiền hàng" CellTemplate="{StaticResource TotalMoney}"/>
+                            <DataGridTemplateColumn Width="1*" Header="Nợ" CellTemplate="{StaticResource TotalDebts}"/>
+                            <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -157,7 +167,8 @@
                             </Button>
                         </Grid>
                     </Grid>
-                    <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
+                    <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding PartnerList}"
+                              Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
                       AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
                       SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
                       CanUserReorderColumns="True">
@@ -185,51 +196,60 @@
                                 </Style.Triggers>
                             </Style>
 
-                            <DataTemplate x:Key="SelectProject">
-
+                            <DataTemplate x:Key="PartnerCode">
+                                <TextBlock Text="{Binding PartnerCode}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="NumberProject">
-
+                            <DataTemplate x:Key="PartnerName">
+                                <TextBlock Text="{Binding PartnerName}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="NameProject">
-
+                            <DataTemplate x:Key="PartnerPhoneNumber">
+                                <TextBlock Text="{Binding PartnerPhoneNumber}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="StatusProject">
-
+                            <DataTemplate x:Key="PartnerAddress">
+                                <TextBlock Text="{Binding PartnerAddress}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="CustomerProject">
-
+                            <DataTemplate x:Key="DebtsNeedPaid">
+                                <TextBlock Text="{Binding DebtsNeedPaid}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="StartDateProject">
-
+                            <DataTemplate x:Key="TotaMoneylWasBuy">
+                                <TextBlock Text="{Binding TotaMoneylWasBuy}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="DeleteProject">
-                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                    <Button Width="17" Height="17" Background="White" BorderThickness="0" Cursor="Hand" Margin="0,0,0,5">
-                                        <Image>
-                                            <Image.Source>
-                                                <BitmapImage UriSource="/Assets/edit.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                                            </Image.Source>
-                                        </Image>
+                            <DataTemplate x:Key="NumberOfTimeBuy">
+                                <TextBlock Text="{Binding NumberOfTimeBuy}" Style="{StaticResource DataGridTextBlock}"/>
+                            </DataTemplate>
+                            <DataTemplate x:Key="Option">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
+                                Background="Transparent">
+                                        <Button.Content>
+                                            <Border Grid.Column="0" Background="Transparent">
+                                                <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                               Source="/Assets/circle-edit-outline.png" />
+                                            </Border>
+                                        </Button.Content>
                                     </Button>
-                                    <Button Width="17" Height="17" Background="White" BorderThickness="0" Cursor="Hand" Margin="0,0,0,5">
-                                        <Image>
-                                            <Image.Source>
-                                                <BitmapImage UriSource="/Assets/Red_Bin.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                                            </Image.Source>
-                                        </Image>
+                                    <Border Width="30"/>
+                                    <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
+                                Background="Transparent">
+                                        <Button.Content>
+                                            <Border Grid.Column="0" Background="Transparent">
+                                                <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                               Source="/Assets/Red_Bin.png" />
+                                            </Border>
+                                        </Button.Content>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGrid.Resources>
                         <DataGrid.Columns >
-                            <DataGridTemplateColumn Width="1*" Header="Mã nhà cung cấp" CellTemplate="{StaticResource NumberProject}"/>
-                            <DataGridTemplateColumn Width="1.1*" Header="Tên nhà cung cấp" CellTemplate="{StaticResource NameProject}"/>
-                            <DataGridTemplateColumn Width="1.4*" Header="Số điện thoại" CellTemplate="{StaticResource StatusProject}"/>
-                            <DataGridTemplateColumn Width="1.2*" Header="Địa chỉ" CellTemplate="{StaticResource CustomerProject}"/>
-                            <DataGridTemplateColumn Width="1.2*" Header="Nợ cần trả hiện tại" CellTemplate="{StaticResource StartDateProject}"/>
-                            <DataGridTemplateColumn Width="1.2*" Header="Tổng đã mua" CellTemplate="{StaticResource DeleteProject}"/>
-                            <DataGridTemplateColumn Width="1.2*" Header="Lần nhập hàng cuối cùng" CellTemplate="{StaticResource DeleteProject}"/>
+                            <DataGridTemplateColumn Width="0.8*" Header="Mã nhà cung cấp" CellTemplate="{StaticResource PartnerCode}"/>
+                            <DataGridTemplateColumn Width="1.3*" Header="Tên nhà cung cấp" CellTemplate="{StaticResource PartnerName}"/>
+                            <DataGridTemplateColumn Width="0.7*" Header="Số điện thoại" CellTemplate="{StaticResource PartnerPhoneNumber}"/>
+                            <DataGridTemplateColumn Width="1.2*" Header="Địa chỉ" CellTemplate="{StaticResource PartnerAddress}"/>
+                            <DataGridTemplateColumn Width="1.2*" Header="Nợ cần trả hiện tại" CellTemplate="{StaticResource DebtsNeedPaid}"/>
+                            <DataGridTemplateColumn Width="1.2*" Header="Tổng đã mua" CellTemplate="{StaticResource TotaMoneylWasBuy}"/>
+                            <DataGridTemplateColumn Width="1.1*" Header="Lần nhập hàng cuối cùng" CellTemplate="{StaticResource NumberOfTimeBuy}"/>
+                            <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

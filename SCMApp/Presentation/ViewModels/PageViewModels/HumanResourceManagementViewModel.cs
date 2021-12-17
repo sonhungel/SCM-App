@@ -1,8 +1,11 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
+using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
 using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
@@ -13,9 +16,15 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         {
             _isHaveNoData = true;
             OpenInsertUserProfileViewCommand = new RelayCommand(p => OpenInsertUserProfileView());
+            HRMList = new ObservableCollection<HumanResourceManagementViewModelItem>()
+            {
+                new HumanResourceManagementViewModelItem(new UserProfile())
+            };
         }
 
         public ICommand OpenInsertUserProfileViewCommand { get; set; }
+
+        public ObservableCollection<HumanResourceManagementViewModelItem> HRMList { get; set; }
 
         public string NamePage => CommonConstants.HRMPageViewName;
 

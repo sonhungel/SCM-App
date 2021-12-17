@@ -1,8 +1,12 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
+using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
 using System;
+using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
@@ -13,6 +17,22 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         {
             _isHaveNoData = true;
             OpenSellViewCommand = new RelayCommand(p => OpenSellView());
+            DeleteOrderCommand = new RelayCommand(p => DeleteOrder((int)p));
+
+            OrderList = new ObservableCollection<OrderViewModelItem>()
+            {
+                new OrderViewModelItem(DeleteOrderCommand, new Order()
+                {
+                    OrderCode = "12312",
+                    OrderTime = DateTime.Now,
+                    CustomerName = "Sonhungel",
+                    TotalPrice = 33333,
+                    DiscountPrice = 1111,
+                    ActualPrice = 33333-111,
+                    CustomerPaid = 40000
+                })
+               
+            };
         }
 
         public ICommand OpenSellViewCommand { get; set; }
@@ -23,6 +43,9 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private bool _isHaveNoData;
 
+        public ObservableCollection<OrderViewModelItem> OrderList { get; set; }
+
+        public ICommand DeleteOrderCommand { get; set; }
         public bool IsHaveNoData 
         {
             get => _isHaveNoData;
@@ -30,6 +53,15 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             {
                 _isHaveNoData = value;
                 OnPropertyChanged(nameof(IsHaveNoData));
+            }
+        }
+
+        private void DeleteOrder(int projectNumber)
+        {
+            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá hoá đơn này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                OnPropertyChanged(nameof(OrderList));
             }
         }
 

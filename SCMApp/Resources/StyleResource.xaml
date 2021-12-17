@@ -385,5 +385,14 @@
     <DataTemplate x:Key="TextBlock4ForGroupBoxHeader">
         <TextBlock Text="Tình trạng kho" FontSize="14" FontFamily="SegoeUI" Foreground="#FF37A0EA" FontWeight="SemiBold"/>
     </DataTemplate>
-    
+
+
+    <Style x:Key="DataGridTextBlock" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="SegoeUI"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="#666666"/>
+        <Setter Property="Padding" Value="20,0,0,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
 </ResourceDictionary>

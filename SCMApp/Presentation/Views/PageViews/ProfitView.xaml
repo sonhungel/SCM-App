@@ -19,7 +19,7 @@
                 <Border Width="30"/>
                 <ComboBox Width="200" Height="40" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                 <Border Width="60"/>
-                <Button Cursor="Hand" Foreground="White" Width="130" Height="37" Command="{Binding OpenInsertUserProfileViewCommand}"
+                <Button Cursor="Hand" Foreground="White" Width="130" Height="37"
                                 Style="{StaticResource Button3DRounded}" Background="#1399ad">
                     <Button.Content>
                         <Grid>

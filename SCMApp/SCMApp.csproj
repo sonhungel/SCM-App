@@ -31,6 +31,7 @@
     <None Remove="Assets\chart.png" />
     <None Remove="Assets\chatcolor.png" />
     <None Remove="Assets\chatwhite.png" />
+    <None Remove="Assets\circle-edit-outline.png" />
     <None Remove="Assets\closecolor.png" />
     <None Remove="Assets\closewhite.png" />
     <None Remove="Assets\cloud.png" />
@@ -119,6 +120,9 @@
     <Resource Include="Assets\chart.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\circle-edit-outline.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\edit.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -182,9 +186,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Helper\" />
-    <Folder Include="Presentation\ViewModels\ItemsViewModel\" />
+    <Folder Include="Constants\Enum\" />
     <Folder Include="WebAPIClient\PageViewAPIs\" />
     <Folder Include="WebAPIClient\SubViewAPIs\" />
   </ItemGroup>
