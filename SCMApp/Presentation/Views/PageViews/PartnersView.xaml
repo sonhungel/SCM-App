@@ -44,7 +44,7 @@
                             </Button>
                         </Grid>
                     </Grid>
-                    <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding CustomerList}"
+                    <DataGrid x:Name="CustomerGrid" VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding CustomerList}"
                               Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
                       AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
                       SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
@@ -97,6 +97,7 @@
                             <DataTemplate x:Key="Option">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
                                     <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
+                                            Command="{Binding DataContext.EditCustomerCommand, ElementName=CustomerGrid}" CommandParameter="{Binding CustomerCode}"
                                 Background="Transparent">
                                         <Button.Content>
                                             <Border Grid.Column="0" Background="Transparent">
@@ -107,6 +108,7 @@
                                     </Button>
                                     <Border Width="30"/>
                                     <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
+                                            Command="{Binding DataContext.DeleteCustomerCommand, ElementName=CustomerGrid}" CommandParameter="{Binding CustomerCode}"
                                 Background="Transparent">
                                         <Button.Content>
                                             <Border Grid.Column="0" Background="Transparent">
@@ -167,7 +169,7 @@
                             </Button>
                         </Grid>
                     </Grid>
-                    <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding PartnerList}"
+                    <DataGrid x:Name="PartnerGrid" VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding PartnerList}"
                               Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
                       AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
                       SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
@@ -220,6 +222,7 @@
                             <DataTemplate x:Key="Option">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
                                     <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
+                                            Command="{Binding DataContext.EditPartnerCommand, ElementName=PartnerGrid}" CommandParameter="{Binding PartnerCode}"
                                 Background="Transparent">
                                         <Button.Content>
                                             <Border Grid.Column="0" Background="Transparent">
@@ -230,6 +233,7 @@
                                     </Button>
                                     <Border Width="30"/>
                                     <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
+                                            Command="{Binding DataContext.DeletePartnerCommand, ElementName=PartnerGrid}" CommandParameter="{Binding PartnerCode}"
                                 Background="Transparent">
                                         <Button.Content>
                                             <Border Grid.Column="0" Background="Transparent">

@@ -22,9 +22,6 @@
     <DataTemplate DataType="{x:Type vm:ProfitViewModel}">
         <v:ProfitView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:RevenueViewModel}">
-        <v:RevenueView/>
-    </DataTemplate>
     <DataTemplate DataType="{x:Type vm:StockViewModel}">
         <v:StockView/>
     </DataTemplate>
@@ -33,5 +30,6 @@
     </DataTemplate>
 
     <converter:IsVisibleConverter x:Key="IsVisibleConverter"/>
+    <converter:EnumConverter x:Key="EnumConverter"/>
 
 </ResourceDictionary>

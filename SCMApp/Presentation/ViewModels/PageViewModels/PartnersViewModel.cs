@@ -26,6 +26,12 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         public ObservableCollection<CustomerViewModelItem> CustomerList { get; set; }
         public ObservableCollection<PartnerViewModelItem> PartnerList { get; set; }
+
+        public ICommand EditCustomerCommand { get; set; }
+        public ICommand DeleteCustomerCommand { get; set; }
+        public ICommand EditPartnerCommand { get; set; }
+        public ICommand DeletePartnerCommand { get; set; }
+
         public string NamePage => CommonConstants.PartnersPageViewName;
 
         public string FunctionName => CommonConstants.PartnersFunctionName;

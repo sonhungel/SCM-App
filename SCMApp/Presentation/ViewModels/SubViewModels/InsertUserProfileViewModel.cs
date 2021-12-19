@@ -17,7 +17,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public ICommand ISaveCommand { get; }
         private void CancelAction()
         {
-
+            View.Close();
         }
 
         private void SaveAction()

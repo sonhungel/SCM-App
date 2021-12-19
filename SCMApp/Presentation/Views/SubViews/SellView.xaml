@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         x:Name="Sell"
         d:DataContext="{d:DesignInstance Type=vm:SellViewModel}"
-        Title="stockDetailView" Height="500" Width="1000" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+        Title="Bán hàng" Height="500" Width="1000" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
 
     <Border CornerRadius="10" BorderThickness="0">
         <Border.Background>
@@ -143,8 +143,6 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Content="THANH TOÁN" Style="{StaticResource NormalLabel}" FontSize="24" Padding="10,0,0,0"/>
 
@@ -158,23 +156,10 @@
                             <Border Width="90"/>
                             <Label Content="1.000.000" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                         </StackPanel>
-
                         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
-                            <Label Content="Giảm giá" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
-                            <Border Width="22"/>
-                            
-                        </StackPanel>
-
-                        <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
-                            <Label Content="Khách cần trả" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
-                            <Border Width="78"/>
-                           
-                        </StackPanel>
-
-                        <StackPanel Grid.Row="5" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Tiền khách trả" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                             <Border Width="50"/>
-                            <Border CornerRadius="4" Width="130" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
+                            <Border CornerRadius="4" Width="130" Height="40" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
                                 <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                     <Grid Height="Auto">
                                         <TextBox x:Name="MoneyMustPayForNCC" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
@@ -194,12 +179,12 @@
                                 </Border>
                             </Border>
                         </StackPanel>
-                        <StackPanel Grid.Row="6" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
+                        <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Tiền thừa trả khách" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                             <Border Width="50"/>
 
                         </StackPanel>
-                        <Border Grid.Row="7" CornerRadius="4" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
+                        <Border Grid.Row="5" CornerRadius="4" Height="40" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
                                     <TextBox x:Name="ImportNote" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>

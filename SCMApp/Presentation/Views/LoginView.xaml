@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         x:Name="Login"
         d:DataContext="{d:DesignInstance Type=vm:LoginViewModel}"
-        Title="LoginView" Height="600" Width="500" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+        Title="Đăng nhập" Height="600" Width="500" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
     <Border CornerRadius="10" BorderThickness="0">
         <Border.Background>
             <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">

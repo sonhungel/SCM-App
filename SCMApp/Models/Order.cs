@@ -10,8 +10,6 @@ namespace SCMApp.Models
         public DateTime OrderTime { get; set; }
         public string CustomerName { get; set; }
         public decimal TotalPrice { get; set; }
-        public decimal DiscountPrice { get; set; }
-        public decimal ActualPrice { get; set; }
         public decimal CustomerPaid { get; set; }
     }
 }

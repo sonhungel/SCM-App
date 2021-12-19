@@ -188,15 +188,11 @@
                         <CheckBox VerticalAlignment="Center"/>
                         <Label Content="Doanh nghiệp" Style="{StaticResource SmallLabel}" Padding="5,0,0,0"/>
                     </StackPanel>
-                    
-                    <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Orientation="Horizontal">
+
+                    <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Stretch" Orientation="Horizontal">
                         <Label Content="Giới tính:" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Width="30"/>
-                        <CheckBox VerticalAlignment="Center"/>
-                        <Label Content="Nam" Style="{StaticResource SmallLabel}" Padding="5,0,0,0"/>
-                        <Border Width="10"/>
-                        <CheckBox VerticalAlignment="Center"/>
-                        <Label Content="Nữ" Style="{StaticResource SmallLabel}" Padding="5,0,0,0"/>
+                        <ComboBox Width="150" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                     </StackPanel>
 
                     <Label Grid.Row="2" Grid.Column="2" Content="Địa chỉ" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>

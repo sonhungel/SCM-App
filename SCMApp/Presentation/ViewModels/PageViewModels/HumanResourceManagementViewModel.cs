@@ -23,6 +23,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
 
         public ICommand OpenInsertUserProfileViewCommand { get; set; }
+        public ICommand DeleteUserCommand { get; set; }
+        public ICommand EditUserCommand { get; set; }
 
         public ObservableCollection<HumanResourceManagementViewModelItem> HRMList { get; set; }
 

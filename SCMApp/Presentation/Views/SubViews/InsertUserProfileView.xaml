@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         x:Name="userprofile"
         d:DataContext="{d:DesignInstance Type=vm:InsertUserProfileViewModel}"
-        Title="InsertUserProfileView" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+        Title="Thêm người dùng" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
     <Border CornerRadius="10" BorderThickness="0">
         <Border.Background>
             <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">

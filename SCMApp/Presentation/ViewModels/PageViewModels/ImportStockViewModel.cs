@@ -21,6 +21,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
 
         public ICommand OpenImportStockSubViewCommand { get; set; }
+        public ICommand DeleteImportStockCommand { get; set; }
+
         public ObservableCollection<ImportStockViewModelItem> ImportStockList { get; set; }
         public string NamePage => CommonConstants.ImportPageViewName;
 

@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         x:Name="stockDetail"
         d:DataContext="{d:DesignInstance Type=vm:StockDetailViewModel}"
-        Title="stockDetailView" Height="500" Width="800" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+        Title="Thông tin hàng hoá" Height="500" Width="800" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
     <Border CornerRadius="10" BorderThickness="0">
         <Border.Background>
             <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
@@ -260,16 +260,17 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="35"/>
-                            <RowDefinition/>
+                            <RowDefinition Height="Auto" MinHeight="50"/>
                             <RowDefinition Height="35"/>
-                            <RowDefinition/>
+                            <RowDefinition Height="Auto" MinHeight="50"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Text="Chi tiết hàng hoá" FontSize="18" FontFamily="Segoe UI" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20,0,0,0"/>
 
                         <Border Grid.Row="1" Background="Transparent">
-                            <Border Background="#dddddd" Height="150" CornerRadius="10" HorizontalAlignment="Stretch">
+                            <Border Background="#dddddd" Height="Auto" MaxHeight="150" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
-                                    <TextBox x:Name="importDescribe" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                    <TextBox x:Name="importDescribe" TextWrapping="Wrap" AcceptsReturn="True" MaxLength="250"
+                                             FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="30,0,0,0" Text="Nhập mô tả chi tiết cho hàng hoá của bạn..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="Black" IsHitTestVisible="False">
                                         <TextBlock.Style>
                                             <Style TargetType="{x:Type TextBlock}">
@@ -288,10 +289,11 @@
 
                         <TextBlock Grid.Row="2" Text="Ghi chú" FontSize="18" FontFamily="Segoe UI" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20,0,0,0"/>
 
-                        <Border Grid.Row="3" Background="Transparent" VerticalAlignment="Top">
-                            <Border Background="#dddddd" Height="90" CornerRadius="10" HorizontalAlignment="Stretch">
+                        <Border Grid.Row="3" Background="Transparent">
+                            <Border Background="#dddddd" Height="Auto" MaxHeight="150" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
-                                    <TextBox x:Name="importNote" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                    <TextBox x:Name="importNote" TextWrapping="Wrap" AcceptsReturn="True" MaxLength="250"
+                                             FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="30,0,0,0" Text="Nhập ghi chú cho hàng hoá của bạn..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="Black" IsHitTestVisible="False">
                                         <TextBlock.Style>
                                             <Style TargetType="{x:Type TextBlock}">

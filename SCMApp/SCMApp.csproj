@@ -186,7 +186,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Constants\Enum\" />
     <Folder Include="WebAPIClient\PageViewAPIs\" />
     <Folder Include="WebAPIClient\SubViewAPIs\" />
   </ItemGroup>

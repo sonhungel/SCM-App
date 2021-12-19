@@ -60,7 +60,7 @@
                 </Grid>
 
             </Border>
-            <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding OrderList}"
+            <DataGrid x:Name="OrderGrid" VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding OrderList}"
                       Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
                       AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
                       SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
@@ -101,18 +101,12 @@
                     <DataTemplate x:Key="TotalPrice">
                         <TextBlock Text="{Binding TotalPrice}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="DiscountPrice">
-                        <TextBlock Text="{Binding DiscountPrice}" Style="{StaticResource DataGridTextBlock}"/>
-                    </DataTemplate>
-                    <DataTemplate x:Key="ActualPrice">
-                        <TextBlock Text="{Binding ActualPrice}" Style="{StaticResource DataGridTextBlock}"/>
-                    </DataTemplate>
                     <DataTemplate x:Key="CustomerPaid">
                         <TextBlock Text="{Binding CustomerPaid}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
                     <DataTemplate x:Key="Option">
                         <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
-                                Command="{Binding DeleteOrderCommand}" CommandParameter="{Binding OrderCode}"
+                                Command="{Binding DataContext.DeleteOrderCommand, ElementName=OrderGrid}" CommandParameter="{Binding OrderCode}"
                                 Background="Transparent">
                             <Button.Content>
                                 <Border Grid.Column="0" Background="Transparent">
@@ -128,8 +122,6 @@
                     <DataGridTemplateColumn Width="0.8*" Header="Thời gian" CellTemplate="{StaticResource OrderTime}"/>
                     <DataGridTemplateColumn Width="1.4*" Header="Khách hàng" CellTemplate="{StaticResource CustomerName}"/>
                     <DataGridTemplateColumn Width="1.2*" Header="Tổng tiền hàng" CellTemplate="{StaticResource TotalPrice}"/>
-                    <DataGridTemplateColumn Width="1.2*" Header="Giảm giá" CellTemplate="{StaticResource DiscountPrice}"/>
-                    <DataGridTemplateColumn Width="1.2*" Header="Tổng sau giảm giá" CellTemplate="{StaticResource ActualPrice}"/>
                     <DataGridTemplateColumn Width="1.2*" Header="Khách đã trả" CellTemplate="{StaticResource CustomerPaid}"/>
                     <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>
                 </DataGrid.Columns>

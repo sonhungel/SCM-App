@@ -15,6 +15,7 @@ namespace SCMApp.ViewManager
         {
             var view = new CustomerDetailView();
             var viewModel = IoC.Get<CustomerDetailViewModel>();
+            viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             view.Show();
@@ -24,6 +25,7 @@ namespace SCMApp.ViewManager
         {
             var view = new InsertUserProfileView();
             var viewModel = IoC.Get<InsertUserProfileViewModel>();
+            viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             view.Show();
@@ -47,6 +49,7 @@ namespace SCMApp.ViewManager
         {
             var view = new PartnerDetailView();
             var viewModel = IoC.Get<PartnerDetailViewModel>();
+            viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             view.Show();
@@ -56,8 +59,10 @@ namespace SCMApp.ViewManager
         {
             var view = new UserProfileView();
             var viewModel = IoC.Get<UserProfileViewModel>();
+            viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
+            viewModel.View = view;
             view.Show();
         }
 
@@ -65,6 +70,7 @@ namespace SCMApp.ViewManager
         {
             var view = new StockDetailView();
             var viewModel = IoC.Get<StockDetailViewModel>();
+            viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             view.Show();
@@ -74,6 +80,7 @@ namespace SCMApp.ViewManager
         {
             var view = new ImportStockSubView();
             var viewModel = IoC.Get<ImportStockSubViewModel>();
+            viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             view.Show();
@@ -83,6 +90,7 @@ namespace SCMApp.ViewManager
         {
             var view = new SellView();
             var viewModel = IoC.Get<SellViewModel>();
+            viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             view.Show();

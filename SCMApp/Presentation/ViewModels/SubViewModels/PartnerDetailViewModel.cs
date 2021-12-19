@@ -18,7 +18,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void CancelAction()
         {
-
+            View.Close();
         }
 
         private void SaveAction()

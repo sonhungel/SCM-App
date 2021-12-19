@@ -17,6 +17,7 @@ namespace SCMApp.Presentation.ViewModels
         {
             _allPageViewModels = new List<IPageViewModel>();
             OpenUserProfileCommand = new RelayCommand(p => OpenUserProfileView());
+            MainUser = new UserProfile();
         }
 
         private IPageViewModel _currentPageViewModel;
@@ -39,6 +40,11 @@ namespace SCMApp.Presentation.ViewModels
         public ICommand OpenUserProfileCommand { get; set; }
 
         public UserProfile MainUser { get; set; }
+
+        public Visibility isManager => MainUser.Title == "Chủ cửa hàng" ? Visibility.Visible : Visibility.Hidden;
+
+        public string MainUserName => $"Tên: {MainUser?.Name}";
+        public string MainUserTitle => $"Chức vụ: {MainUser?.Title}";
 
         private void ChangeViewModel(string pageName)
         {

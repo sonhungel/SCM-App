@@ -60,7 +60,7 @@
                 </Grid>
 
             </Border>
-            <DataGrid VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding ImportStockList}"
+            <DataGrid x:Name="ImportGrid" VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding ImportStockList}"
                       Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
                       AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
                       SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
@@ -106,6 +106,8 @@
                     <DataTemplate x:Key="Option">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
                             <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
+                                    Command="{Binding DataContext.DeleteImportStockCommand, ElementName=ImportGrid}"
+                                    CommandParameter="{Binding ImportStockCode}"
                                 Background="Transparent">
                                 <Button.Content>
                                     <Border Grid.Column="0" Background="Transparent">

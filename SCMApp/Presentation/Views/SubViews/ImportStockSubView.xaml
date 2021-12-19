@@ -8,8 +8,7 @@
              mc:Ignorable="d"
              x:Name="ImprotStock"
              d:DataContext="{d:DesignInstance Type=vm:ImportStockSubViewModel}"
-        
-             Title="stockDetailView" Height="500" Width="1000" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+             Title="Nhập hàng" Height="500" Width="1000" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
 
     <Border CornerRadius="10" BorderThickness="0">
         <Border.Background>
@@ -128,12 +127,10 @@
                             </DataGrid.Resources>
                             <DataGrid.Columns >
                                 <DataGridTemplateColumn Width="45" Header="STT" CellTemplate="{StaticResource NumberProject}"/>
-                                <DataGridTemplateColumn Width="110" Header="Mã hàng hoá" CellTemplate="{StaticResource NameProject}"/>
-                                <DataGridTemplateColumn Width="110" Header="Tên hàng hoá" CellTemplate="{StaticResource CustomerProject}"/>
-                                <DataGridTemplateColumn Width="70" Header="Đơn vị" CellTemplate="{StaticResource StatusProject}"/>
+                                <DataGridTemplateColumn Width="140" Header="Mã hàng hoá" CellTemplate="{StaticResource NameProject}"/>
+                                <DataGridTemplateColumn Width="150" Header="Tên hàng hoá" CellTemplate="{StaticResource CustomerProject}"/>
                                 <DataGridTemplateColumn Width="85" Header="Số lượng" CellTemplate="{StaticResource CustomerProject}"/>
-                                <DataGridTemplateColumn Width="85" Header="Đơn giá" CellTemplate="{StaticResource DeleteProject}"/>
-                                <DataGridTemplateColumn Width="85" Header="Giảm giá" CellTemplate="{StaticResource CustomerProject}"/>
+                                <DataGridTemplateColumn Width="*" Header="Đơn giá" CellTemplate="{StaticResource DeleteProject}"/>
                                 <DataGridTemplateColumn Width="*" Header="Thành tiền" CellTemplate="{StaticResource DeleteProject}"/>
                             </DataGrid.Columns>
                         </DataGrid>
@@ -146,15 +143,13 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Content="THANH TOÁN" Style="{StaticResource NormalLabel}" FontSize="24" Padding="10,0,0,0"/>
 
                         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Mã nhập hàng" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                             <Border Width="25"/>
-                            <Border CornerRadius="4" Width="150" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
+                            <Border CornerRadius="4" Width="150" Height="40" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
                                 <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                     <Grid Height="Auto">
                                         <TextBox x:Name="importStockCode" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
@@ -183,7 +178,7 @@
                         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Tiền phải trả NCC" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                             <Border Width="22"/>
-                            <Border CornerRadius="4" Width="130" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
+                            <Border CornerRadius="4" Width="130" Height="40" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
                                 <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                     <Grid Height="Auto">
                                         <TextBox x:Name="MoneyMustPayForNCC" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
@@ -204,36 +199,7 @@
                             </Border>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
-                            <Label Content="Tiền giảm" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
-                            <Border Width="78"/>
-                            <Border CornerRadius="4" Width="130" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
-                                <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
-                                    <Grid Height="Auto">
-                                        <TextBox x:Name="importDiscount" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
-                                        <TextBlock Margin="10,0,0,0" Text="Nhập tiền giảm..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
-                                            <TextBlock.Style>
-                                                <Style TargetType="{x:Type TextBlock}">
-                                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Text, ElementName=importDiscount}" Value="">
-                                                            <Setter Property="Visibility" Value="Visible"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                    </Grid>
-                                </Border>
-                            </Border>
-                        </StackPanel>
-
-                        <StackPanel Grid.Row="5" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
-                            <Label Content="Tổng tiền thừa lấy lại" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
-                            <Border Width="50"/>
-                            <Label Content="1.000.000" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
-                        </StackPanel>
-                        <Border Grid.Row="6" CornerRadius="4" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
+                        <Border Grid.Row="4" CornerRadius="4" Height="40" VerticalAlignment="Stretch" Background="White" BorderBrush="#999999" BorderThickness="1" Margin="5">
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
                                     <TextBox x:Name="ImportNote" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>

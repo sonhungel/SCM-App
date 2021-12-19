@@ -7,7 +7,133 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=local:InventoryViewModel}"
              d:DesignHeight="450" d:DesignWidth="800" >
-    <Border CornerRadius="0,0,10,10" Background="RoyalBlue">
+    <Border CornerRadius="0,0,10,10" Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="1" Cursor="Hand" Foreground="White" Width="100" Height="37" Command="{Binding OpenInventoryCheckViewCommand}"
+                                Style="{StaticResource Button3DRounded}" Background="#1399ad">
+                        <Button.Content>
+                            <Grid>
+                                <TextBlock Margin="5,0,0,0" Grid.Column="1" Text="Kiểm kho" TextAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="12"/>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </Grid>
+            <Border Grid.Row="1" Background="#97deb0" CornerRadius="5" Height="40" Margin="15,0,15,0" Visibility="{Binding IsHaveNoData, Mode =TwoWay,  Converter={StaticResource IsVisibleConverter}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="10,0,0,0" Grid.Column="0" Orientation="Horizontal">
+                        <TextBlock Text="Chưa có mặt hàng nào trong kho." FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Button Grid.Column="1" HorizontalAlignment="Right" Width="25" Height="25" VerticalAlignment="Center" Style="{StaticResource Button3DRounded}" Background="Transparent" Margin="0,0,10,0">
+                        <Button.Content>
+                            <Border Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                                <Border Width="20" Height="20" Background="Transparent">
+                                    <Image Source="/Assets/window-close.png" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                </Border>
+                            </Border>
+                        </Button.Content>
+                    </Button>
+                </Grid>
 
+            </Border>
+            <DataGrid x:Name="ListStockInventory" VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding InventoryList}"
+                      Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
+                      AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
+                      SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
+                      CanUserReorderColumns="True">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Height" Value="32"/>
+                        <Setter Property="FontFamily" Value="SegoeUI"/>
+                        <Setter Property="Foreground" Value="#FF37A0EA"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        <Setter Property="BorderBrush" Value="#dddddd"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Padding" Value="13,3,0,0"/>
+                    </Style>
+
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Height" Value="44"/>
+                        <Style.Triggers>
+                            <Trigger Property="DataGridCell.IsSelected" Value="True" >
+                                <Setter Property="Background" Value="#f4f4f4"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <DataTemplate x:Key="StockCode">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Style="{StaticResource DataGridTextBlock}" HorizontalAlignment="Right" >
+                            <Hyperlink Command="{Binding DataContext.ClickStockCode, ElementName = ListStockInventory}" 
+                                       CommandParameter="{Binding StockCode}">
+                                <Hyperlink.Style>
+                                    <Style TargetType="{x:Type Hyperlink}">
+                                        <Setter Property="TextDecorations" Value="Underline"/>
+                                        <Setter Property="Foreground" Value="#0167cc"/>
+                                    </Style>
+                                </Hyperlink.Style>
+                                <TextBlock Text="{Binding StockCode}"/>
+                            </Hyperlink>
+                        </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                    <DataTemplate x:Key="StockName">
+                        <TextBlock Text="{Binding StockName}" Style="{StaticResource DataGridTextBlock}"/>
+                    </DataTemplate>
+                    <DataTemplate x:Key="InventoryNumber">
+                        <TextBlock Text="{Binding InventoryNumber}" Style="{StaticResource DataGridTextBlock}"/>
+                    </DataTemplate>
+                    <DataTemplate x:Key="InventoryNumberFact">
+                        <TextBlock Text="{Binding InventoryNumberFact}" Style="{StaticResource DataGridTextBlock}"/>
+                    </DataTemplate>
+                    <DataTemplate x:Key="QuantityOfFifference">
+                        <TextBlock Text="{Binding QuantityOfFifference}" Style="{StaticResource DataGridTextBlock}"/>
+                    </DataTemplate>
+                    <DataTemplate x:Key="Note">
+                        <TextBlock Text="{Binding Note}" Style="{StaticResource DataGridTextBlock}"/>
+                    </DataTemplate>
+                    <DataTemplate x:Key="Option">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                            <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
+                                Background="Transparent">
+                                <Button.Content>
+                                    <Border Grid.Column="0" Background="Transparent">
+                                        <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                               Source="/Assets/Red_Bin.png" />
+                                    </Border>
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.Resources>
+                <DataGrid.Columns >
+                    <DataGridTemplateColumn Width="0.8*" Header="Mã hàng hoá" CellTemplate="{StaticResource StockCode}"/>
+                    <DataGridTemplateColumn Width="1.4*" Header="Tên hàng hoá" CellTemplate="{StaticResource StockName}"/>
+                    <DataGridTemplateColumn Width="1*" Header="Tồn kho" CellTemplate="{StaticResource InventoryNumber}"/>
+                    <DataGridTemplateColumn Width="1.2*" Header="Thực tế" CellTemplate="{StaticResource InventoryNumberFact}"/>
+                    <DataGridTemplateColumn Width="1*" Header="Số lượng chệnh lệch" CellTemplate="{StaticResource QuantityOfFifference}"/>
+                    <DataGridTemplateColumn Width="1*" Header="Ghi chú" CellTemplate="{StaticResource Note}"/>
+                    <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chỉnh" CellTemplate="{StaticResource Option}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Border>
 </UserControl>

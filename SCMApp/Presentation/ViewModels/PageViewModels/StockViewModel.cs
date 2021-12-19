@@ -20,6 +20,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
 
         public ICommand OpenStockDetailViewCommand { get; set; }
+        public ICommand EditStockCommand { get; set; }
+        public ICommand DeleteStockCommand { get; set; }
 
         public ObservableCollection<StockViewModelItem> StockList { get; set; }
         public string NamePage => CommonConstants.StockPageViewName;

@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         x:Name="home"
         d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
-        Title="Suppy Chain Management System" Height="900" Width="1500" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" >
+        Title="Hệ thống quản lý chuỗi cung ứng" Height="900" Width="1500" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" >
 
     <!--<Border Background="Transparent">-->
         <Border CornerRadius="10" BorderThickness="0">
@@ -114,8 +114,8 @@
                                 <Image Source="/Assets/finance.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
                         </Button>
-                        <Button Grid.Row="7" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="HumanResourceManagementView">
-                            <Button.ToolTip>
+                    <Button Grid.Row="7" Visibility="{Binding isManager}" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="HumanResourceManagementView">
+                        <Button.ToolTip>
                                 <TextBlock Text="Quản lý nhân sự" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
                             <Button.Content>
@@ -186,9 +186,9 @@
                                                         </Ellipse.Fill>
                                                     </Ellipse>
                                                 </MenuItem.Header>
-                                            <MenuItem Header="_Tên tài khoản" FontFamily="Segoe UI" FontWeight="SemiBold"/>
-                                            <MenuItem Header="_Chức vụ" FontFamily="Segoe UI" FontWeight="SemiBold"/>
-                                            <Separator />
+                                            <MenuItem Header="{Binding MainUserName}" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+                                            <MenuItem Header="{Binding MainUserTitle}" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+                                            <Separator/>
                                             <MenuItem Header="_Chỉnh sửa thông tin" Command="{Binding OpenUserProfileCommand}" FontFamily="Segoe UI" FontWeight="SemiBold"/>
                                             </MenuItem>
                                         </Menu>

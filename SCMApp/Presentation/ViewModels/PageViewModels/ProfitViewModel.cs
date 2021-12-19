@@ -1,9 +1,12 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
 using SCMApp.Constants;
+using SCMApp.Constants.Enum;
+using SCMApp.Helper;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using System;
+using System.Collections.Generic;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
@@ -43,11 +46,17 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                     LabelPoint = FormatterPieChart
                 }
             };
+            ListFilter = new List<TimeFilterEnum>() { TimeFilterEnum.Week, TimeFilterEnum.Month, TimeFilterEnum.Year };
 
+            SelectedFilter = TimeFilterEnum.Week;
         }
         public string NamePage => CommonConstants.ProfitPageViewName;
 
         public string FunctionName => CommonConstants.ProfitFunctionName;
+
+        public List<TimeFilterEnum> ListFilter { get; set; }
+
+        public TimeFilterEnum SelectedFilter { get; set; }
 
         //CartesianChart
         public SeriesCollection SeriesCollectionCartesianChart { get; set; }

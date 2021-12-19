@@ -1,4 +1,6 @@
 ﻿using SCMApp.Presentation.Commands;
+using SCMApp.Presentation.ViewModels.Base;
+using SCMApp.ViewManager;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,9 +8,9 @@ using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
-    public class StockDetailViewModel
+    public class StockDetailViewModel : ViewModelBase, IWindowViewBase
     {
-        public StockDetailViewModel()
+        public StockDetailViewModel(IScreenManager screenManager) : base(screenManager)
         {
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
@@ -18,7 +20,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void CancelAction()
         {
-
+            View.Close();
         }
 
         private void SaveAction()

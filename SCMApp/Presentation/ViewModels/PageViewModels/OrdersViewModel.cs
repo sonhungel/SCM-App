@@ -21,14 +21,12 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
             OrderList = new ObservableCollection<OrderViewModelItem>()
             {
-                new OrderViewModelItem(DeleteOrderCommand, new Order()
+                new OrderViewModelItem( new Order()
                 {
                     OrderCode = "12312",
                     OrderTime = DateTime.Now,
                     CustomerName = "Sonhungel",
                     TotalPrice = 33333,
-                    DiscountPrice = 1111,
-                    ActualPrice = 33333-111,
                     CustomerPaid = 40000
                 })
                

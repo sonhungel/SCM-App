@@ -9,9 +9,8 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 {
     public class OrderViewModelItem
     {
-        public OrderViewModelItem(ICommand deleteOrderCommand, Order order)
+        public OrderViewModelItem(Order order)
         {
-            DeleteOrderCommand = deleteOrderCommand;
             Model = order;
         }
 
@@ -20,9 +19,6 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         public string OrderTime => DateTimeHelper.DateTimeToStandardString(Model.OrderTime);
         public string CustomerName => Model.CustomerName;
         public decimal TotalPrice => Model.TotalPrice;
-        public decimal DiscountPrice => Model.DiscountPrice;
-        public decimal ActualPrice => Model.ActualPrice;
         public decimal CustomerPaid => Model.CustomerPaid;
-        public ICommand DeleteOrderCommand { get; set; }
     }
 }

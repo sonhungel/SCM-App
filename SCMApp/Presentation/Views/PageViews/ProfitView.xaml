@@ -9,7 +9,7 @@
              d:DataContext="{d:DesignInstance Type=local:ProfitViewModel}"
              d:DesignHeight="450" d:DesignWidth="800" >
     <Border CornerRadius="0,0,10,10" Background="White">
-        <Grid ShowGridLines="True">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition/>
@@ -17,8 +17,19 @@
             <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Content="Lọc theo khung thời gian:" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                 <Border Width="30"/>
-                <ComboBox Width="200" Height="40" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                <ComboBox Width="200" Height="40" ItemsSource="{Binding ListFilter, Converter={StaticResource EnumConverter}}"
+                          SelectedItem="{Binding SelectedFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumConverter}}"
+                          IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                 <Border Width="60"/>
+                <Button Cursor="Hand" Foreground="White" Width="50" Height="37"
+                                Style="{StaticResource Button3DRounded}" Background="#1399ad">
+                    <Button.Content>
+                        <Grid>
+                            <TextBlock Text="Lọc" TextAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="12"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Border Width="30"/>
                 <Button Cursor="Hand" Foreground="White" Width="130" Height="37"
                                 Style="{StaticResource Button3DRounded}" Background="#1399ad">
                     <Button.Content>
@@ -35,7 +46,7 @@
                     </Button.Content>
                 </Button>
             </StackPanel>
-            <Grid Grid.Row="1" ShowGridLines="True">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="400"/>
                     <ColumnDefinition/>
