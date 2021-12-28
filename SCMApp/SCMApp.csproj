@@ -36,6 +36,7 @@
     <None Remove="Assets\closewhite.png" />
     <None Remove="Assets\cloud.png" />
     <None Remove="Assets\contacts.png" />
+    <None Remove="Assets\DataAddress.json" />
     <None Remove="Assets\document.png" />
     <None Remove="Assets\downloadsfolder.png" />
     <None Remove="Assets\dropbox.png" />
@@ -121,6 +122,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\circle-edit-outline.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\DataAddress.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\edit.png">

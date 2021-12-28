@@ -151,12 +151,24 @@
                     </Border>
 
                     <Label Grid.Row="8" Grid.Column="0" Content="Ngày sinh" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                    <StackPanel Grid.Row="9" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
-                        <ComboBox Width="118" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
-                        <ComboBox Width="118" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
-                        <ComboBox Width="118" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
-                    </StackPanel>
-                    
+                    <Border Grid.Row="9" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                        <DatePicker HorizontalAlignment="Stretch" IsTodayHighlighted="True" SelectedDate="{Binding CustomerBirthDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Cursor="Hand" Style="{StaticResource DatePicker14SegoeUI}">
+                            <DatePicker.Resources>
+                                <Style TargetType="DatePickerTextBox">
+                                    <Setter Property="Control.Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, Mode=TwoWay, StringFormat='dd.MM.yyyy', Converter={StaticResource DateTimeConverter},
+                                                RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" 
+                                                     Background="Transparent" BorderThickness="0" Style="{StaticResource TextBox14SegoeUI}"/>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
+                    </Border>
                     <Label Grid.Row="10" Grid.Column="0" Content="Mã số thuế" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <Border Grid.Row="11" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
@@ -179,20 +191,12 @@
                     </Border>
 
                     <!--Colum 2-->
-                    <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Orientation="Horizontal">
-                        <Label Content="Loại khách hàng:" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Border Width="30"/>
-                        <CheckBox VerticalAlignment="Center"/>
-                        <Label Content="Cá nhân" Style="{StaticResource SmallLabel}" Padding="5,0,0,0"/>
-                        <Border Width="10"/>
-                        <CheckBox VerticalAlignment="Center"/>
-                        <Label Content="Doanh nghiệp" Style="{StaticResource SmallLabel}" Padding="5,0,0,0"/>
-                    </StackPanel>
-
                     <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Stretch" Orientation="Horizontal">
                         <Label Content="Giới tính:" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Width="30"/>
-                        <ComboBox Width="150" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                            <ComboBox Width="150" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        </Border>
                     </StackPanel>
 
                     <Label Grid.Row="2" Grid.Column="2" Content="Địa chỉ" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
@@ -222,13 +226,22 @@
                         <Label Content="Quận/Huyện" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     </StackPanel>
                     <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Stretch" Orientation="Horizontal">
-                        <ComboBox Width="175" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                            <ComboBox Width="175" ItemsSource="{Binding ProvinceList}" DisplayMemberPath="Name"
+                                      SelectedItem="{Binding SelectedProvince}" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        </Border>
                         <Border Width="10"/>
-                        <ComboBox Width="175" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                            <ComboBox Width="175" ItemsSource="{Binding DistrictList}" DisplayMemberPath="Name"
+                                      SelectedItem="{Binding SelectedDistrict}" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        </Border>
                     </StackPanel>
 
                     <Label Grid.Row="6" Grid.Column="2" Content="Xã/Phường" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                    <ComboBox Grid.Row="7" Grid.Column="2" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                    <Border Grid.Row="7" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                        <ComboBox IsEditable="False" ItemsSource="{Binding WardList}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedWard}" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                    </Border>
 
                     <Label Grid.Row="8" Grid.Column="2" Content="Ghi chú" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <Border Grid.Row="9" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">

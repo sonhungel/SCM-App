@@ -209,13 +209,19 @@
                         <Label Content="Quận/Huyện" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     </StackPanel>
                     <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Stretch" Orientation="Horizontal">
-                        <ComboBox Width="175" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                            <ComboBox Width="175" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        </Border>
                         <Border Width="10"/>
-                        <ComboBox Width="175" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                            <ComboBox Width="175" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        </Border>
                     </StackPanel>
 
                     <Label Grid.Row="6" Grid.Column="2" Content="Xã/Phường" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                    <ComboBox Grid.Row="7" Grid.Column="2" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                    <Border Grid.Row="7" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                        <ComboBox IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                    </Border>
 
                     <Label Grid.Row="8" Grid.Column="2" Content="Ghi chú" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <Border Grid.Row="9" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">

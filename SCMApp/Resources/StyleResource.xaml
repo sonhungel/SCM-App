@@ -285,32 +285,6 @@
                 </Style>
             </Setter.Value>
         </Setter>
-        <Setter Property="Validation.ErrorTemplate">
-            <Setter.Value>
-                <ControlTemplate>
-                    <DockPanel LastChildFill="True">
-                        <StackPanel Orientation="Horizontal">
-                            <Border BorderThickness="1" BorderBrush="#b44243" CornerRadius="3" 
-                                    Visibility="{Binding ElementName=placeholder3, Mode=OneWay, Path=AdornedElement.IsVisible, Converter={StaticResource IsVisibleConverter}}">
-                                <AdornedElementPlaceholder x:Name="placeholder3"/>
-                            </Border>
-                            <TextBlock Margin="10 0 0 0" Text="{Binding ErrorContent}" Style="{StaticResource TextBlockOfProperties}" Foreground="#b44243" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DockPanel>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <!--<Setter Property="SelectedValue">
-            <Setter.Value>
-                <Binding Path="GroupId"  UpdateSourceTrigger="PropertyChanged" ValidatesOnNotifyDataErrors="True"/>
-            </Setter.Value>
-        </Setter>-->
-        <Style.Triggers>
-            <Trigger Property="Validation.HasError" Value="True">
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="Margin" Value="0"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="TextBox14SegoeUI" TargetType="TextBox">
@@ -394,5 +368,26 @@
         <Setter Property="Foreground" Value="#666666"/>
         <Setter Property="Padding" Value="20,0,0,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="TextBlockOfProperties" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="#666666"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+    
+    <Style x:Key="DatePicker14SegoeUI" TargetType="{x:Type DatePicker}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#666666"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="1"/>
     </Style>
 </ResourceDictionary>

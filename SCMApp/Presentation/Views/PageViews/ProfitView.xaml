@@ -17,9 +17,11 @@
             <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Content="Lọc theo khung thời gian:" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                 <Border Width="30"/>
-                <ComboBox Width="200" Height="40" ItemsSource="{Binding ListFilter, Converter={StaticResource EnumConverter}}"
+                <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                    <ComboBox Width="200" Height="40" ItemsSource="{Binding ListFilter, Converter={StaticResource EnumConverter}}"
                           SelectedItem="{Binding SelectedFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumConverter}}"
                           IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                </Border>
                 <Border Width="60"/>
                 <Button Cursor="Hand" Foreground="White" Width="50" Height="37"
                                 Style="{StaticResource Button3DRounded}" Background="#1399ad">
