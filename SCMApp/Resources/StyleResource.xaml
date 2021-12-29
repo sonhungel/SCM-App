@@ -359,6 +359,12 @@
     <DataTemplate x:Key="TextBlock4ForGroupBoxHeader">
         <TextBlock Text="Tình trạng kho" FontSize="14" FontFamily="SegoeUI" Foreground="#FF37A0EA" FontWeight="SemiBold"/>
     </DataTemplate>
+    <DataTemplate x:Key="TextBlock5ForGroupBoxHeader">
+        <TextBlock Text="Thông tin hàng hoá" FontSize="14" FontFamily="SegoeUI" Foreground="#FF37A0EA" FontWeight="SemiBold"/>
+    </DataTemplate>
+    <DataTemplate x:Key="TextBlock6ForGroupBoxHeader">
+        <TextBlock Text="Số lượng và ghi chú" FontSize="14" FontFamily="SegoeUI" Foreground="#FF37A0EA" FontWeight="SemiBold"/>
+    </DataTemplate>
 
 
     <Style x:Key="DataGridTextBlock" TargetType="{x:Type TextBlock}">

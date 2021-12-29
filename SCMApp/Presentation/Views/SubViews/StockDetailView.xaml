@@ -117,7 +117,8 @@
 
                         <Label Grid.Row="4" Grid.Column="0" Content="Nhóm hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Grid.Row="5" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <ComboBox IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                            <ComboBox IsEditable="False" ItemsSource="{Binding StocksType}" SelectedItem="{Binding SelectedStocksType}"
+                                      Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                         <StackPanel Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal">
                             <Label Content="Giá vốn" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>

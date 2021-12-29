@@ -152,7 +152,8 @@
 
                     <Label Grid.Row="8" Grid.Column="0" Content="Ngày sinh" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <Border Grid.Row="9" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                        <DatePicker HorizontalAlignment="Stretch" IsTodayHighlighted="True" SelectedDate="{Binding CustomerBirthDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        <DatePicker HorizontalAlignment="Stretch" IsTodayHighlighted="True"
+                                    SelectedDate="{Binding CustomerBirthDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 Cursor="Hand" Style="{StaticResource DatePicker14SegoeUI}">
                             <DatePicker.Resources>
                                 <Style TargetType="DatePickerTextBox">
@@ -227,20 +228,20 @@
                     </StackPanel>
                     <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Stretch" Orientation="Horizontal">
                         <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <ComboBox Width="175" ItemsSource="{Binding ProvinceList}" DisplayMemberPath="Name"
-                                      SelectedItem="{Binding SelectedProvince}" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                            <ComboBox Width="175" ItemsSource="{Binding ProvinceList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedProvince}" 
+                                      IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                         <Border Width="10"/>
                         <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <ComboBox Width="175" ItemsSource="{Binding DistrictList}" DisplayMemberPath="Name"
-                                      SelectedItem="{Binding SelectedDistrict}" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                            <ComboBox Width="175" ItemsSource="{Binding DistrictList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedDistrict}" 
+                                      IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                     </StackPanel>
 
                     <Label Grid.Row="6" Grid.Column="2" Content="Xã/Phường" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <Border Grid.Row="7" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                        <ComboBox IsEditable="False" ItemsSource="{Binding WardList}" DisplayMemberPath="Name"
-                                  SelectedItem="{Binding SelectedWard}" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        <ComboBox IsEditable="False" ItemsSource="{Binding WardList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedWard}" 
+                                  Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                     </Border>
 
                     <Label Grid.Row="8" Grid.Column="2" Content="Ghi chú" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>

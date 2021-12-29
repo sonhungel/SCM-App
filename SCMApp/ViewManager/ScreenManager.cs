@@ -95,5 +95,15 @@ namespace SCMApp.ViewManager
             view.Owner = parentWindow;
             view.Show();
         }
+
+        public void ShowInventoryTicket(Window parentWindow)
+        {
+            var view = new InventoryTicketView();
+            var viewModel = IoC.Get<InventoryTicketViewModel>();
+            viewModel.View = view;
+            view.DataContext = viewModel;
+            view.Owner = parentWindow;
+            view.Show();
+        }
     }
 }

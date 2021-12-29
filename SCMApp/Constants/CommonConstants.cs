@@ -1,4 +1,6 @@
-﻿namespace SCMApp.Constants
+﻿using System.Collections.Generic;
+
+namespace SCMApp.Constants
 {
     public static class CommonConstants
     {
@@ -28,6 +30,8 @@
         public const string EditUser = "Chỉnh sửa thông tin người dùng";
         public const string UserProfile = "Thông tin người dùng";
 
+        // User Role
+        public static readonly List<string> UserRole = new List<string>() { "Chủ cửa hàng", "Nhân viên" };
 
         // Profit
 

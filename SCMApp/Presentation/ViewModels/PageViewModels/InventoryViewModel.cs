@@ -17,6 +17,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             InventoryList = new ObservableCollection<InventoryViewModelItem>() { new InventoryViewModelItem() };
 
             ClickStockCode = new RelayCommand(p => OpenStockView((string) p));
+            OpenInventoryCheckViewCommand = new RelayCommand(p => OpenInvetoryTicket());
         }
         public string NamePage => CommonConstants.InventoryPageViewName;
 
@@ -45,6 +46,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         private void OpenStockView(string stockCode)
         {
             ScreenManager.ShowStockDetailView(View);
+        }
+
+        private void OpenInvetoryTicket()
+        {
+            ScreenManager.ShowInventoryTicket(View);
         }
     }
 }
