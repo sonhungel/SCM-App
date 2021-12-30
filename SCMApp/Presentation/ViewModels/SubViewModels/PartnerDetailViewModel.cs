@@ -15,10 +15,14 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             ISaveCommand = new RelayCommand(p => SaveAction());
 
             ProvinceList = Address.Instance().ProvinceList;
+            PartnerType = new List<string>() { "Doanh nghiệp", "Cá nhân" };
         }
 
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
+
+        public List<string> PartnerType { get; set; }
+        public string SelectedPartnerType { get; set; }
 
         public IList<Province> ProvinceList { get; set; }
         public IList<District> DistrictList { get; set; }

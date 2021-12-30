@@ -107,8 +107,9 @@
                     <DataTemplate x:Key="Option">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
                             <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
-                                    Command="{Binding DataContext.EditStockCommand, ElementName=StockGrid}" CommandParameter="{Binding StockCode}"
-                                Background="Transparent">
+                                    Command="{Binding DataContext.EditStockCommand, ElementName=StockGrid}" 
+                                    CommandParameter="{Binding StockCode}"
+                                    Background="Transparent">
                                 <Button.Content>
                                     <Border Grid.Column="0" Background="Transparent">
                                         <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
@@ -118,8 +119,9 @@
                             </Button>
                             <Border Width="30"/>
                             <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
-                                    Command="{Binding DataContext.DeleteStockCommand, ElementName=StockGrid}" CommandParameter="{Binding StockCode}"
-                                Background="Transparent">
+                                    Command="{Binding DataContext.DeleteStockCommand, ElementName=StockGrid}" 
+                                    CommandParameter="{Binding StockCode}"
+                                    Background="Transparent">
                                 <Button.Content>
                                     <Border Grid.Column="0" Background="Transparent">
                                         <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 

@@ -19,6 +19,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             ISaveCommand = new RelayCommand(p => SaveAction());
             
             ProvinceList = Address.Instance().ProvinceList;
+            Gender = new List<string>() { "Nam", "Nữ" };
         }
 
         public ICommand ICancelCommand { get; }
@@ -32,10 +33,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public DateTime? CustomerBirthDay { get; set; }
         public string TaxCode { get; set; }
         public List<string> Gender { get; set; }
-        //public string Address { get; set; }
+        public string SelectedGender { get; set; }
         public string Note { get; set; }
-
-        //private readonly Address Address;
 
         public IList<Province> ProvinceList { get; set; }
         public IList<District> DistrictList { get; set; }

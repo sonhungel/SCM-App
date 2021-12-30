@@ -27,7 +27,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="80"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Thông tin khách hàng" FontSize="18" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20,0,0,0"/>
+                <TextBlock Text="Thông tin nhà cung cấp" FontSize="18" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20,0,0,0"/>
                 <Border Grid.Column="1" Grid.Row="0" CornerRadius="10">
                     <Border.Background>
                         <LinearGradientBrush EndPoint="1,0" StartPoint="0,1">
@@ -172,14 +172,14 @@
                     </Border>
 
                     <!--Colum 2-->
-                    <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Orientation="Horizontal">
+                    <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Stretch" Orientation="Horizontal">
                         <Label Content="Loại nhà cung cấp:" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Width="30"/>
-                        <CheckBox VerticalAlignment="Center"/>
-                        <Label Content="Cá nhân" Style="{StaticResource SmallLabel}" Padding="5,0,0,0"/>
-                        <Border Width="10"/>
-                        <CheckBox VerticalAlignment="Center"/>
-                        <Label Content="Doanh nghiệp" Style="{StaticResource SmallLabel}" Padding="5,0,0,0"/>
+                        <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                            <ComboBox ItemsSource="{Binding PartnerType}" 
+                                      SelectedItem="{Binding SelectedPartnerType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Width="150" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        </Border>
                     </StackPanel>
 
                     <Label Grid.Row="2" Grid.Column="2" Content="Địa chỉ" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>

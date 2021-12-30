@@ -5,6 +5,7 @@ using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
@@ -18,7 +19,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
             ClickStockCode = new RelayCommand(p => OpenStockView((string) p));
             OpenInventoryCheckViewCommand = new RelayCommand(p => OpenInvetoryTicket());
+            DeleteStockInventoryCommand = new RelayCommand(p => DeleteStockInventory((string)p));
         }
+
+       
         public string NamePage => CommonConstants.InventoryPageViewName;
 
         public string FunctionName => CommonConstants.InventoryFunctionName;
@@ -36,6 +40,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
         public ICommand OpenInventoryCheckViewCommand { get; set; }
         public ICommand ClickStockCode { get; }
+        public ICommand DeleteStockInventoryCommand { get; set; }
 
         public ObservableCollection<InventoryViewModelItem> InventoryList { get; set; }
 
@@ -52,5 +57,14 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         {
             ScreenManager.ShowInventoryTicket(View);
         }
+        private void DeleteStockInventory(string p)
+        {
+            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá hoá đơn này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+             
+            }
+        }
+
     }
 }

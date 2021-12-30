@@ -95,8 +95,8 @@
                     </StackPanel>
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="4*"/>
                         </Grid.ColumnDefinitions>
                         <GroupBox Margin="10" HeaderTemplate="{StaticResource TextBlock5ForGroupBoxHeader}" BorderBrush="#aaaaaaaa">
                             <Grid>
@@ -127,13 +127,49 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="20"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0" Content="Số lương thực tế: " Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                                <Label Grid.Row="0" Grid.Column="2" Content="1.000" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                                <Border Grid.Row="0" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                                    <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
+                                        <Grid Height="Auto">
+                                            <TextBox x:Name="importFactQuantity" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                            <TextBlock Margin="10,0,0,0" Text="Nhập số lượng thực tế..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Text, ElementName=importFactQuantity}" Value="">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </Border>
                                 <Label Grid.Row="1" Grid.Column="0" Content="Ghi chú: " Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                                <Label Grid.Row="1" Grid.Column="2" Content="500.000" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                                <Border Grid.Row="2" Grid.ColumnSpan="3" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                                    <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
+                                        <Grid Height="Auto">
+                                            <TextBox x:Name="importNote" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                            <TextBlock Margin="20,0,0,0" Text="Nhập ghi chú..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Text, ElementName=importNote}" Value="">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </Border>
                             </Grid>
                         </GroupBox>
                     </Grid>

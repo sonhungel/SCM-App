@@ -14,16 +14,18 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         {
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
+
+            StocksType = new List<string>()
+            {
+                "Hàng mát", "Bánh kẹo", "Thuốc lá", "Gia dụng", "Văn phòng phẩm, lưu niệm, đồ chơi",
+                "Hàng đông lạnh", "Dệt may, thời trang", "Mỹ phẩm", "Hóa phẩm", "Giấy và bông",
+                "Thực phẩm khô", "Đồ uống"
+            };
         }    
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
 
-        public readonly IList<string> StocksType = new List<string>() 
-        { 
-            "Hàng mát", "Bánh kẹo", "Thuốc lá", "Gia dụng", "Văn phòng phẩm, lưu niệm, đồ chơi",
-            "Hàng đông lạnh", "Dệt may, thời trang", "Mỹ phẩm", "Hóa phẩm", "Giấy và bông",
-            "Thực phẩm khô", 
-            "Đồ uống" };
+        public IList<string> StocksType { get; set; }
         public string SelectedStocksType { get; set; }
 
         private void CancelAction()

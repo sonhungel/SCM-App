@@ -6,6 +6,7 @@ using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
@@ -19,6 +20,12 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
             CustomerList = new ObservableCollection<CustomerViewModelItem>() { new CustomerViewModelItem(new Customer()) };
             PartnerList = new ObservableCollection<PartnerViewModelItem>() { new PartnerViewModelItem(new Partner()) };
+
+            EditCustomerCommand = new RelayCommand(p => EditCustomer((string)p));
+            DeleteCustomerCommand = new RelayCommand(p => DeleteCustomer((string)p));
+
+            EditPartnerCommand = new RelayCommand(p => EditPartner((string)p));
+            DeletePartnerCommand = new RelayCommand(p => DeletePartner((string)p));
         }
 
         public ICommand OpenCustomerViewCommand { get; set; }
@@ -48,6 +55,30 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         private void OpenPartnerView()
         {
             ScreenManager.ShowPartnerDetailView(View);
+        }
+
+        private void EditCustomer(string customerCode)
+        {
+            ScreenManager.ShowCustomerDetailView(View);
+        }
+        private void DeleteCustomer(string customerCode)
+        {
+            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá hoá đơn này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+            }
+        }
+
+        private void EditPartner(string partnerCode)
+        {
+            ScreenManager.ShowPartnerDetailView(View);
+        }
+        private void DeletePartner(string partnerCode)
+        {
+            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá hoá đơn này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+            }
         }
     }
 }

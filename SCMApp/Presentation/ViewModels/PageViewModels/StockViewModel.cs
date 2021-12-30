@@ -6,6 +6,7 @@ using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
@@ -17,6 +18,9 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             _isHaveNoData = true;
             OpenStockDetailViewCommand = new RelayCommand(p => OpenStockDetailView());
             StockList = new ObservableCollection<StockViewModelItem>() { new StockViewModelItem(new Stock())};
+
+            EditStockCommand = new RelayCommand(p => EditStock((string)p));
+            DeleteStockCommand = new RelayCommand(p => DeleteStock((string)p));
         }
 
         public ICommand OpenStockDetailViewCommand { get; set; }
@@ -46,6 +50,19 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         private void OpenStockDetailView()
         {
             ScreenManager.ShowStockDetailView(View);
+        }
+
+        private void EditStock(string stockCode)
+        {
+            ScreenManager.ShowStockDetailView(View);
+        }
+        private void DeleteStock(string stockCode)
+        {
+            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá hoá đơn này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+
+            }
         }
     }
 }

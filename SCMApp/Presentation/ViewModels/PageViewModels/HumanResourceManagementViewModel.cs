@@ -6,6 +6,7 @@ using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.PageViewModels
@@ -20,7 +21,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             {
                 new HumanResourceManagementViewModelItem(new UserProfile())
             };
+
+            EditUserCommand = new RelayCommand(p => EditUserProfile((string)p));
+            DeleteUserCommand = new RelayCommand(p => DeleteUser((string)p));
         }
+
 
         public ICommand OpenInsertUserProfileViewCommand { get; set; }
         public ICommand DeleteUserCommand { get; set; }
@@ -51,6 +56,20 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         private void OpenInsertUserProfileView()
         {
             ScreenManager.ShowInsertUserView(View);
+        }
+
+        private void EditUserProfile(string p)
+        {
+            ScreenManager.ShowUserProfileView(View);
+        }
+
+        private void DeleteUser(string p)
+        {
+            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá hoá đơn này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+               
+            }
         }
     }
 }

@@ -19,7 +19,5 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         public string Title => Model.Title;
         public string PhoneNumber => Model.PhoneNumber;
 
-        public ICommand DeleteUserCommand { get; set; }
-        public ICommand EditUserCommand { get; set; }
     }
 }

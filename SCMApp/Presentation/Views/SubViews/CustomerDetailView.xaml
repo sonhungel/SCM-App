@@ -66,7 +66,7 @@
                     </Grid.RowDefinitions>
 
                     <!--Colum 1-->
-                    <Label Grid.Row="0" Grid.Column="0" Content="Tên nhà khách hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Tên khách hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <Border Grid.Row="1" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
@@ -87,7 +87,7 @@
                         </Border>
                     </Border>
 
-                    <Label Grid.Row="2" Grid.Column="0" Content="Mã nhà khách hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Mã khách hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <Border Grid.Row="3" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
@@ -196,7 +196,9 @@
                         <Label Content="Giới tính:" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Width="30"/>
                         <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <ComboBox Width="150" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                            <ComboBox ItemsSource="{Binding Gender}" 
+                                      SelectedItem="{Binding SelectedGender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Width="150" IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                     </StackPanel>
 

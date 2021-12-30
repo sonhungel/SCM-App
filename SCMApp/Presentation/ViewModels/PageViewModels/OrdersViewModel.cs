@@ -17,7 +17,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         {
             _isHaveNoData = true;
             OpenSellViewCommand = new RelayCommand(p => OpenSellView());
-            DeleteOrderCommand = new RelayCommand(p => DeleteOrder((int)p));
+            DeleteOrderCommand = new RelayCommand(p => DeleteOrder((string)p));
 
             OrderList = new ObservableCollection<OrderViewModelItem>()
             {
@@ -54,7 +54,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             }
         }
 
-        private void DeleteOrder(int projectNumber)
+        private void DeleteOrder(string oderCode)
         {
             MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá hoá đơn này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)

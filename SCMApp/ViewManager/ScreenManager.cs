@@ -18,7 +18,7 @@ namespace SCMApp.ViewManager
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
-            view.Show();
+            view.ShowDialog();
         }
 
         public void ShowInsertUserView(Window parentWindow)
@@ -28,7 +28,7 @@ namespace SCMApp.ViewManager
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
-            view.Show();
+            view.ShowDialog();
         }
 
         public void ShowMainView(Window parentWindow)
@@ -52,7 +52,7 @@ namespace SCMApp.ViewManager
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
-            view.Show();
+            view.ShowDialog();
         }
 
         public void ShowUserProfileView(Window parentWindow)
@@ -63,7 +63,7 @@ namespace SCMApp.ViewManager
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             viewModel.View = view;
-            view.Show();
+            view.ShowDialog();
         }
 
         public void ShowStockDetailView(Window parentWindow)
@@ -73,7 +73,7 @@ namespace SCMApp.ViewManager
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
-            view.Show();
+            view.ShowDialog();
         }
 
         public void ShowImportStockView(Window parentWindow)
@@ -83,7 +83,7 @@ namespace SCMApp.ViewManager
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
-            view.Show();
+            view.ShowDialog();
         }
 
         public void ShowSellView(Window parentWindow)
@@ -93,7 +93,7 @@ namespace SCMApp.ViewManager
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
-            view.Show();
+            view.ShowDialog();
         }
 
         public void ShowInventoryTicket(Window parentWindow)
@@ -103,7 +103,7 @@ namespace SCMApp.ViewManager
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
-            view.Show();
+            view.ShowDialog();
         }
     }
 }
