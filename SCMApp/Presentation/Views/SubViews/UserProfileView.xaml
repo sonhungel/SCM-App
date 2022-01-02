@@ -71,7 +71,8 @@
                     <Border Grid.Row="1" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
-                                <TextBox x:Name="importName" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBox x:Name="importName" Text="{Binding UserFullName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập họ và tên..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
@@ -92,13 +93,14 @@
                     <Border Grid.Row="3" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
-                                <TextBox x:Name="importUserName" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBox x:Name="UserName" Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập họ và tên..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="Visibility" Value="Collapsed"/>
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=importUserName}" Value="">
+                                                <DataTrigger Binding="{Binding Text, ElementName=UserName}" Value="">
                                                     <Setter Property="Visibility" Value="Visible"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -112,7 +114,7 @@
                     <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                         <Label Content="Vai trò:" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Width="10"/>
-                        <Label Content="Chủ cửa hàng" Style="{StaticResource NormalLabel}" Foreground="#FF37A0EA"/>
+                        <Label Content="{Binding UserRole}" Style="{StaticResource NormalLabel}" Foreground="#FF37A0EA"/>
                     </StackPanel>
 
                     <Label Grid.Row="5" Grid.Column="0" Content="Đổi mật khẩu" Style="{StaticResource NormalLabel}" Padding="40,0,0,0"/>
@@ -121,7 +123,8 @@
                     <Border Grid.Row="7" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
-                                <TextBox x:Name="importCurrentPassword" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBox x:Name="importCurrentPassword" Text="{Binding CurrentPassWord, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập mật khẩu hiện tại..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
@@ -142,7 +145,8 @@
                     <Border Grid.Row="9" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
-                                <TextBox x:Name="importNewPassword" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBox x:Name="importNewPassword" Text="{Binding NewPassword, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập mật khẩu mới..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
@@ -163,7 +167,8 @@
                     <Border Grid.Row="11" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
-                                <TextBox x:Name="validateNewPassword" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBox x:Name="validateNewPassword" Text="{Binding VerifyPassword, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Xác nhận mật khẩu..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
@@ -186,7 +191,8 @@
                     <Border Grid.Row="1" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
-                                <TextBox x:Name="importEmail" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBox x:Name="importEmail" Text="{Binding UserEmail, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập email..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
@@ -207,7 +213,8 @@
                     <Border Grid.Row="3" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
-                                <TextBox x:Name="importPhoneNumber" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBox x:Name="importPhoneNumber" Text="{Binding UserPhoneNumber, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập số điện thoại..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
@@ -271,7 +278,8 @@
                     <Border Grid.Row="11" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
-                                <TextBox x:Name="importAddress" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                <TextBox x:Name="importAddress" Text="{Binding StreetAddress, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập địa chỉ..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">

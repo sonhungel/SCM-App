@@ -59,6 +59,7 @@
                             <Border Width="25"/>
                             <Border Width="300" Margin="20,20,0,20" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                                 <ComboBox IsEditable="False" Cursor="Hand" IsReadOnly="True" 
+                                          ItemsSource="{Binding ListStock}" DisplayMemberPath="StockName" SelectedItem="{Binding SelectedStock}"
                                       Style="{StaticResource RoundedComboBox}"/>
                             </Border>
                         </StackPanel>
@@ -128,7 +129,7 @@
                                             <Border Background="White" CornerRadius="5" HorizontalAlignment="Stretch">
                                                 <Grid Height="Auto">
                                                     <TextBox x:Name="Quantity" FontFamily="Segoe UI" FontWeight="SemiBold" 
-                                                             Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                             Text="{Binding Quantity, Converter={StaticResource NumberConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Center" BorderThickness="0" Background="Transparent"/>
                                                     <TextBlock Margin="10,0,0,0" Text="..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" 
                                                                TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
@@ -172,6 +173,7 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -179,25 +181,36 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Content="THANH TOÁN" Style="{StaticResource NormalLabel}" FontSize="24" Padding="10,0,0,0"/>
+                        <StackPanel Grid.Row="0" VerticalAlignment="Stretch" Orientation="Vertical">
+                            <Label Grid.Row="0" Content="THANH TOÁN" Margin="0,15,0,0" Style="{StaticResource NormalLabel}" FontSize="24" Padding="10,0,0,0"/>
+                            <Border Height="20"/>
+                            <Label Grid.Row="0" Content="Lựa chọn khách hàng" Style="{StaticResource NormalLabel}" FontSize="14" Padding="10,0,0,0"/>
+                        </StackPanel>
+                        
+                        <Border Grid.Row="1" Margin="7" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                            <ComboBox IsEditable="False" Cursor="Hand" IsReadOnly="True" 
+                                      ItemsSource="{Binding ListCustomer}" DisplayMemberPath="CustomerName" SelectedItem="{Binding SelectedCustomer}" 
+                                      Style="{StaticResource RoundedComboBox}"/>
+                        </Border>
 
-                        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
+                        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Tổng số lượng hàng hoá" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                             <Border Width="70"/>
-                            <Label Content="10" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
-                            <Label Content="Tổng tiền hàng" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
-                            <Border Width="90"/>
-                            <Label Content="1.000.000" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
+                            <Label Content="{Binding TotalQuantityOfStock}" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                         </StackPanel>
                         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
+                            <Label Content="Tổng tiền hàng" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
+                            <Border Width="90"/>
+                            <Label Content="{Binding TotalMoney}" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Tiền khách trả" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                             <Border Width="50"/>
                             <Border CornerRadius="4" Width="130" Height="40" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
                                 <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                     <Grid Height="Auto">
-                                        <TextBox x:Name="MoneyMustPayForNCC" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                        <TextBox x:Name="MoneyMustPayForNCC" Text="{Binding MoneyCustomerPaid,Converter={StaticResource NumberConverter}}"
+                                                 FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                         <TextBlock Margin="10,0,0,0" Text="Nhập tiền..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                             <TextBlock.Style>
                                                 <Style TargetType="{x:Type TextBlock}">
@@ -214,15 +227,16 @@
                                 </Border>
                             </Border>
                         </StackPanel>
-                        <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
+                        <StackPanel Grid.Row="5" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Tiền thừa trả khách" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                             <Border Width="50"/>
-
+                            <Label Content="{Binding MoneyPaidBackForCustomer}" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                         </StackPanel>
-                        <Border Grid.Row="5" CornerRadius="4" Height="40" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
+                        <Border Grid.Row="6" CornerRadius="4" Height="40" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
-                                    <TextBox x:Name="ImportNote" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                    <TextBox x:Name="ImportNote" Text="{Binding Note}"
+                                             FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="10,0,0,0" Text="Nhập ghi chú..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                         <TextBlock.Style>
                                             <Style TargetType="{x:Type TextBlock}">

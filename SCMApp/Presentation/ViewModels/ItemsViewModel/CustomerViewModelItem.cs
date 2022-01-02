@@ -21,6 +21,5 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 
         public string CustomerLastTimeBuy => DateTimeHelper.DateTimeToStandardString(Model.LastTimeBuy);
         public int TotalMoney => Model.TotalMoneyWasBought;
-        public int TotalDebts => Model.Debts;
     }
 }

@@ -91,9 +91,6 @@
                             <DataTemplate x:Key="TotalMoney">
                                 <TextBlock Text="{Binding TotalMoney}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="TotalDebts">
-                                <TextBlock Text="{Binding TotalDebts}" Style="{StaticResource DataGridTextBlock}"/>
-                            </DataTemplate>
                             <DataTemplate x:Key="Option">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
                                     <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
@@ -129,7 +126,6 @@
                             <DataGridTemplateColumn Width="1.5*" Header="Địa chỉ" CellTemplate="{StaticResource CustomerAddress}"/>
                             <DataGridTemplateColumn Width="1*" Header="Lần mua cuối cùng" CellTemplate="{StaticResource CustomerLastTimeBuy}"/>
                             <DataGridTemplateColumn Width="1.1*" Header="Tổng tiền hàng" CellTemplate="{StaticResource TotalMoney}"/>
-                            <DataGridTemplateColumn Width="1*" Header="Nợ" CellTemplate="{StaticResource TotalDebts}"/>
                             <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -212,9 +208,6 @@
                             <DataTemplate x:Key="PartnerAddress">
                                 <TextBlock Text="{Binding PartnerAddress}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
-                            <DataTemplate x:Key="DebtsNeedPaid">
-                                <TextBlock Text="{Binding DebtsNeedPaid}" Style="{StaticResource DataGridTextBlock}"/>
-                            </DataTemplate>
                             <DataTemplate x:Key="TotaMoneylWasBuy">
                                 <TextBlock Text="{Binding TotaMoneylWasBuy}" Style="{StaticResource DataGridTextBlock}"/>
                             </DataTemplate>
@@ -254,7 +247,6 @@
                             <DataGridTemplateColumn Width="1.3*" Header="Tên nhà cung cấp" CellTemplate="{StaticResource PartnerName}"/>
                             <DataGridTemplateColumn Width="0.7*" Header="Số điện thoại" CellTemplate="{StaticResource PartnerPhoneNumber}"/>
                             <DataGridTemplateColumn Width="1.2*" Header="Địa chỉ" CellTemplate="{StaticResource PartnerAddress}"/>
-                            <DataGridTemplateColumn Width="1.2*" Header="Nợ cần trả hiện tại" CellTemplate="{StaticResource DebtsNeedPaid}"/>
                             <DataGridTemplateColumn Width="1.2*" Header="Tổng đã mua" CellTemplate="{StaticResource TotaMoneylWasBuy}"/>
                             <DataGridTemplateColumn Width="1.1*" Header="Lần nhập hàng cuối cùng" CellTemplate="{StaticResource NumberOfTimeBuy}"/>
                             <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>

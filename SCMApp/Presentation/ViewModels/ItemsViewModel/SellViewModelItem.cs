@@ -13,8 +13,8 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
     {
         public SellViewModelItem()
         {
-            Quantity = 11;
             QuantityLeftInStock = 12;
+            Quantity = 1;
         }
         public int OrderNumber { get; set; }
         public string StockCode { get; set; }
@@ -30,7 +30,14 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
             get => _quantity;
             set
             {
-                _quantity = value;
+                if (value < QuantityLeftInStock)
+                {
+                    _quantity = value;
+                }
+                else
+                {
+                    _quantity = QuantityLeftInStock;
+                }    
                 OnPropertyChanged(nameof(Quantity));
                 OnPropertyChanged(nameof(IsVisiblePlusQuantity));
             }

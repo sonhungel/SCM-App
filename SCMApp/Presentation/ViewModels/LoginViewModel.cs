@@ -42,9 +42,9 @@ namespace SCMApp.Presentation.ViewModels
 
         private void Login()
         {
-            if (string.IsNullOrEmpty(_email) || string.IsNullOrEmpty(_password))
-                return;
-            var user = _loginWebAPI.GetUserProfile(new LoginInfo(_email, _password));
+            //if (string.IsNullOrEmpty(_email) || string.IsNullOrEmpty(_password))
+            //    return;
+            //var user = _loginWebAPI.GetUserProfile(new LoginInfo(_email, _password));
             ScreenManager.ShowMainView(View);
         }
     }

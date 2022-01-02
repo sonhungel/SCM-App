@@ -19,7 +19,6 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         public string PartnerName => Model.PartnerName;
         public string PartnerPhoneNumber => Model.PartnerPhoneNumber;
         public string PartnerAddress => $"{Model.StreetAddress}_{Model.WardAddress}_{Model.DistrictAddress}_{Model.ProvinceAddress}";
-        public int DebtsNeedPaid => Model.DebtsNeedPaid;
         public int TotaMoneylWasBuy => Model.TotaMoneylWasBuy;
         public string NumberOfTimeBuy => DateTimeHelper.DateTimeToStandardString(Model.LastTimeBuy);
     }

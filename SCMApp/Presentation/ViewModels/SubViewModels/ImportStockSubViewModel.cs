@@ -1,4 +1,5 @@
-﻿using SCMApp.Presentation.Commands;
+﻿using SCMApp.Models;
+using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
@@ -25,16 +26,43 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 new ImportStockSubViewModelItem()
             };
+            ListPartner = new List<Partner>();
+            ListStock = new List<Stock>();
+        }
+
+        public IList<Stock> ListStock { get; set; }
+        public Stock SelectedStock 
+        { 
+            get; 
+            set; 
         }
 
         public ObservableCollection<ImportStockSubViewModelItem> ImportStockListItem { get; set; }
+        public IList<Partner> ListPartner { get; set; }
+        public Partner SelectedPartner { get; set; }
 
+        public string ImportStockCode
+        {
+            get;
+            set;
+        }
+
+        public decimal TotalMoney
+        {
+            get;
+            set;
+        }
+
+        public string Note
+        {
+            get;
+            set;
+        }
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
 
         public ICommand MinusQuantityCommand { get; }
         public ICommand PlusQuantityCommand { get; }
-
 
         private void MinusQuantity(int orderNumber)
         {

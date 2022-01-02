@@ -41,7 +41,7 @@ namespace SCMApp.Presentation.ViewModels
 
         public UserProfile MainUser { get; set; }
 
-        public Visibility isManager => MainUser.Title == "Chủ cửa hàng" ? Visibility.Visible : Visibility.Hidden;
+        public Visibility isManager => Visibility.Visible; //MainUser.Title == "Chủ cửa hàng" ? Visibility.Visible : Visibility.Hidden;
 
         public string MainUserName => $"Tên: {MainUser?.Name}";
         public string MainUserTitle => $"Chức vụ: {MainUser?.Title}";

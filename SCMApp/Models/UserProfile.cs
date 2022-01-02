@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SCMApp.Presentation.AddressItem;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,16 +7,17 @@ namespace SCMApp.Models
 {
     public class UserProfile
     {
-        public string UserName => "Sonhunge";
-        public string Password => "123455";
-        public string Email => "sonhungel@gmail.com";
-        public string Name => "Trần Sơn";
-        public string Title => "Chủ cửa hàng";
-        public string PhoneNumber => "0964303424";
-        public DateTime BirthDay => DateTime.Now;
-        public string ProvinceAddress { get; set; }
-        public string DistrictAddress { get; set; }
-        public string WardAddress { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string VerifyPassword { get; set; }
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public string Title { get; set; }
+        public string PhoneNumber { get; set; }
+        public DateTime BirthDay { get; set; }
+        public Province ProvinceAddress { get; set; }
+        public District DistrictAddress { get; set; }
+        public Ward WardAddress { get; set; }
         public string StreetAddress { get; set; }
     }
 }

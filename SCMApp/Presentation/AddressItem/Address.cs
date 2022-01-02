@@ -12,7 +12,7 @@ namespace SCMApp.Presentation.AddressItem
 
         public Address()
         {
-            using (StreamReader r = new StreamReader("/SCM-App/SCMApp/Assets/DataAddress.json"))
+            using (StreamReader r = new StreamReader("../../../Assets/DataAddress.json"))
             {
                 string json = r.ReadToEnd();
                 ProvinceList = JsonConvert.DeserializeObject<List<Province>>(json);

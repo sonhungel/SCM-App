@@ -32,5 +32,6 @@
     <converter:IsVisibleConverter x:Key="IsVisibleConverter"/>
     <converter:EnumConverter x:Key="EnumConverter"/>
     <converter:DateTimeConverter x:Key="DateTimeConverter"/>
+    <converter:NumberConverter x:Key="NumberConverter"/>
 
 </ResourceDictionary>

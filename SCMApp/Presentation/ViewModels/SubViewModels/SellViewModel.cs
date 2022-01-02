@@ -1,4 +1,5 @@
-﻿using SCMApp.Presentation.Commands;
+﻿using SCMApp.Models;
+using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
@@ -25,6 +26,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 new SellViewModelItem()
             };
+            ListCustomer = new List<Customer>();
+            ListStock = new List<Stock>();
         }
 
         public ICommand ICancelCommand { get; }
@@ -32,7 +35,44 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public ICommand MinusQuantityCommand { get; }
         public ICommand PlusQuantityCommand { get; }
 
+        public IList<Stock> ListStock { get; set; }
+        public Stock SelectedStock 
+        { 
+            get;
+            set; 
+        }
+
         public ObservableCollection<SellViewModelItem> SellListItem { get; set; }
+        public IList<Customer> ListCustomer { get; set; }
+        public Customer SelectedCustomer { get; set; }
+
+        public int TotalQuantityOfStock
+        {
+            get;
+            set;
+        }
+
+        public Decimal TotalMoney
+        {
+            get;
+            set;
+        }
+        public int MoneyPaidBackForCustomer
+        {
+            get;
+            set;
+        }
+        public int MoneyCustomerPaid
+        {
+            get;
+            set;
+        }
+
+        public string Note
+        {
+            get;
+            set;
+        }
 
         private void CancelAction()
         {

@@ -49,49 +49,20 @@
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="150"/>
-                            </Grid.ColumnDefinitions>
-                            <!--#region Searchbar code-->
-                            <Border Grid.Column="1" Background="Transparent">
-                                <Border Background="White" Height="50" CornerRadius="10" HorizontalAlignment="Stretch">
-                                    <Grid Height="Auto">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="50"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Image Source="/Assets/search.png" Width="25" Stretch="Uniform"/>
-                                        <TextBox Grid.Column="1" x:Name="searchQuery" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
-                                        <TextBlock Grid.Column="1" Margin="3,0,0,0" Text="Tìm kiếm sản phẩm..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
-                                            <TextBlock.Style>
-                                                <Style TargetType="{x:Type TextBlock}">
-                                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Text, ElementName=searchQuery}" Value="">
-                                                            <Setter Property="Visibility" Value="Visible"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                    </Grid>
-                                </Border>
-                            </Border>
-                            <Button Grid.Column="2" Content="Tìm kiếm" Cursor="Hand" Margin="15,0,15,0" Height="50" 
-                                    Foreground="White" Style="{StaticResource Button3DRounded}" Background="#0167cc"/>
-                        </Grid>
-                    </Grid>
+                    <StackPanel Grid.Row="0" Margin="20,0,0,0" VerticalAlignment="Stretch" Orientation="Horizontal">
+                        <Label Content="Chọn hàng hoá" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
+                        <Border Width="25"/>
+                        <Border Width="300" Margin="20,7,0,7" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                            <ComboBox IsEditable="False" Cursor="Hand" 
+                                          ItemsSource="{Binding ListStock}" DisplayMemberPath="StockName" SelectedItem="{Binding SelectedStock}"
+                                          IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                        </Border>
+                    </StackPanel>
 
                     <StackPanel Grid.Row="1" VerticalAlignment="Stretch" Orientation="Horizontal">
                         <Label Content="Mã phiếu kiểm kho:" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Width="10"/>
-                        <Label Content="12345" Style="{StaticResource NormalLabel}" Foreground="#FF37A0EA"/>
+                        <Label Content="{Binding ImportStockCode}" Style="{StaticResource NormalLabel}" Foreground="#FF37A0EA"/>
                     </StackPanel>
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
@@ -111,11 +82,14 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0" Content="Mã hàng: " Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                                <Label Grid.Row="0" Grid.Column="2" Content="1.000.000" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                                <Label Grid.Row="0" Grid.Column="2" Content="{Binding StockCode}" 
+                                       Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                                 <Label Grid.Row="1" Grid.Column="0" Content="Tên hàng: " Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                                <Label Grid.Row="1" Grid.Column="2" Content="500.000" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                                <Label Grid.Row="1" Grid.Column="2" Content="{Binding StockName}"
+                                       Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                                 <Label Grid.Row="2" Grid.Column="0" Content="Tồn kho: " Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                                <Label Grid.Row="2" Grid.Column="2" Content="10.000.000" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                                <Label Grid.Row="2" Grid.Column="2" Content="{Binding StockInventory}" 
+                                       Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                             </Grid>
                         </GroupBox>
                         <GroupBox Grid.Column="1" Margin="10" HeaderTemplate="{StaticResource TextBlock6ForGroupBoxHeader}" BorderBrush="#aaaaaaaa">
@@ -134,7 +108,8 @@
                                 <Border Grid.Row="0" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                                     <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                         <Grid Height="Auto">
-                                            <TextBox x:Name="importFactQuantity" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                            <TextBox x:Name="importFactQuantity" Text="{Binding FactQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                     FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                             <TextBlock Margin="10,0,0,0" Text="Nhập số lượng thực tế..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                                 <TextBlock.Style>
                                                     <Style TargetType="{x:Type TextBlock}">
@@ -154,7 +129,8 @@
                                 <Border Grid.Row="2" Grid.ColumnSpan="3" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                                     <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                         <Grid Height="Auto">
-                                            <TextBox x:Name="importNote" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                            <TextBox x:Name="importNote" Text="{Binding Note, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                     FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                             <TextBlock Margin="20,0,0,0" Text="Nhập ghi chú..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                                 <TextBlock.Style>
                                                     <Style TargetType="{x:Type TextBlock}">

@@ -17,8 +17,6 @@ namespace SCMApp.DependencyInjection
         private void BindWebApiClients()
         {
             Bind<ILoginWebAPI>().To<LoginWebAPI>().InSingletonScope();
-            //Bind<IGroupWebApiClient>().To<GroupWebApiClient>().InSingletonScope();
-            //Bind<IEmployeeWebApiClient>().To<EmployeeWebApiClient>().InSingletonScope();
         }
 
         private void BindTransportLayer()
