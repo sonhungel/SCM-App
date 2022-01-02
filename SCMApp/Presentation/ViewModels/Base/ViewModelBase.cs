@@ -5,12 +5,12 @@ using System.Diagnostics;
 using System.Windows;
 
 namespace SCMApp.Presentation.ViewModels.Base
-{ 
+{
     /// <summary>
-  /// Base class for all ViewModel classes in the application.
-  /// It provides support for property change notifications 
-  /// and has a DisplayName property.  This class is abstract.
-  /// </summary>
+    /// Base class for all ViewModel classes in the application.
+    /// It provides support for property change notifications 
+    /// and has a DisplayName property.  This class is abstract.
+    /// </summary>
     public abstract class ViewModelBase : INotifyPropertyChanged, IDisposable
     {
         #region Constructor

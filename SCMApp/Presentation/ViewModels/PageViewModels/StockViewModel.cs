@@ -58,7 +58,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
         private void DeleteStock(string stockCode)
         {
-            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá hoá đơn này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá mặt hàng này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
 

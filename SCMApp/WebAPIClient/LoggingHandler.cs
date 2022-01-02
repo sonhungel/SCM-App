@@ -8,7 +8,7 @@ namespace SCMApp.WebAPIClient
 {
     public class LoggingHandler : DelegatingHandler
     {
-        private static readonly ILog ClassTracer = LogManager.GetLogger("{PIMToolClient");
+        private static readonly ILog ClassTracer = LogManager.GetLogger("{SCMApp");
  
         protected override async Task<HttpResponseMessage> SendAsync(
             HttpRequestMessage request,

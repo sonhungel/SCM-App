@@ -63,7 +63,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
         private void DeleteCustomer(string customerCode)
         {
-            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá hoá đơn này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá khách hàng này ra khỏi hệ thống ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
             }
@@ -75,7 +75,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
         private void DeletePartner(string partnerCode)
         {
-            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá hoá đơn này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá đối tác này ra khỏi hệ thống ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
             }

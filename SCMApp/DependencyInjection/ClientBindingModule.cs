@@ -1,6 +1,7 @@
 ﻿using Ninject.Modules;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient;
+using SCMApp.WebAPIClient.MainView;
 
 namespace SCMApp.DependencyInjection
 {
@@ -15,7 +16,7 @@ namespace SCMApp.DependencyInjection
 
         private void BindWebApiClients()
         {
-            //Bind<IProjectWebApiClient>().To<ProjectWebApiClient>().InSingletonScope();
+            Bind<ILoginWebAPI>().To<LoginWebAPI>().InSingletonScope();
             //Bind<IGroupWebApiClient>().To<GroupWebApiClient>().InSingletonScope();
             //Bind<IEmployeeWebApiClient>().To<EmployeeWebApiClient>().InSingletonScope();
         }
