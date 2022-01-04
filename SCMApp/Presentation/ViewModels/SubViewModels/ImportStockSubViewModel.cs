@@ -15,7 +15,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
     public  class ImportStockSubViewModel : ViewModelBase, IWindowViewBase
     {
-        public ImportStockSubViewModel(IScreenManager screenManager) : base(screenManager)
+        public ImportStockSubViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
@@ -27,11 +27,11 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 new ImportStockSubViewModelItem()
             };
             ListPartner = new List<Partner>();
-            ListStock = new List<Stock>();
+            ListItem = new List<Item>();
         }
 
-        public IList<Stock> ListStock { get; set; }
-        public Stock SelectedStock 
+        public IList<Item> ListItem { get; set; }
+        public Item SelectedItem 
         { 
             get; 
             set; 

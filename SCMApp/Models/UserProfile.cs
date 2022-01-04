@@ -5,19 +5,23 @@ using System.Text;
 
 namespace SCMApp.Models
 {
-    public class UserProfile
+    public class UserProfile: BusinessObjectBase
     {
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public UserProfile()
+        {
+
+        }
+        public string username { get; set; }
+        public string fullName { get; set; }
+        public string password { get; set; }
         public string VerifyPassword { get; set; }
-        public string Email { get; set; }
-        public string Name { get; set; }
+        public string email { get; set; }
         public string Title { get; set; }
-        public string PhoneNumber { get; set; }
-        public DateTime BirthDay { get; set; }
-        public Province ProvinceAddress { get; set; }
-        public District DistrictAddress { get; set; }
-        public Ward WardAddress { get; set; }
-        public string StreetAddress { get; set; }
+        public string phoneNumber { get; set; }
+        public DateTime dateOfBirth { get; set; }
+        public Province Province { get; set; }
+        public District District { get; set; }
+        public Ward Ward { get; set; }
+        public string address { get; set; }
     }
 }

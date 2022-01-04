@@ -33,5 +33,7 @@
     <converter:EnumConverter x:Key="EnumConverter"/>
     <converter:DateTimeConverter x:Key="DateTimeConverter"/>
     <converter:NumberConverter x:Key="NumberConverter"/>
-
+    <converter:DiameterAndThicknessToStrokeDashArrayConverter x:Key="DiameterAndThicknessToStrokeDashArrayConverter"/>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    
 </ResourceDictionary>

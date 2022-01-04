@@ -1,4 +1,5 @@
-﻿using SCMApp.Presentation.ViewModels;
+﻿using SCMApp.Models;
+using SCMApp.Presentation.ViewModels;
 using SCMApp.Presentation.ViewModels.SubViewModels;
 using SCMApp.Presentation.Views;
 using SCMApp.Presentation.Views.SubViews;
@@ -11,31 +12,32 @@ namespace SCMApp.ViewManager
 {
     public class ScreenManager : IScreenManager
     {
-        public void ShowCustomerDetailView(Window parentWindow)
+        public void ShowCustomerDetailView(Window parentWindow, string token)
         {
             var view = new CustomerDetailView();
-            var viewModel = IoC.Get<CustomerDetailViewModel>();
+            var viewModel = new CustomerDetailViewModel(token, IoC.Get<IScreenManager>());
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             view.ShowDialog();
         }
 
-        public void ShowInsertUserView(Window parentWindow)
+        public void ShowInsertUserView(Window parentWindow, string token)
         {
             var view = new InsertUserProfileView();
-            var viewModel = IoC.Get<InsertUserProfileViewModel>();
+            var viewModel = new InsertUserProfileViewModel(token, IoC.Get<IScreenManager>());
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             view.ShowDialog();
         }
 
-        public void ShowMainView(Window parentWindow)
+        public void ShowMainView(Window parentWindow, UserProfile user, string token)
         {
             var view = new MainWindowView();
-            var viewModel = IoC.Get<MainWindowViewModel>();
+            var viewModel = new MainWindowViewModel(token,IoC.Get<IScreenManager>());
             viewModel.View = view;
+            viewModel.MainUser = user;
             viewModel.InitAllPageViewModel();
             view.DataContext = viewModel;
             view.Show();
@@ -45,20 +47,24 @@ namespace SCMApp.ViewManager
             GC.Collect();
         }
 
-        public void ShowPartnerDetailView(Window parentWindow)
+        public void ShowPartnerDetailView(Window parentWindow, string token)
         {
             var view = new PartnerDetailView();
-            var viewModel = IoC.Get<PartnerDetailViewModel>();
+            var viewModel = new PartnerDetailViewModel(token, IoC.Get<IScreenManager>());
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             view.ShowDialog();
         }
 
-        public void ShowUserProfileView(Window parentWindow)
+        public void ShowUserProfileView(Window parentWindow, UserProfile user, string token)
         {
             var view = new UserProfileView();
-            var viewModel = IoC.Get<UserProfileViewModel>();
+            var viewModel = new UserProfileViewModel(token, IoC.Get<IScreenManager>());
+            if (user != null)
+            {
+                viewModel.Model = user;
+            }
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
@@ -66,40 +72,40 @@ namespace SCMApp.ViewManager
             view.ShowDialog();
         }
 
-        public void ShowStockDetailView(Window parentWindow)
+        public void ShowStockDetailView(Window parentWindow, string token)
         {
             var view = new StockDetailView();
-            var viewModel = IoC.Get<StockDetailViewModel>();
+            var viewModel = new StockDetailViewModel(token, IoC.Get<IScreenManager>());
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             view.ShowDialog();
         }
 
-        public void ShowImportStockView(Window parentWindow)
+        public void ShowImportStockView(Window parentWindow, string token)
         {
             var view = new ImportStockSubView();
-            var viewModel = IoC.Get<ImportStockSubViewModel>();
+            var viewModel = new ImportStockSubViewModel(token, IoC.Get<IScreenManager>());
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             view.ShowDialog();
         }
 
-        public void ShowSellView(Window parentWindow)
+        public void ShowSellView(Window parentWindow, string token)
         {
             var view = new SellView();
-            var viewModel = IoC.Get<SellViewModel>();
+            var viewModel = new SellViewModel(token, IoC.Get<IScreenManager>());
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
             view.ShowDialog();
         }
 
-        public void ShowInventoryTicket(Window parentWindow)
+        public void ShowInventoryTicket(Window parentWindow, string token)
         {
             var view = new InventoryTicketView();
-            var viewModel = IoC.Get<InventoryTicketViewModel>();
+            var viewModel = new InventoryTicketViewModel(token, IoC.Get<IScreenManager>());
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;

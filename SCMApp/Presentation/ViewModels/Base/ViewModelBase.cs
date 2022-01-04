@@ -15,14 +15,16 @@ namespace SCMApp.Presentation.ViewModels.Base
     {
         #region Constructor
         public delegate bool BoolFunctionOfView();
-        protected ViewModelBase(IScreenManager screenManager)
+        protected ViewModelBase(string token, IScreenManager screenManager)
         {
             ScreenManager = screenManager;
+            Token = token;
         }
 
         public IScreenManager ScreenManager { get; }
 
         public Window View { get; set; }
+        public string Token { get; set; }
 
         #endregion // Constructor
 

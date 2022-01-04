@@ -13,7 +13,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     class HumanResourceManagementViewModel : ViewModelBase, IPageViewModel
     {
-        public HumanResourceManagementViewModel(IScreenManager screenManager) : base(screenManager)
+        public HumanResourceManagementViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _isHaveNoData = true;
             OpenInsertUserProfileViewCommand = new RelayCommand(p => OpenInsertUserProfileView());
@@ -49,18 +49,20 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             }
         }
 
+        public UserProfile MainUser { get; set; }
+
         public void Construct()
         {
         }
 
         private void OpenInsertUserProfileView()
         {
-            ScreenManager.ShowInsertUserView(View);
+            ScreenManager.ShowInsertUserView(View,Token);
         }
 
         private void EditUserProfile(string p)
         {
-            ScreenManager.ShowUserProfileView(View);
+            ScreenManager.ShowUserProfileView(View, null, Token);
         }
 
         private void DeleteUser(string p)

@@ -29,44 +29,40 @@ namespace SCMApp.WebAPIClient
 
         public virtual string RoutePrefix => string.Empty;
 
-        protected async Task Get(string url, NameValueCollection queryParams = null)
+        protected async Task Get(string url, string token, NameValueCollection queryParams = null)
         {
             string route = GetRoute(url, queryParams);
-            string completeUrl = $"{BaseAddressServices}\\{route}";
 
             ClassTracer.DebugFormat("Request [GET] to url '{0}{1}'", BaseAddressServices, route);
-            await PerformWebClientAction(client => client.GetAsync(route), completeUrl);
+            await PerformWebClientAction(client => client.GetAsync(route), token);
         }
 
-        protected async Task<T> Get<T>(string url, NameValueCollection queryParams = null)
+        protected async Task<T> Get<T>(string url, string token, NameValueCollection queryParams = null)
         {
             string route = GetRoute(url, queryParams);
-            string completeUrl = $"{BaseAddressServices}\\{route}";
 
             ClassTracer.DebugFormat("Request [GET] to url '{0}{1}'", BaseAddressServices, route);
-            var responseContent = await PerformWebClientAction(client => client.GetAsync(route), completeUrl);
+            var responseContent = await PerformWebClientAction(client => client.GetAsync(route), token);
             string responseContentString = await responseContent.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<T>(responseContentString, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
         }
 
-        protected async Task Post(string url, object value, NameValueCollection queryParams = null)
+        protected async Task Post(string url, object value, string token, NameValueCollection queryParams = null)
         {
             string route = GetRoute(url, queryParams);
-            string completeUrl = $"{BaseAddressServices}\\{route}";
 
             ClassTracer.DebugFormat("Request [POST] to url '{0}{1}' with data '{2}'", BaseAddressServices, route, value);
             var postContent = CreateJsonContentFromObject(value);
-            await PerformWebClientAction(client => client.PostAsync(route, postContent), completeUrl);
+            await PerformWebClientAction(client => client.PostAsync(route, postContent), token);
         }
 
-        protected async Task<T> Post<T>(string url, object value, NameValueCollection queryParams = null)
+        protected async Task<T> Post<T>(string url, object value, string token, NameValueCollection queryParams = null)
         {
             string route = GetRoute(url, queryParams);
-            string completeUrl = $"{BaseAddressServices}\\{route}";
 
             ClassTracer.DebugFormat("Request [POST] to url '{0}{1}' with data '{2}'", BaseAddressServices, route, value);
             var postContent = CreateJsonContentFromObject(value);
-            var responseContent = await PerformWebClientAction(client => client.PostAsync(route, postContent), completeUrl);
+            var responseContent = await PerformWebClientAction(client => client.PostAsync(route, postContent), token);
             string responseContentString = await responseContent.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<T>(responseContentString, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
         }
@@ -85,11 +81,15 @@ namespace SCMApp.WebAPIClient
             }
         }
 
-        private async Task<HttpResponseMessage> PerformWebClientAction(Func<HttpClient, Task<HttpResponseMessage>> action, string requestAdress)
+        private async Task<HttpResponseMessage> PerformWebClientAction(Func<HttpClient, Task<HttpResponseMessage>> action, string token)
         {
             using (var client = _httpClientFactory.GetClient())
             {
                 SetRequestHeader(client);
+                if(!string.IsNullOrEmpty(token))
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", token);
+                }    
                 HttpResponseMessage response = null;
                 try
                 {

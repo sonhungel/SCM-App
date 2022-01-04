@@ -10,7 +10,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
     public class PartnerDetailViewModel : ViewModelBase, IWindowViewBase
     {
-        public PartnerDetailViewModel(IScreenManager screenManager) : base(screenManager)
+        public PartnerDetailViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());

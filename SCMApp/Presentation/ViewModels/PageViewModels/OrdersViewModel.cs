@@ -13,7 +13,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     public class OrdersViewModel : ViewModelBase, IPageViewModel
     {
-        public OrdersViewModel(IScreenManager screenManager) : base(screenManager)
+        public OrdersViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _isHaveNoData = true;
             OpenSellViewCommand = new RelayCommand(p => OpenSellView());
@@ -62,14 +62,13 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                 OnPropertyChanged(nameof(OrderList));
             }
         }
-
         public void Construct()
         {
         }
 
         private void OpenSellView()
         {
-            ScreenManager.ShowSellView(View);
+            ScreenManager.ShowSellView(View, Token);
         }
     }
 }

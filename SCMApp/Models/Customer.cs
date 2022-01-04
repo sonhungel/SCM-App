@@ -19,7 +19,7 @@ namespace SCMApp.Models
         public string StreetAddress { get; set; }
         public string TaxCode { get; set; }
 
-        public DateTime LastTimeBuy { get; set; }
+        public DateTime? LastTimeBuy { get; set; }
         public int TotalMoneyWasBought { get; set; }
     }
 }

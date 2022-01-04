@@ -13,7 +13,7 @@ namespace SCMApp.Presentation.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel(IScreenManager screenManager) : base(screenManager)
+        public MainWindowViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _allPageViewModels = new List<IPageViewModel>();
             OpenUserProfileCommand = new RelayCommand(p => OpenUserProfileView());
@@ -43,7 +43,7 @@ namespace SCMApp.Presentation.ViewModels
 
         public Visibility isManager => Visibility.Visible; //MainUser.Title == "Chủ cửa hàng" ? Visibility.Visible : Visibility.Hidden;
 
-        public string MainUserName => $"Tên: {MainUser?.Name}";
+        public string MainUserName => $"Tên: {MainUser?.username}";
         public string MainUserTitle => $"Chức vụ: {MainUser?.Title}";
 
         private void ChangeViewModel(string pageName)
@@ -57,23 +57,21 @@ namespace SCMApp.Presentation.ViewModels
 
         public void InitAllPageViewModel()
         {
-            IPageViewModel pageView = new HumanResourceManagementViewModel(ScreenManager) { View = this.View};
+            IPageViewModel pageView = new HumanResourceManagementViewModel(Token,ScreenManager) { View = this.View};
             _allPageViewModels.Add(pageView);
-            pageView = new ImportStockViewModel(ScreenManager) { View = this.View };
+            pageView = new ImportStockViewModel(Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new InventoryViewModel(ScreenManager) { View = this.View };
+            pageView = new InventoryViewModel(Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new OrdersViewModel(ScreenManager) { View = this.View };
+            pageView = new OrdersViewModel(Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new OverviewViewModel(ScreenManager) { View = this.View };
+            pageView = new OverviewViewModel(Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new PartnersViewModel(ScreenManager) { View = this.View };
+            pageView = new PartnersViewModel(Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new ProfitViewModel(ScreenManager) { View = this.View };
+            pageView = new ProfitViewModel(Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            //pageView = new RevenueViewModel();
-            //pageViewModels.Add(pageView);
-            pageView = new StockViewModel(ScreenManager) { View = this.View };
+            pageView = new StockViewModel(Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
 
             CurrentPageViewModel = _allPageViewModels.Find(p => CommonConstants.OverviewPageViewName.Equals(p.NamePage));
@@ -82,7 +80,7 @@ namespace SCMApp.Presentation.ViewModels
 
         private void OpenUserProfileView()
         {
-            ScreenManager.ShowUserProfileView(View);
+            ScreenManager.ShowUserProfileView(View,MainUser, Token);
         }
     }
 }

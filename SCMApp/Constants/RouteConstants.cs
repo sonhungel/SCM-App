@@ -10,7 +10,10 @@ namespace SCMApp.Constants
         /// Route Constants for Loggin
         /// </summary>
 
-        public const string UserApi = "api/users";
-        public const string UserLoginApi = "login";
+        public const string LoginApi = "api/users";
+        public const string LoginApiGetToken = "login";
+
+        public const string UserRoleApi = "api/role";
+        public const string GetUserProfile = "getUserPermission";
     }
 }

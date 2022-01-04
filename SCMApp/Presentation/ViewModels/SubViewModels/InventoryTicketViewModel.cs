@@ -11,43 +11,42 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
     public class InventoryTicketViewModel : ViewModelBase, IWindowViewBase
     {
-        public InventoryTicketViewModel(IScreenManager screenManager) : base(screenManager)
+        public InventoryTicketViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
 
-            ListStock = new List<Stock>();
+            ListItem = new List<Item>();
+            Model = new Inventory();
         }
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
+        public Inventory Model { get; set; }
 
         public string ImportStockCode 
         { 
-            get; 
+            get;
             set; 
         }
 
-        public string StockCode 
-        {
-            get;
-            set;
-        }
-        public string StockName
-        {
-            get;
-            set;
-        }
-        public string StockInventory
+        public int StockCode => SelectedItem.id;
+        public string StockName => SelectedItem.Name;
+        public string StockInventoryQuantity
         {
             get;
             set;
         }
 
-        public IList<Stock> ListStock { get; set; }
-        public Stock SelectedStock
+        public IList<Item> ListItem { get; set; }
+        public Item SelectedItem
         {
-            get;
-            set;
+            get => Model.Item;
+            set
+            {
+                Model.Item = value;
+                OnPropertyChanged(nameof(StockCode));
+                OnPropertyChanged(nameof(StockName));
+            }
         }
 
         public string FactQuantity { get; set; }

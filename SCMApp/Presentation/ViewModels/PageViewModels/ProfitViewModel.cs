@@ -3,6 +3,7 @@ using LiveCharts.Wpf;
 using SCMApp.Constants;
 using SCMApp.Constants.Enum;
 using SCMApp.Helper;
+using SCMApp.Models;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using System;
@@ -12,7 +13,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     public class ProfitViewModel : ViewModelBase, IPageViewModel
     {
-        public ProfitViewModel(IScreenManager screenManager) : base(screenManager)
+        public ProfitViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             SeriesCollectionCartesianChart = new SeriesCollection()
             {
@@ -70,6 +71,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public SeriesCollection SeriesCollectionPieChart { get; set; }
 
         public Func<ChartPoint, string> FormatterPieChart { get; set; }
+
         public void Construct()
         {
         }

@@ -13,7 +13,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     public class PartnersViewModel : ViewModelBase, IPageViewModel
     {
-        public PartnersViewModel(IScreenManager screenManager) : base(screenManager)
+        public PartnersViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             OpenCustomerViewCommand = new RelayCommand(p => OpenCustomerView());
             OpenPartnerViewCommand = new RelayCommand(p => OpenPartnerView());
@@ -49,17 +49,17 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void OpenCustomerView()
         {
-            ScreenManager.ShowCustomerDetailView(View);
+            ScreenManager.ShowCustomerDetailView(View,Token);
         }
 
         private void OpenPartnerView()
         {
-            ScreenManager.ShowPartnerDetailView(View);
+            ScreenManager.ShowPartnerDetailView(View,Token);
         }
 
         private void EditCustomer(string customerCode)
         {
-            ScreenManager.ShowCustomerDetailView(View);
+            ScreenManager.ShowCustomerDetailView(View, Token);
         }
         private void DeleteCustomer(string customerCode)
         {
@@ -71,7 +71,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void EditPartner(string partnerCode)
         {
-            ScreenManager.ShowPartnerDetailView(View);
+            ScreenManager.ShowPartnerDetailView(View, Token);
         }
         private void DeletePartner(string partnerCode)
         {

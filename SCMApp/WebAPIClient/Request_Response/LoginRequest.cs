@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SCMApp.Models.DTOObject
+namespace SCMApp.WebAPIClient.Request_Response
 {
-    public class LoginInfo
+    public class LoginRequest
     {
-        public LoginInfo(string email,string pass)
+        public LoginRequest(string email, string pass)
         {
             username = email;
             password = pass;

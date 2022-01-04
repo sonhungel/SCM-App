@@ -11,7 +11,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
     public class StockDetailViewModel : ViewModelBase, IWindowViewBase
     {
-        public StockDetailViewModel(IScreenManager screenManager) : base(screenManager)
+        public StockDetailViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
@@ -24,7 +24,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             };
         }    
 
-        public Stock Model { get; set; }
+        public Item Model { get; set; }
 
         public string StockName
         {

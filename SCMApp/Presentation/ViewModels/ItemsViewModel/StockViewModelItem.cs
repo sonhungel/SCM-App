@@ -5,18 +5,18 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 {
     public class StockViewModelItem
     {
-        public StockViewModelItem(Stock stock)
+        public StockViewModelItem(Item item)
         {
-            Model = stock;
+            Model = item;
         }
-        public Stock Model;
+        public Item Model;
 
-        public string StockName => Model.StockName;
-        public string StockCode => Model.StockCode;
+        public string StockName => Model.Name;
+        public int StockCode => Model.id;
 
-        public int StockOriginPrice => Model.StockOriginPrice;
-        public int StockRetailPrice => Model.StockRetailPrice;
+        public int StockOriginPrice => Model.Cost;
+        public int StockRetailPrice => Model.RetailPrice;
 
-        public int Quantity => 15;
+        public int Quantity => Model.Quantity;
     }
 }

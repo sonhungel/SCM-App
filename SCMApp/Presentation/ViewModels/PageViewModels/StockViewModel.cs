@@ -13,11 +13,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     public class StockViewModel : ViewModelBase, IPageViewModel
     {
-        public StockViewModel(IScreenManager screenManager) : base(screenManager)
+        public StockViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _isHaveNoData = true;
             OpenStockDetailViewCommand = new RelayCommand(p => OpenStockDetailView());
-            StockList = new ObservableCollection<StockViewModelItem>() { new StockViewModelItem(new Stock())};
+            StockList = new ObservableCollection<StockViewModelItem>() { new StockViewModelItem(new Item())};
 
             EditStockCommand = new RelayCommand(p => EditStock((string)p));
             DeleteStockCommand = new RelayCommand(p => DeleteStock((string)p));
@@ -49,12 +49,12 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
         private void OpenStockDetailView()
         {
-            ScreenManager.ShowStockDetailView(View);
+            ScreenManager.ShowStockDetailView(View, Token);
         }
 
         private void EditStock(string stockCode)
         {
-            ScreenManager.ShowStockDetailView(View);
+            ScreenManager.ShowStockDetailView(View, Token);
         }
         private void DeleteStock(string stockCode)
         {

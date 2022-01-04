@@ -15,7 +15,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
     public class SellViewModel : ViewModelBase, IWindowViewBase
     {
-        public SellViewModel(IScreenManager screenManager) : base(screenManager)
+        public SellViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
@@ -27,7 +27,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 new SellViewModelItem()
             };
             ListCustomer = new List<Customer>();
-            ListStock = new List<Stock>();
+            ListItem = new List<Item>();
         }
 
         public ICommand ICancelCommand { get; }
@@ -35,8 +35,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public ICommand MinusQuantityCommand { get; }
         public ICommand PlusQuantityCommand { get; }
 
-        public IList<Stock> ListStock { get; set; }
-        public Stock SelectedStock 
+        public IList<Item> ListItem { get; set; }
+        public Item SelectedItem 
         { 
             get;
             set; 

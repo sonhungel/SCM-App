@@ -13,11 +13,11 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
             Model = user;
         }
         public UserProfile Model { get; set; }
-        public string UserName => Model.UserName;
-        public string Name => Model.Name;
-        public string Email => Model.Email;
+        public string UserName => Model.username;
+        public string Name => Model.fullName;
+        public string Email => Model.email;
         public string Title => Model.Title;
-        public string PhoneNumber => Model.PhoneNumber;
+        public string PhoneNumber => Model.phoneNumber;
 
     }
 }

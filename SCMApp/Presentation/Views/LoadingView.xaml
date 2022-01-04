@@ -1,0 +1,23 @@
+﻿<Window x:Class="SCMApp.Presentation.Views.LoadingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCMApp.Presentation.Views"
+        xmlns:CustomControls="clr-namespace:SCMApp.CustomControls"
+        mc:Ignorable="d"
+        Title="Đang tải..." Height="220" Width="220" x:Name="_this"
+        WindowStyle="None" AllowsTransparency="True" Background="White" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <CustomControls:LoadingSpinner
+            Grid.Row="1"
+            Margin="10"
+            Cap="Triangle"
+            Diameter="250"
+            IsLoading="{Binding IsStillLoading, ElementName=_this}"
+            Thickness="1"
+            Color="Black">
+            
+        </CustomControls:LoadingSpinner>
+    </Grid>
+</Window>

@@ -1,11 +1,10 @@
-﻿using SCMApp.Models.DTOObject;
-using SCMApp.Presentation.Commands;
+﻿using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.MainView;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SCMApp.WebAPIClient.Request_Response;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels
@@ -13,9 +12,11 @@ namespace SCMApp.Presentation.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         private readonly ILoginWebAPI _loginWebAPI;
-        public LoginViewModel(ILoginWebAPI loginWebAPI,IScreenManager screenManager) : base(screenManager)
+        private readonly IUserWebAPI _userWebAPI;
+        public LoginViewModel(ILoginWebAPI loginWebAPI, IUserWebAPI userWebAPI,IScreenManager screenManager) : base(string.Empty,screenManager)
         {
             _loginWebAPI = loginWebAPI;
+            _userWebAPI = userWebAPI;
             ILoginCommand = new RelayCommand( p => Login());
         }
         private string _email;
@@ -42,10 +43,17 @@ namespace SCMApp.Presentation.ViewModels
 
         private void Login()
         {
-            //if (string.IsNullOrEmpty(_email) || string.IsNullOrEmpty(_password))
-            //    return;
-            //var user = _loginWebAPI.GetUserProfile(new LoginInfo(_email, _password));
-            ScreenManager.ShowMainView(View);
+            if (string.IsNullOrEmpty(_email) || string.IsNullOrEmpty(_password))
+            {
+                MessageBox.Show("Bạn chưa nhập Email hoặc Mật Khẩu?", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            using (var spinner = new WaitingSpinner(View))
+            {
+                var token = _loginWebAPI.GetToken(new LoginRequest(_email, _password));
+                var user = _userWebAPI.GetUserProfile(token.token);
+                ScreenManager.ShowMainView(View, user, token.token);
+            }
         }
     }
 }

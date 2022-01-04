@@ -1,4 +1,6 @@
-﻿namespace SCMApp.Presentation.ViewModels
+﻿using SCMApp.Models;
+
+namespace SCMApp.Presentation.ViewModels
 {
     public interface IPageViewModel
     {

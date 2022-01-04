@@ -1,6 +1,6 @@
 ﻿using SCMApp.Constants;
 using SCMApp.Models;
-using SCMApp.Models.DTOObject;
+using SCMApp.WebAPIClient.Request_Response;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,11 +13,11 @@ namespace SCMApp.WebAPIClient.MainView
         public LoginWebAPI(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {
         }
-        public override string RoutePrefix => RouteConstants.UserApi;
+        public override string RoutePrefix => RouteConstants.LoginApi;
 
-        public UserProfile GetUserProfile(LoginInfo infor)
+        public LoginResponse GetToken(LoginRequest infor)
         {
-            return Task.Run(() => Post<UserProfile>(RouteConstants.UserLoginApi, infor)).Result;
+            return Task.Run(() => Post<LoginResponse>(RouteConstants.LoginApiGetToken, infor, string.Empty)).Result;
         }
 
     }

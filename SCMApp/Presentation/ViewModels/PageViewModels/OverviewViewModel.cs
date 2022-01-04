@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
 using SCMApp.Constants;
+using SCMApp.Models;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using System;
@@ -9,7 +10,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     public class OverviewViewModel : ViewModelBase, IPageViewModel
     {
-        public OverviewViewModel(IScreenManager screenManager) : base(screenManager)
+        public OverviewViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             SeriesCollection = new SeriesCollection()
             {
@@ -39,7 +40,6 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public string[] BarLabels { get; set; }
 
         public Func<double,string> Formatter { get; set; }
-
         public void Construct()
         {
         }

@@ -13,7 +13,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     public class ImportStockViewModel : ViewModelBase, IPageViewModel
     {
-        public ImportStockViewModel(IScreenManager screenManager) : base(screenManager)
+        public ImportStockViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _isHaveNoData = true;
             OpenImportStockSubViewCommand = new RelayCommand(p => OpenImportStockSubView());
@@ -49,7 +49,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void OpenImportStockSubView()
         {
-            ScreenManager.ShowImportStockView(View);
+            ScreenManager.ShowImportStockView(View, Token);
         }
 
         private void DeleteImportStock(string importStockCode)

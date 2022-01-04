@@ -12,7 +12,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
     public class InsertUserProfileViewModel : ViewModelBase, IWindowViewBase
     {
-        public InsertUserProfileViewModel(IScreenManager screenManager) : base(screenManager)
+        public InsertUserProfileViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
@@ -28,47 +28,47 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public string UserFullName 
         {
-            get => Model.Name;
+            get => Model.fullName;
             set
             {
-                Model.Name = value;
+                Model.fullName = value;
                 OnPropertyChanged(nameof(UserFullName));
             }
         }
         public string UserName
         {
-            get => Model.UserName;
+            get => Model.username;
             set
             {
-                Model.UserName = value;
+                Model.username = value;
                 OnPropertyChanged(nameof(UserName));
             }
         }
         public string UserEmail
         {
-            get => Model.Email;
+            get => Model.email;
             set
             {
-                Model.Email = value;
+                Model.email = value;
                 OnPropertyChanged(nameof(UserEmail));
             }
         }
         public string UserPhoneNumber
         {
-            get => Model.PhoneNumber;
+            get => Model.phoneNumber;
             set
             {
-                Model.PhoneNumber = value;
+                Model.phoneNumber = value;
                 OnPropertyChanged(nameof(UserPhoneNumber));
             }
         }
 
         public string Password
         {
-            get => Model.Password;
+            get => Model.password;
             set
             {
-                Model.Password = value;
+                Model.password = value;
                 OnPropertyChanged(nameof(Password));
             }
         }
@@ -91,12 +91,12 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public Province SelectedProvince
         {
-            get => Model.ProvinceAddress;
+            get => Model.Province;
             set
             {
                 if (value == null)
                     return;
-                Model.ProvinceAddress = value;
+                Model.Province = value;
                 WardList = null;
                 OnPropertyChanged(nameof(WardList));
                 DistrictList = value.Districts;
@@ -105,32 +105,32 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
         public District SelectedDistrict
         {
-            get => Model.DistrictAddress;
+            get => Model.District;
             set
             {
                 if (value == null)
                     return;
-                Model.DistrictAddress = value;
+                Model.District = value;
                 WardList = value.Wards;
                 OnPropertyChanged(nameof(WardList));
             }
         }
         public Ward SelectedWard 
         {
-            get => Model.WardAddress;
+            get => Model.Ward;
             set
             {
-                Model.WardAddress = value;
+                Model.Ward = value;
                 OnPropertyChanged(nameof(SelectedWard));
             }
         }
 
         public string StreetAddress
         {
-            get => Model.StreetAddress;
+            get => Model.address;
             set
             {
-                Model.StreetAddress = value;
+                Model.address = value;
                 OnPropertyChanged(nameof(StreetAddress));
             }
         }

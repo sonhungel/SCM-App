@@ -1,4 +1,5 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
@@ -12,7 +13,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     public class InventoryViewModel : ViewModelBase, IPageViewModel
     {
-        public InventoryViewModel(IScreenManager screenManager) : base(screenManager)
+        public InventoryViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _isHaveNoData = true;
             InventoryList = new ObservableCollection<InventoryViewModelItem>() { new InventoryViewModelItem() };
@@ -50,12 +51,12 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void OpenStockView(string stockCode)
         {
-            ScreenManager.ShowStockDetailView(View);
+            ScreenManager.ShowStockDetailView(View, Token);
         }
 
         private void OpenInvetoryTicket()
         {
-            ScreenManager.ShowInventoryTicket(View);
+            ScreenManager.ShowInventoryTicket(View, Token);
         }
         private void DeleteStockInventory(string p)
         {
