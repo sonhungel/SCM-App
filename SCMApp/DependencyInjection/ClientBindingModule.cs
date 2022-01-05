@@ -1,4 +1,5 @@
 ﻿using Ninject.Modules;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient;
 using SCMApp.WebAPIClient.MainView;
@@ -27,6 +28,7 @@ namespace SCMApp.DependencyInjection
         private void BindViewLayer()
         {
             Bind<IScreenManager>().To<ScreenManager>().InSingletonScope();
+            Bind<IWaitCursorScope>().To<WaitCursorScopeImpl>();
         }
     }
 }

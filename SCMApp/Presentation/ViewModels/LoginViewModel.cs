@@ -48,7 +48,7 @@ namespace SCMApp.Presentation.ViewModels
                 MessageBox.Show("Bạn chưa nhập Email hoặc Mật Khẩu?", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            using (var spinner = new WaitingSpinner(View))
+            using (new WaitCursorScope())
             {
                 var token = _loginWebAPI.GetToken(new LoginRequest(_email, _password));
                 var user = _userWebAPI.GetUserProfile(token.token);
