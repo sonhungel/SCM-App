@@ -4,8 +4,10 @@ using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
+using SCMApp.WebAPIClient.PageViewAPIs;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -13,8 +15,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     public class OrdersViewModel : ViewModelBase, IPageViewModel
     {
-        public OrdersViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly IInvoiceWebAPI _invoiceWebAPI;
+        public OrdersViewModel(IInvoiceWebAPI invoiceWebAPI,string token, IScreenManager screenManager) : base(token, screenManager)
         {
+            _invoiceWebAPI = invoiceWebAPI;
             _isHaveNoData = true;
             OpenSellViewCommand = new RelayCommand(p => OpenSellView());
             DeleteOrderCommand = new RelayCommand(p => DeleteOrder((string)p));
@@ -54,16 +58,23 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             }
         }
 
+        public bool IsLoaded { get; set; }
+
         private void DeleteOrder(string oderCode)
         {
-            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá hoá đơn này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult dialogResult = MessageBox.Show(View,"Bạn có muốn xoá hoá đơn này ?", 
+                "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
+                // Detele
                 OnPropertyChanged(nameof(OrderList));
             }
         }
         public void Construct()
         {
+            IsLoaded = true;
+            //Get all invoice
+            IsHaveNoData = !OrderList.Any();
         }
 
         private void OpenSellView()

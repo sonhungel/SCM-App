@@ -12,7 +12,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto" MaxHeight="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -36,7 +36,8 @@
                     </Button.Content>
                 </Button>
             </Grid>
-            <Border Grid.Row="1" Background="#97deb0" CornerRadius="5" Height="40" Margin="15,0,15,0" Visibility="{Binding IsHaveNoData, Mode =TwoWay,  Converter={StaticResource IsVisibleConverter}}">
+            <Border Grid.Row="1" Background="#97deb0" CornerRadius="5" Height="40" Margin="15,0,15,0" 
+                    Visibility="{Binding IsHaveNoData, Mode =TwoWay, Converter={StaticResource IsVisibleConverter}}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

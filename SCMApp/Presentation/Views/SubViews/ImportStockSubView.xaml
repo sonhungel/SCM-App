@@ -59,7 +59,7 @@
                             <Border Width="25"/>
                             <Border Width="300" Margin="20,20,0,20" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                                 <ComboBox IsEditable="False" Cursor="Hand" 
-                                          ItemsSource="{Binding ListStock}" DisplayMemberPath="StockName" SelectedItem="{Binding SelectedStock}"
+                                          ItemsSource="{Binding ListItem}" DisplayMemberPath="StockName" SelectedItem="{Binding SelectedItem}"
                                           IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                             </Border>
                         </StackPanel>

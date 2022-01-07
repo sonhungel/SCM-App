@@ -14,10 +14,8 @@
             Margin="10"
             Cap="Triangle"
             Diameter="250"
-            IsLoading="{Binding IsStillLoading, ElementName=_this}"
             Thickness="1"
             Color="Black">
-            
         </CustomControls:LoadingSpinner>
     </Grid>
 </Window>

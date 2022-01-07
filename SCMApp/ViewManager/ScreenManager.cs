@@ -111,5 +111,15 @@ namespace SCMApp.ViewManager
             view.Owner = parentWindow;
             view.ShowDialog();
         }
+
+        public void ShowInsertStockType(Window parentWindow, string token)
+        {
+            var view = new InsertStockTypeView();
+            var viewModel = new InsertStockTypeViewModel(token, IoC.Get<IScreenManager>());
+            viewModel.View = view;
+            view.DataContext = viewModel;
+            view.Owner = parentWindow;
+            view.ShowDialog();
+        }
     }
 }

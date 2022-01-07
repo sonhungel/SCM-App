@@ -4,8 +4,10 @@ using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
+using SCMApp.WebAPIClient.MainView;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -13,9 +15,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     class HumanResourceManagementViewModel : ViewModelBase, IPageViewModel
     {
-        public HumanResourceManagementViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly IUserWebAPI _userWebAPI;
+        public HumanResourceManagementViewModel(IUserWebAPI userWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
         {
-            _isHaveNoData = true;
+            _userWebAPI = userWebAPI;
             OpenInsertUserProfileViewCommand = new RelayCommand(p => OpenInsertUserProfileView());
             HRMList = new ObservableCollection<HumanResourceManagementViewModelItem>()
             {
@@ -50,9 +53,13 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
 
         public UserProfile MainUser { get; set; }
+        public bool IsLoaded { get ; set ; }
 
         public void Construct()
         {
+            IsLoaded = true;
+            //_userWebAPI.GetAllUserProfile();
+            IsHaveNoData = !HRMList.Any();
         }
 
         private void OpenInsertUserProfileView()
@@ -62,15 +69,17 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void EditUserProfile(string p)
         {
+            // get user from list => edit
             ScreenManager.ShowUserProfileView(View, null, Token);
         }
 
         private void DeleteUser(string p)
         {
-            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá nhân viên này ra khỏi hệ thống ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult dialogResult = MessageBox.Show(View,"Bạn có muốn xoá nhân viên này ra khỏi hệ thống ?", 
+                "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
-               
+                //_userWebAPI.DeleteUser();
             }
         }
     }

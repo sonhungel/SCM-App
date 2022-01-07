@@ -17,10 +17,30 @@ namespace SCMApp.WebAPIClient.MainView
 
         public override string RoutePrefix => RouteConstants.UserRoleApi;
 
+        public void AddUser()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteUser()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetAllUserProfile()
+        {
+            throw new NotImplementedException();
+        }
+
         public UserProfile GetUserProfile(string token)
         {
             var response = Task.Run(() => Get<GetUserProfileResponse>(RouteConstants.GetUserProfile, token)).Result;
             return response.data;
+        }
+
+        public void UpdateUser()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -22,6 +22,14 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 "Hàng đông lạnh", "Dệt may, thời trang", "Mỹ phẩm", "Hóa phẩm", "Giấy và bông",
                 "Thực phẩm khô", "Đồ uống"
             };
+
+            ItemTypes = new List<ItemType>()
+            {
+                new ItemType(0,"Hàng mát"),new ItemType(1,"Bánh kẹo"),new ItemType(2,"Thuốc lá"),new ItemType(3,"Gia dụng"),
+                new ItemType(4,"Văn phòng phẩm, lưu niệm, đồ chơi"), new ItemType(5,"Hàng đông lạnh"),
+                new ItemType(6,"Mỹ phẩm"),new ItemType(7,"Giấy và bông"),new ItemType(8,"Hóa phẩm"),new ItemType(9,"Đồ uống"),
+                new ItemType(10,"Thực phẩm khô"),new ItemType(11,"Dệt may, thời trang")
+            };
         }    
 
         public Item Model { get; set; }
@@ -36,6 +44,9 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             get;
             set;
         }
+
+        public IList<ItemType> ItemTypes { get; set; }
+        public ItemType SelectedItemType { get; set; }
         public IList<string> StocksType { get; set; }
         public string SelectedStocksType { get; set; }
         public int StockCost

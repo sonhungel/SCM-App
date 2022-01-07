@@ -14,5 +14,6 @@ namespace SCMApp.ViewManager
         void ShowImportStockView(Window parentWindow, string token);
         void ShowSellView(Window parentWindow, string token);
         void ShowInventoryTicket(Window parentWindow, string token);
+        void ShowInsertStockType(Window parentWindow, string token);
     }
 }

@@ -15,5 +15,23 @@ namespace SCMApp.Constants
 
         public const string UserRoleApi = "api/role";
         public const string GetUserProfile = "getUserPermission";
+
+        //Item 
+        public const string ItemApi = "api/items";
+
+        //ItemType
+        public const string ItemTypeApi = "api/itemType";
+
+        //HRM
+        public const string HRMApi = "api/HRM";
+
+        //Partner
+        public const string PartnerApi = "api/supplier";
+
+        //Customer
+        public const string CustomerApi = "api/customer";
+
+        // Invoice
+        public const string InvoiceApi = "api/invoices";
     }
 }

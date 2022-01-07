@@ -4,6 +4,7 @@ using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
+using SCMApp.WebAPIClient.PageViewAPIs;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -13,8 +14,13 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     public class PartnersViewModel : ViewModelBase, IPageViewModel
     {
-        public PartnersViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly ICustomerWebAPI _customerWebAPI;
+        private readonly IPartnerWebAPI _partnerWebAPI;
+        public PartnersViewModel(ICustomerWebAPI customerWebAPI, IPartnerWebAPI partnerWebAPI, 
+            string token, IScreenManager screenManager) : base(token, screenManager)
         {
+            _customerWebAPI = customerWebAPI;
+            _partnerWebAPI = partnerWebAPI;
             OpenCustomerViewCommand = new RelayCommand(p => OpenCustomerView());
             OpenPartnerViewCommand = new RelayCommand(p => OpenPartnerView());
 
@@ -43,8 +49,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         public string FunctionName => CommonConstants.PartnersFunctionName;
 
+        public bool IsLoaded { get; set; }
+
         public void Construct()
         {
+            IsLoaded = true;
         }
 
         private void OpenCustomerView()
@@ -63,7 +72,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
         private void DeleteCustomer(string customerCode)
         {
-            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá khách hàng này ra khỏi hệ thống ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult dialogResult = MessageBox.Show(View,"Bạn có muốn xoá khách hàng này ra khỏi hệ thống ?", 
+                "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
             }
@@ -75,7 +85,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
         private void DeletePartner(string partnerCode)
         {
-            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá đối tác này ra khỏi hệ thống ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult dialogResult = MessageBox.Show(View, "Bạn có muốn xoá đối tác này ra khỏi hệ thống ?",
+                "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
             }

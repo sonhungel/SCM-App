@@ -90,23 +90,15 @@
                                 <Image Source="/Assets/truck.png" Stretch="Uniform" Width="35"/>
                             </Button.Content>
                         </Button>
-                        <Button Grid.Row="5" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="InventoryPageView">
-                            <Button.ToolTip>
-                                <TextBlock Text="Tồn kho" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
-                            </Button.ToolTip>
-                            <Button.Content>
-                                <Image Source="/Assets/warehouse.png" Stretch="Uniform" Width="35"/>
-                            </Button.Content>
-                        </Button>
-                        <!--<Button Grid.Row="6" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="RevenuePageView">
-                            <Button.ToolTip>
-                                <TextBlock Text="Doanh số" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
-                            </Button.ToolTip>
-                            <Button.Content>
-                                <Image Source="/Assets/chart.png" Stretch="Uniform" Width="35"/>
-                            </Button.Content>
-                        </Button>-->
-                        <Button Grid.Row="6" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="ProfitPageView">
+                    <Button Grid.Row="5" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="InventoryPageView">
+                        <Button.ToolTip>
+                            <TextBlock Text="Tồn kho" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
+                        </Button.ToolTip>
+                        <Button.Content>
+                            <Image Source="/Assets/warehouse.png" Stretch="Uniform" Width="35"/>
+                        </Button.Content>
+                    </Button>
+                    <Button Grid.Row="6" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="ProfitPageView">
                             <Button.ToolTip>
                                 <TextBlock Text="Tài chính" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>

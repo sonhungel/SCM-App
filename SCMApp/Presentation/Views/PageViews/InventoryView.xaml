@@ -11,7 +11,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto" MaxHeight="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -30,7 +30,8 @@
                     </Button>
                 </Grid>
             </Grid>
-            <Border Grid.Row="1" Background="#97deb0" CornerRadius="5" Height="40" Margin="15,0,15,0" Visibility="{Binding IsHaveNoData, Mode =TwoWay,  Converter={StaticResource IsVisibleConverter}}">
+            <Border Grid.Row="1" Background="#97deb0" CornerRadius="5" Height="40" Margin="15,0,15,0" 
+                    Visibility="{Binding IsHaveNoData, Mode =TwoWay, Converter={StaticResource IsVisibleConverter}}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -95,6 +96,12 @@
                         </TextBlock>
                         </StackPanel>
                     </DataTemplate>
+                    <DataTemplate x:Key="DateOfCreate">
+                        <TextBlock Text="{Binding DateOfCreate}" Style="{StaticResource DataGridTextBlock}"/>
+                    </DataTemplate>
+                    <DataTemplate x:Key="InventoryTicktCode">
+                        <TextBlock Text="{Binding InventoryTicketCode}" Style="{StaticResource DataGridTextBlock}"/>
+                    </DataTemplate>
                     <DataTemplate x:Key="StockName">
                         <TextBlock Text="{Binding StockName}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
@@ -127,6 +134,8 @@
                     </DataTemplate>
                 </DataGrid.Resources>
                 <DataGrid.Columns >
+                    <DataGridTemplateColumn Width="0.8*" Header="Mã phiếu kiểm" CellTemplate="{StaticResource InventoryTicktCode}"/>
+                    <DataGridTemplateColumn Width="0.8*" Header="Ngày tạo" CellTemplate="{StaticResource DateOfCreate}"/>
                     <DataGridTemplateColumn Width="0.8*" Header="Mã hàng hoá" CellTemplate="{StaticResource StockCode}"/>
                     <DataGridTemplateColumn Width="1.4*" Header="Tên hàng hoá" CellTemplate="{StaticResource StockName}"/>
                     <DataGridTemplateColumn Width="1*" Header="Tồn kho" CellTemplate="{StaticResource InventoryNumber}"/>

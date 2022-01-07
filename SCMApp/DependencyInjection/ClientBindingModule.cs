@@ -3,6 +3,7 @@ using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient;
 using SCMApp.WebAPIClient.MainView;
+using SCMApp.WebAPIClient.PageViewAPIs;
 
 namespace SCMApp.DependencyInjection
 {
@@ -19,6 +20,14 @@ namespace SCMApp.DependencyInjection
         {
             Bind<ILoginWebAPI>().To<LoginWebAPI>().InSingletonScope();
             Bind<IUserWebAPI>().To<UserWebAPI>().InSingletonScope();
+            Bind<IItemTypeWebAPI>().To<ItemTypeWebAPI>().InSingletonScope();
+            Bind<IItemWebAPI>().To<ItemWebAPI>().InSingletonScope();
+            Bind<ICustomerWebAPI>().To<CustomerWebAPI>().InSingletonScope();
+            Bind<IPartnerWebAPI>().To<PartnerWebAPI>().InSingletonScope();
+            Bind<IProfitWebAPI>().To<ProfitWebAPI>().InSingletonScope();
+            Bind<IInventoryWebAPI>().To<InventoryWebAPI>().InSingletonScope();
+            Bind<IInvoiceWebAPI>().To<InvoiceWebAPI>().InSingletonScope();
+            Bind<IImportStockWebAPI>().To<ImportStockWebAPI>().InSingletonScope();
         }
 
         private void BindTransportLayer()

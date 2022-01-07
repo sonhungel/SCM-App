@@ -55,7 +55,7 @@
                                 <Style.Triggers>
                                     <EventTrigger RoutedEvent="FrameworkElement.Loaded">
                                         <BeginStoryboard>
-                                            <Storyboard SpeedRatio="1">
+                                            <Storyboard SpeedRatio="0.3">
                                                 <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1"/>
                                             </Storyboard>
                                         </BeginStoryboard>

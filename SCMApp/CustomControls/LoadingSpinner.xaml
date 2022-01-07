@@ -12,8 +12,7 @@
                  RenderTransformOrigin="0.5 0.5"
                  Stroke="{Binding Color, ElementName=_this}"
                  StrokeDashCap="{Binding Cap, ElementName=_this}"
-                 StrokeThickness="{Binding Thickness, ElementName=_this}"
-                 Visibility="{Binding IsLoading, ElementName=_this, Converter={StaticResource BooleanToVisibilityConverter}}">
+                 StrokeThickness="{Binding Thickness, ElementName=_this}">
         <Ellipse.StrokeDashArray>
             <MultiBinding Converter="{StaticResource DiameterAndThicknessToStrokeDashArrayConverter}">
                 <Binding Path="Diameter" RelativeSource="{RelativeSource TemplatedParent}" />

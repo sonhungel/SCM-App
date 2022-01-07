@@ -4,8 +4,10 @@ using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
+using SCMApp.WebAPIClient.PageViewAPIs;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -13,8 +15,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 {
     public class ImportStockViewModel : ViewModelBase, IPageViewModel
     {
-        public ImportStockViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly IImportStockWebAPI _importStockWebAPI;
+        public ImportStockViewModel(IImportStockWebAPI importStockWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
         {
+            _importStockWebAPI = importStockWebAPI;
             _isHaveNoData = true;
             OpenImportStockSubViewCommand = new RelayCommand(p => OpenImportStockSubView());
 
@@ -43,8 +47,12 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             }
         }
 
+        public bool IsLoaded { get; set ; }
+
         public void Construct()
         {
+            IsLoaded = true;
+            IsHaveNoData = !ImportStockList.Any();
         }
 
         private void OpenImportStockSubView()
@@ -54,7 +62,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void DeleteImportStock(string importStockCode)
         {
-            MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá đơn nhập hàng này ?", "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult dialogResult = MessageBox.Show(View, "Bạn có muốn xoá đơn nhập hàng này ?", 
+                "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
               

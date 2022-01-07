@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,22 +10,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SCMApp.Presentation.Views
+namespace SCMApp.Presentation.Views.SubViews
 {
     /// <summary>
-    /// Interaction logic for LoadingView.xaml
+    /// Interaction logic for InsertStockTypeView.xaml
     /// </summary>
-    public partial class LoadingView : Window, IDisposable
+    public partial class InsertStockTypeView : Window
     {
-        public LoadingView()
+        public InsertStockTypeView()
         {
             InitializeComponent();
-            Topmost = true;
         }
-
-        public void Dispose()
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+            DataContext = null;
+        }
+
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
     }
 }

@@ -8,5 +8,9 @@ namespace SCMApp.WebAPIClient.MainView
     public interface IUserWebAPI
     {
         UserProfile GetUserProfile(string token);
+        void GetAllUserProfile();
+        void AddUser();
+        void UpdateUser();
+        void DeleteUser();
     }
 }

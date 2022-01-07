@@ -23,15 +23,6 @@ namespace SCMApp.CustomControls
             InitializeComponent();
         }
 
-        public static readonly DependencyProperty IsLoadingProperty =
-           DependencyProperty.Register("IsLoading", typeof(bool), typeof(LoadingSpinner),
-               new PropertyMetadata(false));
-
-        public bool IsLoading
-        {
-            get { return (bool)GetValue(IsLoadingProperty); }
-            set { SetValue(IsLoadingProperty, value); }
-        }
 
         public static readonly DependencyProperty DiameterProperty =
             DependencyProperty.Register("Diameter", typeof(double), typeof(LoadingSpinner),

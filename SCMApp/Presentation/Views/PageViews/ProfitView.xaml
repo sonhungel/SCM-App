@@ -23,7 +23,7 @@
                           IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                 </Border>
                 <Border Width="60"/>
-                <Button Cursor="Hand" Foreground="White" Width="50" Height="37"
+                <Button Cursor="Hand" Foreground="White" Width="50" Height="37" Command="{Binding FilterCommand}"
                                 Style="{StaticResource Button3DRounded}" Background="#1399ad">
                     <Button.Content>
                         <Grid>
@@ -50,20 +50,22 @@
             </StackPanel>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="350"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="60"/>
                 </Grid.RowDefinitions>
-                <lvc:PieChart Grid.Column="0" Grid.Row="0" LegendLocation="Bottom" Series="{Binding SeriesCollectionPieChart}" DataTooltip="{x:Null}">
+                <lvc:PieChart Grid.Column="0" Grid.Row="0" LegendLocation="Bottom" 
+                              Series="{Binding SeriesCollectionPieChart}" DataTooltip="{x:Null}">
                     <lvc:PieChart.ChartLegend>
                         <lvc:DefaultLegend BulletSize="25" Margin="0,0,0,50"/>
                     </lvc:PieChart.ChartLegend>
                 </lvc:PieChart>
                 <Label Grid.Row="1" Grid.Column="0" Content="Tỉ lệ Thu và Chi" Style="{StaticResource NormalLabel}" HorizontalAlignment="Center"/>
-                <lvc:CartesianChart Grid.Column="1" Grid.Row="0" Series="{Binding SeriesCollectionCartesianChart}" LegendLocation="Left" DataTooltip="{x:Null}" Margin="10">
+                <lvc:CartesianChart Grid.Column="1" Grid.Row="0" Series="{Binding SeriesCollectionCartesianChart}" 
+                                    LegendLocation="Left" DataTooltip="{x:Null}" Margin="10">
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis Title="Khung thời gian" Labels="{Binding BarLabels}"/>
                     </lvc:CartesianChart.AxisX>
@@ -71,7 +73,8 @@
                         <lvc:Axis Title="Đơn vị Triêu VNĐ" LabelFormatter="{Binding FormatterCartesianChart}"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
-                <Label Grid.Row="1" Grid.Column="1" Content="Doanh thu trong tháng" Style="{StaticResource NormalLabel}" HorizontalAlignment="Center"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding ProfitByFilterName}" 
+                       Style="{StaticResource NormalLabel}" HorizontalAlignment="Center"/>
             </Grid>
         </Grid>
     </Border>

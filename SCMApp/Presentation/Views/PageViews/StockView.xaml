@@ -11,7 +11,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto" MaxHeight="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -19,8 +19,25 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="4*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="1" Cursor="Hand" Foreground="White" Width="135" Height="37" Command="{Binding OpenStockDetailViewCommand}"
+                    <Button Grid.Column="1" Cursor="Hand" Foreground="White" Width="140" Height="37" Command="{Binding OpenInsertStockTypeViewCommand}"
+                                Style="{StaticResource Button3DRounded}" Background="#1399ad">
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" Background="Transparent">
+                                    <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Assets/plus.png" />
+                                </Border>
+                                <TextBlock Margin="5,0,0,0" Grid.Column="1" Text="Thêm nhóm hàng" TextAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="White" FontSize="12"/>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    <Button Grid.Column="3" Cursor="Hand" Foreground="White" Width="135" Height="37" Command="{Binding OpenStockDetailViewCommand}"
                                 Style="{StaticResource Button3DRounded}" Background="#1399ad">
                         <Button.Content>
                             <Grid>
@@ -37,7 +54,8 @@
                     </Button>
                 </Grid>
             </Grid>
-            <Border Grid.Row="1" Background="#97deb0" CornerRadius="5" Height="40" Margin="15,0,15,0" Visibility="{Binding IsHaveNoData, Mode =TwoWay,  Converter={StaticResource IsVisibleConverter}}">
+            <Border Grid.Row="1" Background="#97deb0" CornerRadius="5" Height="40" Margin="15,0,15,0" 
+                    Visibility="{Binding IsHaveNoData, Mode =TwoWay, Converter={StaticResource IsVisibleConverter}}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

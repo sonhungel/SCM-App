@@ -189,9 +189,4 @@
     </Resource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="WebAPIClient\PageViewAPIs\" />
-    <Folder Include="WebAPIClient\SubViewAPIs\" />
-  </ItemGroup>
-
 </Project>

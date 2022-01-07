@@ -45,7 +45,7 @@ namespace SCMApp.Presentation.ViewModels
         {
             if (string.IsNullOrEmpty(_email) || string.IsNullOrEmpty(_password))
             {
-                MessageBox.Show("Bạn chưa nhập Email hoặc Mật Khẩu?", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(View,"Bạn chưa nhập Email hoặc Mật Khẩu?", "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             using (new WaitCursorScope())

@@ -40,8 +40,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public string[] BarLabels { get; set; }
 
         public Func<double,string> Formatter { get; set; }
+        public bool IsLoaded { get; set; }
+
         public void Construct()
         {
+            IsLoaded = true;
         }
     }
 }

@@ -4,6 +4,8 @@ using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.PageViewModels;
 using SCMApp.ViewManager;
+using SCMApp.WebAPIClient.MainView;
+using SCMApp.WebAPIClient.PageViewAPIs;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -48,33 +50,34 @@ namespace SCMApp.Presentation.ViewModels
 
         private void ChangeViewModel(string pageName)
         {
-            // destruct
-            //CurrentPageViewModel.destruct
             CurrentPageViewModel = _allPageViewModels.Find(p => pageName.Equals(p.NamePage));
             OnPropertyChanged(nameof(FunctionName));
-            CurrentPageViewModel.Construct();
+            if (!CurrentPageViewModel.IsLoaded)
+            {
+                CurrentPageViewModel.Construct();
+            }
         }
 
         public void InitAllPageViewModel()
         {
-            IPageViewModel pageView = new HumanResourceManagementViewModel(Token,ScreenManager) { View = this.View};
+            IPageViewModel pageView = new HumanResourceManagementViewModel(IoC.Get<IUserWebAPI>(),Token,ScreenManager) { View = this.View};
             _allPageViewModels.Add(pageView);
             pageView = new ImportStockViewModel(Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new InventoryViewModel(Token, ScreenManager) { View = this.View };
+            pageView = new InventoryViewModel(IoC.Get<IInventoryWebAPI>(), Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
             pageView = new OrdersViewModel(Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
             pageView = new OverviewViewModel(Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new PartnersViewModel(Token, ScreenManager) { View = this.View };
+            pageView = new PartnersViewModel(IoC.Get<ICustomerWebAPI>(), IoC.Get<IPartnerWebAPI>(),Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new ProfitViewModel(Token, ScreenManager) { View = this.View };
+            pageView = new ProfitViewModel(IoC.Get<IProfitWebAPI>(),Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new StockViewModel(Token, ScreenManager) { View = this.View };
+            pageView = new StockViewModel(IoC.Get<IItemWebAPI>(),Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
 
-            CurrentPageViewModel = _allPageViewModels.Find(p => CommonConstants.OverviewPageViewName.Equals(p.NamePage));
+            ChangeViewModel(CommonConstants.OverviewPageViewName);
             ChangePageCommand = new RelayCommand(p => ChangeViewModel((string)p), p => p is string && !p.Equals(CurrentPageViewModel.NamePage));
         }
 
