@@ -18,6 +18,7 @@ namespace SCMApp.Constants
 
         //Item 
         public const string ItemApi = "api/items";
+        public const string GetItemByItemNumber = "getItems";
 
         //ItemType
         public const string ItemTypeApi = "api/itemType";

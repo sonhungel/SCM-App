@@ -9,9 +9,9 @@ namespace SCMApp.Models
         public ItemType(int id,string name)
         {
             this.id = id;
-            itemTypeName = name;
+            typeName = name;
         }
-        public string itemTypeName {get;set;}
-        public string note {get;set;}
+        public string typeName { get;set;}
+        public string remark { get;set;}
     }
 }

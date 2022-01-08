@@ -15,11 +15,11 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 
         public Partner Model;
 
-        public string PartnerCode => Model.PartnerCode;
-        public string PartnerName => Model.PartnerName;
-        public string PartnerPhoneNumber => Model.PartnerPhoneNumber;
-        public string PartnerAddress => $"{Model.StreetAddress}_{Model.WardAddress}_{Model.DistrictAddress}_{Model.ProvinceAddress}";
-        public int TotaMoneylWasBuy => Model.TotaMoneylWasBuy;
+        public int PartnerCode => Model.id;
+        public string PartnerName => Model.name;
+        public string PartnerPhoneNumber => Model.phoneNumber;
+        public string PartnerAddress => $"{Model.address}_{Model.ward}_{Model.district}_{Model.province}";
+        public int TotaMoneylWasBuy => Model.paid;
         public string NumberOfTimeBuy => DateTimeHelper.DateTimeToStandardString(Model.LastTimeBuy);
     }
 }

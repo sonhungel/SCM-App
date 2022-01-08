@@ -27,46 +27,46 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public string PartnerFullName
         {
-            get => Model.PartnerName;
+            get => Model.name;
             set
             {
-                Model.PartnerName = value;
+                Model.name = value;
                 OnPropertyChanged(nameof(PartnerFullName));
             }
         }
-        public string PartnerCode
+        public int PartnerCode
         {
-            get => Model.PartnerCode;
+            get => Model.id;
             set
             {
-                Model.PartnerCode = value;
+                Model.id = value;
                 OnPropertyChanged(nameof(PartnerCode));
             }
         }
         public string PartnerPhoneNumber
         {
-            get => Model.PartnerPhoneNumber;
+            get => Model.phoneNumber;
             set
             {
-                Model.PartnerPhoneNumber = value;
+                Model.phoneNumber = value;
                 OnPropertyChanged(nameof(PartnerPhoneNumber));
             }
         }
         public string PartnerEmail
         {
-            get => Model.PartnerEmail;
+            get => Model.email;
             set
             {
-                Model.PartnerEmail = value;
+                Model.email = value;
                 OnPropertyChanged(nameof(PartnerEmail));
             }
         }
         public string TaxCode
         {
-            get => Model.TaxCode;
+            get => Model.taxNumber;
             set
             {
-                Model.TaxCode = value;
+                Model.taxNumber = value;
                 OnPropertyChanged(nameof(TaxCode));
             }
         }
@@ -76,10 +76,10 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public string StreetAddress
         {
-            get => Model.StreetAddress;
+            get => Model.address;
             set
             {
-                Model.StreetAddress = value;
+                Model.address = value;
                 OnPropertyChanged(nameof(StreetAddress));
             }
         }
@@ -90,12 +90,12 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public Province SelectedProvince
         {
-            get => Model.ProvinceAddress;
+            get => Model.province;
             set
             {
                 if (value == null)
                     return;
-                Model.ProvinceAddress = value;
+                Model.province = value;
                 WardList = null;
                 OnPropertyChanged(nameof(WardList));
                 DistrictList = value.Districts;
@@ -104,32 +104,32 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
         public District SelectedDistrict
         {
-            get => Model.DistrictAddress;
+            get => Model.district;
             set
             {
                 if (value == null)
                     return;
-                Model.DistrictAddress = value;
+                Model.district = value;
                 WardList = value.Wards;
                 OnPropertyChanged(nameof(WardList));
             }
         }
         public Ward SelectedWard 
         {
-            get => Model.WardAddress;
+            get => Model.ward;
             set
             {
-                Model.WardAddress = value;
+                Model.ward = value;
                 OnPropertyChanged(nameof(SelectedWard));
             }
         }
 
         public string Note
         {
-            get => Model.Note;
+            get => Model.remark;
             set
             {
-                Model.Note = value;
+                Model.remark = value;
                 OnPropertyChanged(nameof(Note));
             }
         }

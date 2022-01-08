@@ -5,20 +5,20 @@ using System.Text;
 
 namespace SCMApp.Models
 {
-    public class Partner
+    public class Partner: BusinessObjectBase
     {
-        public string PartnerCode { get; set; }
-        public string PartnerName { get; set; }
-        public string PartnerPhoneNumber { get; set; }
-        public string PartnerEmail { get; set; }
-        public Province ProvinceAddress { get; set; }
-        public District DistrictAddress { get; set; }
-        public Ward WardAddress { get; set; }
-        public string StreetAddress { get; set; }
-        public bool IsEnterPrise { get; set; }
-        public string TaxCode { get; set; }
-        public string Note { get; set; }
-        public int TotaMoneylWasBuy { get; set; }
+        public string supplierNumber { get; set; }
+        public string name { get; set; }
+        public string phoneNumber { get; set; }
+        public string email { get; set; }
+        public Province province { get; set; }
+        public District district { get; set; }
+        public Ward ward { get; set; }
+        public string address { get; set; }
+        public bool type { get; set; }
+        public string taxNumber { get; set; }
+        public string remark { get; set; }
+        public int paid { get; set; }
         public DateTime LastTimeBuy { get; set; }
     }
 }

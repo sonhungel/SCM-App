@@ -5,6 +5,7 @@ using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
+using SCMApp.WebAPIClient.Request_Response;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -68,6 +69,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void EditStock(int stockCode)
         {
+            var updateItem =  _itemWebAPI.GetItemByItemNumber(new GetItemByNumberRequest(123), Token);
             ScreenManager.ShowStockDetailView(View, Token);
         }
         private void DeleteStock(int stockCode)

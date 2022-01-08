@@ -59,7 +59,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             get;
             set;
         }
-        public string ProducerName
+        public string SupplierName
         {
             get;
             set;

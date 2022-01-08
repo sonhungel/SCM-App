@@ -23,19 +23,19 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         
         public string StockTypeName 
         {
-            get => Model.itemTypeName;
+            get => Model.typeName;
             set
             {
-                Model.itemTypeName = value;
+                Model.typeName = value;
                 OnPropertyChanged(nameof(StockTypeName));
             }
         }
         public string Note
         {
-            get => Model.note;
+            get => Model.remark;
             set
             {
-                Model.note = value;
+                Model.remark = value;
                 OnPropertyChanged(nameof(Note));
             }
         }

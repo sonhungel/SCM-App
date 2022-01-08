@@ -30,7 +30,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
 
         public int StockCode => SelectedItem.id;
-        public string StockName => SelectedItem.Name;
+        public string StockName => SelectedItem.name;
         public string StockInventoryQuantity
         {
             get;

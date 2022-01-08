@@ -6,14 +6,17 @@ namespace SCMApp.Models
 {
     public class Item : BusinessObjectBase
     {
-        public string Name { get; set; }
-        public ItemType Type { get; set; }
+        public int itemNumber { get; set; }
+        public string name { get; set; }
+        public ItemType itemType { get; set; }
         public string ItemType { get; set; }
-        public int Cost { get; set; }
-        public int Quantity { get; set; }
-        public int RetailPrice { get; set; }
-        public int MinimumQuantity { get; set; }
-        public int AvailableQuantity { get; set; }
-        public string Supplier { get; set; }
+        public int cost { get; set; }
+        public int quantity { get; set; }
+        public int salesPrice { get; set; }
+        public int minimumQuantity { get; set; }
+        public int availableQuantity { get; set; }
+        public string remark { get; set; }
+        public string description { get; set; }
+        public Partner supplier { get; set; }
     }
 }

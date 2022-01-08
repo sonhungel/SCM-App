@@ -1,7 +1,10 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Models;
+using SCMApp.WebAPIClient.Request_Response;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
 {
@@ -28,9 +31,9 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
             throw new NotImplementedException();
         }
 
-        public void GetItemByCriteria(string criteria)
+        public Item GetItemByItemNumber(GetItemByNumberRequest numberRequest, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Post<Item>(RouteConstants.GetItemByItemNumber, numberRequest, token)).Result;
         }
 
         public void UpdateItem()

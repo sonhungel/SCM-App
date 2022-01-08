@@ -173,27 +173,9 @@
                             </Border>
                         </StackPanel>
 
-                        <Label Grid.Row="8" Grid.Column="0" Content="Nhà sản xuất" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Border Grid.Row="9" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
-                                <Grid Height="Auto">
-                                    <TextBox x:Name="importPro" Text="{Binding ProducerName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                             FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
-                                    <TextBlock Margin="20,0,0,0" Text="Nhập nhà sản xuất nếu có..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Visibility" Value="Collapsed"/>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, ElementName=importPro}" Value="">
-                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                </Grid>
-                            </Border>
-                        </Border>
+                        <Label Grid.Row="8" Grid.Column="0" Content="Nhà cung cấp" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="9" Grid.Column="0" Content="{Binding SupplierName}" Style="{StaticResource NormalLabel}" Padding="50,0,0,0"/>
+                        
                         <Label Grid.Row="0" Grid.Column="2" Content="Số lượng hàng trong kho" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Grid.Row="1" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
