@@ -58,7 +58,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void OpenStockView(string stockCode)
         {
-            ScreenManager.ShowStockDetailView(View, Token);
+            ScreenManager.ShowStockDetailView(View,null, Token);
         }
 
         private void OpenInvetoryTicket()

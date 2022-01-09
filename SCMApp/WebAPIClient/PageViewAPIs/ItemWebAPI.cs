@@ -26,14 +26,14 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
             throw new NotImplementedException();
         }
 
-        public void GetAllItem()
+        public IList<Item> GetAllItem(string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Get<IList<Item>>(string.Format(RouteConstants.SearchItem,string.Empty), token)).Result;
         }
 
-        public Item GetItemByItemNumber(GetItemByNumberRequest numberRequest, string token)
+        public Item GetItemByItemNumber(string numberRequest, string token)
         {
-            return Task.Run(() => Post<Item>(RouteConstants.GetItemByItemNumber, numberRequest, token)).Result;
+            return Task.Run(() => Get<GetItemByNumberReSponse>(string.Format(RouteConstants.GetItemByItemNumber, numberRequest), token)).Result.data;
         }
 
         public void UpdateItem()

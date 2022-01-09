@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace SCMApp.Presentation.ViewModels.Base
@@ -85,6 +86,11 @@ namespace SCMApp.Presentation.ViewModels.Base
                 var e = new PropertyChangedEventArgs(propertyName);
                 handler(this, e);
             }
+        }
+
+        protected virtual void OnPropertyChangedNoInput([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion // INotifyPropertyChanged Members

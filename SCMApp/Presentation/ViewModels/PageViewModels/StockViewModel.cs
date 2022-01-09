@@ -3,6 +3,7 @@ using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
 using SCMApp.WebAPIClient.Request_Response;
@@ -23,7 +24,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             _isHaveNoData = true;
             OpenStockDetailViewCommand = new RelayCommand(p => OpenStockDetailView());
             OpenInsertStockTypeViewCommand = new RelayCommand(p => OpenInsertStockTypeView());
-            StockList = new ObservableCollection<StockViewModelItem>() { new StockViewModelItem(new Item())};
+            StockList = new ObservableCollection<StockViewModelItem>();
 
             EditStockCommand = new RelayCommand(p => EditStock((int)p));
             DeleteStockCommand = new RelayCommand(p => DeleteStock((int)p));
@@ -56,11 +57,19 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public void Construct()
         {
             IsLoaded = true;
+            using (new WaitCursorScope())
+            {
+                var allitem = _itemWebAPI.GetAllItem(Token);
+                foreach (var item in allitem)
+                {
+                    StockList.Add(new StockViewModelItem(item));
+                }
+            }
             IsHaveNoData = !StockList.Any();
         }
         private void OpenStockDetailView()
         {
-            ScreenManager.ShowStockDetailView(View, Token);
+            ScreenManager.ShowStockDetailView(View,null, Token);
         }
         private void OpenInsertStockTypeView()
         {
@@ -69,8 +78,12 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void EditStock(int stockCode)
         {
-            var updateItem =  _itemWebAPI.GetItemByItemNumber(new GetItemByNumberRequest(123), Token);
-            ScreenManager.ShowStockDetailView(View, Token);
+            Item updateItem = null;
+            using (new WaitCursorScope())
+            {
+                updateItem = _itemWebAPI.GetItemByItemNumber(123.ToString(), Token);
+            }
+            ScreenManager.ShowStockDetailView(View, updateItem, Token);
         }
         private void DeleteStock(int stockCode)
         {

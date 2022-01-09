@@ -4,6 +4,7 @@ using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 
@@ -23,71 +24,126 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 "Thực phẩm khô", "Đồ uống"
             };
 
-            ItemTypes = new List<ItemType>()
+            ItemTypes = new ObservableCollection<ItemType>()
             {
                 new ItemType(0,"Hàng mát"),new ItemType(1,"Bánh kẹo"),new ItemType(2,"Thuốc lá"),new ItemType(3,"Gia dụng"),
-                new ItemType(4,"Văn phòng phẩm, lưu niệm, đồ chơi"), new ItemType(5,"Hàng đông lạnh"),
-                new ItemType(6,"Mỹ phẩm"),new ItemType(7,"Giấy và bông"),new ItemType(8,"Hóa phẩm"),new ItemType(9,"Đồ uống"),
-                new ItemType(10,"Thực phẩm khô"),new ItemType(11,"Dệt may, thời trang")
+                new ItemType(2,"Home item")
+                //new ItemType(4,"Văn phòng phẩm, lưu niệm, đồ chơi"), new ItemType(5,"Hàng đông lạnh"),
+                //new ItemType(6,"Mỹ phẩm"),new ItemType(7,"Giấy và bông"),new ItemType(8,"Hóa phẩm"),new ItemType(9,"Đồ uống"),
+                //new ItemType(10,"Thực phẩm khô"),new ItemType(11,"Dệt may, thời trang")
             };
+            Model = new Item();
         }    
 
         public Item Model { get; set; }
 
         public string StockName
         {
-            get;
-            set;
+            get => Model.name;
+            set
+            {
+                Model.name = value;
+                OnPropertyChanged(nameof(StockName));
+            }
         }
-        public string StockCode
+        public int StockCode
         {
-            get;
-            set;
+            get => Model.itemNumber;
+            set
+            {
+                Model.itemNumber = value;
+                OnPropertyChanged(nameof(StockCode));
+            }
         }
 
-        public IList<ItemType> ItemTypes { get; set; }
-        public ItemType SelectedItemType { get; set; }
+        public ObservableCollection<ItemType> ItemTypes { get; set; }
+        public ItemType SelectedItemType 
+        {
+            get => Model.itemType;
+            
+            set
+            {
+                Model.itemType = value;
+                OnPropertyChangedNoInput();
+            }
+        }
         public IList<string> StocksType { get; set; }
         public string SelectedStocksType { get; set; }
+
+        public ObservableCollection<Partner> Partners { get; set; }
+        public Partner SelectedPartner
+        {
+            get => Model.supplier;
+
+            set
+            {
+                Model.supplier = value;
+                OnPropertyChangedNoInput();
+            }
+        }
         public int StockCost
         {
-            get;
-            set;
+            get => Model.cost;
+            set
+            {
+                Model.cost = value;
+                OnPropertyChanged(nameof(StockCost));
+            }
         }
         public int StockRetailPrice
         {
-            get;
-            set;
+            get => Model.salesPrice;
+            set
+            {
+                Model.salesPrice = value;
+                OnPropertyChanged(nameof(StockRetailPrice));
+            }
         }
         public string SupplierName
         {
-            get;
-            set;
+            get => Model.name;
+            set
+            {
+                Model.name = value;
+                OnPropertyChanged(nameof(SupplierName));
+            }
         }
         public int StockInventoryQuantity
         {
-            get;
-            set;
+            get => Model.quantity;
+            set
+            {
+                Model.quantity = value;
+                OnPropertyChanged(nameof(StockInventoryQuantity));
+            }
         }
-        public int StockMaxInventoryQuantity
-        {
-            get;
-            set;
-        }
+
         public int StockMinInventoryQuantity
         {
-            get;
-            set;
+            get => Model.minimumQuantity;
+            set
+            {
+                Model.minimumQuantity = value;
+                OnPropertyChanged(nameof(StockMinInventoryQuantity));
+            }
         }
         public string StockDescription
         {
-            get;
-            set;
+            get => Model.description;
+            set
+            {
+                Model.description = value;
+                OnPropertyChanged(nameof(StockDescription));
+            }
         }
         public string Note
         {
-            get;
-            set;
+            get => Model.remark;
+            set
+            {
+                Model.remark = value;
+                OnPropertyChanged(nameof(Note));
+            }
         }
 
         public ICommand ICancelCommand { get; }

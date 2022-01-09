@@ -11,11 +11,9 @@ namespace SCMApp.Presentation.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private readonly ILoginWebAPI _loginWebAPI;
         private readonly IUserWebAPI _userWebAPI;
-        public LoginViewModel(ILoginWebAPI loginWebAPI, IUserWebAPI userWebAPI,IScreenManager screenManager) : base(string.Empty,screenManager)
+        public LoginViewModel(IUserWebAPI userWebAPI,IScreenManager screenManager) : base(string.Empty,screenManager)
         {
-            _loginWebAPI = loginWebAPI;
             _userWebAPI = userWebAPI;
             ILoginCommand = new RelayCommand( p => Login());
         }
@@ -50,8 +48,8 @@ namespace SCMApp.Presentation.ViewModels
             }
             using (new WaitCursorScope())
             {
-                var token = _loginWebAPI.GetToken(new LoginRequest(_email, _password));
-                var user = _userWebAPI.GetUserProfile(token.token);
+                var token = _userWebAPI.GetToken(new LoginRequest(_email, _password));
+                var user = _userWebAPI.GetUserProfileBaseOnToken(token.token);
                 ScreenManager.ShowMainView(View, user, token.token);
             }
         }

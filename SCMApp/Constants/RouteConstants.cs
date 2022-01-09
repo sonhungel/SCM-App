@@ -12,27 +12,28 @@ namespace SCMApp.Constants
 
         public const string LoginApi = "api/users";
         public const string LoginApiGetToken = "login";
-
-        public const string UserRoleApi = "api/role";
-        public const string GetUserProfile = "getUserPermission";
+        public const string GetAllUser = "getAllUser";
+        public const string GetUserProfileBaseOnToken = "admin";
 
         //Item 
         public const string ItemApi = "api/items";
-        public const string GetItemByItemNumber = "getItems";
+        public const string GetItemByItemNumber = "getItems/{0}";
+        public const string SearchItem = "?searchValue={0}";
 
         //ItemType
         public const string ItemTypeApi = "api/itemType";
-
-        //HRM
-        public const string HRMApi = "api/HRM";
+        public const string GetAllItemType = "getActiveItemType";
 
         //Partner
         public const string PartnerApi = "api/supplier";
+        public const string GetAllPartner = "getAllSupplier";
 
         //Customer
         public const string CustomerApi = "api/customer";
+        public const string GetAllCustomer = "getAllCustomer";
 
         // Invoice
         public const string InvoiceApi = "api/invoices";
+        public const string GetAllInvoice = "getAllInvoice";
     }
 }

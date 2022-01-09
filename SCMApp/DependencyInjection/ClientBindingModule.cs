@@ -18,7 +18,6 @@ namespace SCMApp.DependencyInjection
 
         private void BindWebApiClients()
         {
-            Bind<ILoginWebAPI>().To<LoginWebAPI>().InSingletonScope();
             Bind<IUserWebAPI>().To<UserWebAPI>().InSingletonScope();
             Bind<IItemTypeWebAPI>().To<ItemTypeWebAPI>().InSingletonScope();
             Bind<IItemWebAPI>().To<ItemWebAPI>().InSingletonScope();

@@ -9,7 +9,6 @@ namespace SCMApp.Models
         public int itemNumber { get; set; }
         public string name { get; set; }
         public ItemType itemType { get; set; }
-        public string ItemType { get; set; }
         public int cost { get; set; }
         public int quantity { get; set; }
         public int salesPrice { get; set; }

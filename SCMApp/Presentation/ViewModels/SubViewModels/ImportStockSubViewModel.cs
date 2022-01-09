@@ -26,7 +26,6 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 new ImportStockSubViewModelItem()
             };
-            ListPartner = new List<Partner>();
             ListItem = new List<Item>();
         }
 
@@ -38,8 +37,6 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
 
         public ObservableCollection<ImportStockSubViewModelItem> ImportStockListItem { get; set; }
-        public IList<Partner> ListPartner { get; set; }
-        public Partner SelectedPartner { get; set; }
 
         public string ImportStockCode
         {

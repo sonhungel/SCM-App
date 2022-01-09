@@ -5,6 +5,7 @@ using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -86,7 +87,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             }
         }
         public DateTime? UserBirthDay { get; set; }
-        public string UserRole  => Model.Title;
+        public string UserRole  => Model.role;
 
         public IList<Province> ProvinceList { get; set; }
         public IList<District> DistrictList { get; set; }
@@ -94,12 +95,12 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public Province SelectedProvince
         {
-            get => Model.Province;
+            get => ProvinceList.SingleOrDefault(x => x.Id == Model.province);
             set
             {
                 if (value == null)
                     return;
-                Model.Province = value;
+                Model.province = value.Id;
                 WardList = null;
                 OnPropertyChanged(nameof(WardList));
                 DistrictList = value.Districts;
@@ -108,26 +109,41 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
         public District SelectedDistrict
         {
-            get => Model.District;
+            get
+            {
+                if (SelectedProvince != null && DistrictList != null)
+                {
+                    return DistrictList.SingleOrDefault(x => x.Id == Model.district);
+                }
+                return null;
+            }
             set
             {
                 if (value == null)
                     return;
-                Model.District = value;
+                Model.district = value.Id;
                 WardList = value.Wards;
                 OnPropertyChanged(nameof(WardList));
             }
         }
         public Ward SelectedWard
         {
-            get => Model.Ward;
+            get
+            {
+                if (SelectedDistrict != null && WardList != null)
+                {
+                    return WardList.SingleOrDefault(x => x.Id == Model.ward);
+                }
+                return null;
+            }
             set
             {
-                Model.Ward = value;
+                if (value == null)
+                    return;
+                Model.ward = value.Id;
                 OnPropertyChanged(nameof(SelectedWard));
             }
         }
-
         public string StreetAddress
         {
             get => Model.address;

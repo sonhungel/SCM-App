@@ -14,12 +14,12 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         }
         public Customer Model;
         
-        public string CustomerCode => Model.CustomerCode;
-        public string CustomerName => Model.CustomerName;
-        public string CustomerPhoneNumber => Model.CustomerPhoneNumber;
-        public string CustomerAddress => $"{Model.StreetAddress}_{Model.WardAddress}_{Model.DistrictAddress}_{Model.ProvinceAddress}";
+        public string CustomerCode => Model.customerNumber;
+        public string CustomerName => Model.name;
+        public string CustomerPhoneNumber => Model.phoneNumber;
+        public string CustomerAddress => $"{Model.address}_{Model.ward}_{Model.district}_{Model.province}";
 
         public string CustomerLastTimeBuy => DateTimeHelper.DateTimeToStandardString(Model.LastTimeBuy);
-        public int TotalMoney => Model.TotalMoneyWasBought;
+        public int TotalMoney => Model.paid;
     }
 }

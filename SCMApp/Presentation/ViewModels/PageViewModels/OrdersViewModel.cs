@@ -3,6 +3,7 @@ using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
 using System;
@@ -23,18 +24,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             OpenSellViewCommand = new RelayCommand(p => OpenSellView());
             DeleteOrderCommand = new RelayCommand(p => DeleteOrder((string)p));
 
-            OrderList = new ObservableCollection<OrderViewModelItem>()
-            {
-                new OrderViewModelItem( new Order()
-                {
-                    OrderCode = "12312",
-                    OrderTime = DateTime.Now,
-                    CustomerName = "Sonhungel",
-                    TotalPrice = 33333,
-                    CustomerPaid = 40000
-                })
-               
-            };
+            OrderList = new ObservableCollection<OrderViewModelItem>();
         }
 
         public ICommand OpenSellViewCommand { get; set; }
@@ -73,7 +63,14 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public void Construct()
         {
             IsLoaded = true;
-            //Get all invoice
+            using (new WaitCursorScope())
+            {
+                var allInvoice = _invoiceWebAPI.GetAllInvoice(Token);
+                foreach (var invoice in allInvoice)
+                {
+                    OrderList.Add(new OrderViewModelItem(invoice));
+                }
+            }
             IsHaveNoData = !OrderList.Any();
         }
 

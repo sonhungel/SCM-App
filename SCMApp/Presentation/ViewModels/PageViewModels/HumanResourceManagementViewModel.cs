@@ -3,6 +3,7 @@ using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.MainView;
 using System;
@@ -16,14 +17,13 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
     class HumanResourceManagementViewModel : ViewModelBase, IPageViewModel
     {
         private readonly IUserWebAPI _userWebAPI;
-        public HumanResourceManagementViewModel(IUserWebAPI userWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly IUserWebAPI _loginWebAPI;
+        public HumanResourceManagementViewModel(IUserWebAPI userWebAPI, IUserWebAPI loginWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _userWebAPI = userWebAPI;
+            _loginWebAPI = loginWebAPI;
             OpenInsertUserProfileViewCommand = new RelayCommand(p => OpenInsertUserProfileView());
-            HRMList = new ObservableCollection<HumanResourceManagementViewModelItem>()
-            {
-                new HumanResourceManagementViewModelItem(new UserProfile())
-            };
+            HRMList = new ObservableCollection<HumanResourceManagementViewModelItem>();
 
             EditUserCommand = new RelayCommand(p => EditUserProfile((string)p));
             DeleteUserCommand = new RelayCommand(p => DeleteUser((string)p));
@@ -58,7 +58,14 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public void Construct()
         {
             IsLoaded = true;
-            //_userWebAPI.GetAllUserProfile();
+            using (new WaitCursorScope())
+            {
+                var allUser = _loginWebAPI.GetAllUserProfile(Token);
+                foreach (var user in allUser)
+                {
+                    HRMList.Add(new HumanResourceManagementViewModelItem(user));
+                }
+            }
             IsHaveNoData = !HRMList.Any();
         }
 

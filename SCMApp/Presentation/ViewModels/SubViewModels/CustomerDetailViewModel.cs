@@ -7,6 +7,7 @@ using SCMApp.ViewManager;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
@@ -29,38 +30,38 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         private Customer Model;
         public string CustomerName 
         {
-            get => Model.CustomerName;
+            get => Model.name;
             set
             {
-                Model.CustomerName = value;
+                Model.name = value;
                 OnPropertyChanged(nameof(CustomerName));
             }
         }
         public string CustomerCode
         {
-            get => Model.CustomerCode;
+            get => Model.customerNumber;
             set
             {
-                Model.CustomerCode = value;
+                Model.customerNumber = value;
                 OnPropertyChanged(nameof(CustomerCode));
             }
         }
 
         public string CustomerPhoneNumber
         {
-            get => Model.CustomerPhoneNumber;
+            get => Model.phoneNumber;
             set
             {
-                Model.CustomerPhoneNumber = value;
+                Model.phoneNumber = value;
                 OnPropertyChanged(nameof(CustomerPhoneNumber));
             }
         }
         public string CustomerEmail
         {
-            get => Model.CustomerEmail;
+            get => Model.email;
             set
             {
-                Model.CustomerEmail = value;
+                Model.email = value;
                 OnPropertyChanged(nameof(CustomerEmail));
             }
         }
@@ -68,25 +69,25 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         {
             get 
             {
-                if(Model.CustomerBirthDay != DateTime.MinValue)
-                    return Model.CustomerBirthDay;
+                if(Model.dateOfBirth != DateTime.MinValue)
+                    return Model.dateOfBirth;
                 return null;
             }
             set
             {
                 if (value.HasValue)
                 {
-                    Model.CustomerBirthDay = value.Value;
+                    Model.dateOfBirth = value.Value;
                     OnPropertyChanged(nameof(CustomerBirthDay));
                 }
             }
         }
         public string TaxCode
         {
-            get => Model.TaxCode;
+            get => Model.taxNumber;
             set
             {
-                Model.TaxCode = value;
+                Model.taxNumber = value;
                 OnPropertyChanged(nameof(TaxCode));
             }
         }
@@ -94,10 +95,10 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public List<string> Gender { get; set; }
         public string SelectedGender 
         {
-            get => Model.Gender;
+            get => Model.sex? "Nam" : "Nữ";
             set
             {
-                Model.Gender = value;
+                Model.sex = value == "Nam"? true : false;
                 OnPropertyChanged(nameof(Gender));
             }
         }
@@ -107,14 +108,14 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public IList<District> DistrictList { get; set; }
         public IList<Ward> WardList { get; set; }
 
-        public Province SelectedProvince 
+        public Province SelectedProvince
         {
-            get => Model.ProvinceAddress;
+            get => ProvinceList.SingleOrDefault(x => x.Id == Model.province);
             set
             {
                 if (value == null)
                     return;
-                Model.ProvinceAddress = value;
+                Model.province = value.Id;
                 WardList = null;
                 OnPropertyChanged(nameof(WardList));
                 DistrictList = value.Districts;
@@ -123,22 +124,38 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
         public District SelectedDistrict
         {
-            get => Model.DistrictAddress;
+            get
+            {
+                if (SelectedProvince != null && DistrictList != null)
+                {
+                    return DistrictList.SingleOrDefault(x => x.Id == Model.district);
+                }
+                return null;
+            }
             set
             {
                 if (value == null)
                     return;
-                Model.DistrictAddress = value;
+                Model.district = value.Id;
                 WardList = value.Wards;
                 OnPropertyChanged(nameof(WardList));
             }
         }
         public Ward SelectedWard
         {
-            get => Model.WardAddress;
+            get
+            {
+                if (SelectedDistrict != null && WardList != null)
+                {
+                    return WardList.SingleOrDefault(x => x.Id == Model.ward);
+                }
+                return null;
+            }
             set
             {
-                Model.WardAddress = value;
+                if (value == null)
+                    return;
+                Model.ward = value.Id;
                 OnPropertyChanged(nameof(SelectedWard));
             }
         }
@@ -146,10 +163,10 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public string StreetAddress 
         {
-            get => Model.StreetAddress;
+            get => Model.address;
             set
             {
-                Model.StreetAddress = value;
+                Model.address = value;
                 OnPropertyChanged(nameof(StreetAddress));
             }
         }

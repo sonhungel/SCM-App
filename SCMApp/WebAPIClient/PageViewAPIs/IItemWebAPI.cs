@@ -8,8 +8,8 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 {
     public interface IItemWebAPI
     {
-        void GetAllItem();
-        Item GetItemByItemNumber(GetItemByNumberRequest numberRequest, string token);
+        IList<Item> GetAllItem(string token);
+        Item GetItemByItemNumber(string numberRequest, string token);
         void CreateItem();
         void UpdateItem();
         void DeleteItem();

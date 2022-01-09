@@ -47,10 +47,12 @@ namespace SCMApp.ViewManager
             GC.Collect();
         }
 
-        public void ShowPartnerDetailView(Window parentWindow, string token)
+        public void ShowPartnerDetailView(Window parentWindow, Partner partner, string token)
         {
             var view = new PartnerDetailView();
             var viewModel = new PartnerDetailViewModel(token, IoC.Get<IScreenManager>());
+            if (partner != null)
+                viewModel.Model = partner;
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
@@ -72,10 +74,12 @@ namespace SCMApp.ViewManager
             view.ShowDialog();
         }
 
-        public void ShowStockDetailView(Window parentWindow, string token)
+        public void ShowStockDetailView(Window parentWindow, Item item, string token)
         {
             var view = new StockDetailView();
             var viewModel = new StockDetailViewModel(token, IoC.Get<IScreenManager>());
+            if(item != null)
+                viewModel.Model = item;
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;

@@ -3,6 +3,7 @@ using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
 using System;
@@ -24,8 +25,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             OpenCustomerViewCommand = new RelayCommand(p => OpenCustomerView());
             OpenPartnerViewCommand = new RelayCommand(p => OpenPartnerView());
 
-            CustomerList = new ObservableCollection<CustomerViewModelItem>() { new CustomerViewModelItem(new Customer()) };
-            PartnerList = new ObservableCollection<PartnerViewModelItem>() { new PartnerViewModelItem(new Partner()) };
+            CustomerList = new ObservableCollection<CustomerViewModelItem>();
+            PartnerList = new ObservableCollection<PartnerViewModelItem>();
 
             EditCustomerCommand = new RelayCommand(p => EditCustomer((string)p));
             DeleteCustomerCommand = new RelayCommand(p => DeleteCustomer((string)p));
@@ -54,6 +55,19 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public void Construct()
         {
             IsLoaded = true;
+            using (new WaitCursorScope())
+            {
+                var allCustomer = _customerWebAPI.GetAllCustomer(Token);
+                foreach (var customer in allCustomer)
+                {
+                    CustomerList.Add(new CustomerViewModelItem(customer));
+                }
+                var allPartner = _partnerWebAPI.GetAllSupplier(Token);
+                foreach (var partner in allPartner)
+                {
+                    PartnerList.Add(new PartnerViewModelItem(partner));
+                }
+            }
         }
 
         private void OpenCustomerView()
@@ -63,7 +77,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void OpenPartnerView()
         {
-            ScreenManager.ShowPartnerDetailView(View,Token);
+            ScreenManager.ShowPartnerDetailView(View,null,Token);
         }
 
         private void EditCustomer(string customerCode)
@@ -81,7 +95,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void EditPartner(string partnerCode)
         {
-            ScreenManager.ShowPartnerDetailView(View, Token);
+            var partner = new Partner();
+            ScreenManager.ShowPartnerDetailView(View,partner, Token);
         }
         private void DeletePartner(string partnerCode)
         {

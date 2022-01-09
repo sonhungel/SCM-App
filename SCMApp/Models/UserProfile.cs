@@ -16,12 +16,12 @@ namespace SCMApp.Models
         public string password { get; set; }
         public string VerifyPassword { get; set; }
         public string email { get; set; }
-        public string Title { get; set; }
+        public string role { get; set; }
         public string phoneNumber { get; set; }
         public DateTime dateOfBirth { get; set; }
-        public Province Province { get; set; }
-        public District District { get; set; }
-        public Ward Ward { get; set; }
+        public int province { get; set; }
+        public int district { get; set; }
+        public int ward { get; set; }
         public string address { get; set; }
     }
 }

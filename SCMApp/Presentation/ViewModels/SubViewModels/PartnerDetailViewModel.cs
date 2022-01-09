@@ -4,6 +4,7 @@ using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
@@ -90,12 +91,12 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public Province SelectedProvince
         {
-            get => Model.province;
+            get => ProvinceList.SingleOrDefault(x => x.Id == Model.province);
             set
             {
                 if (value == null)
                     return;
-                Model.province = value;
+                Model.province = value.Id;
                 WardList = null;
                 OnPropertyChanged(nameof(WardList));
                 DistrictList = value.Districts;
@@ -104,22 +105,38 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
         public District SelectedDistrict
         {
-            get => Model.district;
+            get
+            {
+                if (SelectedProvince != null && DistrictList != null)
+                {
+                    return DistrictList.SingleOrDefault(x => x.Id == Model.district);
+                }
+                return null;
+            }
             set
             {
                 if (value == null)
                     return;
-                Model.district = value;
+                Model.district = value.Id;
                 WardList = value.Wards;
                 OnPropertyChanged(nameof(WardList));
             }
         }
         public Ward SelectedWard 
         {
-            get => Model.ward;
+            get
+            {
+                if (SelectedDistrict != null && WardList != null)
+                {
+                    return WardList.SingleOrDefault(x => x.Id == Model.ward);
+                }
+                return null;
+            }
             set
             {
-                Model.ward = value;
+                if(value == null)
+                    return;
+                Model.ward = value.Id;
                 OnPropertyChanged(nameof(SelectedWard));
             }
         }

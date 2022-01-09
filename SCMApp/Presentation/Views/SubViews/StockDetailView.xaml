@@ -119,9 +119,11 @@
 
                         <Label Grid.Row="4" Grid.Column="0" Content="Nhóm hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Grid.Row="5" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <ComboBox IsEditable="False" ItemsSource="{Binding ItemTypes}"
-                                      DisplayMemberPath="itemTypeName" SelectedItem="{Binding SelectedItemType}"
-                                      Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                            <ComboBox Grid.Row="5" Grid.Column="0" IsEditable="False" ItemsSource="{Binding ItemTypes}" IsReadOnly="True"
+                                      DisplayMemberPath="typeName" SelectedValuePath="typeName"
+                                      SelectedValue="{Binding SelectedItemType.typeName, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding SelectedItemType, UpdateSourceTrigger=PropertyChanged}"
+                                      Cursor="Hand" Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                         <StackPanel Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal">
                             <Label Content="Giá vốn" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
@@ -174,7 +176,13 @@
                         </StackPanel>
 
                         <Label Grid.Row="8" Grid.Column="0" Content="Nhà cung cấp" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="9" Grid.Column="0" Content="{Binding SupplierName}" Style="{StaticResource NormalLabel}" Padding="50,0,0,0"/>
+                        <Border Grid.Row="9" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                            <ComboBox Grid.Row="5" Grid.Column="0" IsEditable="False" ItemsSource="{Binding ItemTypes}" IsReadOnly="True"
+                                      DisplayMemberPath="typeName" SelectedValuePath="typeName"
+                                      SelectedValue="{Binding SelectedItemType.typeName, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding SelectedItemType, UpdateSourceTrigger=PropertyChanged}"
+                                      Cursor="Hand" Style="{StaticResource RoundedComboBox}"/>
+                        </Border>
                         
                         <Label Grid.Row="0" Grid.Column="2" Content="Số lượng hàng trong kho" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Grid.Row="1" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
@@ -210,28 +218,6 @@
                                                 <Setter Property="Visibility" Value="Collapsed"/>
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding Text, ElementName=MinInventory}" Value="">
-                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                </Grid>
-                            </Border>
-                        </Border>
-
-                        <Label Grid.Row="4" Grid.Column="2" Content="Tồn kho tối đa" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Border Grid.Row="5" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
-                                <Grid Height="Auto">
-                                    <TextBox x:Name="MaxInventory" Text="{Binding StockMaxInventoryQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                             FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
-                                    <TextBlock Margin="20,0,0,0" Text="Số lượng tồn kho tối đa..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Visibility" Value="Collapsed"/>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text, ElementName=MaxInventory}" Value="">
                                                         <Setter Property="Visibility" Value="Visible"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>

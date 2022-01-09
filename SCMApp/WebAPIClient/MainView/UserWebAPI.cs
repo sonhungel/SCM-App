@@ -12,10 +12,8 @@ namespace SCMApp.WebAPIClient.MainView
     {
         public UserWebAPI(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {
-           
         }
-
-        public override string RoutePrefix => RouteConstants.UserRoleApi;
+        public override string RoutePrefix => RouteConstants.LoginApi;
 
         public void AddUser()
         {
@@ -27,15 +25,19 @@ namespace SCMApp.WebAPIClient.MainView
             throw new NotImplementedException();
         }
 
-        public void GetAllUserProfile()
+        public IList<UserProfile> GetAllUserProfile(string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Get<GetAllUserResponse>(RouteConstants.GetAllUser, token)).Result.data;
         }
 
-        public UserProfile GetUserProfile(string token)
+        public LoginResponse GetToken(LoginRequest infor)
         {
-            var response = Task.Run(() => Get<GetUserProfileResponse>(RouteConstants.GetUserProfile, token)).Result;
-            return response.data;
+            return Task.Run(() => Post<LoginResponse>(RouteConstants.LoginApiGetToken, infor, string.Empty)).Result;
+        }
+
+        public UserProfile GetUserProfileBaseOnToken(string token)
+        {
+            return Task.Run(() => Get<GetUserProfileResponse>(RouteConstants.GetUserProfileBaseOnToken, token)).Result.data;
         }
 
         public void UpdateUser()

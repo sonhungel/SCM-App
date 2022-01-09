@@ -11,9 +11,9 @@ namespace SCMApp.Models
         public string name { get; set; }
         public string phoneNumber { get; set; }
         public string email { get; set; }
-        public Province province { get; set; }
-        public District district { get; set; }
-        public Ward ward { get; set; }
+        public int province { get; set; }
+        public int district { get; set; }
+        public int ward { get; set; }
         public string address { get; set; }
         public bool type { get; set; }
         public string taxNumber { get; set; }

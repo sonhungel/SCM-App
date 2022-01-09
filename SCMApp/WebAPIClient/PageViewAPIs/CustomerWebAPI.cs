@@ -1,6 +1,10 @@
-﻿using System;
+﻿using SCMApp.Constants;
+using SCMApp.Models;
+using SCMApp.WebAPIClient.Request_Response;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
 {
@@ -9,6 +13,8 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
         public CustomerWebAPI(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {
         }
+
+        public override string RoutePrefix => RouteConstants.CustomerApi;
 
         public void AddCustomer()
         {
@@ -20,9 +26,9 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
             throw new NotImplementedException();
         }
 
-        public void GetAllCustomer()
+        public IList<Customer> GetAllCustomer(string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Get<GetAllResponse<Customer>>(RouteConstants.GetAllCustomer, token)).Result.data;
         }
 
         public void UpdateCustomer()

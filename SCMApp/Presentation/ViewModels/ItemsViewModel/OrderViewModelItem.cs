@@ -15,10 +15,9 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         }
 
         Order Model { get; set; } 
-        public string OrderCode => Model.OrderCode;
-        public string OrderTime => DateTimeHelper.DateTimeToStandardString(Model.OrderTime);
-        public string CustomerName => Model.CustomerName;
-        public decimal TotalPrice => Model.TotalPrice;
-        public decimal CustomerPaid => Model.CustomerPaid;
+        public int OrderCode => Model.id;
+        public string OrderTime => DateTimeHelper.DateTimeToStandardString(Model.addedDate);
+        public string CustomerName => Model.customer.name;
+        public int TotalPrice => Model.paid;
     }
 }

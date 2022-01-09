@@ -102,9 +102,6 @@
                     <DataTemplate x:Key="TotalPrice">
                         <TextBlock Text="{Binding TotalPrice}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="CustomerPaid">
-                        <TextBlock Text="{Binding CustomerPaid}" Style="{StaticResource DataGridTextBlock}"/>
-                    </DataTemplate>
                     <DataTemplate x:Key="Option">
                         <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
                                 Command="{Binding DataContext.DeleteOrderCommand, ElementName=OrderGrid}" CommandParameter="{Binding OrderCode}"
@@ -123,7 +120,6 @@
                     <DataGridTemplateColumn Width="0.8*" Header="Thời gian" CellTemplate="{StaticResource OrderTime}"/>
                     <DataGridTemplateColumn Width="1.4*" Header="Khách hàng" CellTemplate="{StaticResource CustomerName}"/>
                     <DataGridTemplateColumn Width="1.2*" Header="Tổng tiền hàng" CellTemplate="{StaticResource TotalPrice}"/>
-                    <DataGridTemplateColumn Width="1.2*" Header="Khách đã trả" CellTemplate="{StaticResource CustomerPaid}"/>
                     <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>
                 </DataGrid.Columns>
             </DataGrid>

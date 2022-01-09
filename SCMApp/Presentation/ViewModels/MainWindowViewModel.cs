@@ -46,7 +46,7 @@ namespace SCMApp.Presentation.ViewModels
         public Visibility isManager => Visibility.Visible; //MainUser.Title == "Chủ cửa hàng" ? Visibility.Visible : Visibility.Hidden;
 
         public string MainUserName => $"Tên: {MainUser?.username}";
-        public string MainUserTitle => $"Chức vụ: {MainUser?.Title}";
+        public string MainUserTitle => $"Chức vụ: {MainUser?.role}";
 
         private void ChangeViewModel(string pageName)
         {
@@ -60,7 +60,7 @@ namespace SCMApp.Presentation.ViewModels
 
         public void InitAllPageViewModel()
         {
-            IPageViewModel pageView = new HumanResourceManagementViewModel(IoC.Get<IUserWebAPI>(),Token,ScreenManager) { View = this.View};
+            IPageViewModel pageView = new HumanResourceManagementViewModel(IoC.Get<IUserWebAPI>(), IoC.Get<IUserWebAPI>(), Token,ScreenManager) { View = this.View};
             _allPageViewModels.Add(pageView);
             pageView = new ImportStockViewModel(IoC.Get<IImportStockWebAPI>(),Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);

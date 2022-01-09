@@ -170,22 +170,14 @@
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
-                            <RowDefinition/>
+                            <RowDefinition Height="60"/>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" VerticalAlignment="Stretch" Orientation="Vertical">
                             <Label Grid.Row="0" Content="THANH TOÁN" Margin="0,15,0,0" Style="{StaticResource NormalLabel}" FontSize="24" Padding="10,0,0,0"/>
-                            <Border Height="20"/>
-                            <Label Grid.Row="0" Content="Lựa chọn đối tác" Style="{StaticResource NormalLabel}" FontSize="14" Padding="10,0,0,0"/>
                         </StackPanel>
-
-                        <Border Grid.Row="1" Margin="20" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <ComboBox IsEditable="False" Cursor="Hand" IsReadOnly="True" 
-                                      ItemsSource="{Binding ListPartner}" DisplayMemberPath="PartnerName" SelectedItem="{Binding SelectedPartner}" 
-                                      Style="{StaticResource RoundedComboBox}"/>
-                        </Border>
                         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Mã nhập hàng" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                             <Border Width="25"/>

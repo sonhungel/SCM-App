@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.ItemsViewModel
@@ -16,8 +17,8 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         public string UserName => Model.username;
         public string Name => Model.fullName;
         public string Email => Model.email;
-        public string Title => Model.Title;
+        public string Title => Model.role;
         public string PhoneNumber => Model.phoneNumber;
-
+        public Visibility isUserBeingLogin;
     }
 }
