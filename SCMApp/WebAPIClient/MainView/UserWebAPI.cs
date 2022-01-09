@@ -27,7 +27,7 @@ namespace SCMApp.WebAPIClient.MainView
 
         public IList<UserProfile> GetAllUserProfile(string token)
         {
-            return Task.Run(() => Get<GetAllUserResponse>(RouteConstants.GetAllUser, token)).Result.data;
+            return Task.Run(() => Get<GetAllResponse<UserProfile>>(RouteConstants.GetAllUser, token)).Result.data;
         }
 
         public LoginResponse GetToken(LoginRequest infor)

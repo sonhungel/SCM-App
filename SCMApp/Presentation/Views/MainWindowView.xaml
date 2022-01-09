@@ -133,6 +133,7 @@
                                         <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="150"/>
                                         <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="120"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <!--Name of function-->
@@ -163,7 +164,8 @@
                                             </Grid>
                                         </Border>
                                     </Border>
-                                    <Button Grid.Column="2" Content="Tìm kiếm" Cursor="Hand" Margin="15,0,15,0" Height="50" Foreground="White" Style="{StaticResource Button3DRounded}" Background="#0167cc"/>
+                                    <Button Grid.Column="2" Content="Tìm kiếm" Cursor="Hand" Margin="15,0,15,0" Height="50" 
+                                            Foreground="White" Style="{StaticResource Button3DRounded}" Background="#0167cc"/>
                                     
                                     <Border Grid.Column="3" CornerRadius="50" Background="Transparent">
                                         <!--Profile Icon-->
@@ -185,7 +187,10 @@
                                             </MenuItem>
                                         </Menu>
                                     </Border>
-                                    <Grid Grid.Column="4" >
+                                    <Button Grid.Column="4" Content="Làm mới" Cursor="Hand" Margin="15,0,15,0" Height="50" 
+                                            Command="{Binding RefreshCommand}"
+                                            Foreground="White" Style="{StaticResource Button3DRounded}" Background="#39a36e"/>
+                                    <Grid Grid.Column="5" >
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="2.2*"/>
                                             <ColumnDefinition Width="1*"/>

@@ -63,6 +63,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public void Construct()
         {
             IsLoaded = true;
+            OrderList.Clear();
             using (new WaitCursorScope())
             {
                 var allInvoice = _invoiceWebAPI.GetAllInvoice(Token);

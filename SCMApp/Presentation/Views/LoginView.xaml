@@ -89,10 +89,10 @@
                         </TextBlock>
 
                         <!--Custom Email textbox-->
-                        <CustomControls:TextBoxWithPlaceHolder Grid.Row="1" PlaceHolder="Email" Text="{Binding LoginEmail, Mode=TwoWay}"/>
+                        <CustomControls:TextBoxWithPlaceHolder Grid.Row="1" PlaceHolder="Tên đăng nhập" Text="{Binding LoginEmail, Mode=TwoWay}"/>
 
                         <!--Password TextBox-->
-                        <CustomControls:TextBoxWithPlaceHolder  Grid.Row="2" PlaceHolder="Password" 
+                        <CustomControls:TextBoxWithPlaceHolder  Grid.Row="2" PlaceHolder="Mật khẩu" 
                                                                 Text="{Binding LoginPassword, Mode=TwoWay}"/>
 
                         <Grid Grid.Row="3" Height="50" Margin="0,10,0,0" HorizontalAlignment="Center">

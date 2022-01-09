@@ -177,10 +177,10 @@
 
                         <Label Grid.Row="8" Grid.Column="0" Content="Nhà cung cấp" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Grid.Row="9" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <ComboBox Grid.Row="5" Grid.Column="0" IsEditable="False" ItemsSource="{Binding ItemTypes}" IsReadOnly="True"
-                                      DisplayMemberPath="typeName" SelectedValuePath="typeName"
-                                      SelectedValue="{Binding SelectedItemType.typeName, UpdateSourceTrigger=PropertyChanged}"
-                                      SelectedItem="{Binding SelectedItemType, UpdateSourceTrigger=PropertyChanged}"
+                            <ComboBox Grid.Row="5" Grid.Column="0" IsEditable="False" ItemsSource="{Binding Partners}" IsReadOnly="True"
+                                      DisplayMemberPath="name" SelectedValuePath="name"
+                                      SelectedValue="{Binding SelectedPartner.name, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding SelectedPartner, UpdateSourceTrigger=PropertyChanged}"
                                       Cursor="Hand" Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                         

@@ -1,7 +1,9 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Models;
+using SCMApp.WebAPIClient.Request_Response;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
 {
@@ -13,9 +15,10 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public override string RoutePrefix => RouteConstants.ItemTypeApi;
 
-        public void GetAllItemType()
+
+        public IList<ItemType> GetAllItemType(string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Get<GetAllResponse<ItemType>>(RouteConstants.GetAllItemType, token)).Result.data;
         }
     }
 }

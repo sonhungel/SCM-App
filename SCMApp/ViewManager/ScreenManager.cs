@@ -3,6 +3,7 @@ using SCMApp.Presentation.ViewModels;
 using SCMApp.Presentation.ViewModels.SubViewModels;
 using SCMApp.Presentation.Views;
 using SCMApp.Presentation.Views.SubViews;
+using SCMApp.WebAPIClient.PageViewAPIs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,10 +13,12 @@ namespace SCMApp.ViewManager
 {
     public class ScreenManager : IScreenManager
     {
-        public void ShowCustomerDetailView(Window parentWindow, string token)
+        public void ShowCustomerDetailView(Window parentWindow, Customer customer, string token)
         {
             var view = new CustomerDetailView();
             var viewModel = new CustomerDetailViewModel(token, IoC.Get<IScreenManager>());
+            if (customer != null)
+                viewModel.Model = customer;
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
@@ -77,7 +80,8 @@ namespace SCMApp.ViewManager
         public void ShowStockDetailView(Window parentWindow, Item item, string token)
         {
             var view = new StockDetailView();
-            var viewModel = new StockDetailViewModel(token, IoC.Get<IScreenManager>());
+            var viewModel = new StockDetailViewModel(IoC.Get<IItemTypeWebAPI>(), IoC.Get<IPartnerWebAPI>(), IoC.Get<IItemWebAPI>(),
+                token, IoC.Get<IScreenManager>());
             if(item != null)
                 viewModel.Model = item;
             viewModel.View = view;

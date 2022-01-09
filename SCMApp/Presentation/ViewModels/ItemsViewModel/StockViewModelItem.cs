@@ -12,7 +12,7 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         public Item Model;
 
         public string StockName => Model.name;
-        public int StockCode => Model.id;
+        public int StockCode => Model.itemNumber;
 
         public int StockOriginPrice => Model.cost;
         public int StockRetailPrice => Model.salesPrice;

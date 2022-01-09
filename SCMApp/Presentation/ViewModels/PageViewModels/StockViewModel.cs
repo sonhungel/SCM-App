@@ -57,6 +57,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public void Construct()
         {
             IsLoaded = true;
+            StockList.Clear();
             using (new WaitCursorScope())
             {
                 var allitem = _itemWebAPI.GetAllItem(Token);
@@ -78,11 +79,12 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void EditStock(int stockCode)
         {
-            Item updateItem = null;
-            using (new WaitCursorScope())
-            {
-                updateItem = _itemWebAPI.GetItemByItemNumber(123.ToString(), Token);
-            }
+            //Item updateItem = null;
+            //using (new WaitCursorScope())
+            //{
+            //    updateItem = _itemWebAPI.GetItemByItemNumber(stockCode.ToString(), Token);
+            //}
+            var updateItem = StockList.SingleOrDefault(x => x.StockCode == stockCode).Model;
             ScreenManager.ShowStockDetailView(View, updateItem, Token);
         }
         private void DeleteStock(int stockCode)

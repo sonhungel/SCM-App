@@ -73,15 +73,13 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
 
         public List<string> PartnerType { get; set; }
-        public string SelectedPartnerType { get; set; }
-
-        public string StreetAddress
+        public string SelectedPartnerType 
         {
-            get => Model.address;
+            get => Model.type ? "Doanh nghiệp" : "Cá nhân";
             set
             {
-                Model.address = value;
-                OnPropertyChanged(nameof(StreetAddress));
+                Model.type = value == "Doanh nghiệp" ? true : false;
+                OnPropertyChanged(nameof(SelectedPartnerType));
             }
         }
 
@@ -91,7 +89,12 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public Province SelectedProvince
         {
-            get => ProvinceList.SingleOrDefault(x => x.Id == Model.province);
+            get
+            {
+                var province = ProvinceList.SingleOrDefault(x => x.Id == Model.province);
+                DistrictList = province?.Districts;
+                return province;
+            }
             set
             {
                 if (value == null)
@@ -109,7 +112,9 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 if (SelectedProvince != null && DistrictList != null)
                 {
-                    return DistrictList.SingleOrDefault(x => x.Id == Model.district);
+                    var district = DistrictList.SingleOrDefault(x => x.Id == Model.district);
+                    WardList = district?.Wards;
+                    return district;
                 }
                 return null;
             }
@@ -122,7 +127,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChanged(nameof(WardList));
             }
         }
-        public Ward SelectedWard 
+        public Ward SelectedWard
         {
             get
             {
@@ -134,10 +139,20 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             }
             set
             {
-                if(value == null)
+                if (value == null)
                     return;
                 Model.ward = value.Id;
                 OnPropertyChanged(nameof(SelectedWard));
+            }
+        }
+
+        public string StreetAddress
+        {
+            get => Model.address;
+            set
+            {
+                Model.address = value;
+                OnPropertyChanged(nameof(StreetAddress));
             }
         }
 

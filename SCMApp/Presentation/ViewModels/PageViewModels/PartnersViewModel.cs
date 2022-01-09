@@ -8,6 +8,7 @@ using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -55,6 +56,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public void Construct()
         {
             IsLoaded = true;
+            PartnerList.Clear();
+            CustomerList.Clear();
             using (new WaitCursorScope())
             {
                 var allCustomer = _customerWebAPI.GetAllCustomer(Token);
@@ -72,7 +75,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void OpenCustomerView()
         {
-            ScreenManager.ShowCustomerDetailView(View,Token);
+            ScreenManager.ShowCustomerDetailView(View,null,Token);
         }
 
         private void OpenPartnerView()
@@ -82,7 +85,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void EditCustomer(string customerCode)
         {
-            ScreenManager.ShowCustomerDetailView(View, Token);
+            var customerUpdate = CustomerList.SingleOrDefault(x => x.CustomerCode == customerCode).Model;
+            ScreenManager.ShowCustomerDetailView(View, customerUpdate, Token);
         }
         private void DeleteCustomer(string customerCode)
         {
@@ -95,7 +99,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void EditPartner(string partnerCode)
         {
-            var partner = new Partner();
+            var partner = PartnerList.SingleOrDefault(x => x.PartnerCode == partnerCode).Model;
             ScreenManager.ShowPartnerDetailView(View,partner, Token);
         }
         private void DeletePartner(string partnerCode)

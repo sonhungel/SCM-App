@@ -17,11 +17,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
     class HumanResourceManagementViewModel : ViewModelBase, IPageViewModel
     {
         private readonly IUserWebAPI _userWebAPI;
-        private readonly IUserWebAPI _loginWebAPI;
-        public HumanResourceManagementViewModel(IUserWebAPI userWebAPI, IUserWebAPI loginWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
+        public HumanResourceManagementViewModel(IUserWebAPI userWebAPI, UserProfile user, string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _userWebAPI = userWebAPI;
-            _loginWebAPI = loginWebAPI;
+            MainUser = user;
             OpenInsertUserProfileViewCommand = new RelayCommand(p => OpenInsertUserProfileView());
             HRMList = new ObservableCollection<HumanResourceManagementViewModelItem>();
 
@@ -58,15 +57,22 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public void Construct()
         {
             IsLoaded = true;
+            HRMList.Clear();
             using (new WaitCursorScope())
             {
-                var allUser = _loginWebAPI.GetAllUserProfile(Token);
+                var allUser = _userWebAPI.GetAllUserProfile(Token);
                 foreach (var user in allUser)
                 {
-                    HRMList.Add(new HumanResourceManagementViewModelItem(user));
+                    if(user.username == MainUser.username)
+                    {
+                        HRMList.Add(new HumanResourceManagementViewModelItem(user,Visibility.Hidden));
+                        continue;
+                    }    
+                    HRMList.Add(new HumanResourceManagementViewModelItem(user, Visibility.Visible));
                 }
             }
             IsHaveNoData = !HRMList.Any();
+            OnPropertyChanged(nameof(HRMList));
         }
 
         private void OpenInsertUserProfileView()
@@ -77,7 +83,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         private void EditUserProfile(string p)
         {
             // get user from list => edit
-            ScreenManager.ShowUserProfileView(View, null, Token);
+            var updatedUser = HRMList.SingleOrDefault(x => x.UserName == p).Model;
+            ScreenManager.ShowUserProfileView(View, updatedUser, Token);
         }
 
         private void DeleteUser(string p)

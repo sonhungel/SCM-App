@@ -41,11 +41,13 @@ namespace SCMApp.Presentation.ViewModels
         public ICommand ChangePageCommand { get; set; }
         public ICommand OpenUserProfileCommand { get; set; }
 
+        public ICommand RefreshCommand { get; set; }
+
         public UserProfile MainUser { get; set; }
 
-        public Visibility isManager => Visibility.Visible; //MainUser.Title == "Chủ cửa hàng" ? Visibility.Visible : Visibility.Hidden;
+        public Visibility isManager => MainUser.role == "Quản lý" ? Visibility.Visible : Visibility.Hidden;
 
-        public string MainUserName => $"Tên: {MainUser?.username}";
+        public string MainUserName => $"Tên: {MainUser?.fullName}";
         public string MainUserTitle => $"Chức vụ: {MainUser?.role}";
 
         private void ChangeViewModel(string pageName)
@@ -58,9 +60,14 @@ namespace SCMApp.Presentation.ViewModels
             }
         }
 
+        private void Refresh()
+        {
+            _allPageViewModels.ForEach(x => x.IsLoaded = false);
+        }
+
         public void InitAllPageViewModel()
         {
-            IPageViewModel pageView = new HumanResourceManagementViewModel(IoC.Get<IUserWebAPI>(), IoC.Get<IUserWebAPI>(), Token,ScreenManager) { View = this.View};
+            IPageViewModel pageView = new HumanResourceManagementViewModel(IoC.Get<IUserWebAPI>(),MainUser, Token,ScreenManager) { View = this.View};
             _allPageViewModels.Add(pageView);
             pageView = new ImportStockViewModel(IoC.Get<IImportStockWebAPI>(),Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
@@ -80,6 +87,7 @@ namespace SCMApp.Presentation.ViewModels
 
             ChangeViewModel(CommonConstants.OverviewPageViewName);
             ChangePageCommand = new RelayCommand(p => ChangeViewModel((string)p), p => p is string && !p.Equals(CurrentPageViewModel.NamePage));
+            RefreshCommand = new RelayCommand(p => Refresh(), p => _allPageViewModels.Any(x => x.IsLoaded == true));
         }
 
         private void OpenUserProfileView()

@@ -92,7 +92,12 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public Province SelectedProvince
         {
-            get => ProvinceList.SingleOrDefault(x => x.Id == Model.province);
+            get
+            {
+                var province = ProvinceList.SingleOrDefault(x => x.Id == Model.province);
+                DistrictList = province?.Districts;
+                return province;
+            }
             set
             {
                 if (value == null)
@@ -110,7 +115,9 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 if (SelectedProvince != null && DistrictList != null)
                 {
-                    return DistrictList.SingleOrDefault(x => x.Id == Model.district);
+                    var district = DistrictList.SingleOrDefault(x => x.Id == Model.district);
+                    WardList = district?.Wards;
+                    return district;
                 }
                 return null;
             }
