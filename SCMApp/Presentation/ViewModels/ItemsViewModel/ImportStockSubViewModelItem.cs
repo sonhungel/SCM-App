@@ -1,4 +1,5 @@
-﻿using SCMApp.Presentation.Commands;
+﻿using SCMApp.Models;
+using SCMApp.Presentation.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,13 +12,16 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 {
     public class ImportStockSubViewModelItem: INotifyPropertyChanged
     {
-        public ImportStockSubViewModelItem()
-        { 
-            Quantity = 12;
+        public ImportStockSubViewModelItem(Item item, int orderNumber)
+        {
+            Model = item;
+            OrderNumber = orderNumber;
+            _quantity = 1;
         }
+        public Item Model;
         public int OrderNumber { get; set; }
-        public string StockCode { get; set; }
-        public string StockName { get; set; }
+        public int StockCode => Model.itemNumber;
+        public string StockName => Model.name;
         private int _quantity;
         public int Quantity 
         { 
@@ -26,10 +30,11 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
             {
                 _quantity = value;
                 OnPropertyChanged(nameof(Quantity));
+                OnPropertyChanged(nameof(TotalPrice));
             }
         }
-        public decimal Price { get; set; }
-        public decimal TotalPrice { get; set; }
+        public decimal Price => Model.cost;
+        public decimal TotalPrice => Model.cost * _quantity;
 
         private void VerifyPropertyName(string propertyName)
         {

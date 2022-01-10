@@ -112,7 +112,7 @@
                         <TextBlock Text="{Binding InventoryNumberFact}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
                     <DataTemplate x:Key="QuantityOfFifference">
-                        <TextBlock Text="{Binding QuantityOfFifference}" Style="{StaticResource DataGridTextBlock}"/>
+                        <TextBlock Text="{Binding QuantityOfDifference}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
                     <DataTemplate x:Key="Note">
                         <TextBlock Text="{Binding Note}" Style="{StaticResource DataGridTextBlock}"/>

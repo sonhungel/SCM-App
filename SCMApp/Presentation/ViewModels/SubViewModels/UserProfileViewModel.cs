@@ -20,12 +20,19 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
             ProvinceList = Address.Instance().ProvinceList;
             Model = new UserProfile();
+            IsCreate = true;
+            RoleList = new List<string>()
+            {
+                "Quản lý","Nhân viên"
+            };
         }
 
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
 
         public UserProfile Model { get; set; }
+
+        public bool IsManager => Model.role == "Quản lý" ? true : false;
 
         public string UserFullName
         {
@@ -86,8 +93,27 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChanged(nameof(VerifyPassword));
             }
         }
-        public DateTime? UserBirthDay { get; set; }
-        public string UserRole  => Model.role;
+        public DateTime? UserBirthDay
+        {
+            get => Model.dateOfBirth;
+            set
+            {
+                if (!value.HasValue)
+                    return;
+                Model.dateOfBirth = value.Value;
+                OnPropertyChangedNoInput();
+            }
+        }
+        public IList<string> RoleList { get; set; }
+        public string UserRole
+        {
+            get => Model.role;
+            set
+            {
+                Model.role = value;
+                OnPropertyChangedNoInput();
+            }
+        }
 
         public IList<Province> ProvinceList { get; set; }
         public IList<District> DistrictList { get; set; }
@@ -161,6 +187,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChanged(nameof(StreetAddress));
             }
         }
+
+        public bool IsCreate { get; set; }
 
         private void CancelAction()
         {

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels
 {
@@ -9,5 +6,6 @@ namespace SCMApp.Presentation.ViewModels
     {
         ICommand ICancelCommand { get; }
         ICommand ISaveCommand { get; }
+        bool IsCreate { get; set; }
     }
 }

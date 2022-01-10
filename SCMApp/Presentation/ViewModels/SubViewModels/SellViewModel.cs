@@ -2,7 +2,9 @@
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
+using SCMApp.WebAPIClient.PageViewAPIs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,19 +17,26 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
     public class SellViewModel : ViewModelBase, IWindowViewBase
     {
-        public SellViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly IItemWebAPI _itemWebAPI;
+        private readonly ICustomerWebAPI _customerWebAPI;
+        public SellViewModel(IItemWebAPI itemWebAPI, ICustomerWebAPI customerWebAPI
+            , string token, IScreenManager screenManager) : base(token, screenManager)
         {
+            _itemWebAPI = itemWebAPI;
+            _customerWebAPI = customerWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
             MinusQuantityCommand = new RelayCommand(p => MinusQuantity((int)p));
             PlusQuantityCommand = new RelayCommand(p => PlusQuantity((int)p));
 
-            SellListItem = new ObservableCollection<SellViewModelItem>()
+            SellListItem = new ObservableCollection<SellViewModelItem>();
+
+            using (new WaitCursorScope())
             {
-                new SellViewModelItem()
-            };
-            ListCustomer = new List<Customer>();
-            ListItem = new List<Item>();
+                ListCustomer = _customerWebAPI.GetAllCustomer(token);
+                ListItem = _itemWebAPI.GetAllItem(token);
+            }
+            IsCreate = true;
         }
 
         public ICommand ICancelCommand { get; }
@@ -36,36 +45,92 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public ICommand PlusQuantityCommand { get; }
 
         public IList<Item> ListItem { get; set; }
-        public Item SelectedItem 
-        { 
-            get;
-            set; 
+        private Item _selectedItem;
+        public Item SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                if (SellListItem.Any(x => x.StockCode == value.itemNumber))
+                {
+                    return;
+                }
+                if (SellListItem.Any())
+                {
+                    var newItemToAdd = new SellViewModelItem(value, SellListItem.LastOrDefault().OrderNumber + 1);
+                    SellListItem.Add(newItemToAdd);
+                }
+                else
+                {
+                    var newItemToAdd = new SellViewModelItem(value, 1);
+                    SellListItem.Add(newItemToAdd);
+                }
+                OnPropertyChangedNoInput();
+                OnPropertyChanged(nameof(TotalMoney));
+                OnPropertyChanged(nameof(TotalQuantityOfStock));
+            }
         }
 
         public ObservableCollection<SellViewModelItem> SellListItem { get; set; }
         public IList<Customer> ListCustomer { get; set; }
         public Customer SelectedCustomer { get; set; }
 
-        public int TotalQuantityOfStock
+        public int? TotalQuantityOfStock
         {
-            get;
-            set;
+            get
+            {
+                int quantity = 0;
+                var quantityList = SellListItem.Select(x => x.Quantity).ToList();
+                quantityList.ForEach(x =>
+                {
+                    quantity += x;
+                });
+                return quantity == 0 ? null : quantity;
+            }
         }
 
-        public Decimal TotalMoney
+        public int? TotalMoney
         {
-            get;
-            set;
+            get
+            {
+                int totalMoney = 0;
+                var totalMoneyList = SellListItem.Select(x => x.TotalPrice).ToList();
+                totalMoneyList.ForEach(x =>
+                {
+                    totalMoney += x;
+                });
+                return totalMoney == 0 ? null : totalMoney;
+            }
         }
-        public int MoneyPaidBackForCustomer
+        public int? MoneyPaidBackForCustomer
         {
-            get;
-            set;
+            get
+            {
+                int moneyPayBackForCustomer = 0;
+                if(MoneyCustomerPaid.HasValue && TotalMoney.HasValue && MoneyCustomerPaid.Value!=0)
+                {
+                    moneyPayBackForCustomer = MoneyCustomerPaid.Value - TotalMoney.Value;
+                }    
+                return moneyPayBackForCustomer;
+
+            }
         }
-        public int MoneyCustomerPaid
+        // need to validation
+        private int? _moneyCustomerPaid;
+        public int? MoneyCustomerPaid
         {
-            get;
-            set;
+            get => _moneyCustomerPaid.HasValue ? _moneyCustomerPaid.Value : null;
+            set
+            {
+                if(!value.HasValue)
+                {
+                    return;
+                }    
+                _moneyCustomerPaid = value.Value;
+                OnPropertyChangedNoInput();
+                OnPropertyChanged(nameof(MoneyPaidBackForCustomer));
+            }
         }
 
         public string Note
@@ -73,6 +138,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             get;
             set;
         }
+        public bool IsCreate { get; set; }
 
         private void CancelAction()
         {
@@ -101,6 +167,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 }
             }
             OnPropertyChanged(nameof(SellListItem));
+            OnPropertyChanged(nameof(TotalMoney));
+            OnPropertyChanged(nameof(TotalQuantityOfStock));
         }
 
         private void PlusQuantity(int orderNumber)
@@ -111,6 +179,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 item.Quantity++;
             }
             OnPropertyChanged(nameof(SellListItem));
+            OnPropertyChanged(nameof(TotalMoney));
+            OnPropertyChanged(nameof(TotalQuantityOfStock));
         }
     }
 }

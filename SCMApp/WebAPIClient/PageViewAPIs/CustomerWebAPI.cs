@@ -16,12 +16,12 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public override string RoutePrefix => RouteConstants.CustomerApi;
 
-        public void AddCustomer()
+        public Customer AddCustomer(string token)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteCustomer()
+        public bool DeleteCustomer(string token)
         {
             throw new NotImplementedException();
         }
@@ -31,7 +31,7 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
             return Task.Run(() => Get<GetAllResponse<Customer>>(RouteConstants.GetAllCustomer, token)).Result.data;
         }
 
-        public void UpdateCustomer()
+        public Customer UpdateCustomer(string token)
         {
             throw new NotImplementedException();
         }

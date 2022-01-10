@@ -84,7 +84,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         {
             // get user from list => edit
             var updatedUser = HRMList.SingleOrDefault(x => x.UserName == p).Model;
-            ScreenManager.ShowUserProfileView(View, updatedUser, Token);
+            ScreenManager.ShowUserProfileView(View, updatedUser, false, Token);
         }
 
         private void DeleteUser(string p)

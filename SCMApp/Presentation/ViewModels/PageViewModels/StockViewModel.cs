@@ -70,7 +70,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
         private void OpenStockDetailView()
         {
-            ScreenManager.ShowStockDetailView(View,null, Token);
+            ScreenManager.ShowStockDetailView(View,null,false, Token);
         }
         private void OpenInsertStockTypeView()
         {
@@ -85,7 +85,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             //    updateItem = _itemWebAPI.GetItemByItemNumber(stockCode.ToString(), Token);
             //}
             var updateItem = StockList.SingleOrDefault(x => x.StockCode == stockCode).Model;
-            ScreenManager.ShowStockDetailView(View, updateItem, Token);
+            ScreenManager.ShowStockDetailView(View, updateItem, false, Token);
         }
         private void DeleteStock(int stockCode)
         {

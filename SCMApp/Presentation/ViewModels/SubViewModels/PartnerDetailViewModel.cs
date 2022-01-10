@@ -19,6 +19,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             ProvinceList = Address.Instance().ProvinceList;
             PartnerType = new List<string>() { "Doanh nghiệp", "Cá nhân" };
             Model = new Partner();
+            IsCreate = true;
         }
 
         public ICommand ICancelCommand { get; }
@@ -35,12 +36,12 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChanged(nameof(PartnerFullName));
             }
         }
-        public int PartnerCode
+        public string PartnerCode
         {
-            get => Model.id;
+            get => Model.supplierNumber;
             set
             {
-                Model.id = value;
+                Model.supplierNumber = value;
                 OnPropertyChanged(nameof(PartnerCode));
             }
         }
@@ -165,6 +166,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChanged(nameof(Note));
             }
         }
+
+        public bool IsCreate { get; set; }
 
         private void CancelAction()
         {

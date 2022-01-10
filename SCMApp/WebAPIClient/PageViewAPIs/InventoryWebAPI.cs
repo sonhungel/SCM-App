@@ -1,6 +1,10 @@
-﻿using System;
+﻿using SCMApp.Constants;
+using SCMApp.Models;
+using SCMApp.WebAPIClient.Request_Response;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
 {
@@ -10,14 +14,21 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
         {
         }
 
-        public void CreateInventoryTicket()
+        public override string RoutePrefix => RouteConstants.InventoryApi;
+
+        public Inventory CreateInventoryTicket(CreateInventoryDTO requestObj, string token)
+        {
+            return Task.Run(() => Post<Inventory>(RouteConstants.CreateInventoryTicket, requestObj, token)).Result;
+        }
+
+        public void DeleteInventoryTicket(string token)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteInventoryTicket()
+        public IList<Inventory> GetAllInventoryTicket(string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Get<GetAllResponse<Inventory>>(RouteConstants.GetAllInventoryTicket, token)).Result.data;
         }
     }
 }

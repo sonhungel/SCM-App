@@ -71,7 +71,7 @@ namespace SCMApp.Presentation.ViewModels
             _allPageViewModels.Add(pageView);
             pageView = new ImportStockViewModel(IoC.Get<IImportStockWebAPI>(),Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new InventoryViewModel(IoC.Get<IInventoryWebAPI>(), Token, ScreenManager) { View = this.View };
+            pageView = new InventoryViewModel(IoC.Get<IInventoryWebAPI>(),IoC.Get<IItemWebAPI>(), Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
             pageView = new OrdersViewModel(IoC.Get<IInvoiceWebAPI>(),Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
@@ -92,7 +92,7 @@ namespace SCMApp.Presentation.ViewModels
 
         private void OpenUserProfileView()
         {
-            ScreenManager.ShowUserProfileView(View,MainUser, Token);
+            ScreenManager.ShowUserProfileView(View, MainUser, false, Token);
         }
     }
 }

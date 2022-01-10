@@ -59,7 +59,7 @@
                             <Border Width="25"/>
                             <Border Width="300" Margin="20,20,0,20" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                                 <ComboBox IsEditable="False" Cursor="Hand" IsReadOnly="True" 
-                                          ItemsSource="{Binding ListItem}" DisplayMemberPath="StockName" SelectedItem="{Binding SelectedItem}"
+                                          ItemsSource="{Binding ListItem}" DisplayMemberPath="name" SelectedItem="{Binding SelectedItem}"
                                       Style="{StaticResource RoundedComboBox}"/>
                             </Border>
                         </StackPanel>
@@ -189,7 +189,7 @@
                         
                         <Border Grid.Row="1" Margin="7" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <ComboBox IsEditable="False" Cursor="Hand" IsReadOnly="True" 
-                                      ItemsSource="{Binding ListCustomer}" DisplayMemberPath="CustomerName" SelectedItem="{Binding SelectedCustomer}" 
+                                      ItemsSource="{Binding ListCustomer}" DisplayMemberPath="name" SelectedItem="{Binding SelectedCustomer}" 
                                       Style="{StaticResource RoundedComboBox}"/>
                         </Border>
 
@@ -209,7 +209,9 @@
                             <Border CornerRadius="4" Width="130" Height="40" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
                                 <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                     <Grid Height="Auto">
-                                        <TextBox x:Name="MoneyMustPayForNCC" Text="{Binding MoneyCustomerPaid,Converter={StaticResource NumberConverter}}"
+                                        <TextBox x:Name="MoneyMustPayForNCC" Padding="10,0,0,0"
+                                                 Text="{Binding MoneyCustomerPaid, Mode=TwoWay, UpdateSourceTrigger=LostFocus,
+                                            Converter={StaticResource NumberConverter}}"
                                                  FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                         <TextBlock Margin="10,0,0,0" Text="Nhập tiền..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                             <TextBlock.Style>
@@ -235,7 +237,8 @@
                         <Border Grid.Row="6" CornerRadius="4" Height="40" VerticalAlignment="Stretch" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
-                                    <TextBox x:Name="ImportNote" Text="{Binding Note}"
+                                    <TextBox x:Name="ImportNote" Text="{Binding Note, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
+                                             Padding="10,0,0,0"
                                              FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="10,0,0,0" Text="Nhập ghi chú..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                         <TextBlock.Style>

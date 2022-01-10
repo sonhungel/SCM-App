@@ -16,6 +16,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
             Model = new ItemType(0,"");
+            IsCreate = true;
         }
 
         private ItemType Model;
@@ -43,6 +44,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public ICommand ICancelCommand { get; }
 
         public ICommand ISaveCommand { get; }
+        public bool IsCreate { get; set; }
 
         private void CancelAction()
         {

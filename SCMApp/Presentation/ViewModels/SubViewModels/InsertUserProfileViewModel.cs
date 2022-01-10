@@ -20,6 +20,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
             ProvinceList = Address.Instance().ProvinceList;
             Model = new UserProfile();
+            IsCreate = true;
         }
 
         public ICommand ICancelCommand { get; }
@@ -158,6 +159,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChanged(nameof(StreetAddress));
             }
         }
+
+        public bool IsCreate { get; set; }
 
         private void CancelAction()
         {

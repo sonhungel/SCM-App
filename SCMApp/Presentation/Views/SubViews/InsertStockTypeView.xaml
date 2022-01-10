@@ -62,7 +62,8 @@
                             Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
-                                <TextBox x:Name="importStockTypeName" Text="{Binding StockTypeName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                <TextBox x:Name="importStockTypeName" Padding="10,0,0,0"
+                                         Text="{Binding StockTypeName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập tên nhóm hàng..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
@@ -84,7 +85,8 @@
                             Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
-                                <TextBox x:Name="importNote" Text="{Binding Note, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                <TextBox x:Name="importNote" Padding="10,0,0,0"
+                                         Text="{Binding Note, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập miêu tả..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>

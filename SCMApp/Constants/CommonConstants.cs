@@ -31,7 +31,7 @@ namespace SCMApp.Constants
         public const string UserProfile = "Thông tin người dùng";
 
         // User Role
-        public static readonly List<string> UserRole = new List<string>() { "Chủ cửa hàng", "Nhân viên" };
+        public static readonly List<string> UserRole = new List<string>() { "Quản lý", "Nhân viên" };
 
         // Profit
 

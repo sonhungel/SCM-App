@@ -32,6 +32,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 Partners = _partnerWebAPI.GetAllSupplier(Token);
             }
             Model = new Item();
+            IsCreate = true;
         }    
 
         public Item Model { get; set; }
@@ -45,12 +46,14 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChanged(nameof(StockName));
             }
         }
-        public int StockCode
+        public int? StockCode
         {
-            get => Model.itemNumber;
+            get => Model.itemNumber == 0 ? null : Model.itemNumber;
             set
             {
-                Model.itemNumber = value;
+                if (!value.HasValue)
+                    return;
+                Model.itemNumber = value.Value;
                 OnPropertyChanged(nameof(StockCode));
             }
         }
@@ -78,21 +81,25 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChangedNoInput();
             }
         }
-        public int StockCost
+        public int? StockCost
         {
-            get => Model.cost;
+            get => Model.cost == 0 ? null :Model.cost;
             set
             {
-                Model.cost = value;
+                if (!value.HasValue)
+                    return;
+                Model.cost = value.Value;
                 OnPropertyChanged(nameof(StockCost));
             }
         }
-        public int StockRetailPrice
+        public int? StockRetailPrice
         {
-            get => Model.salesPrice;
+            get => Model.salesPrice == 0 ? null :Model.salesPrice;
             set
             {
-                Model.salesPrice = value;
+                if (!value.HasValue)
+                    return;
+                Model.salesPrice = value.Value;
                 OnPropertyChanged(nameof(StockRetailPrice));
             }
         }
@@ -105,22 +112,26 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChanged(nameof(SupplierName));
             }
         }
-        public int StockInventoryQuantity
+        public int? StockInventoryQuantity
         {
-            get => Model.quantity;
+            get => Model.quantity == 0 ? null :Model.quantity;
             set
             {
-                Model.quantity = value;
+                if (!value.HasValue)
+                    return;
+                Model.quantity = value.Value;
                 OnPropertyChanged(nameof(StockInventoryQuantity));
             }
         }
 
-        public int StockMinInventoryQuantity
+        public int? StockMinInventoryQuantity
         {
-            get => Model.minimumQuantity;
+            get => Model.minimumQuantity == 0 ? null :Model.minimumQuantity;
             set
             {
-                Model.minimumQuantity = value;
+                if (!value.HasValue)
+                    return;
+                Model.minimumQuantity = value.Value;
                 OnPropertyChanged(nameof(StockMinInventoryQuantity));
             }
         }
@@ -145,7 +156,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
-
+        public bool IsCreate { get; set; }
 
         private void CancelAction()
         {

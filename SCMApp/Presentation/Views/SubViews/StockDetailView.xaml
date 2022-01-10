@@ -78,7 +78,10 @@
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
                                     <TextBox x:Name="importStock" Text="{Binding StockName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                             FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                                             FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" 
+                                             Padding="10,0,0,0"
+                                             VerticalAlignment="Stretch" VerticalContentAlignment="Center" 
+                                             TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="20,0,0,0" Text="Nhập tên hàng hoá..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                         <TextBlock.Style>
                                             <Style TargetType="{x:Type TextBlock}">
@@ -99,7 +102,9 @@
                         <Border Grid.Row="3" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
-                                    <TextBox x:Name="importStockCode" Text="{Binding StockCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    <TextBox x:Name="importStockCode" IsEnabled="{Binding IsCreate}"
+                                             Text="{Binding StockCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                             Padding="10,0,0,0"
                                              FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="20,0,0,0" Text="Hệ thống sẽ tạo tự động nếu để trống..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                         <TextBlock.Style>
@@ -119,7 +124,8 @@
 
                         <Label Grid.Row="4" Grid.Column="0" Content="Nhóm hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Grid.Row="5" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <ComboBox Grid.Row="5" Grid.Column="0" IsEditable="False" ItemsSource="{Binding ItemTypes}" IsReadOnly="True"
+                            <ComboBox Grid.Row="5" Grid.Column="0" IsEnabled="{Binding IsCreate}"
+                                      IsEditable="False" ItemsSource="{Binding ItemTypes}" IsReadOnly="True"
                                       DisplayMemberPath="typeName" SelectedValuePath="typeName"
                                       SelectedValue="{Binding SelectedItemType.typeName, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding SelectedItemType, UpdateSourceTrigger=PropertyChanged}"
@@ -136,6 +142,7 @@
                                 <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                     <Grid Height="Auto">
                                         <TextBox x:Name="importPrice" Text="{Binding StockCost, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                 Padding="10,0,0,0"
                                                  FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                         <TextBlock Margin="20,0,0,0" Text="Nhập giá vốn..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                             <TextBlock.Style>
@@ -156,7 +163,8 @@
                             <Border Width="170" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                                 <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                     <Grid Height="Auto">
-                                        <TextBox x:Name="retailPrice" Text="{Binding StockRetailPrice, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                        <TextBox x:Name="retailPrice" Padding="10,0,0,0"
+                                                 Text="{Binding StockRetailPrice, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                                  FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                         <TextBlock Margin="20,0,0,0" Text="Nhập giá bán..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                             <TextBlock.Style>
@@ -177,7 +185,8 @@
 
                         <Label Grid.Row="8" Grid.Column="0" Content="Nhà cung cấp" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Grid.Row="9" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <ComboBox Grid.Row="5" Grid.Column="0" IsEditable="False" ItemsSource="{Binding Partners}" IsReadOnly="True"
+                            <ComboBox Grid.Row="5" Grid.Column="0" IsEnabled="{Binding IsCreate}"
+                                      IsEditable="False" ItemsSource="{Binding Partners}" IsReadOnly="True"
                                       DisplayMemberPath="name" SelectedValuePath="name"
                                       SelectedValue="{Binding SelectedPartner.name, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding SelectedPartner, UpdateSourceTrigger=PropertyChanged}"
@@ -188,7 +197,8 @@
                         <Border Grid.Row="1" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
-                                    <TextBox x:Name="importInventory" Text="{Binding StockInventoryQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    <TextBox x:Name="importInventory" IsEnabled="{Binding IsCreate}" Padding="10,0,0,0"
+                                             Text="{Binding StockInventoryQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                              FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="20,0,0,0" Text="Số lượng hàng trong kho..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                         <TextBlock.Style>
@@ -210,7 +220,8 @@
                         <Border Grid.Row="3" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
-                                    <TextBox x:Name="MinInventory" Text="{Binding StockMinInventoryQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                    <TextBox x:Name="MinInventory" Padding="10,0,0,0"
+                                             Text="{Binding StockMinInventoryQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                              FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="20,0,0,0" Text="Số lượng tồn kho tối thiểu..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                         <TextBlock.Style>

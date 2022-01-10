@@ -54,7 +54,8 @@
                         <Border Width="25"/>
                         <Border Width="300" Margin="20,7,0,7" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <ComboBox IsEditable="False" Cursor="Hand" 
-                                          ItemsSource="{Binding ListItem}" DisplayMemberPath="StockName" SelectedItem="{Binding SelectedItem}"
+                                          ItemsSource="{Binding ListItem}" DisplayMemberPath="name" 
+                                          SelectedItem="{Binding SelectedItem}"
                                           IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                     </StackPanel>
@@ -108,7 +109,7 @@
                                 <Border Grid.Row="0" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                                     <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                         <Grid Height="Auto">
-                                            <TextBox x:Name="importFactQuantity" 
+                                            <TextBox x:Name="importFactQuantity" Padding="10,0,0,0"
                                                      Text="{Binding FactQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                                      FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                             <TextBlock Margin="10,0,0,0" Text="Nhập số lượng thực tế..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
@@ -130,7 +131,7 @@
                                 <Border Grid.Row="2" Grid.ColumnSpan="3" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                                     <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                         <Grid Height="Auto">
-                                            <TextBox x:Name="importNote" 
+                                            <TextBox x:Name="importNote" Padding="10,0,0,0"
                                                      Text="{Binding Note, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                                      FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                             <TextBlock Margin="20,0,0,0" Text="Nhập ghi chú..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">

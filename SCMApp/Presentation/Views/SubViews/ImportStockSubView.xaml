@@ -59,7 +59,7 @@
                             <Border Width="25"/>
                             <Border Width="300" Margin="20,20,0,20" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                                 <ComboBox IsEditable="False" Cursor="Hand" 
-                                          ItemsSource="{Binding ListItem}" DisplayMemberPath="StockName" SelectedItem="{Binding SelectedItem}"
+                                          ItemsSource="{Binding ListItem}" DisplayMemberPath="name" SelectedItem="{Binding SelectedItem}"
                                           IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                             </Border>
                         </StackPanel>
@@ -178,10 +178,15 @@
                         <StackPanel Grid.Row="0" VerticalAlignment="Stretch" Orientation="Vertical">
                             <Label Grid.Row="0" Content="THANH TOÁN" Margin="0,15,0,0" Style="{StaticResource NormalLabel}" FontSize="24" Padding="10,0,0,0"/>
                         </StackPanel>
-                        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
+                        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Mã nhập hàng" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                             <Border Width="25"/>
                             <Label Content="{Binding ImportStockCode}" Style="{StaticResource NormalLabel}" Foreground="#FF37A0EA" Padding="10,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
+                            <Label Content="Tổng số lượng hàng hoá" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
+                            <Border Width="90"/>
+                            <Label Content="{Binding TotalQuantityOfStock}" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                         </StackPanel>
                         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Tổng tiền hàng" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
@@ -192,7 +197,7 @@
                         <Border Grid.Row="4" CornerRadius="4" Height="40" VerticalAlignment="Stretch" Background="White" BorderBrush="#999999" BorderThickness="1" Margin="5">
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
-                                    <TextBox x:Name="ImportNote" Text="{Binding Note}"
+                                    <TextBox x:Name="ImportNote" Text="{Binding Note}" Padding="10,0,0,0"
                                              FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="10,0,0,0" Text="Nhập ghi chú..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                         <TextBlock.Style>

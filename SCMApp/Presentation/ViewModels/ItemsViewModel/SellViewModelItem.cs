@@ -1,4 +1,5 @@
-﻿using SCMApp.Presentation.Commands;
+﻿using SCMApp.Models;
+using SCMApp.Presentation.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,16 +12,19 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 {
     public class SellViewModelItem: INotifyPropertyChanged
     {
-        public SellViewModelItem()
+        public SellViewModelItem(Item item, int orderNumber)
         {
-            QuantityLeftInStock = 12;
+            Model = item;
+            OrderNumber = orderNumber;
+            QuantityLeftInStock = item.availableQuantity;
             Quantity = 1;
         }
+        public Item Model { get; set; }
         public int OrderNumber { get; set; }
-        public string StockCode { get; set; }
-        public string StockName { get; set; }
-        public decimal Price { get; set; }
-        public decimal TotalPrice { get; set; }
+        public int StockCode => Model.itemNumber;
+        public string StockName => Model.name;
+        public int Price => Model.salesPrice;
+        public int TotalPrice => Model.salesPrice* _quantity;
 
         public int QuantityLeftInStock { get; set; }
 
@@ -40,6 +44,7 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
                 }    
                 OnPropertyChanged(nameof(Quantity));
                 OnPropertyChanged(nameof(IsVisiblePlusQuantity));
+                OnPropertyChanged(nameof(TotalPrice));
             }
         }
 

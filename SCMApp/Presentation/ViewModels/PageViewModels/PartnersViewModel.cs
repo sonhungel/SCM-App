@@ -75,18 +75,18 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void OpenCustomerView()
         {
-            ScreenManager.ShowCustomerDetailView(View,null,Token);
+            ScreenManager.ShowCustomerDetailView(View, null, true, Token);
         }
 
         private void OpenPartnerView()
         {
-            ScreenManager.ShowPartnerDetailView(View,null,Token);
+            ScreenManager.ShowPartnerDetailView(View,null,true,Token); ;
         }
 
         private void EditCustomer(string customerCode)
         {
             var customerUpdate = CustomerList.SingleOrDefault(x => x.CustomerCode == customerCode).Model;
-            ScreenManager.ShowCustomerDetailView(View, customerUpdate, Token);
+            ScreenManager.ShowCustomerDetailView(View, customerUpdate,false, Token);
         }
         private void DeleteCustomer(string customerCode)
         {
@@ -100,7 +100,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         private void EditPartner(string partnerCode)
         {
             var partner = PartnerList.SingleOrDefault(x => x.PartnerCode == partnerCode).Model;
-            ScreenManager.ShowPartnerDetailView(View,partner, Token);
+            ScreenManager.ShowPartnerDetailView(View,partner,false, Token);
         }
         private void DeletePartner(string partnerCode)
         {

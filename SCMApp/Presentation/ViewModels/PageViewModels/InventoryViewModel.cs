@@ -3,6 +3,7 @@ using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
 using System;
@@ -16,14 +17,17 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
     public class InventoryViewModel : ViewModelBase, IPageViewModel
     {
         private readonly IInventoryWebAPI _inventoryWebAPI;
-        public InventoryViewModel(IInventoryWebAPI inventoryWebAPI,string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly IItemWebAPI _itemWebAPI;
+        public InventoryViewModel(IInventoryWebAPI inventoryWebAPI, IItemWebAPI itemWebAPI,
+            string token, IScreenManager screenManager) : base(token, screenManager)
         {
+            _itemWebAPI= itemWebAPI;
             _inventoryWebAPI = inventoryWebAPI;
-            InventoryList = new ObservableCollection<InventoryViewModelItem>() { new InventoryViewModelItem() };
+            InventoryList = new ObservableCollection<InventoryViewModelItem>();
 
-            ClickStockCode = new RelayCommand(p => OpenStockView((string) p));
+            ClickStockCode = new RelayCommand(p => OpenStockView((int) p));
             OpenInventoryCheckViewCommand = new RelayCommand(p => OpenInvetoryTicket());
-            DeleteStockInventoryCommand = new RelayCommand(p => DeleteStockInventory((string)p));
+            DeleteStockInventoryCommand = new RelayCommand(p => DeleteStockInventory((int)p));
         }
 
        
@@ -52,27 +56,35 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public void Construct()
         {
             IsLoaded = true;
-            // get all inventoryticket
+            InventoryList.Clear();
+            using (new WaitCursorScope())
+            {
+                var inventoryTickets = _inventoryWebAPI.GetAllInventoryTicket(Token);
+                foreach (var ticket in inventoryTickets)
+                {
+                    InventoryList.Add(new InventoryViewModelItem(ticket));
+                }
+            }
             IsHaveNoData = !InventoryList.Any();
         }
 
-        private void OpenStockView(string stockCode)
+        private void OpenStockView(int stockCode)
         {
-            ScreenManager.ShowStockDetailView(View,null, Token);
+            var item = _itemWebAPI.GetItemByItemNumber(stockCode.ToString(), Token);
+            ScreenManager.ShowStockDetailView(View,item,false, Token);
         }
 
         private void OpenInvetoryTicket()
         {
-            // get inventoryCode from api
             ScreenManager.ShowInventoryTicket(View, Token);
         }
-        private void DeleteStockInventory(string p)
+        private void DeleteStockInventory(int p)
         {
             MessageBoxResult dialogResult = MessageBox.Show(View,"Bạn có muốn xoá đơn kiểm kho này ?",
                 "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
-                _inventoryWebAPI.DeleteInventoryTicket();
+                _inventoryWebAPI.DeleteInventoryTicket(Token);
             }
         }
 

@@ -7,9 +7,9 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 {
     public interface ICustomerWebAPI
     {
-        void AddCustomer();
+        Customer AddCustomer(string token);
         IList<Customer> GetAllCustomer(string token);
-        void UpdateCustomer();
-        void DeleteCustomer();
+        Customer UpdateCustomer(string token);
+        bool DeleteCustomer(string token);
     }
 }

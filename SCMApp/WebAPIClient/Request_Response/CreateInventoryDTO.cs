@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace SCMApp.Models
+namespace SCMApp.WebAPIClient.Request_Response
 {
-    public class Inventory: BusinessObjectBase
+    public class CreateInventoryDTO
     {
-        public Item item { get; set; }
-        public DateTime? addedDate { get; set; }
+        public ItemNumber item { get; set; }
         public int availableQuantity { get; set; }
         public string remark { get; set; }
     }
