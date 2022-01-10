@@ -127,7 +127,7 @@ namespace SCMApp.ViewManager
         public void ShowInsertStockType(Window parentWindow, string token)
         {
             var view = new InsertStockTypeView();
-            var viewModel = new InsertStockTypeViewModel(token, IoC.Get<IScreenManager>());
+            var viewModel = new InsertStockTypeViewModel(IoC.Get<IItemTypeWebAPI>(),token, IoC.Get<IScreenManager>());
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;

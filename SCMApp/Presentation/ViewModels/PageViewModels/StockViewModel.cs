@@ -70,7 +70,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
         private void OpenStockDetailView()
         {
-            ScreenManager.ShowStockDetailView(View,null,false, Token);
+            ScreenManager.ShowStockDetailView(View,null,true, Token);
         }
         private void OpenInsertStockTypeView()
         {

@@ -1,7 +1,9 @@
 ﻿using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
+using SCMApp.WebAPIClient.PageViewAPIs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,11 +13,16 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
     public class InsertStockTypeViewModel : ViewModelBase, IWindowViewBase
     {
-        public InsertStockTypeViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly IItemTypeWebAPI _itemTypeWebAPI;
+        public InsertStockTypeViewModel(IItemTypeWebAPI itemTypeWebAPI,string token, IScreenManager screenManager) : base(token, screenManager)
         {
+            _itemTypeWebAPI = itemTypeWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
-            Model = new ItemType(0,"");
+            using (new WaitCursorScope())
+            {
+                Model = _itemTypeWebAPI.GetItemNewestId(Token);
+            }
             IsCreate = true;
         }
 
@@ -24,7 +31,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         
         public string StockTypeName 
         {
-            get => Model.typeName;
+            get => Model.typeName == "INACTIVE"? string.Empty: Model.typeName;
             set
             {
                 Model.typeName = value;
@@ -33,10 +40,10 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
         public string Note
         {
-            get => Model.remark;
+            get => Model.description;
             set
             {
-                Model.remark = value;
+                Model.description = value;
                 OnPropertyChanged(nameof(Note));
             }
         }
@@ -53,7 +60,11 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void SaveAction()
         {
-
+            using (new WaitCursorScope())
+            {
+                var r = _itemTypeWebAPI.CreateItemtype(Model,Token);
+            }
+            View.Close();
         }
     }
 }

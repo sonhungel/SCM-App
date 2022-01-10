@@ -19,10 +19,13 @@ namespace SCMApp.Constants
         public const string ItemApi = "api/items";
         public const string GetItemByItemNumber = "getItems/{0}";
         public const string SearchItem = "?searchValue={0}";
+        public const string CreateNewItem = "";
 
         //ItemType
         public const string ItemTypeApi = "api/itemType";
         public const string GetAllItemType = "getActiveItemType";
+        public const string GetNewestIdOfItemtype = "getNewId";
+        public const string CreateNewItemtype = "";
 
         //Partner
         public const string PartnerApi = "api/supplier";

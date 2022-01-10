@@ -15,10 +15,19 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public override string RoutePrefix => RouteConstants.ItemTypeApi;
 
+        public bool CreateItemtype(ItemType itemType, string token)
+        {
+            return Task.Run(() => Post<GetOneResponse<ItemType>>(RouteConstants.CreateNewItemtype, itemType, token)).Result.status == "OK";
+        }
 
         public IList<ItemType> GetAllItemType(string token)
         {
             return Task.Run(() => Get<GetAllResponse<ItemType>>(RouteConstants.GetAllItemType, token)).Result.data;
+        }
+
+        public ItemType GetItemNewestId(string token)
+        {
+            return Task.Run(() => Get<GetOneResponse<ItemType>>(RouteConstants.GetNewestIdOfItemtype, token)).Result.data;
         }
     }
 }

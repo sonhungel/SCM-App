@@ -5,11 +5,10 @@ using System.Text;
 
 namespace SCMApp.WebAPIClient.Request_Response
 {
-    public class GetItemByNumberReSponse
+    public class GetOneResponse<T>
     {
-
         public string message { get; set; }
         public string status { get; set; }
-        public Item data { get; set; }
+        public T data { get; set; }
     }
 }

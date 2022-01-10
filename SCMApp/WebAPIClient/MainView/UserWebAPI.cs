@@ -37,7 +37,7 @@ namespace SCMApp.WebAPIClient.MainView
 
         public UserProfile GetUserProfileBaseOnToken(string token)
         {
-            return Task.Run(() => Get<GetUserProfileResponse>(RouteConstants.GetUserProfileBaseOnToken, token)).Result.data;
+            return Task.Run(() => Get<GetOneResponse<UserProfile>>(RouteConstants.GetUserProfileBaseOnToken, token)).Result.data;
         }
 
         public void UpdateUser()

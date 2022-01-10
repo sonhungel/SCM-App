@@ -1,9 +1,11 @@
-﻿using SCMApp.Models;
+﻿using SCMApp.Helper;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
+using SCMApp.WebAPIClient.Request_Response;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -165,7 +167,24 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void SaveAction()
         {
-
+            using (new WaitCursorScope())
+            {
+                var createItem = new CreateItemDTO()
+                {
+                    itemNumber = Model.itemNumber,
+                    name = Model.name,
+                    itemType = new ItemtypeNumber(Model.itemType.id),
+                    cost = Model.cost,
+                    salesPrice = Model.salesPrice,
+                    quantity = Model.quantity,
+                    minimumQuantity = Model.minimumQuantity,
+                    supplier = new SupplierNumber(Model.supplier.id),
+                    description = Model.description,
+                    remark = Model.remark
+                };
+                var r = _itemWebAPI.CreateItem(createItem,Token);
+            }
+            View.Close();
         }
     }
 }

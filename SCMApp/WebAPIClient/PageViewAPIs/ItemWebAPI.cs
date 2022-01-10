@@ -16,12 +16,12 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public override string RoutePrefix => RouteConstants.ItemApi;
 
-        public void CreateItem()
+        public bool CreateItem(CreateItemDTO createItemDTO, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Post<GetOneResponse<Item>>(RouteConstants.CreateNewItem, createItemDTO, token)).Result.status == "OK";
         }
 
-        public void DeleteItem()
+        public string DeleteItem()
         {
             throw new NotImplementedException();
         }
@@ -33,10 +33,10 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public Item GetItemByItemNumber(string numberRequest, string token)
         {
-            return Task.Run(() => Get<GetItemByNumberReSponse>(string.Format(RouteConstants.GetItemByItemNumber, numberRequest), token)).Result.data;
+            return Task.Run(() => Get<GetOneResponse<Item>>(string.Format(RouteConstants.GetItemByItemNumber, numberRequest), token)).Result.data;
         }
 
-        public void UpdateItem()
+        public string UpdateItem(string token)
         {
             throw new NotImplementedException();
         }

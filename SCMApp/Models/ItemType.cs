@@ -12,6 +12,6 @@ namespace SCMApp.Models
             typeName = name;
         }
         public string typeName { get;set;}
-        public string remark { get;set;}
+        public string description { get;set;}
     }
 }
