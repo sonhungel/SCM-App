@@ -1,7 +1,6 @@
 ﻿using SCMApp.Constants;
 using SCMApp.Models;
-using SCMApp.WebAPIClient.Request_Response;
-using System;
+using SCMApp.WebAPIClient.Request_Response; 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

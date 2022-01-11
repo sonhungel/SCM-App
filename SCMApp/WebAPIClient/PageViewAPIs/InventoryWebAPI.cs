@@ -2,8 +2,7 @@
 using SCMApp.Models;
 using SCMApp.WebAPIClient.Request_Response;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Collections.Generic; 
 using System.Threading.Tasks;
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
@@ -16,9 +15,9 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public override string RoutePrefix => RouteConstants.InventoryApi;
 
-        public Inventory CreateInventoryTicket(CreateInventoryDTO requestObj, string token)
+        public bool CreateInventoryTicket(CreateInventoryDTO requestObj, string token)
         {
-            return Task.Run(() => Post<Inventory>(RouteConstants.CreateInventoryTicket, requestObj, token)).Result;
+            return Task.Run(() => Post<GetOneResponse<Inventory>>(RouteConstants.CreateInventoryTicket, requestObj, token)).Result.status =="OK";
         }
 
         public void DeleteInventoryTicket(string token)
@@ -30,5 +29,6 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
         {
             return Task.Run(() => Get<GetAllResponse<Inventory>>(RouteConstants.GetAllInventoryTicket, token)).Result.data;
         }
+
     }
 }

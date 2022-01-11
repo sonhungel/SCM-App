@@ -6,7 +6,6 @@ using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.MainView;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;

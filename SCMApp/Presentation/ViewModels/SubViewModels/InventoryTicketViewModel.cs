@@ -5,9 +5,7 @@ using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
 using SCMApp.WebAPIClient.Request_Response;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
@@ -96,7 +94,11 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void SaveAction()
         {
-            var createdInventoryTicket= _inventoryWebAPI.CreateInventoryTicket(_updateModel, Token);
+            using (new WaitCursorScope())
+            {
+                var createdInventoryTicket = _inventoryWebAPI.CreateInventoryTicket(_updateModel, Token);
+            }
+            View.Close();
         }
     }
 }

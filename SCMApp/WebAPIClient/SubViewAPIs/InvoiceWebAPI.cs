@@ -2,8 +2,7 @@
 using SCMApp.Models;
 using SCMApp.WebAPIClient.Request_Response;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Collections.Generic; 
 using System.Threading.Tasks;
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
@@ -16,9 +15,9 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public override string RoutePrefix => RouteConstants.InvoiceApi;
 
-        public void CreateInvoice()
+        public bool CreateInvoice(CreateInvoiceDTO createInvoiceDTO, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Post<GetOneResponse<Order>>(RouteConstants.CreateInvoice, createInvoiceDTO, token)).Result.status == "OK";
         }
 
         public void DeleteInvoice()

@@ -1,8 +1,5 @@
 ﻿using SCMApp.Helper;
 using SCMApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 {
@@ -18,12 +15,12 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         public int StockCode => Model.item.itemNumber;
         public string StockName => Model.item.name;
         public int InventoryNumber => Model.item.quantity;
-        public int InventoryNumberFact => Model.item.availableQuantity;
+        public int InventoryNumberFact => Model.availableQuantity;
         public int QuantityOfDifference
         {
             get
             {
-                var valueOfDifference = Model.item.quantity - Model.item.availableQuantity;
+                var valueOfDifference = Model.item.quantity - Model.availableQuantity;
                 return valueOfDifference < 0 ? valueOfDifference * -1 : valueOfDifference;
             }
         }

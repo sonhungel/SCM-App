@@ -1,7 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
 using SCMApp.Constants;
-using SCMApp.Models;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.MainView;

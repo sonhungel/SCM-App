@@ -1,7 +1,5 @@
-﻿using SCMApp.Presentation.AddressItem;
+﻿
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SCMApp.Models
 {
@@ -19,6 +17,6 @@ namespace SCMApp.Models
         public string taxNumber { get; set; }
         public string remark { get; set; }
         public int paid { get; set; }
-        public DateTime LastTimeBuy { get; set; }
+        public DateTime? LastTimeBuy { get; set; }
     }
 }

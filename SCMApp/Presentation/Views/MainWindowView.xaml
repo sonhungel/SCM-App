@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         x:Name="home"
         d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
-        Title="Hệ thống quản lý chuỗi cung ứng" Height="900" Width="1500" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" >
+        Title="Hệ thống quản lý chuỗi cung ứng" Height="850" Width="1500" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" >
 
     <!--<Border Background="Transparent">-->
         <Border CornerRadius="10" BorderThickness="0">

@@ -2,8 +2,7 @@
 using SCMApp.Models;
 using SCMApp.WebAPIClient.Request_Response;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Collections.Generic; 
 using System.Threading.Tasks;
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
@@ -16,9 +15,10 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public override string RoutePrefix => RouteConstants.CustomerApi;
 
-        public Customer AddCustomer(string token)
+        public bool CreateCustomer(CreateCustomerDTO createCustomerDTO, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Post<GetOneResponse<Customer>>(RouteConstants.CreateCustomer, 
+                createCustomerDTO, token)).Result.status == "OK";
         }
 
         public bool DeleteCustomer(string token)
@@ -31,7 +31,7 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
             return Task.Run(() => Get<GetAllResponse<Customer>>(RouteConstants.GetAllCustomer, token)).Result.data;
         }
 
-        public Customer UpdateCustomer(string token)
+        public bool UpdateCustomer(CreateCustomerDTO createCustomerDTO, string token)
         {
             throw new NotImplementedException();
         }

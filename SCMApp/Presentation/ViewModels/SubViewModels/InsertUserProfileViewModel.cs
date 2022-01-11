@@ -3,7 +3,10 @@ using SCMApp.Models;
 using SCMApp.Presentation.AddressItem;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
+using SCMApp.WebAPIClient.MainView;
+using SCMApp.WebAPIClient.Request_Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +16,10 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
     public class InsertUserProfileViewModel : ViewModelBase, IWindowViewBase
     {
-        public InsertUserProfileViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly IUserWebAPI _userWebAPI;
+        public InsertUserProfileViewModel(IUserWebAPI userWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
         {
+            _userWebAPI = userWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
 
@@ -76,16 +81,34 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
         public string VerifyPassword
         {
-            get => Model.VerifyPassword;
+            get => Model.confirmPassword;
             set
             {
-                Model.VerifyPassword = value;
+                Model.confirmPassword = value;
                 OnPropertyChanged(nameof(VerifyPassword));
             }
         }
         public IList<string> UserRole => CommonConstants.UserRole;
-        public string SelectedUserRole { get; set; }
-        public DateTime? UserBirthDay { get; set; }
+        public string SelectedUserRole 
+        {
+            get => Model.role;
+            set
+            {
+                Model.role = value;
+                OnPropertyChangedNoInput();
+            }
+        }
+        public DateTime? UserBirthDay 
+        {
+            get => Model.dateOfBirth == DateTime.MinValue ? null : Model.dateOfBirth;
+            set
+            {
+                if (!value.HasValue)
+                    return;
+                Model.dateOfBirth = value.Value;
+                OnPropertyChangedNoInput();
+            }
+        }
 
         public IList<Province> ProvinceList { get; set; }
         public IList<District> DistrictList { get; set; }
@@ -169,7 +192,26 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void SaveAction()
         {
-
+            var newUser = new CreateUserDTO()
+            {
+                username = Model.username,
+                fullName = Model.fullName,
+                password = Model.password,
+                confirmPassword = Model.confirmPassword,
+                email = Model.email,
+                role = Model.role,
+                phoneNumber = Model.phoneNumber,
+                dateOfBirth = Model.dateOfBirth,
+                province = Model.province,
+                district = Model.district,
+                ward = Model.ward,
+                address = Model.address,
+            };
+            using (new WaitCursorScope())
+            {
+                var r = _userWebAPI.CreateUser(newUser,Token);
+            }
+            View.Close();
         }
     }
 }

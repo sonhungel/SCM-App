@@ -6,7 +6,6 @@ using SCMApp.ViewManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
@@ -86,10 +85,10 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
         public string VerifyPassword
         {
-            get => Model.VerifyPassword;
+            get => Model.confirmPassword;
             set
             {
-                Model.VerifyPassword = value;
+                Model.confirmPassword = value;
                 OnPropertyChanged(nameof(VerifyPassword));
             }
         }

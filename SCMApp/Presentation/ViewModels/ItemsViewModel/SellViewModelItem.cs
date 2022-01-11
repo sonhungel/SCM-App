@@ -1,12 +1,8 @@
 ﻿using SCMApp.Models;
-using SCMApp.Presentation.Commands;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Text;
 using System.Windows;
-using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 {

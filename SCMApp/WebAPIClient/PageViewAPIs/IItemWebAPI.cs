@@ -1,8 +1,6 @@
 ﻿using SCMApp.Models;
-using SCMApp.WebAPIClient.Request_Response;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SCMApp.WebAPIClient.Request_Response; 
+using System.Collections.Generic; 
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
 {

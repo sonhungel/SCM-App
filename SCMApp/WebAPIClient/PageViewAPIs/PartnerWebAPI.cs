@@ -2,8 +2,7 @@
 using SCMApp.Models;
 using SCMApp.WebAPIClient.Request_Response;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Collections.Generic; 
 using System.Threading.Tasks;
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
@@ -16,9 +15,10 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public override string RoutePrefix => RouteConstants.PartnerApi;
 
-        public void AddSupplier()
+        public bool CreateSupplier(CreateSupplierDTO createSupplierDTO, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Post<GetOneResponse<Partner>>(RouteConstants.CreateCustomer,
+                createSupplierDTO, token)).Result.status == "OK";
         }
 
         public void DeleteSupplier()
@@ -31,7 +31,7 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
             return Task.Run(() => Get<GetAllResponse<Partner>>(RouteConstants.GetAllPartner, token)).Result.data;
         }
 
-        public void UpdateSupplier()
+        public bool UpdateSupplier(CreateSupplierDTO createSupplierDTO, string token)
         {
             throw new NotImplementedException();
         }

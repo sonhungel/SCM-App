@@ -1,12 +1,13 @@
-﻿using Newtonsoft.Json;
-using SCMApp.Models;
+﻿using SCMApp.Models;
 using SCMApp.Presentation.AddressItem;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
+using SCMApp.WebAPIClient.PageViewAPIs;
+using SCMApp.WebAPIClient.Request_Response;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows.Input;
 
@@ -14,8 +15,10 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
     public class CustomerDetailViewModel : ViewModelBase, IWindowViewBase
     {
-        public CustomerDetailViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly ICustomerWebAPI _customerWebAPI;
+        public CustomerDetailViewModel(ICustomerWebAPI customerWebAPI,string token, IScreenManager screenManager) : base(token, screenManager)
         {
+            _customerWebAPI = customerWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
             
@@ -103,7 +106,15 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChanged(nameof(Gender));
             }
         }
-        public string Note { get; set; }
+        public string Note 
+        {
+            get => Model.remark;
+            set
+            {
+                Model.remark = value;
+                OnPropertyChangedNoInput();
+            }
+        }
 
         public IList<Province> ProvinceList { get; set; }
         public IList<District> DistrictList { get; set; }
@@ -187,7 +198,26 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void SaveAction()
         {
-
+            using (new WaitCursorScope())
+            {
+                var createCustomer = new CreateCustomerDTO()
+                {
+                    customerNumber = Model.customerNumber,
+                    name = Model.name,
+                    phoneNumber = Model.phoneNumber,
+                    email = Model.email,
+                    dateOfBirth = Model.dateOfBirth,
+                    sex = Model.sex ? 1 : 0,
+                    province = Model.province,
+                    district = Model.district,
+                    ward = Model.ward,
+                    address = Model.address,
+                    taxNumber = Model.taxNumber,
+                    remark = Model.remark,
+                };
+                var r = _customerWebAPI.CreateCustomer(createCustomer, Token);
+            }
+            View.Close();
         }
     }
 }

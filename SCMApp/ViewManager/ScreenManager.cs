@@ -3,6 +3,7 @@ using SCMApp.Presentation.ViewModels;
 using SCMApp.Presentation.ViewModels.SubViewModels;
 using SCMApp.Presentation.Views;
 using SCMApp.Presentation.Views.SubViews;
+using SCMApp.WebAPIClient.MainView;
 using SCMApp.WebAPIClient.PageViewAPIs;
 using System;
 using System.Windows;
@@ -14,7 +15,7 @@ namespace SCMApp.ViewManager
         public void ShowCustomerDetailView(Window parentWindow, Customer customer,bool isCreate, string token)
         {
             var view = new CustomerDetailView();
-            var viewModel = new CustomerDetailViewModel(token, IoC.Get<IScreenManager>());
+            var viewModel = new CustomerDetailViewModel(IoC.Get<ICustomerWebAPI>(),token, IoC.Get<IScreenManager>());
             if (customer != null)
                 viewModel.Model = customer;
             viewModel.IsCreate = isCreate;
@@ -27,7 +28,7 @@ namespace SCMApp.ViewManager
         public void ShowInsertUserView(Window parentWindow, string token)
         {
             var view = new InsertUserProfileView();
-            var viewModel = new InsertUserProfileViewModel(token, IoC.Get<IScreenManager>());
+            var viewModel = new InsertUserProfileViewModel(IoC.Get<IUserWebAPI>(),token, IoC.Get<IScreenManager>());
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
@@ -52,7 +53,7 @@ namespace SCMApp.ViewManager
         public void ShowPartnerDetailView(Window parentWindow, Partner partner, bool isCreate, string token)
         {
             var view = new PartnerDetailView();
-            var viewModel = new PartnerDetailViewModel(token, IoC.Get<IScreenManager>());
+            var viewModel = new PartnerDetailViewModel(IoC.Get<IPartnerWebAPI>(),token, IoC.Get<IScreenManager>());
             if (partner != null)
                 viewModel.Model = partner;
             viewModel.IsCreate = isCreate;
@@ -105,7 +106,7 @@ namespace SCMApp.ViewManager
         public void ShowSellView(Window parentWindow, string token)
         {
             var view = new SellView();
-            var viewModel = new SellViewModel(IoC.Get<IItemWebAPI>(), IoC.Get<ICustomerWebAPI>(),
+            var viewModel = new SellViewModel(IoC.Get<IItemWebAPI>(), IoC.Get<ICustomerWebAPI>(), IoC.Get<IInvoiceWebAPI>(),
                 token, IoC.Get<IScreenManager>());
             viewModel.View = view;
             view.DataContext = viewModel;

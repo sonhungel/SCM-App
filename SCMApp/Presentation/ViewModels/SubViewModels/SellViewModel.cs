@@ -5,11 +5,10 @@ using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
-using System;
+using SCMApp.WebAPIClient.Request_Response;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Input;
 
@@ -19,11 +18,13 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
     {
         private readonly IItemWebAPI _itemWebAPI;
         private readonly ICustomerWebAPI _customerWebAPI;
-        public SellViewModel(IItemWebAPI itemWebAPI, ICustomerWebAPI customerWebAPI
+        private readonly IInvoiceWebAPI _invoiceWebAPI;
+        public SellViewModel(IItemWebAPI itemWebAPI, ICustomerWebAPI customerWebAPI, IInvoiceWebAPI invoiceWebAPI
             , string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _itemWebAPI = itemWebAPI;
             _customerWebAPI = customerWebAPI;
+            _invoiceWebAPI = invoiceWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
             MinusQuantityCommand = new RelayCommand(p => MinusQuantity((int)p));
@@ -147,7 +148,28 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void SaveAction()
         {
-
+            var listInvoiceDetail = new List<CreateInvoiceDetailDTO>();
+            foreach (var sellItem in SellListItem)
+            {
+                var invoiceDetail = new CreateInvoiceDetailDTO()
+                {
+                    itemNumber = sellItem.StockCode,
+                    quantity = sellItem.Quantity,
+                    price = sellItem.Price,
+                    discount = 0
+                };
+                listInvoiceDetail.Add(invoiceDetail);
+            }
+            var invoice = new CreateInvoiceDTO()
+            {
+                customer = new CustomerNumber() { customerNumber = SelectedCustomer.customerNumber },
+                invoiceDetailDtoList = listInvoiceDetail
+            };
+            using (new WaitCursorScope())
+            {
+                var r = _invoiceWebAPI.CreateInvoice(invoice, Token);
+            }
+            View.Close();
         }
 
         private void MinusQuantity(int orderNumber)

@@ -2,7 +2,10 @@
 using SCMApp.Presentation.AddressItem;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
+using SCMApp.WebAPIClient.PageViewAPIs;
+using SCMApp.WebAPIClient.Request_Response;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -11,8 +14,10 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
     public class PartnerDetailViewModel : ViewModelBase, IWindowViewBase
     {
-        public PartnerDetailViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly IPartnerWebAPI _partnerWebAPI;
+        public PartnerDetailViewModel(IPartnerWebAPI partnerWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
         {
+            _partnerWebAPI = partnerWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => SaveAction());
 
@@ -176,7 +181,25 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void SaveAction()
         {
-
+            using (new WaitCursorScope())
+            {
+                var createCustomer = new CreateSupplierDTO()
+                {
+                    supplierNumber = Model.supplierNumber,
+                    name = Model.name,
+                    phoneNumber = Model.phoneNumber,
+                    email = Model.email,
+                    type = Model.type ? 1 : 0,
+                    province = Model.province,
+                    district = Model.district,
+                    ward = Model.ward,
+                    address = Model.address,
+                    taxNumber = Model.taxNumber,
+                    remark = Model.remark,
+                };
+                var r = _partnerWebAPI.CreateSupplier(createCustomer, Token);
+            }
+            View.Close();
         }
     }
 }

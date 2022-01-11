@@ -104,7 +104,7 @@
                                             </Border>
                                         </Button.Content>
                                     </Button>
-                                    <Border Width="30"/>
+                                    <Border Width="10"/>
                                     <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
                                             Command="{Binding DataContext.DeleteCustomerCommand, ElementName=CustomerGrid}" 
                                             CommandParameter="{Binding CustomerCode}"
@@ -120,13 +120,13 @@
                             </DataTemplate>
                         </DataGrid.Resources>
                         <DataGrid.Columns >
-                            <DataGridTemplateColumn Width="0.8*" Header="Mã khách hàng" CellTemplate="{StaticResource CustomerCode}"/>
-                            <DataGridTemplateColumn Width="1.4*" Header="Tên khách hàng" CellTemplate="{StaticResource CustomerName}"/>
-                            <DataGridTemplateColumn Width="1*" Header="Số điện thoại" CellTemplate="{StaticResource CustomerPhoneNumber}"/>
-                            <DataGridTemplateColumn Width="1.5*" Header="Địa chỉ" CellTemplate="{StaticResource CustomerAddress}"/>
-                            <DataGridTemplateColumn Width="1*" Header="Lần mua cuối cùng" CellTemplate="{StaticResource CustomerLastTimeBuy}"/>
-                            <DataGridTemplateColumn Width="1.1*" Header="Tổng tiền hàng" CellTemplate="{StaticResource TotalMoney}"/>
-                            <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>
+                            <DataGridTemplateColumn Width="0.65*" Header="Mã khách hàng" CellTemplate="{StaticResource CustomerCode}"/>
+                            <DataGridTemplateColumn Width="1.2*" Header="Tên khách hàng" CellTemplate="{StaticResource CustomerName}"/>
+                            <DataGridTemplateColumn Width="0.6*" Header="Số điện thoại" CellTemplate="{StaticResource CustomerPhoneNumber}"/>
+                            <DataGridTemplateColumn Width="2.1*" Header="Địa chỉ" CellTemplate="{StaticResource CustomerAddress}"/>
+                            <DataGridTemplateColumn Width="0.7*" Header="Lần mua cuối" CellTemplate="{StaticResource CustomerLastTimeBuy}"/>
+                            <DataGridTemplateColumn Width="0.7*" Header="Tổng tiền hàng" CellTemplate="{StaticResource TotalMoney}"/>
+                            <DataGridTemplateColumn Width="0.4*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -227,7 +227,7 @@
                                             </Border>
                                         </Button.Content>
                                     </Button>
-                                    <Border Width="30"/>
+                                    <Border Width="10"/>
                                     <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
                                             Command="{Binding DataContext.DeletePartnerCommand, ElementName=PartnerGrid}" 
                                             CommandParameter="{Binding PartnerCode}"
@@ -243,13 +243,13 @@
                             </DataTemplate>
                         </DataGrid.Resources>
                         <DataGrid.Columns >
-                            <DataGridTemplateColumn Width="0.8*" Header="Mã nhà cung cấp" CellTemplate="{StaticResource PartnerCode}"/>
-                            <DataGridTemplateColumn Width="1.3*" Header="Tên nhà cung cấp" CellTemplate="{StaticResource PartnerName}"/>
-                            <DataGridTemplateColumn Width="0.7*" Header="Số điện thoại" CellTemplate="{StaticResource PartnerPhoneNumber}"/>
-                            <DataGridTemplateColumn Width="1.2*" Header="Địa chỉ" CellTemplate="{StaticResource PartnerAddress}"/>
-                            <DataGridTemplateColumn Width="1.2*" Header="Tổng đã mua" CellTemplate="{StaticResource TotaMoneylWasBuy}"/>
-                            <DataGridTemplateColumn Width="1.1*" Header="Lần nhập hàng cuối cùng" CellTemplate="{StaticResource NumberOfTimeBuy}"/>
-                            <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>
+                            <DataGridTemplateColumn Width="0.65*" Header="Mã nhà cung cấp" CellTemplate="{StaticResource PartnerCode}"/>
+                            <DataGridTemplateColumn Width="1*" Header="Tên nhà cung cấp" CellTemplate="{StaticResource PartnerName}"/>
+                            <DataGridTemplateColumn Width="0.5*" Header="Số điện thoại" CellTemplate="{StaticResource PartnerPhoneNumber}"/>
+                            <DataGridTemplateColumn Width="2.2*" Header="Địa chỉ" CellTemplate="{StaticResource PartnerAddress}"/>
+                            <DataGridTemplateColumn Width="0.6*" Header="Tổng đã mua" CellTemplate="{StaticResource TotaMoneylWasBuy}"/>
+                            <DataGridTemplateColumn Width="0.7*" Header="Lần nhập hàng cuối" CellTemplate="{StaticResource NumberOfTimeBuy}"/>
+                            <DataGridTemplateColumn Width="0.4*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

@@ -1,12 +1,10 @@
 ﻿using SCMApp.Constants;
-using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;

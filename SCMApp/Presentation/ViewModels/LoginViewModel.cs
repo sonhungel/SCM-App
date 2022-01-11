@@ -49,7 +49,7 @@ namespace SCMApp.Presentation.ViewModels
             using (new WaitCursorScope())
             {
                 var token = _userWebAPI.GetToken(new LoginRequest(_email, _password));
-                var user = _userWebAPI.GetUserProfileBaseOnToken(token.token);
+                var user = _userWebAPI.GetUserProfileBaseOnToken(_email, token.token);
                 ScreenManager.ShowMainView(View, user, token.token);
             }
         }

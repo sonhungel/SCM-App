@@ -1,9 +1,5 @@
 ﻿using SCMApp.Helper;
 using SCMApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 {

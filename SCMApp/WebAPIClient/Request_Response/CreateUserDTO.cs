@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SCMApp.Models
+namespace SCMApp.WebAPIClient.Request_Response
 {
-    public class UserProfile: BusinessObjectBase
+    public class CreateUserDTO
     {
-        public UserProfile()
-        {
-
-        }
         public string username { get; set; }
         public string fullName { get; set; }
         public string password { get; set; }

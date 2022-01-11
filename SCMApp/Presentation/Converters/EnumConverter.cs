@@ -3,7 +3,6 @@ using SCMApp.Helper;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using System.Windows.Data;
 
 namespace SCMApp.Presentation.Converters

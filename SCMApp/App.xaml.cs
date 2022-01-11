@@ -1,10 +1,7 @@
 ﻿using Ninject;
 using SCMApp.DependencyInjection;
-using SCMApp.Presentation.ViewModels;
-using SCMApp.Presentation.ViewModels.SubViewModels;
-using SCMApp.Presentation.Views;
-using SCMApp.Presentation.Views.SubViews;
-using System;
+using SCMApp.Presentation.ViewModels; 
+using SCMApp.Presentation.Views; 
 using System.Windows;
 
 namespace SCMApp

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SCMApp.Helper
 {
@@ -10,6 +8,13 @@ namespace SCMApp.Helper
         {
             if(dateTime != null)
                 return dateTime.Value.ToString("dd/MM/yyyy");
+            return string.Empty;
+        }
+
+        public static string DateTimeToYearMonthDay(DateTime? dateTime)
+        {
+            if (dateTime != null)
+                return dateTime.Value.ToString("yyyy/MM/dd");
             return string.Empty;
         }
     }

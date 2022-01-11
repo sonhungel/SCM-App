@@ -1,5 +1,4 @@
 ﻿using SCMApp.Models;
-using System;
 
 namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 {

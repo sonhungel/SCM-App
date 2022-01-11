@@ -3,7 +3,6 @@ using SCMApp.Models;
 using SCMApp.WebAPIClient.Request_Response;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SCMApp.WebAPIClient.MainView
@@ -13,14 +12,14 @@ namespace SCMApp.WebAPIClient.MainView
         public UserWebAPI(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {
         }
-        public override string RoutePrefix => RouteConstants.LoginApi;
+        public override string RoutePrefix => RouteConstants.UserApi;
 
-        public void AddUser()
+        public bool CreateUser(CreateUserDTO createUserDTO, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Post<GetOneResponse<UserProfile>>(RouteConstants.CreateUser, createUserDTO, string.Empty)).Result.status == "CREATED";
         }
 
-        public void DeleteUser()
+        public bool DeleteUser(string token)
         {
             throw new NotImplementedException();
         }
@@ -35,12 +34,12 @@ namespace SCMApp.WebAPIClient.MainView
             return Task.Run(() => Post<LoginResponse>(RouteConstants.LoginApiGetToken, infor, string.Empty)).Result;
         }
 
-        public UserProfile GetUserProfileBaseOnToken(string token)
+        public UserProfile GetUserProfileBaseOnToken(string username, string token)
         {
-            return Task.Run(() => Get<GetOneResponse<UserProfile>>(RouteConstants.GetUserProfileBaseOnToken, token)).Result.data;
+            return Task.Run(() => Get<GetOneResponse<UserProfile>>(username, token)).Result.data;
         }
 
-        public void UpdateUser()
+        public bool UpdateUser()
         {
             throw new NotImplementedException();
         }

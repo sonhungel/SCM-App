@@ -1,13 +1,12 @@
 ﻿using SCMApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SCMApp.WebAPIClient.Request_Response;
+using System.Collections.Generic; 
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
 {
     public interface IInvoiceWebAPI
     {
-        void CreateInvoice();
+        bool CreateInvoice(CreateInvoiceDTO createInvoiceDTO, string token);
         void DeleteInvoice();
         IList<Order> GetAllInvoice(string token);
     }

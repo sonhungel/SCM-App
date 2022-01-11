@@ -4,9 +4,6 @@ using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels

@@ -1,7 +1,4 @@
-﻿using SCMApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿ 
 
 namespace SCMApp.WebAPIClient.Request_Response
 {

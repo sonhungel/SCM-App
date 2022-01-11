@@ -2,8 +2,6 @@
 using LiveCharts.Wpf;
 using SCMApp.Constants;
 using SCMApp.Constants.Enum;
-using SCMApp.Helper;
-using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;

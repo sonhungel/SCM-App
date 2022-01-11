@@ -116,7 +116,7 @@
                     <Border Grid.Row="5" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
-                                <TextBox x:Name="importPhoneNumber" Padding="10,0,0,0"
+                                <TextBox x:Name="importPhoneNumber" Padding="10,0,0,0" MaxLength="10"
                                          Text="{Binding PartnerPhoneNumber, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập số điện thoại..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">

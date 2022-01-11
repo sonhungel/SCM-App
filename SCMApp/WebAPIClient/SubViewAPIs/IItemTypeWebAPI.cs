@@ -1,7 +1,5 @@
-﻿using SCMApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SCMApp.Models; 
+using System.Collections.Generic; 
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
 {
