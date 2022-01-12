@@ -7,13 +7,15 @@ using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
 using SCMApp.WebAPIClient.Request_Response;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
-    public class CustomerDetailViewModel : ViewModelBase, IWindowViewBase
+    public class CustomerDetailViewModel : SubViewModelBase, IWindowViewBase
     {
         private readonly ICustomerWebAPI _customerWebAPI;
         public CustomerDetailViewModel(ICustomerWebAPI customerWebAPI,string token, IScreenManager screenManager) : base(token, screenManager)
@@ -32,6 +34,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public ICommand ISaveCommand { get; }
 
         public Customer Model;
+
         public string CustomerName 
         {
             get => Model.name;
@@ -187,6 +190,11 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 Model.address = value;
                 OnPropertyChanged(nameof(StreetAddress));
             }
+        }
+
+        protected override void ValidateProperty()
+        {
+
         }
 
         public bool IsCreate { get; set; }

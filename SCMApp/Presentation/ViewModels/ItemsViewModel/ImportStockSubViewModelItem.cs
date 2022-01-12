@@ -7,14 +7,12 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 {
     public class ImportStockSubViewModelItem: INotifyPropertyChanged
     {
-        public ImportStockSubViewModelItem(Item item, int orderNumber)
+        public ImportStockSubViewModelItem(Item item)
         {
             Model = item;
-            OrderNumber = orderNumber;
             _quantity = 1;
         }
         public Item Model;
-        public int OrderNumber { get; set; }
         public int StockCode => Model.itemNumber;
         public string StockName => Model.name;
         private int _quantity;

@@ -8,13 +8,15 @@ using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.MainView;
 using SCMApp.WebAPIClient.Request_Response;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
-    public class InsertUserProfileViewModel : ViewModelBase, IWindowViewBase
+    public class InsertUserProfileViewModel : SubViewModelBase, IWindowViewBase
     {
         private readonly IUserWebAPI _userWebAPI;
         public InsertUserProfileViewModel(IUserWebAPI userWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
@@ -181,6 +183,11 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 Model.address = value;
                 OnPropertyChanged(nameof(StreetAddress));
             }
+        }
+
+        protected override void ValidateProperty()
+        {
+
         }
 
         public bool IsCreate { get; set; }

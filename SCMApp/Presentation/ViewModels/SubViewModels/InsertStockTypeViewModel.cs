@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
-    public class InsertStockTypeViewModel : ViewModelBase, IWindowViewBase
+    public class InsertStockTypeViewModel : SubViewModelBase, IWindowViewBase
     {
         private readonly IItemTypeWebAPI _itemTypeWebAPI;
         public InsertStockTypeViewModel(IItemTypeWebAPI itemTypeWebAPI,string token, IScreenManager screenManager) : base(token, screenManager)
@@ -48,6 +48,12 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public ICommand ICancelCommand { get; }
 
         public ICommand ISaveCommand { get; }
+
+        protected override void ValidateProperty()
+        {
+
+        }
+
         public bool IsCreate { get; set; }
 
         private void CancelAction()

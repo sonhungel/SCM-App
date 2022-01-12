@@ -25,7 +25,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                 new ColumnSeries()
                 {
                     Title = "Thu",
-                    Values = new ChartValues<double> {5,10,15,20,25,30,35}
+                    Values = new ChartValues<double> {5,10,15,20,25,30,75}
                 }
             };
 

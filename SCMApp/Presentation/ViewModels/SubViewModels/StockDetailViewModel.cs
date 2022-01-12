@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
-    public class StockDetailViewModel : ViewModelBase, IWindowViewBase
+    public class StockDetailViewModel : SubViewModelBase, IWindowViewBase
     {
         private readonly IItemTypeWebAPI _itemTypeWebAPI;
         private readonly IPartnerWebAPI _partnerWebAPI;
@@ -154,6 +154,12 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
+
+        protected override void ValidateProperty()
+        {
+
+        }
+
         public bool IsCreate { get; set; }
 
         private void CancelAction()

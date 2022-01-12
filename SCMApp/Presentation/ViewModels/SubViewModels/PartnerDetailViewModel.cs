@@ -6,13 +6,15 @@ using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
 using SCMApp.WebAPIClient.Request_Response;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
-    public class PartnerDetailViewModel : ViewModelBase, IWindowViewBase
+    public class PartnerDetailViewModel : SubViewModelBase, IWindowViewBase
     {
         private readonly IPartnerWebAPI _partnerWebAPI;
         public PartnerDetailViewModel(IPartnerWebAPI partnerWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
@@ -170,6 +172,11 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 Model.remark = value;
                 OnPropertyChanged(nameof(Note));
             }
+        }
+
+        protected override void ValidateProperty()
+        {
+
         }
 
         public bool IsCreate { get; set; }

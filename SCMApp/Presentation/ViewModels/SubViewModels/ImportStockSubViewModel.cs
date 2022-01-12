@@ -13,10 +13,10 @@ using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
-    public  class ImportStockSubViewModel : ViewModelBase, IWindowViewBase
+    public class ImportStockSubViewModel : SubViewModelBase, IWindowViewBase
     {
         private readonly IItemWebAPI _itemWebAPI;
-        public ImportStockSubViewModel(IItemWebAPI itemWebAPI,string token, IScreenManager screenManager) : base(token, screenManager)
+        public ImportStockSubViewModel(IItemWebAPI itemWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _itemWebAPI = itemWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
@@ -28,40 +28,36 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             using (new WaitCursorScope())
             {
                 ListItem = _itemWebAPI.GetAllItem(token);
-            }    
+            }
             IsCreate = true;
         }
         //import Model
 
         public IList<Item> ListItem { get; set; }
         private Item _selectedItem;
-        public Item SelectedItem 
-        { 
+        public Item SelectedItem
+        {
             get => _selectedItem;
             set
             {
                 _selectedItem = value;
-                if(ImportStockListItem.Any(x => x.StockCode == value.itemNumber))
+                if (ImportStockListItem.Any(x => x.StockCode == value.itemNumber))
                 {
                     return;
-                }    
-                if (ImportStockListItem.Any())
-                {
-                    var newItemToAdd = new ImportStockSubViewModelItem(value, ImportStockListItem.LastOrDefault().OrderNumber+1);
-                    ImportStockListItem.Add(newItemToAdd);
                 }
-                else
-                {
-                    var newItemToAdd = new ImportStockSubViewModelItem(value, 1);
-                    ImportStockListItem.Add(newItemToAdd);
-                }    
+                var newItemToAdd = new ImportStockSubViewModelItem(value);
+                ImportStockListItem.Add(newItemToAdd);
+
                 OnPropertyChangedNoInput();
                 OnPropertyChanged(nameof(TotalMoney));
                 OnPropertyChanged(nameof(TotalQuantityOfStock));
+                OnPropertyChanged(nameof(IsHaveNoItemToImport));
             }
         }
 
         public ObservableCollection<ImportStockSubViewModelItem> ImportStockListItem { get; set; }
+
+        public bool IsHaveNoItemToImport => !ImportStockListItem.Any();
 
         public string ImportStockCode
         {
@@ -107,18 +103,24 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public ICommand MinusQuantityCommand { get; }
         public ICommand PlusQuantityCommand { get; }
+
+        protected override void ValidateProperty()
+        {
+
+        }
+
         public bool IsCreate { get; set; }
 
-        private void MinusQuantity(int orderNumber)
+        private void MinusQuantity(int stockCode)
         {
-            var item = ImportStockListItem.SingleOrDefault(x => x.OrderNumber == orderNumber);
+            var item = ImportStockListItem.SingleOrDefault(x => x.StockCode == stockCode);
             if (item != null && item.Quantity > 1)
             {
                 item.Quantity--;
             }
             else
             {
-                MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá mặt hàng này ra hỏi đơn nhập hàng ?", 
+                MessageBoxResult dialogResult = MessageBox.Show("Bạn có muốn xoá mặt hàng này ra hỏi đơn nhập hàng ?",
                     "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (dialogResult == MessageBoxResult.Yes)
                 {
@@ -128,11 +130,12 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             OnPropertyChanged(nameof(ImportStockListItem));
             OnPropertyChanged(nameof(TotalMoney));
             OnPropertyChanged(nameof(TotalQuantityOfStock));
+            OnPropertyChanged(nameof(IsHaveNoItemToImport));
         }
 
-        private void PlusQuantity(int orderNumber)
+        private void PlusQuantity(int stockCode)
         {
-            var item = ImportStockListItem.SingleOrDefault(x => x.OrderNumber == orderNumber);
+            var item = ImportStockListItem.SingleOrDefault(x => x.StockCode == stockCode);
             if (item != null)
             {
                 item.Quantity++;

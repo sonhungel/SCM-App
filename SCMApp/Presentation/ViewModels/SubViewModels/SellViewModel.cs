@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
-    public class SellViewModel : ViewModelBase, IWindowViewBase
+    public class SellViewModel : SubViewModelBase, IWindowViewBase
     {
         private readonly IItemWebAPI _itemWebAPI;
         private readonly ICustomerWebAPI _customerWebAPI;
@@ -139,6 +139,12 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             get;
             set;
         }
+
+        protected override void ValidateProperty()
+        {
+
+        }
+
         public bool IsCreate { get; set; }
 
         private void CancelAction()

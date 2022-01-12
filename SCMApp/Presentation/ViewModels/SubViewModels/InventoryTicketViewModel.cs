@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
-    public class InventoryTicketViewModel : ViewModelBase, IWindowViewBase
+    public class InventoryTicketViewModel : SubViewModelBase, IWindowViewBase
     {
         private readonly IItemWebAPI _itemWebAPI;
         private readonly IInventoryWebAPI _inventoryWebAPI;
@@ -83,6 +83,11 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 _updateModel.remark = value;
                 OnPropertyChangedNoInput();
             }
+        }
+
+        protected override void ValidateProperty()
+        {
+
         }
 
         public bool IsCreate { get; set; }

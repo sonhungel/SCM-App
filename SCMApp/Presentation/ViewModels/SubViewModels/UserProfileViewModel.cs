@@ -4,13 +4,15 @@ using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
-    public class UserProfileViewModel : ViewModelBase, IWindowViewBase
+    public class UserProfileViewModel : SubViewModelBase, IWindowViewBase
     {
         public UserProfileViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
@@ -185,6 +187,11 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 Model.address = value;
                 OnPropertyChanged(nameof(StreetAddress));
             }
+        }
+
+        protected override void ValidateProperty()
+        {
+
         }
 
         public bool IsCreate { get; set; }
