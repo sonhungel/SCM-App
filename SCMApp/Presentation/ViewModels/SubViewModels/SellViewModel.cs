@@ -26,7 +26,14 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             _customerWebAPI = customerWebAPI;
             _invoiceWebAPI = invoiceWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
-            ISaveCommand = new RelayCommand(p => SaveAction());
+            ISaveCommand = new RelayCommand(p =>
+            {
+                ValidateProperty();
+                if (!HasErrors)
+                {
+                    SaveAction();
+                }
+            });
             MinusQuantityCommand = new RelayCommand(p => MinusQuantity((int)p));
             PlusQuantityCommand = new RelayCommand(p => PlusQuantity((int)p));
 
@@ -142,7 +149,26 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         protected override void ValidateProperty()
         {
+            CleanUpError(nameof(SellListItem));
+            CleanUpError(nameof(SelectedCustomer));
+            CleanUpError(nameof(MoneyCustomerPaid));
 
+            if (SellListItem.Count <= 0)
+            {
+                AddError(nameof(SellListItem), "Phải chọn ít nhất 1 mặt hàng.");
+            }
+            if (SelectedCustomer == null)
+            {
+                AddError(nameof(SelectedCustomer), "Vui lòng chọn khách hàng");
+            }
+            if (!MoneyCustomerPaid.HasValue)
+            {
+                AddError(nameof(MoneyCustomerPaid), "Nhập số tiền khách trả.");
+            }
+            if(MoneyCustomerPaid.HasValue && TotalMoney != 0 && MoneyCustomerPaid.Value < TotalMoney)
+            {
+                AddError(nameof(MoneyCustomerPaid), "Số tiền không hợp lệ.");
+            }    
         }
 
         public bool IsCreate { get; set; }

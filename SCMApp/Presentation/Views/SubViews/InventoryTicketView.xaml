@@ -56,6 +56,7 @@
                             <ComboBox IsEditable="False" Cursor="Hand" 
                                           ItemsSource="{Binding ListItem}" DisplayMemberPath="name" 
                                           SelectedItem="{Binding SelectedItem}"
+                                          Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateForInventory}"
                                           IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                     </StackPanel>
@@ -110,7 +111,10 @@
                                     <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                         <Grid Height="Auto">
                                             <TextBox x:Name="importFactQuantity" Padding="10,0,0,0"
-                                                     Text="{Binding FactQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                     Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateForInventory}"
+                                                     Template="{StaticResource TextBoxBaseControlTemplate}"
+                                                     Text="{Binding FactQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus, 
+                                                     Converter={StaticResource NumbericConverter}}"
                                                      FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                             <TextBlock Margin="10,0,0,0" Text="Nhập số lượng thực tế..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                                 <TextBlock.Style>

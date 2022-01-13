@@ -72,6 +72,8 @@
                             <Grid Height="Auto">
                                 <TextBox x:Name="importNamePartner" Padding="10,0,0,0" IsEnabled="{Binding IsCreate}"
                                          Text="{Binding PartnerFullName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                         Template="{StaticResource TextBoxBaseControlTemplate}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập tên nhà cung cấp..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
@@ -94,7 +96,10 @@
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
                                 <TextBox x:Name="importPartnerCode" Padding="10,0,0,0" IsEnabled="{Binding IsCreate}"
-                                         Text="{Binding PartnerCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         Text="{Binding PartnerCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus, 
+                                            Converter={StaticResource NumbericConverter}}"
+                                         Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                         Template="{StaticResource TextBoxBaseControlTemplate}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập mã nhà cung cấp..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
@@ -117,7 +122,10 @@
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
                                 <TextBox x:Name="importPhoneNumber" Padding="10,0,0,0" MaxLength="10"
-                                         Text="{Binding PartnerPhoneNumber, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         Text="{Binding PartnerPhoneNumber, Mode=TwoWay, UpdateSourceTrigger=LostFocus, 
+                                            Converter={StaticResource NumbericConverter}}"
+                                         Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                         Template="{StaticResource TextBoxBaseControlTemplate}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập số điện thoại..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
@@ -141,6 +149,8 @@
                             <Grid Height="Auto">
                                 <TextBox x:Name="importEmail" Padding="10,0,0,0" IsEnabled="{Binding IsCreate}"
                                          Text="{Binding PartnerEmail, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                         Template="{StaticResource TextBoxBaseControlTemplate}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập email..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
@@ -164,6 +174,8 @@
                             <Grid Height="Auto">
                                 <TextBox x:Name="importTaxCode" Padding="10,0,0,0" IsEnabled="{Binding IsCreate}"
                                          Text="{Binding TaxCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                         Template="{StaticResource TextBoxBaseControlTemplate}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập mã số thuế..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
@@ -198,6 +210,8 @@
                             <Grid Height="Auto">
                                 <TextBox x:Name="importAddress" Padding="10,0,0,0"
                                          Text="{Binding StreetAddress, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                         Template="{StaticResource TextBoxBaseControlTemplate}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập địa chỉ..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
@@ -223,19 +237,25 @@
                     <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Stretch" Orientation="Horizontal">
                         <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <ComboBox Width="175" ItemsSource="{Binding ProvinceList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedProvince}" 
-                                      IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                                      IsEditable="False" Cursor="Hand" IsReadOnly="True" 
+                                      Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateForProvince}"                                     
+                                      Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                         <Border Width="10"/>
                         <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <ComboBox Width="175" ItemsSource="{Binding DistrictList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedDistrict}" 
-                                      IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                                      IsEditable="False" Cursor="Hand" IsReadOnly="True" 
+                                      Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateForDistrict}"
+                                      Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                     </StackPanel>
 
                     <Label Grid.Row="6" Grid.Column="2" Content="Xã/Phường" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <Border Grid.Row="7" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <ComboBox IsEditable="False" ItemsSource="{Binding WardList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedWard}" 
-                                  Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                                  Cursor="Hand" IsReadOnly="True" 
+                                  Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                  Style="{StaticResource RoundedComboBox}"/>
                     </Border>
 
                     <Label Grid.Row="8" Grid.Column="2" Content="Ghi chú" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>

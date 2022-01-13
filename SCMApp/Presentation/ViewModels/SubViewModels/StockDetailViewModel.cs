@@ -22,7 +22,14 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             _partnerWebAPI = partnerWebAPI;
             _itemWebAPI = itemWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
-            ISaveCommand = new RelayCommand(p => SaveAction());
+            ISaveCommand = new RelayCommand(p =>
+            {
+                ValidateProperty();
+                if (!HasErrors)
+                {
+                    SaveAction();
+                }
+            });
 
             using (new WaitCursorScope())
             {
@@ -157,7 +164,56 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         protected override void ValidateProperty()
         {
+            CleanUpError(nameof(StockName));
+            CleanUpError(nameof(StockCode));
+            CleanUpError(nameof(StockCost));
+            CleanUpError(nameof(SelectedItemType));
+            CleanUpError(nameof(StockRetailPrice));
+            CleanUpError(nameof(SelectedPartner));
+            CleanUpError(nameof(StockInventoryQuantity));
+            CleanUpError(nameof(StockMinInventoryQuantity));
 
+
+            if (string.IsNullOrEmpty(StockName))
+            {
+                AddError(nameof(StockName), "Tên sản phẩm không được trống.");
+            }
+            if (!StockCode.HasValue)
+            {
+                AddError(nameof(StockCode), "Mã sản phẩm không được trống.");
+            }
+            if (!StockCost.HasValue)
+            {
+                AddError(nameof(StockCost), "Giá vốn không được trống.");
+            }
+            if (!StockRetailPrice.HasValue)
+            {
+                AddError(nameof(StockRetailPrice), "Giá bán không được trống.");
+            }
+            if (StockRetailPrice.HasValue && StockCost.HasValue && StockCost > StockRetailPrice)
+            {
+                AddError(nameof(StockRetailPrice), "Giá vốn đang cao hơn giá bán.");
+            }
+            if(SelectedItemType == null)
+            {
+                AddError(nameof(SelectedItemType), "Không được trống nhóm hàng.");
+            }   
+            if(SelectedPartner == null)
+            {
+                AddError(nameof(SelectedPartner), "Không được trống nhà cung cấp.");
+            }   
+            if(!StockInventoryQuantity.HasValue)
+            {
+                AddError(nameof(StockInventoryQuantity), "Số lượng hàng không được trống.");
+            }   
+            if(!StockMinInventoryQuantity.HasValue)
+            {
+                AddError(nameof(StockMinInventoryQuantity), "Số lượng tối thiểu không được trống.");
+            }
+            if (StockInventoryQuantity.HasValue && StockMinInventoryQuantity.HasValue && StockMinInventoryQuantity > StockInventoryQuantity)
+            {
+                AddError(nameof(StockMinInventoryQuantity), "Số lượng không hợp lệ.");
+            }
         }
 
         public bool IsCreate { get; set; }

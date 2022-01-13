@@ -1,8 +1,10 @@
-﻿using SCMApp.Models;
+﻿using SCMApp.Helper;
+using SCMApp.Models;
 using SCMApp.Presentation.AddressItem;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.ViewManager;
+using SCMApp.WebAPIClient.Request_Response;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,10 +19,16 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public UserProfileViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
         {
             ICancelCommand = new RelayCommand(p => CancelAction());
-            ISaveCommand = new RelayCommand(p => SaveAction());
+            ISaveCommand = new RelayCommand(p =>
+            {
+                ValidateProperty();
+                if (!HasErrors)
+                {
+                    SaveAction();
+                }
+            });
 
             ProvinceList = Address.Instance().ProvinceList;
-            Model = new UserProfile();
             IsCreate = true;
             RoleList = new List<string>()
             {
@@ -31,87 +39,119 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
 
-        public UserProfile Model { get; set; }
+        private UpdateUserDTO _updateModel { get; set; }
+        private UserProfile _model;
+        public UserProfile Model 
+        { 
+            get => _model;
+            set
+            {
+                _model = value;
+                if(_updateModel == null)
+                {
+                    _updateModel = new UpdateUserDTO()
+                    {
+                        fullName = _model.fullName,
+                        username = _model.username,
+                        currentPassword = _model.password,
+                        email = _model.email,
+                        role = _model.role,
+                        phoneNumber = _model.phoneNumber,
+                        dateOfBirth = _model.dateOfBirth,
+                        province = _model.province,
+                        district = _model.district,
+                        ward = _model.ward,
+                        address = _model.address
+                    };
+                }    
+            }
+        }
 
         public bool IsManager => Model.role == "Quản lý" ? true : false;
 
         public string UserFullName
         {
-            get => Model.fullName;
+            get => _updateModel.fullName;
             set
             {
-                Model.fullName = value;
+                _updateModel.fullName = value;
                 OnPropertyChanged(nameof(UserFullName));
             }
         }
         public string UserName
         {
-            get => Model.username;
+            get => _updateModel.username;
             set
             {
-                Model.username = value;
+                _updateModel.username = value;
                 OnPropertyChanged(nameof(UserName));
             }
         }
         public string UserEmail
         {
-            get => Model.email;
+            get => _updateModel.email;
             set
             {
-                Model.email = value;
+                _updateModel.email = value;
                 OnPropertyChanged(nameof(UserEmail));
             }
         }
         public string UserPhoneNumber
         {
-            get => Model.phoneNumber;
+            get => _updateModel.phoneNumber;
             set
             {
-                Model.phoneNumber = value;
+                _updateModel.phoneNumber = value;
                 OnPropertyChanged(nameof(UserPhoneNumber));
             }
         }
+        private string _currentPassword;
         public string CurrentPassWord
         {
-            get => Model.password;
+            get => _currentPassword;
             set
             {
-                Model.password = value;
-                OnPropertyChanged(nameof(NewPassword));
+                _currentPassword = value;
+                OnPropertyChanged(nameof(CurrentPassWord));
             }
         }
         public string NewPassword
         {
-            get;
-            set;
-        }
-        public string VerifyPassword
-        {
-            get => Model.confirmPassword;
+            get => _updateModel.newPassword;
             set
             {
-                Model.confirmPassword = value;
+                _updateModel.newPassword = value;
+                OnPropertyChanged(nameof(NewPassword));
+            }
+        }
+        private string _verifyPassword;
+        public string VerifyPassword
+        {
+            get => _verifyPassword;
+            set
+            {
+                _verifyPassword = value;
                 OnPropertyChanged(nameof(VerifyPassword));
             }
         }
         public DateTime? UserBirthDay
         {
-            get => Model.dateOfBirth;
+            get => _updateModel.dateOfBirth;
             set
             {
                 if (!value.HasValue)
                     return;
-                Model.dateOfBirth = value.Value;
+                _updateModel.dateOfBirth = value.Value;
                 OnPropertyChangedNoInput();
             }
         }
         public IList<string> RoleList { get; set; }
-        public string UserRole
+        public string SelectedUserRole
         {
-            get => Model.role;
+            get => _updateModel.role;
             set
             {
-                Model.role = value;
+                _updateModel.role = value;
                 OnPropertyChangedNoInput();
             }
         }
@@ -124,7 +164,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         {
             get
             {
-                var province = ProvinceList.SingleOrDefault(x => x.Id == Model.province);
+                var province = ProvinceList.SingleOrDefault(x => x.Id == _updateModel.province);
                 DistrictList = province?.Districts;
                 return province;
             }
@@ -132,7 +172,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 if (value == null)
                     return;
-                Model.province = value.Id;
+                _updateModel.province = value.Id;
                 WardList = null;
                 OnPropertyChanged(nameof(WardList));
                 DistrictList = value.Districts;
@@ -145,7 +185,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 if (SelectedProvince != null && DistrictList != null)
                 {
-                    var district = DistrictList.SingleOrDefault(x => x.Id == Model.district);
+                    var district = DistrictList.SingleOrDefault(x => x.Id == _updateModel.district);
                     WardList = district?.Wards;
                     return district;
                 }
@@ -155,7 +195,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 if (value == null)
                     return;
-                Model.district = value.Id;
+                _updateModel.district = value.Id;
                 WardList = value.Wards;
                 OnPropertyChanged(nameof(WardList));
             }
@@ -166,7 +206,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 if (SelectedDistrict != null && WardList != null)
                 {
-                    return WardList.SingleOrDefault(x => x.Id == Model.ward);
+                    return WardList.SingleOrDefault(x => x.Id == _updateModel.ward);
                 }
                 return null;
             }
@@ -174,24 +214,109 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 if (value == null)
                     return;
-                Model.ward = value.Id;
+                _updateModel.ward = value.Id;
                 OnPropertyChanged(nameof(SelectedWard));
             }
         }
 
         public string StreetAddress
         {
-            get => Model.address;
+            get => _updateModel.address;
             set
             {
-                Model.address = value;
+                _updateModel.address = value;
                 OnPropertyChanged(nameof(StreetAddress));
             }
         }
 
         protected override void ValidateProperty()
         {
+            CleanUpError(nameof(UserFullName));
+            CleanUpError(nameof(UserName));
+            CleanUpError(nameof(UserEmail));
+            CleanUpError(nameof(UserPhoneNumber));
+            CleanUpError(nameof(UserBirthDay));
+            CleanUpError(nameof(SelectedUserRole));
 
+            CleanUpError(nameof(CurrentPassWord));
+            CleanUpError(nameof(NewPassword));
+            CleanUpError(nameof(VerifyPassword));
+
+            CleanUpError(nameof(SelectedProvince));
+            CleanUpError(nameof(SelectedDistrict));
+            CleanUpError(nameof(SelectedWard));
+            CleanUpError(nameof(StreetAddress));
+
+            if (string.IsNullOrEmpty(UserFullName))
+            {
+                AddError(nameof(UserFullName), "Họ và tên không được trống.");
+            }
+            if (string.IsNullOrEmpty(UserName))
+            {
+                AddError(nameof(UserName), "Tên đăng nhập không được trống.");
+            }
+            if (string.IsNullOrEmpty(UserEmail) || !ValidatorExtensions.IsValidEmailAddress(UserEmail))
+            {
+                AddError(nameof(UserEmail), "Email không hợp lệ.");
+            }
+            if (string.IsNullOrEmpty(UserPhoneNumber) || UserPhoneNumber.Count() <= 8)
+            {
+                AddError(nameof(UserPhoneNumber), "Số điện thoại không hợp lệ.");
+            }
+            if (!UserBirthDay.HasValue)
+            {
+                AddError(nameof(UserBirthDay), "Ngày sinh không được trống");
+
+            }
+            else if (UserBirthDay.Value < new DateTime(1753, 1, 1))
+            {
+                AddError(nameof(UserBirthDay), "Ngày sinh không hợp lệ.");
+            }
+
+            //if (string.IsNullOrEmpty(CurrentPassWord))
+            //{
+            //    AddError(nameof(CurrentPassWord), "Không được trống nếu đổi mật khẩu.");
+            //}
+            if (!string.IsNullOrEmpty(CurrentPassWord) && string.IsNullOrEmpty(NewPassword))
+            {
+                AddError(nameof(NewPassword), "Mật khẩu mới không được trống nếu đổi.");
+            }
+            if (!string.IsNullOrEmpty(CurrentPassWord) && string.IsNullOrEmpty(VerifyPassword))
+            {
+                AddError(nameof(VerifyPassword), "Xác nhận mật khẩu mới không được trống nếu đổi.");
+            }
+            if (!string.IsNullOrEmpty(VerifyPassword) && !string.IsNullOrEmpty(NewPassword) && NewPassword != VerifyPassword)
+            {
+                AddError(nameof(VerifyPassword), "Mật khẩu và xác nhận mật khẩu không khớp.");
+            }
+
+            if ((!string.IsNullOrEmpty(VerifyPassword) || !string.IsNullOrEmpty(NewPassword)) && string.IsNullOrEmpty(CurrentPassWord))
+            {
+                AddError(nameof(CurrentPassWord), "Hãy nhập mật khẩu hiện tại nếu muốn đổi.");
+            }
+
+            if (string.IsNullOrEmpty(SelectedUserRole))
+            {
+                AddError(nameof(SelectedUserRole), "Chức vụ không được trống.");
+            }
+            if (SelectedProvince == null)
+            {
+                AddError(nameof(SelectedProvince), "Tỉnh/TP không được trống.");
+            }
+            if (SelectedDistrict == null)
+            {
+                AddError(nameof(SelectedDistrict), "Quận/Huyện không được trống.");
+            }
+
+            if (SelectedWard == null)
+            {
+                AddError(nameof(SelectedWard), "Phường/Xã không được trống.");
+            }
+
+            if (string.IsNullOrEmpty(StreetAddress))
+            {
+                AddError(nameof(StreetAddress), "Địa chỉ không được trống.");
+            }
         }
 
         public bool IsCreate { get; set; }

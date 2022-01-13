@@ -1,4 +1,5 @@
-﻿using SCMApp.Models;
+﻿using SCMApp.Helper;
+using SCMApp.Models;
 using SCMApp.Presentation.AddressItem;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
@@ -21,8 +22,14 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         {
             _partnerWebAPI = partnerWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
-            ISaveCommand = new RelayCommand(p => SaveAction());
-
+            ISaveCommand = new RelayCommand(p =>
+            {
+                ValidateProperty();
+                if (!HasErrors)
+                {
+                    SaveAction();
+                }
+            });
             ProvinceList = Address.Instance().ProvinceList;
             PartnerType = new List<string>() { "Doanh nghiệp", "Cá nhân" };
             Model = new Partner();
@@ -176,7 +183,58 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         protected override void ValidateProperty()
         {
+            CleanUpError(nameof(PartnerFullName));
+            CleanUpError(nameof(PartnerCode));
+            CleanUpError(nameof(PartnerPhoneNumber));
+            CleanUpError(nameof(PartnerEmail));
+            CleanUpError(nameof(PartnerType));
+            CleanUpError(nameof(SelectedProvince));
+            CleanUpError(nameof(SelectedDistrict));
+            CleanUpError(nameof(SelectedWard));
+            CleanUpError(nameof(StreetAddress));
 
+            if (string.IsNullOrEmpty(PartnerFullName))
+            {
+                AddError(nameof(PartnerFullName), "Tên nhà cung cấp không hợp lệ.");
+            }
+            if (string.IsNullOrEmpty(PartnerCode))
+            {
+                AddError(nameof(PartnerCode), "Mã cung cấp không hợp lệ.");
+            }
+            if (string.IsNullOrEmpty(PartnerPhoneNumber) || PartnerPhoneNumber.Count() <= 8)
+            {
+                AddError(nameof(PartnerPhoneNumber), "Số điện thoại không hợp lệ.");
+            }
+            if (string.IsNullOrEmpty(PartnerEmail) || !ValidatorExtensions.IsValidEmailAddress(PartnerEmail))
+            {
+                AddError(nameof(PartnerEmail), "Email không hợp lệ.");
+            }
+            if (string.IsNullOrEmpty(SelectedPartnerType))
+            {
+                AddError(nameof(SelectedPartnerType), "Giới tính không được trống.");
+            }
+            if (SelectedProvince == null)
+            {
+                AddError(nameof(SelectedProvince), "Tỉnh/TP không được trống.");
+            }
+            if (SelectedDistrict == null)
+            {
+                AddError(nameof(SelectedDistrict), "Quận/Huyện không được trống.");
+            }
+
+            if (SelectedWard == null)
+            {
+                AddError(nameof(SelectedWard), "Phường/Xã không được trống.");
+            }
+
+            if (string.IsNullOrEmpty(StreetAddress))
+            {
+                AddError(nameof(StreetAddress), "Địa chỉ không được trống.");
+            }
+            if (string.IsNullOrEmpty(TaxCode))
+            {
+                AddError(nameof(TaxCode), "Mã số thuế không được trống.");
+            }
         }
 
         public bool IsCreate { get; set; }

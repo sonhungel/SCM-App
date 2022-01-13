@@ -22,5 +22,6 @@ namespace SCMApp.Presentation.Views.SubViews
         {
             WindowState = WindowState.Minimized;
         }
+
     }
 }

@@ -35,5 +35,6 @@
     <converter:NumberConverter x:Key="NumberConverter"/>
     <converter:DiameterAndThicknessToStrokeDashArrayConverter x:Key="DiameterAndThicknessToStrokeDashArrayConverter"/>
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <converter:NumbericConverter x:Key="NumbericConverter"/>
     
 </ResourceDictionary>

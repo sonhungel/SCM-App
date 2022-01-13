@@ -70,6 +70,8 @@
                             <Grid Height="Auto">
                                 <TextBox x:Name="importName" Padding="10,0,0,0"
                                          Text="{Binding UserFullName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                         Template="{StaticResource TextBoxBaseControlTemplate}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập họ và tên..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
@@ -93,6 +95,8 @@
                             <Grid Height="Auto">
                                 <TextBox x:Name="importUserName" Padding="10,0,0,0"
                                          Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                         Template="{StaticResource TextBoxBaseControlTemplate}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập tên đăng nhập..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
@@ -116,6 +120,8 @@
                             <Grid Height="Auto">
                                 <TextBox x:Name="importEmail" Padding="10,0,0,0"
                                          Text="{Binding UserEmail, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                         Template="{StaticResource TextBoxBaseControlTemplate}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập email..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
@@ -145,6 +151,8 @@
                                 <Grid Height="Auto">
                                     <TextBox x:Name="importPass" Padding="10,0,0,0"
                                              Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                             Validation.ErrorTemplate="{StaticResource ErrorBorderTemplatePassword}"
+                                                Template="{StaticResource TextBoxBaseControlTemplate}"
                                              FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="20,0,0,0" Text="Nhập mật khẩu..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                         <TextBlock.Style>
@@ -167,6 +175,8 @@
                                 <Grid Height="Auto">
                                     <TextBox x:Name="validatePass" Padding="10,0,0,0"
                                              Text="{Binding VerifyPassword, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                             Validation.ErrorTemplate="{StaticResource ErrorBorderTemplatePassword}"
+                                         Template="{StaticResource TextBoxBaseControlTemplate}"
                                              FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="20,0,0,0" Text="Xác nhận mật khẩu..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                         <TextBlock.Style>
@@ -188,6 +198,7 @@
                     <Label Grid.Row="8" Grid.Column="0" Content="Vai trò" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <Border Grid.Row="9" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <ComboBox ItemsSource="{Binding UserRole}" 
+                                  Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
                                   SelectedItem="{Binding SelectedUserRole, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                             IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
                     </Border>
@@ -199,7 +210,10 @@
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
                                 <TextBox x:Name="importPhoneNumber" Padding="10,0,0,0" MaxLength="10"
-                                         Text="{Binding UserPhoneNumber, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         Text="{Binding UserPhoneNumber, Mode=TwoWay, UpdateSourceTrigger=LostFocus, 
+                                                Converter={StaticResource NumbericConverter}}"
+                                         Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                         Template="{StaticResource TextBoxBaseControlTemplate}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập số điện thoại..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>
@@ -220,6 +234,7 @@
                     <Label Grid.Row="2" Grid.Column="2" Content="Ngày sinh" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <Border Grid.Row="3" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <DatePicker HorizontalAlignment="Stretch" IsTodayHighlighted="True"
+                                    Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
                                     SelectedDate="{Binding UserBirthDay, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                 Cursor="Hand" Style="{StaticResource DatePicker14SegoeUI}">
                             <DatePicker.Resources>
@@ -246,19 +261,25 @@
                     <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Stretch" Orientation="Horizontal">
                         <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <ComboBox Width="175" ItemsSource="{Binding ProvinceList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedProvince}" 
-                                      IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                                      IsEditable="False" Cursor="Hand" IsReadOnly="True" 
+                                      Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateForProvince}"
+                                      Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                         <Border Width="10"/>
                         <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <ComboBox Width="175" ItemsSource="{Binding DistrictList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedDistrict}" 
-                                      IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                                      IsEditable="False" Cursor="Hand" IsReadOnly="True" 
+                                      Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateForDistrict}"
+                                      Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                     </StackPanel>
 
                     <Label Grid.Row="6" Grid.Column="2" Content="Xã/Phường" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <Border Grid.Row="7" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <ComboBox IsEditable="False" ItemsSource="{Binding WardList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedWard}" 
-                                  Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                                  Cursor="Hand" IsReadOnly="True" 
+                                  Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                  Style="{StaticResource RoundedComboBox}"/>
                     </Border>
 
                     <Label Grid.Row="8" Grid.Column="2" Content="Địa chỉ" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
@@ -267,6 +288,8 @@
                             <Grid Height="Auto">
                                 <TextBox x:Name="importAddress" Padding="10,0,0,0"
                                          Text="{Binding StreetAddress, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                         Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                         Template="{StaticResource TextBoxBaseControlTemplate}"
                                          FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                 <TextBlock Margin="20,0,0,0" Text="Nhập địa chỉ..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                     <TextBlock.Style>

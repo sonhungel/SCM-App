@@ -140,7 +140,7 @@
                     <DataGridTemplateColumn Width="1.4*" Header="Tên hàng hoá" CellTemplate="{StaticResource StockName}"/>
                     <DataGridTemplateColumn Width="1*" Header="Tồn kho" CellTemplate="{StaticResource InventoryNumber}"/>
                     <DataGridTemplateColumn Width="1.2*" Header="Thực tế" CellTemplate="{StaticResource InventoryNumberFact}"/>
-                    <DataGridTemplateColumn Width="1*" Header="Số lượng chệnh lệch" CellTemplate="{StaticResource QuantityOfFifference}"/>
+                    <DataGridTemplateColumn Width="1*" Header="Số lượng chênh lệch" CellTemplate="{StaticResource QuantityOfFifference}"/>
                     <DataGridTemplateColumn Width="1*" Header="Ghi chú" CellTemplate="{StaticResource Note}"/>
                     <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chỉnh" CellTemplate="{StaticResource Option}"/>
                 </DataGrid.Columns>

@@ -1,4 +1,5 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Helper;
 using SCMApp.Models;
 using SCMApp.Presentation.AddressItem;
 using SCMApp.Presentation.Commands;
@@ -23,7 +24,14 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         {
             _userWebAPI = userWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
-            ISaveCommand = new RelayCommand(p => SaveAction());
+            ISaveCommand = new RelayCommand(p =>
+            {
+                ValidateProperty();
+                if (!HasErrors)
+                {
+                    SaveAction();
+                }
+            });
 
             ProvinceList = Address.Instance().ProvinceList;
             Model = new UserProfile();
@@ -187,7 +195,66 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         protected override void ValidateProperty()
         {
+            if (string.IsNullOrEmpty(UserFullName))
+            {
+                AddError(nameof(UserFullName), "Họ và tên không được trống.");
+            }
+            if (string.IsNullOrEmpty(UserName))
+            {
+                AddError(nameof(UserName), "Tên đăng nhập không được trống.");
+            }
+            if (string.IsNullOrEmpty(UserEmail) || !ValidatorExtensions.IsValidEmailAddress(UserEmail))
+            {
+                AddError(nameof(UserEmail), "Email không hợp lệ.");
+            }
+            if (string.IsNullOrEmpty(UserPhoneNumber))
+            {
+                AddError(nameof(UserPhoneNumber), "Số điện thoại không được trống.");
+            }
+            if (!UserBirthDay.HasValue)
+            {
+                AddError(nameof(UserBirthDay), "Ngày sinh không được trống");
 
+            }
+            else if (UserBirthDay.Value < new DateTime(1753, 1, 1))
+            {
+                AddError(nameof(UserBirthDay), "Ngày sinh không hợp lệ.");
+            }
+
+            if (string.IsNullOrEmpty(Password))
+            {
+                AddError(nameof(Password), "Mật khẩu không được trống.");
+            }
+            if (string.IsNullOrEmpty(VerifyPassword))
+            {
+                AddError(nameof(VerifyPassword), "Xác nhận mật khẩu không được trống.");
+            }
+            if (!string.IsNullOrEmpty(VerifyPassword) && !string.IsNullOrEmpty(Password) && Password!= VerifyPassword)
+            {
+                AddError(nameof(VerifyPassword), "Mật khẩu và xác nhận mật khẩu không khớp.");
+            }
+            if (string.IsNullOrEmpty(SelectedUserRole))
+            {
+                AddError(nameof(SelectedUserRole), "Vai trò không được trống.");
+            }
+            if (SelectedProvince == null)
+            {
+                AddError(nameof(SelectedProvince), "Tỉnh/TP không được trống.");
+            }
+            if (SelectedDistrict == null)
+            {
+                AddError(nameof(SelectedDistrict), "Quận/Huyện không được trống.");
+            }
+
+            if (SelectedWard == null)
+            {
+                AddError(nameof(SelectedWard), "Phường/Xã không được trống.");
+            }
+
+            if (string.IsNullOrEmpty(StreetAddress))
+            {
+                AddError(nameof(StreetAddress), "Địa chỉ không được trống.");
+            }
         }
 
         public bool IsCreate { get; set; }

@@ -20,7 +20,15 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         {
             _itemWebAPI = itemWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
-            ISaveCommand = new RelayCommand(p => SaveAction());
+            ISaveCommand = new RelayCommand(p => CancelAction());
+            ISaveCommand = new RelayCommand(p =>
+            {
+                ValidateProperty();
+                if (!HasErrors)
+                {
+                    SaveAction();
+                }
+            });
             MinusQuantityCommand = new RelayCommand(p => MinusQuantity((int)p));
             PlusQuantityCommand = new RelayCommand(p => PlusQuantity((int)p));
 
@@ -106,7 +114,11 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         protected override void ValidateProperty()
         {
-
+            CleanUpError(nameof(ImportStockListItem));
+            if (ImportStockListItem.Count <= 0)
+            {
+                AddError(nameof(ImportStockListItem), "Phải chọn mặt hàng cần nhập.");
+            }
         }
 
         public bool IsCreate { get; set; }

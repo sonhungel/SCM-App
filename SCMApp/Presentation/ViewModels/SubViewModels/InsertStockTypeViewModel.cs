@@ -15,7 +15,14 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         {
             _itemTypeWebAPI = itemTypeWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
-            ISaveCommand = new RelayCommand(p => SaveAction());
+            ISaveCommand = new RelayCommand(p =>
+            {
+                ValidateProperty();
+                if (!HasErrors)
+                {
+                    SaveAction();
+                }
+            });
             using (new WaitCursorScope())
             {
                 Model = _itemTypeWebAPI.GetItemNewestId(Token);
@@ -51,7 +58,16 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         protected override void ValidateProperty()
         {
-
+            CleanUpError(nameof(StockTypeName));
+            CleanUpError(nameof(Note));
+            if (string.IsNullOrEmpty(StockTypeName))
+            {
+                AddError(nameof(StockTypeName), "Tên nhóm hàng không được trống.");
+            }
+            if (string.IsNullOrEmpty(Note))
+            {
+                AddError(nameof(Note), "Miêu tả không được trống.");
+            }
         }
 
         public bool IsCreate { get; set; }

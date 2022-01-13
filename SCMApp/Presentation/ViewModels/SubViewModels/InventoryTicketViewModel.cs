@@ -20,7 +20,14 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             _inventoryWebAPI = inventoryWebAPI;
             _itemWebAPI = itemWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
-            ISaveCommand = new RelayCommand(p => SaveAction());
+            ISaveCommand = new RelayCommand(p =>
+            {
+                ValidateProperty();
+                if (!HasErrors)
+                {
+                    SaveAction();
+                }
+            });
 
             using (new WaitCursorScope())
             {
@@ -87,7 +94,16 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         protected override void ValidateProperty()
         {
-
+            CleanUpError(nameof(SelectedItem));
+            CleanUpError(nameof(FactQuantity));
+            if(!FactQuantity.HasValue)
+            {
+                AddError(nameof(FactQuantity), "Số lượng thực tế không được trống.");
+            }
+            if(SelectedItem == null)
+            {
+                AddError(nameof(SelectedItem), "Phải chọn hàng hoá cần kiểm kho.");
+            }
         }
 
         public bool IsCreate { get; set; }

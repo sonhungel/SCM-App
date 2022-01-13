@@ -254,16 +254,30 @@
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="true">
-                <Setter Property="BorderBrush" Value="#aaaaaa" TargetName="Border"/>
+                <Setter Property="BorderBrush" Value="#999888" TargetName="Border"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
-                <Setter Property="BorderBrush" Value="#cccccc" TargetName="Border"/>
+                <Setter Property="BorderBrush" Value="white" TargetName="Border"/>
             </Trigger>
             <Trigger Property="Validation.HasError" Value="true">
                 <Setter Property="BorderBrush" Value="#b44243" TargetName="Border"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
+
+    <Style x:Key="DisableTextBoxStyle" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5,0,0,0"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsCreate}" Value="true">
+                <Setter Property="IsEnabled" Value="False"/>
+                <Setter Property="Foreground" Value="Wheat"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 
     <Style x:Key="RoundedComboBox" TargetType="{x:Type ComboBox}">
         <Setter Property="FontFamily" Value="Segoe UI"/>
@@ -285,6 +299,181 @@
                 </Style>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="ErrorBorderTemplate">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder/>
+            <ItemsControl ItemsSource="{Binding}" VerticalAlignment="Center" Margin="-200 -60 0 0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ErrorContent}" FontFamily="Segoe UI" FontSize="10" FontWeight="SemiBold"
+                                   VerticalAlignment ="Center" HorizontalAlignment="Left"
+                                   TextWrapping="WrapWithOverflow" Foreground="#b44243" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ErrorBorderTemplateForInventory">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder/>
+            <ItemsControl ItemsSource="{Binding}" VerticalAlignment="Center" Margin="-170 0 0 -70">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ErrorContent}" FontFamily="Segoe UI" FontSize="10" FontWeight="SemiBold"
+                                   VerticalAlignment ="Center" HorizontalAlignment="Left"
+                                   TextWrapping="WrapWithOverflow" Foreground="#b44243" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ErrorBorderTemplateForProvince">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder/>
+            <ItemsControl ItemsSource="{Binding}" VerticalAlignment="Center" Margin="-150 -47 0 0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ErrorContent}" FontFamily="Segoe UI" FontSize="10" FontWeight="SemiBold"
+                                   VerticalAlignment ="Center" HorizontalAlignment="Left"
+                                   TextWrapping="WrapWithOverflow" Foreground="#b44243" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ErrorBorderTemplateForDistrict">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder/>
+            <ItemsControl ItemsSource="{Binding}" VerticalAlignment="Center" Margin="-170 -47 0 0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ErrorContent}" FontFamily="Segoe UI" FontSize="10" FontWeight="SemiBold"
+                                   VerticalAlignment ="Center" HorizontalAlignment="Left"
+                                   TextWrapping="WrapWithOverflow" Foreground="#b44243" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ErrorBorderTemplateForUserRole">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder/>
+            <ItemsControl ItemsSource="{Binding}" VerticalAlignment="Center" Margin="0 0 -300 0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ErrorContent}" FontFamily="Segoe UI" FontSize="10" FontWeight="SemiBold"
+                                   VerticalAlignment ="Center" HorizontalAlignment="Left"
+                                   TextWrapping="WrapWithOverflow" Foreground="#b44243" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ErrorBorderTemplateForGridSell">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder/>
+            <ItemsControl ItemsSource="{Binding}" VerticalAlignment="Center" Margin="-200 -320 0 0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ErrorContent}" FontFamily="Segoe UI" FontSize="10" FontWeight="SemiBold"
+                                   VerticalAlignment ="Center" HorizontalAlignment="Left"
+                                   TextWrapping="WrapWithOverflow" Foreground="#b44243" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ErrorBorderTemplateForTextBoxAndComboBoxSell">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder/>
+            <ItemsControl ItemsSource="{Binding}" VerticalAlignment="Center" Margin="-120 -60 0 0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ErrorContent}" FontFamily="Segoe UI" FontSize="10" FontWeight="SemiBold"
+                                   VerticalAlignment ="Center" HorizontalAlignment="Left"
+                                   TextWrapping="WrapWithOverflow" Foreground="#b44243" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ErrorBorderTemplateStockType">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder/>
+            <ItemsControl ItemsSource="{Binding}" VerticalAlignment="Center" Margin="-200 -70 0 0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ErrorContent}" FontFamily="Segoe UI" FontSize="10" FontWeight="SemiBold"
+                                   VerticalAlignment ="Center" HorizontalAlignment="Left"
+                                   TextWrapping="WrapWithOverflow" Foreground="#b44243" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="ErrorBorderTemplatePassword">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder/>
+            <ItemsControl ItemsSource="{Binding}" VerticalAlignment="Center" Margin="-180 -50 0 0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ErrorContent}" FontFamily="Segoe UI" FontSize="10" FontWeight="SemiBold"
+                                   VerticalAlignment ="Center" HorizontalAlignment="Left"
+                                   TextWrapping="WrapWithOverflow" Foreground="#b44243" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="ErrorBorderTemplatePassword2">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder/>
+            <ItemsControl ItemsSource="{Binding}" VerticalAlignment="Center" Margin="-230 -47 0 0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ErrorContent}" FontFamily="Segoe UI" FontSize="10" FontWeight="SemiBold"
+                                   VerticalAlignment ="Center" HorizontalAlignment="Left"
+                                   TextWrapping="WrapWithOverflow" Foreground="#b44243" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ErrorBorderTemplateStockPrice">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder/>
+            <ItemsControl ItemsSource="{Binding}" VerticalAlignment="Center" Margin="-130 -45 0 0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ErrorContent}" FontFamily="Segoe UI" FontSize="10" FontWeight="SemiBold"
+                                   VerticalAlignment ="Center" HorizontalAlignment="Left"
+                                   TextWrapping="WrapWithOverflow" Foreground="#b44243" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ControlTemplate>
+
+
+    <Style x:Key="TextBlockOfProperties" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="#666666"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
 
     <Style x:Key="TextBox14SegoeUI" TargetType="TextBox">
@@ -375,16 +564,7 @@
         <Setter Property="Padding" Value="20,0,0,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
-    
-    <Style x:Key="TextBlockOfProperties" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Foreground" Value="#666666"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-    </Style>
-    
+
     <Style x:Key="DatePicker14SegoeUI" TargetType="{x:Type DatePicker}">
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontSize" Value="14"/>

@@ -1,4 +1,5 @@
-﻿using SCMApp.Models;
+﻿using SCMApp.Helper;
+using SCMApp.Models;
 using SCMApp.Presentation.AddressItem;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
@@ -18,12 +19,19 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
     public class CustomerDetailViewModel : SubViewModelBase, IWindowViewBase
     {
         private readonly ICustomerWebAPI _customerWebAPI;
-        public CustomerDetailViewModel(ICustomerWebAPI customerWebAPI,string token, IScreenManager screenManager) : base(token, screenManager)
+        public CustomerDetailViewModel(ICustomerWebAPI customerWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _customerWebAPI = customerWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
-            ISaveCommand = new RelayCommand(p => SaveAction());
-            
+            ISaveCommand = new RelayCommand(p =>
+            {
+                ValidateProperty();
+                if (!HasErrors)
+                {
+                    SaveAction();
+                }
+            });
+
             ProvinceList = Address.Instance().ProvinceList;
             Gender = new List<string>() { "Nam", "Nữ" };
             Model = new Customer();
@@ -35,7 +43,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public Customer Model;
 
-        public string CustomerName 
+        public string CustomerName
         {
             get => Model.name;
             set
@@ -74,9 +82,9 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
         public DateTime? CustomerBirthDay
         {
-            get 
+            get
             {
-                if(Model.dateOfBirth != DateTime.MinValue)
+                if (Model.dateOfBirth != DateTime.MinValue)
                     return Model.dateOfBirth;
                 return null;
             }
@@ -100,16 +108,16 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
 
         public List<string> Gender { get; set; }
-        public string SelectedGender 
+        public string SelectedGender
         {
-            get => Model.sex? "Nam" : "Nữ";
+            get => Model.sex ? "Nam" : "Nữ";
             set
             {
-                Model.sex = value == "Nam"? true : false;
+                Model.sex = value == "Nam" ? true : false;
                 OnPropertyChanged(nameof(Gender));
             }
         }
-        public string Note 
+        public string Note
         {
             get => Model.remark;
             set
@@ -182,7 +190,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             }
         }
 
-        public string StreetAddress 
+        public string StreetAddress
         {
             get => Model.address;
             set
@@ -194,7 +202,68 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         protected override void ValidateProperty()
         {
+            CleanUpError(nameof(CustomerName));
+            CleanUpError(nameof(CustomerCode));
+            CleanUpError(nameof(CustomerPhoneNumber));
+            CleanUpError(nameof(CustomerEmail));
+            CleanUpError(nameof(CustomerBirthDay));
+            CleanUpError(nameof(SelectedGender));
+            CleanUpError(nameof(SelectedProvince));
+            CleanUpError(nameof(SelectedDistrict));
+            CleanUpError(nameof(SelectedWard));
+            CleanUpError(nameof(StreetAddress));
 
+            if (string.IsNullOrEmpty(CustomerName))
+            {
+                AddError(nameof(CustomerName), "Tên khách hàng không được trống.");
+            }
+            if (string.IsNullOrEmpty(CustomerCode))
+            {
+                AddError(nameof(CustomerCode), "Mã khách hàng không được trống.");
+            }
+            if (string.IsNullOrEmpty(CustomerPhoneNumber) || CustomerPhoneNumber.Count() <= 8)
+            {
+                AddError(nameof(CustomerPhoneNumber), "Số điện thoại không được trống.");
+            }
+            if (string.IsNullOrEmpty(CustomerEmail) || !ValidatorExtensions.IsValidEmailAddress(CustomerEmail))
+            {
+                AddError(nameof(CustomerEmail), "Email không hợp lệ.");
+            }
+            if (!CustomerBirthDay.HasValue)
+            {
+                AddError(nameof(CustomerBirthDay), "Ngày sinh không được trống");
+
+            }
+            else if (CustomerBirthDay.Value < new DateTime(1753, 1, 1))
+            {
+                AddError(nameof(CustomerBirthDay), "Ngày sinh không hợp lệ.");
+            }
+            if (string.IsNullOrEmpty(SelectedGender))
+            {
+                AddError(nameof(SelectedGender), "Giới tính không được trống.");
+            }
+            if (SelectedProvince == null)
+            {
+                AddError(nameof(SelectedProvince), "Tỉnh/TP không được trống.");
+            }
+            if (SelectedDistrict == null)
+            {
+                AddError(nameof(SelectedDistrict), "Quận/Huyện không được trống.");
+            }
+
+            if (SelectedWard == null)
+            {
+                AddError(nameof(SelectedWard), "Phường/Xã không được trống.");
+            }
+
+            if (string.IsNullOrEmpty(StreetAddress))
+            {
+                AddError(nameof(StreetAddress), "Địa chỉ không được trống.");
+            }
+            if (string.IsNullOrEmpty(TaxCode))
+            {
+                AddError(nameof(TaxCode), "Mã số thuế không được trống.");
+            }
         }
 
         public bool IsCreate { get; set; }

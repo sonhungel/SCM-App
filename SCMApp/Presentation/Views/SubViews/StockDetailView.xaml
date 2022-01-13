@@ -78,6 +78,8 @@
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
                                     <TextBox x:Name="importStock" Text="{Binding StockName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                            Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                            Template="{StaticResource TextBoxBaseControlTemplate}"
                                              FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" 
                                              Padding="10,0,0,0"
                                              VerticalAlignment="Stretch" VerticalContentAlignment="Center" 
@@ -103,7 +105,10 @@
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
                                     <TextBox x:Name="importStockCode" IsEnabled="{Binding IsCreate}"
-                                             Text="{Binding StockCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                             Text="{Binding StockCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus, 
+                                                Converter={StaticResource NumbericConverter}}"
+                                            Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                            Template="{StaticResource TextBoxBaseControlTemplate}"
                                              Padding="10,0,0,0"
                                              FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="20,0,0,0" Text="Hệ thống sẽ tạo tự động nếu để trống..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
@@ -127,6 +132,7 @@
                             <ComboBox Grid.Row="5" Grid.Column="0" IsEnabled="{Binding IsCreate}"
                                       IsEditable="False" ItemsSource="{Binding ItemTypes}" IsReadOnly="True"
                                       DisplayMemberPath="typeName" SelectedValuePath="typeName"
+                                      Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
                                       SelectedValue="{Binding SelectedItemType.typeName, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding SelectedItemType, UpdateSourceTrigger=PropertyChanged}"
                                       Cursor="Hand" Style="{StaticResource RoundedComboBox}"/>
@@ -141,7 +147,10 @@
                             <Border CornerRadius="4" Width="170" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                                 <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                     <Grid Height="Auto">
-                                        <TextBox x:Name="importPrice" Text="{Binding StockCost, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                        <TextBox x:Name="importPrice" Text="{Binding StockCost, Mode=TwoWay, UpdateSourceTrigger=LostFocus
+                                            ,Converter={StaticResource NumbericConverter}}"
+                                                 Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateStockPrice}"
+                                                Template="{StaticResource TextBoxBaseControlTemplate}"
                                                  Padding="10,0,0,0"
                                                  FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                         <TextBlock Margin="20,0,0,0" Text="Nhập giá vốn..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
@@ -164,7 +173,10 @@
                                 <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                     <Grid Height="Auto">
                                         <TextBox x:Name="retailPrice" Padding="10,0,0,0"
-                                                 Text="{Binding StockRetailPrice, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                 Text="{Binding StockRetailPrice, Mode=TwoWay, UpdateSourceTrigger=LostFocus
+                                            ,Converter={StaticResource NumbericConverter}}"
+                                                 Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateStockPrice}"
+                                            Template="{StaticResource TextBoxBaseControlTemplate}"
                                                  FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                         <TextBlock Margin="20,0,0,0" Text="Nhập giá bán..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                             <TextBlock.Style>
@@ -188,6 +200,7 @@
                             <ComboBox Grid.Row="5" Grid.Column="0" IsEnabled="{Binding IsCreate}"
                                       IsEditable="False" ItemsSource="{Binding Partners}" IsReadOnly="True"
                                       DisplayMemberPath="name" SelectedValuePath="name"
+                                      Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
                                       SelectedValue="{Binding SelectedPartner.name, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedItem="{Binding SelectedPartner, UpdateSourceTrigger=PropertyChanged}"
                                       Cursor="Hand" Style="{StaticResource RoundedComboBox}"/>
@@ -198,7 +211,10 @@
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
                                     <TextBox x:Name="importInventory" IsEnabled="{Binding IsCreate}" Padding="10,0,0,0"
-                                             Text="{Binding StockInventoryQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                             Text="{Binding StockInventoryQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus
+                                        ,Converter={StaticResource NumbericConverter}}"
+                                             Validation.ErrorTemplate="{StaticResource ErrorBorderTemplatePassword}"
+                                            Template="{StaticResource TextBoxBaseControlTemplate}"
                                              FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="20,0,0,0" Text="Số lượng hàng trong kho..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                         <TextBlock.Style>
@@ -221,7 +237,10 @@
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
                                     <TextBox x:Name="MinInventory" Padding="10,0,0,0"
-                                             Text="{Binding StockMinInventoryQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                             Text="{Binding StockMinInventoryQuantity, Mode=TwoWay, UpdateSourceTrigger=LostFocus
+                                        ,Converter={StaticResource NumbericConverter}}"
+                                             Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
+                                            Template="{StaticResource TextBoxBaseControlTemplate}"
                                              FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
                                     <TextBlock Margin="20,0,0,0" Text="Số lượng tồn kho tối thiểu..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
                                         <TextBlock.Style>
