@@ -20,6 +20,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid>
@@ -44,7 +45,7 @@
                             </Button>
                         </Grid>
                     </Grid>
-                    <DataGrid x:Name="CustomerGrid" VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding CustomerList}"
+                    <DataGrid x:Name="CustomerGrid" VerticalAlignment="Top" Grid.Row="1" Margin="15,0,15,15" ItemsSource="{Binding CustomerList}"
                               Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
                       AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
                       SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
@@ -129,6 +130,11 @@
                             <DataGridTemplateColumn Width="0.4*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>
                         </DataGrid.Columns>
                     </DataGrid>
+                    <StackPanel Margin="10,0,0,0" Grid.Row="2" Orientation="Horizontal">
+                        <TextBlock Text="Danh sách có" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                        <Label Grid.Column="0" Content="{Binding CustomerNumber}" FontSize="15" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                        <TextBlock Text="khách hàng!" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                    </StackPanel>
                 </Grid>
 
             </TabItem>
@@ -143,6 +149,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid>
@@ -167,7 +174,7 @@
                             </Button>
                         </Grid>
                     </Grid>
-                    <DataGrid x:Name="PartnerGrid" VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding PartnerList}"
+                    <DataGrid x:Name="PartnerGrid" VerticalAlignment="Top" Grid.Row="1" Margin="15,0,15,15" ItemsSource="{Binding PartnerList}"
                               Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
                       AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
                       SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
@@ -252,6 +259,11 @@
                             <DataGridTemplateColumn Width="0.4*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>
                         </DataGrid.Columns>
                     </DataGrid>
+                    <StackPanel Margin="10,0,0,0" Grid.Row="2" Orientation="Horizontal">
+                        <TextBlock Text="Danh sách có" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                        <Label Grid.Column="0" Content="{Binding PartnerNumber}" FontSize="15" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                        <TextBlock Text="nhà cung cấp!" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
         </TabControl>

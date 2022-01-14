@@ -17,7 +17,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p =>
             {
-                ValidateProperty();
+                ValidateAllProperty();
                 if (!HasErrors)
                 {
                     SaveAction();
@@ -56,7 +56,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public ICommand ISaveCommand { get; }
 
-        protected override void ValidateProperty()
+        protected override void ValidateAllProperty()
         {
             CleanUpError(nameof(StockTypeName));
             CleanUpError(nameof(Note));

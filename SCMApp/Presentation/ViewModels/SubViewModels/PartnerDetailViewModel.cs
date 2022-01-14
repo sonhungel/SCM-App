@@ -24,7 +24,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p =>
             {
-                ValidateProperty();
+                ValidateAllProperty();
                 if (!HasErrors)
                 {
                     SaveAction();
@@ -50,7 +50,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChanged(nameof(PartnerFullName));
             }
         }
-        public string PartnerCode
+        public int? PartnerCode
         {
             get => Model.supplierNumber;
             set
@@ -181,10 +181,9 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             }
         }
 
-        protected override void ValidateProperty()
+        protected override void ValidateAllProperty()
         {
             CleanUpError(nameof(PartnerFullName));
-            CleanUpError(nameof(PartnerCode));
             CleanUpError(nameof(PartnerPhoneNumber));
             CleanUpError(nameof(PartnerEmail));
             CleanUpError(nameof(PartnerType));
@@ -196,10 +195,6 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             if (string.IsNullOrEmpty(PartnerFullName))
             {
                 AddError(nameof(PartnerFullName), "Tên nhà cung cấp không hợp lệ.");
-            }
-            if (string.IsNullOrEmpty(PartnerCode))
-            {
-                AddError(nameof(PartnerCode), "Mã cung cấp không hợp lệ.");
             }
             if (string.IsNullOrEmpty(PartnerPhoneNumber) || PartnerPhoneNumber.Count() <= 8)
             {
@@ -246,24 +241,31 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void SaveAction()
         {
-            using (new WaitCursorScope())
+            if (IsCreate)
             {
-                var createCustomer = new CreateSupplierDTO()
+                using (new WaitCursorScope())
                 {
-                    supplierNumber = Model.supplierNumber,
-                    name = Model.name,
-                    phoneNumber = Model.phoneNumber,
-                    email = Model.email,
-                    type = Model.type ? 1 : 0,
-                    province = Model.province,
-                    district = Model.district,
-                    ward = Model.ward,
-                    address = Model.address,
-                    taxNumber = Model.taxNumber,
-                    remark = Model.remark,
-                };
-                var r = _partnerWebAPI.CreateSupplier(createCustomer, Token);
+                    var createCustomer = new CreateSupplierDTO()
+                    {
+                        supplierNumber = Model.supplierNumber == 0 ? null : Model.supplierNumber,
+                        name = Model.name,
+                        phoneNumber = Model.phoneNumber,
+                        email = Model.email,
+                        type = Model.type ? 1 : 0,
+                        province = Model.province,
+                        district = Model.district,
+                        ward = Model.ward,
+                        address = Model.address,
+                        taxNumber = Model.taxNumber,
+                        remark = Model.remark,
+                    };
+                    var r = _partnerWebAPI.CreateSupplier(createCustomer, Token);
+                }
             }
+             else
+            {
+
+            }    
             View.Close();
         }
     }

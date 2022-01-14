@@ -35,9 +35,9 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
             return Task.Run(() => Get<GetOneResponse<Item>>(string.Format(RouteConstants.GetItemByItemNumber, numberRequest), token)).Result.data;
         }
 
-        public string UpdateItem(string token)
+        public bool UpdateItem(UpdateItemDTO updateItemDTO, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Put<GetOneResponse<Item>>(RouteConstants.CreateNewItem, updateItemDTO, token)).Result.status == "OK";
         }
     }
 }

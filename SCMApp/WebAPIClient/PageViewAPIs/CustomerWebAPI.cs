@@ -31,7 +31,7 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
             return Task.Run(() => Get<GetAllResponse<Customer>>(RouteConstants.GetAllCustomer, token)).Result.data;
         }
 
-        public bool UpdateCustomer(CreateCustomerDTO createCustomerDTO, string token)
+        public bool UpdateCustomer(UpdateCustomerDTO updateCustomerDTO, string token)
         {
             throw new NotImplementedException();
         }

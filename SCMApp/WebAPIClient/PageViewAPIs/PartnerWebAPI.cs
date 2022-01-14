@@ -17,7 +17,7 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public bool CreateSupplier(CreateSupplierDTO createSupplierDTO, string token)
         {
-            return Task.Run(() => Post<GetOneResponse<Partner>>(RouteConstants.CreateCustomer,
+            return Task.Run(() => Post<GetOneResponse<Partner>>(RouteConstants.CreateParter,
                 createSupplierDTO, token)).Result.status == "OK";
         }
 
@@ -31,7 +31,7 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
             return Task.Run(() => Get<GetAllResponse<Partner>>(RouteConstants.GetAllPartner, token)).Result.data;
         }
 
-        public bool UpdateSupplier(CreateSupplierDTO createSupplierDTO, string token)
+        public bool UpdateSupplier(UpdateUserDTO updateUserDTO, string token)
         {
             throw new NotImplementedException();
         }

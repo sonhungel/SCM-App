@@ -22,7 +22,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p =>
             {
-                ValidateProperty();
+                ValidateAllProperty();
                 if (!HasErrors)
                 {
                     SaveAction();
@@ -92,7 +92,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             }
         }
 
-        protected override void ValidateProperty()
+        protected override void ValidateAllProperty()
         {
             CleanUpError(nameof(SelectedItem));
             CleanUpError(nameof(FactQuantity));

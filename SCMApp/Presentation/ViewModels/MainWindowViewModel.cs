@@ -45,7 +45,7 @@ namespace SCMApp.Presentation.ViewModels
 
         public UserProfile MainUser { get; set; }
 
-        public Visibility isManager => MainUser.role == "Quản lý" ? Visibility.Visible : Visibility.Hidden;
+        public Visibility isManager => MainUser.role == "Quản lý" ? Visibility.Visible : Visibility.Collapsed;
 
         public string MainUserName => $"Tên: {MainUser?.fullName}";
         public string MainUserTitle => $"Chức vụ: {MainUser?.role}";
@@ -63,6 +63,7 @@ namespace SCMApp.Presentation.ViewModels
         private void Refresh()
         {
             _allPageViewModels.ForEach(x => x.IsLoaded = false);
+            CurrentPageViewModel.Construct();
         }
 
         public void InitAllPageViewModel()
@@ -82,17 +83,24 @@ namespace SCMApp.Presentation.ViewModels
             _allPageViewModels.Add(pageView);
             pageView = new ProfitViewModel(IoC.Get<IProfitWebAPI>(),Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new StockViewModel(IoC.Get<IItemWebAPI>(),Token, ScreenManager) { View = this.View };
+            pageView = new StockViewModel(IoC.Get<IItemWebAPI>(),MainUser,Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
 
-            ChangeViewModel(CommonConstants.OverviewPageViewName);
+            if (MainUser.role == "Quản lý")
+            {
+                ChangeViewModel(CommonConstants.OverviewPageViewName);
+            }
+            else
+            {
+                ChangeViewModel(CommonConstants.OrdersPageViewName);
+            }    
             ChangePageCommand = new RelayCommand(p => ChangeViewModel((string)p), p => p is string && !p.Equals(CurrentPageViewModel.NamePage));
             RefreshCommand = new RelayCommand(p => Refresh(), p => _allPageViewModels.Any(x => x.IsLoaded == true));
         }
 
         private void OpenUserProfileView()
         {
-            ScreenManager.ShowUserProfileView(View, MainUser, false, Token);
+            ScreenManager.ShowUserProfileView(View, MainUser, false,false, Token);
         }
     }
 }

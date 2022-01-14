@@ -10,11 +10,11 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
             Model = importStock;
         }
         public ImportStock Model;
-        public string ImportStockCode => Model.ImportStockCode;
-        public string StockName => Model.StockName;
+        public int ImportStockCode => Model.id;
+        public string StockName => Model.item.name;
 
-        public string ImportStockTime => DateTimeHelper.DateTimeToStandardString(Model.ImportStockTime);
-        public string Supplier => Model.Supplier;
-        public int Cost => Model.Cost;
+        public string ImportStockTime => DateTimeHelper.DateTimeToStandardString(Model.addedDate);
+        public string Supplier => Model.supplier.name;
+        public int Cost => Model.cost;
     }
 }

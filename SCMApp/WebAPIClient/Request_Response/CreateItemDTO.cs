@@ -4,7 +4,7 @@ namespace SCMApp.WebAPIClient.Request_Response
 {
     public class CreateItemDTO
     {
-        public int itemNumber { get; set; }
+        public int? itemNumber { get; set; }
         public string name { get; set; }
         public string state => "ONS";
         public ItemtypeNumber itemType { get; set; }

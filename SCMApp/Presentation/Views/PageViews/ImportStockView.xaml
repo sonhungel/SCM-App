@@ -13,6 +13,7 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto" MaxHeight="60"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid>
@@ -104,21 +105,6 @@
                     <DataTemplate x:Key="Cost">
                         <TextBlock Text="{Binding Cost}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="Option">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                            <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
-                                    Command="{Binding DataContext.DeleteImportStockCommand, ElementName=ImportGrid}"
-                                    CommandParameter="{Binding ImportStockCode}"
-                                Background="Transparent">
-                                <Button.Content>
-                                    <Border Grid.Column="0" Background="Transparent">
-                                        <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                               Source="/Assets/Red_Bin.png" />
-                                    </Border>
-                                </Button.Content>
-                            </Button>
-                        </StackPanel>
-                    </DataTemplate>
                 </DataGrid.Resources>
                 <DataGrid.Columns >
                     <DataGridTemplateColumn Width="1*" Header="Mã nhập hàng" CellTemplate="{StaticResource ImportStockCode}"/>
@@ -126,9 +112,13 @@
                     <DataGridTemplateColumn Width="1*" Header="Thời gian" CellTemplate="{StaticResource ImportStockTime}"/>
                     <DataGridTemplateColumn Width="1.2*" Header="Nhà cung cấp" CellTemplate="{StaticResource Supplier}"/>
                     <DataGridTemplateColumn Width="1*" Header="Chi phí" CellTemplate="{StaticResource Cost}"/>
-                    <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chỉnh" CellTemplate="{StaticResource Option}"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <StackPanel Margin="10,0,0,0" Grid.Row="3" Orientation="Horizontal">
+                <TextBlock Text="Danh sách có" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Content="{Binding NumberImportItem}" FontSize="15" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                <TextBlock Text="đơn nhập hàng!" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+            </StackPanel>
         </Grid>
     </Border>
 </UserControl>

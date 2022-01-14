@@ -10,7 +10,7 @@ namespace SCMApp.WebAPIClient.MainView
         UserProfile GetUserProfileBaseOnToken(string username, string token);
         IList<UserProfile> GetAllUserProfile(string token);
         bool CreateUser(CreateUserDTO createUserDTO, string token);
-        bool UpdateUser();
+        bool UpdateUser(UpdateUserDTO updateUserDTO, string token);
         bool DeleteUser(string token);
     }
 }

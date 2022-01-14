@@ -5,7 +5,7 @@ namespace SCMApp.Models
 {
     public class Partner: BusinessObjectBase
     {
-        public string supplierNumber { get; set; }
+        public int? supplierNumber { get; set; }
         public string name { get; set; }
         public string phoneNumber { get; set; }
         public string email { get; set; }

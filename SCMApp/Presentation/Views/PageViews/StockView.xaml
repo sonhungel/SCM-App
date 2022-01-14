@@ -13,6 +13,7 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto" MaxHeight="60"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid>
@@ -114,13 +115,16 @@
                         <TextBlock Text="{Binding StockName}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
                     <DataTemplate x:Key="StockOriginPrice">
-                        <TextBlock Text="{Binding StockOriginPrice}" Style="{StaticResource DataGridTextBlock}"/>
+                        <TextBlock Text="{Binding StockOriginPrice}" Visibility="{Binding DataContext.isManager, ElementName=StockGrid}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
                     <DataTemplate x:Key="StockRetailPrice">
                         <TextBlock Text="{Binding StockRetailPrice}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
                     <DataTemplate x:Key="Quantity">
                         <TextBlock Text="{Binding Quantity}" Style="{StaticResource DataGridTextBlock}"/>
+                    </DataTemplate>
+                    <DataTemplate x:Key="Remark">
+                        <TextBlock Text="{Binding Remark}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
                     <DataTemplate x:Key="Option">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
@@ -153,12 +157,18 @@
                 <DataGrid.Columns >
                     <DataGridTemplateColumn Width="1*" Header="Mã hàng hoá" CellTemplate="{StaticResource StockCode}"/>
                     <DataGridTemplateColumn Width="1.4*" Header="Tên hàng hoá" CellTemplate="{StaticResource StockName}"/>
-                    <DataGridTemplateColumn Width="1*" Header="Giá vốn" CellTemplate="{StaticResource StockOriginPrice}"/>
-                    <DataGridTemplateColumn Width="1*" Header="Giá bán" CellTemplate="{StaticResource StockRetailPrice}"/>
+                    <DataGridTemplateColumn Width="0.7*" Header="Giá vốn" CellTemplate="{StaticResource StockOriginPrice}"/>
+                    <DataGridTemplateColumn Width="0.7*" Header="Giá bán" CellTemplate="{StaticResource StockRetailPrice}"/>
                     <DataGridTemplateColumn Width="0.4*" Header="Số lượng" CellTemplate="{StaticResource Quantity}"/>
+                    <DataGridTemplateColumn Width="1*" Header="Ghi chú" CellTemplate="{StaticResource Remark}"/>
                     <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chỉnh" CellTemplate="{StaticResource Option}"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <StackPanel Margin="10,0,0,0" Grid.Row="3" Orientation="Horizontal">
+                <TextBlock Text="Danh sách có" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Content="{Binding StockNumber}" FontSize="15" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                <TextBlock Text="mặt hàng!" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+            </StackPanel>
         </Grid>
     </Border>
 </UserControl>

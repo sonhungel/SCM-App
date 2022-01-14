@@ -53,7 +53,7 @@ namespace SCMApp.Presentation.ViewModels.Base
         /// <summary>
         /// Validate Property for Create New Project
         /// </summary>
-        protected virtual void ValidateProperty()
+        protected virtual void ValidateAllProperty()
         {
 
         }

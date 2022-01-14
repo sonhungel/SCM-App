@@ -3,6 +3,7 @@ using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
 using System.Collections.ObjectModel;
@@ -21,13 +22,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             _isHaveNoData = true;
             OpenImportStockSubViewCommand = new RelayCommand(p => OpenImportStockSubView());
 
-            ImportStockList = new ObservableCollection<ImportStockViewModelItem>() { new ImportStockViewModelItem(new ImportStock()) };
+            ImportStockList = new ObservableCollection<ImportStockViewModelItem>();
 
-            DeleteImportStockCommand = new RelayCommand(p => DeleteImportStock((string)p));
         }
 
         public ICommand OpenImportStockSubViewCommand { get; set; }
-        public ICommand DeleteImportStockCommand { get; set; }
 
         public ObservableCollection<ImportStockViewModelItem> ImportStockList { get; set; }
         public string NamePage => CommonConstants.ImportPageViewName;
@@ -46,27 +45,27 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             }
         }
 
+        public int NumberImportItem => ImportStockList.Count();
         public bool IsLoaded { get; set ; }
 
         public void Construct()
         {
             IsLoaded = true;
+            ImportStockList.Clear();
+            using (new WaitCursorScope())
+            {
+                var importStocks = _importStockWebAPI.GetImportStocks(Token);
+                foreach (var import in importStocks)
+                {
+                    ImportStockList.Add(new ImportStockViewModelItem(import));
+                }
+            }
             IsHaveNoData = !ImportStockList.Any();
         }
 
         private void OpenImportStockSubView()
         {
             ScreenManager.ShowImportStockView(View, Token);
-        }
-
-        private void DeleteImportStock(string importStockCode)
-        {
-            MessageBoxResult dialogResult = MessageBox.Show(View, "Bạn có muốn xoá đơn nhập hàng này ?", 
-                "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (dialogResult == MessageBoxResult.Yes)
-            {
-              
-            }
         }
     }
 }

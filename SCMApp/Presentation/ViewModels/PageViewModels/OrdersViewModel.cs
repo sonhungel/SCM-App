@@ -20,7 +20,6 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             _invoiceWebAPI = invoiceWebAPI;
             _isHaveNoData = true;
             OpenSellViewCommand = new RelayCommand(p => OpenSellView());
-            DeleteOrderCommand = new RelayCommand(p => DeleteOrder((string)p));
 
             OrderList = new ObservableCollection<OrderViewModelItem>();
         }
@@ -34,8 +33,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         private bool _isHaveNoData;
 
         public ObservableCollection<OrderViewModelItem> OrderList { get; set; }
+        public int OrderNumber => OrderList.Count();
 
-        public ICommand DeleteOrderCommand { get; set; }
         public bool IsHaveNoData 
         {
             get => _isHaveNoData;
@@ -48,16 +47,6 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         public bool IsLoaded { get; set; }
 
-        private void DeleteOrder(string oderCode)
-        {
-            MessageBoxResult dialogResult = MessageBox.Show(View,"Bạn có muốn xoá hoá đơn này ?", 
-                "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (dialogResult == MessageBoxResult.Yes)
-            {
-                // Detele
-                OnPropertyChanged(nameof(OrderList));
-            }
-        }
         public void Construct()
         {
             IsLoaded = true;

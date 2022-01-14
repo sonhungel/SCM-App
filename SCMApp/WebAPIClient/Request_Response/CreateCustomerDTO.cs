@@ -4,7 +4,7 @@ namespace SCMApp.WebAPIClient.Request_Response
 {
     public class CreateCustomerDTO
     {
-        public string customerNumber { get; set; }
+        public int? customerNumber { get; set; }
         public string name { get; set; }
         public string phoneNumber { get; set; }
         public string email { get; set; }

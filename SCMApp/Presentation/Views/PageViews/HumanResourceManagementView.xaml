@@ -13,6 +13,7 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto" MaxHeight="60"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid>
@@ -139,6 +140,11 @@
                     <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chỉnh" CellTemplate="{StaticResource Option}"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <StackPanel Margin="10,0,0,0" Grid.Row="3" Orientation="Horizontal">
+                <TextBlock Text="Danh sách có" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Content="{Binding NumberUser}" FontSize="15" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                <TextBlock Text="người dùng!" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+            </StackPanel>
         </Grid>
     </Border>
 </UserControl>

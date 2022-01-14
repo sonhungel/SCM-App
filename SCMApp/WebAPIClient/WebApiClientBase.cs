@@ -67,6 +67,28 @@ namespace SCMApp.WebAPIClient
             return JsonConvert.DeserializeObject<T>(responseContentString, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
         }
 
+        protected async Task<T> Put<T>(string url, object value, string token, NameValueCollection queryParams = null)
+        {
+            string route = GetRoute(url, queryParams);
+
+            ClassTracer.DebugFormat("Request [POST] to url '{0}{1}' with data '{2}'", BaseAddressServices, route, value);
+            var postContent = CreateJsonContentFromObject(value);
+            var responseContent = await PerformWebClientAction(client => client.PutAsync(route, postContent), token);
+            string responseContentString = await responseContent.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(responseContentString, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
+        }
+
+
+        protected async Task<T> Delete<T>(string url, object value, string token, NameValueCollection queryParams = null)
+        {
+            string route = GetRoute(url, queryParams);
+
+            ClassTracer.DebugFormat("Request [GET] to url '{0}{1}'", BaseAddressServices, route);
+            var responseContent = await PerformWebClientAction(client => client.DeleteAsync(route), token);
+            string responseContentString = await responseContent.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(responseContentString, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
+        }
+
         /// <summary>
         /// Special handling for posting log messages as this must not log any further messages to prevent a loop.
         /// </summary>
@@ -106,7 +128,7 @@ namespace SCMApp.WebAPIClient
                 // If response is null => server was interupted
                 if (response == null)
                 {
-                    throw new InternetInterupException(ExceptionConstants.ConnectExceptionString);
+                    throw new InternetInterupException(ExceptionConstants.ConnectExceptionExceptionMessage);
                 }
 
                 if (response.IsSuccessStatusCode)

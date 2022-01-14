@@ -25,7 +25,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p =>
             {
-                ValidateProperty();
+                ValidateAllProperty();
                 if (!HasErrors)
                 {
                     SaveAction();
@@ -52,7 +52,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChanged(nameof(CustomerName));
             }
         }
-        public string CustomerCode
+        public int? CustomerCode
         {
             get => Model.customerNumber;
             set
@@ -200,10 +200,9 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             }
         }
 
-        protected override void ValidateProperty()
+        protected override void ValidateAllProperty()
         {
             CleanUpError(nameof(CustomerName));
-            CleanUpError(nameof(CustomerCode));
             CleanUpError(nameof(CustomerPhoneNumber));
             CleanUpError(nameof(CustomerEmail));
             CleanUpError(nameof(CustomerBirthDay));
@@ -212,14 +211,11 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             CleanUpError(nameof(SelectedDistrict));
             CleanUpError(nameof(SelectedWard));
             CleanUpError(nameof(StreetAddress));
+            CleanUpError(nameof(TaxCode)); 
 
             if (string.IsNullOrEmpty(CustomerName))
             {
                 AddError(nameof(CustomerName), "Tên khách hàng không được trống.");
-            }
-            if (string.IsNullOrEmpty(CustomerCode))
-            {
-                AddError(nameof(CustomerCode), "Mã khách hàng không được trống.");
             }
             if (string.IsNullOrEmpty(CustomerPhoneNumber) || CustomerPhoneNumber.Count() <= 8)
             {
@@ -275,25 +271,32 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void SaveAction()
         {
-            using (new WaitCursorScope())
+            if (IsCreate)
             {
-                var createCustomer = new CreateCustomerDTO()
+                using (new WaitCursorScope())
                 {
-                    customerNumber = Model.customerNumber,
-                    name = Model.name,
-                    phoneNumber = Model.phoneNumber,
-                    email = Model.email,
-                    dateOfBirth = Model.dateOfBirth,
-                    sex = Model.sex ? 1 : 0,
-                    province = Model.province,
-                    district = Model.district,
-                    ward = Model.ward,
-                    address = Model.address,
-                    taxNumber = Model.taxNumber,
-                    remark = Model.remark,
-                };
-                var r = _customerWebAPI.CreateCustomer(createCustomer, Token);
+                    var createCustomer = new CreateCustomerDTO()
+                    {
+                        customerNumber = Model.customerNumber == 0? null : Model.customerNumber,
+                        name = Model.name,
+                        phoneNumber = Model.phoneNumber,
+                        email = Model.email,
+                        dateOfBirth = Model.dateOfBirth,
+                        sex = Model.sex ? 1 : 0,
+                        province = Model.province,
+                        district = Model.district,
+                        ward = Model.ward,
+                        address = Model.address,
+                        taxNumber = Model.taxNumber,
+                        remark = Model.remark,
+                    };
+                    var r = _customerWebAPI.CreateCustomer(createCustomer, Token);
+                }
             }
+            else
+            {
+
+            }    
             View.Close();
         }
     }

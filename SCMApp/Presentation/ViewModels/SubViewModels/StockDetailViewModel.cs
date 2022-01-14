@@ -24,7 +24,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p =>
             {
-                ValidateProperty();
+                ValidateAllProperty();
                 if (!HasErrors)
                 {
                     SaveAction();
@@ -162,10 +162,9 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
 
-        protected override void ValidateProperty()
+        protected override void ValidateAllProperty()
         {
             CleanUpError(nameof(StockName));
-            CleanUpError(nameof(StockCode));
             CleanUpError(nameof(StockCost));
             CleanUpError(nameof(SelectedItemType));
             CleanUpError(nameof(StockRetailPrice));
@@ -177,10 +176,6 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             if (string.IsNullOrEmpty(StockName))
             {
                 AddError(nameof(StockName), "Tên sản phẩm không được trống.");
-            }
-            if (!StockCode.HasValue)
-            {
-                AddError(nameof(StockCode), "Mã sản phẩm không được trống.");
             }
             if (!StockCost.HasValue)
             {
@@ -225,23 +220,43 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void SaveAction()
         {
-            using (new WaitCursorScope())
+            if(IsCreate)
             {
-                var createItem = new CreateItemDTO()
+                using (new WaitCursorScope())
                 {
-                    itemNumber = Model.itemNumber,
-                    name = Model.name,
-                    itemType = new ItemtypeNumber(Model.itemType.id),
-                    cost = Model.cost,
-                    salesPrice = Model.salesPrice,
-                    quantity = Model.quantity,
-                    minimumQuantity = Model.minimumQuantity,
-                    supplier = new SupplierNumber(Model.supplier.id),
-                    description = Model.description,
-                    remark = Model.remark
-                };
-                var r = _itemWebAPI.CreateItem(createItem,Token);
-            }
+                    var createItem = new CreateItemDTO()
+                    {
+                        itemNumber = Model.itemNumber == 0 ? null : Model.itemNumber,
+                        name = Model.name,
+                        itemType = new ItemtypeNumber(Model.itemType.id),
+                        cost = Model.cost,
+                        salesPrice = Model.salesPrice,
+                        quantity = Model.quantity,
+                        minimumQuantity = Model.minimumQuantity,
+                        supplier = new SupplierNumber(Model.supplier.id),
+                        description = Model.description,
+                        remark = Model.remark
+                    };
+                    var r = _itemWebAPI.CreateItem(createItem, Token);
+                }
+            }    
+            else
+            {
+                using (new WaitCursorScope())
+                {
+                    var updateItem = new UpdateItemDTO()
+                    {
+                        itemNumber = Model.itemNumber,
+                        name = Model.name,
+                        cost = Model.cost,
+                        salesPrice = Model.salesPrice,
+                        minimumQuantity = Model.minimumQuantity,
+                        version = Model.version
+                    };
+                    var r = _itemWebAPI.UpdateItem(updateItem, Token);
+                }
+            }    
+            
             View.Close();
         }
     }

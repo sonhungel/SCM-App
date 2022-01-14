@@ -13,6 +13,7 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto" MaxHeight="60"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid>
@@ -117,21 +118,7 @@
                     <DataTemplate x:Key="Note">
                         <TextBlock Text="{Binding Note}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="Option">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                            <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
-                                    Command="{Binding DataContext.DeleteStockInventoryCommand, ElementName=ListStockInventory}"
-                                    CommandParameter="{Binding StockCode}"
-                                Background="Transparent">
-                                <Button.Content>
-                                    <Border Grid.Column="0" Background="Transparent">
-                                        <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                               Source="/Assets/Red_Bin.png" />
-                                    </Border>
-                                </Button.Content>
-                            </Button>
-                        </StackPanel>
-                    </DataTemplate>
+               
                 </DataGrid.Resources>
                 <DataGrid.Columns >
                     <DataGridTemplateColumn Width="0.8*" Header="Mã phiếu kiểm" CellTemplate="{StaticResource InventoryTicktCode}"/>
@@ -142,9 +129,13 @@
                     <DataGridTemplateColumn Width="1.2*" Header="Thực tế" CellTemplate="{StaticResource InventoryNumberFact}"/>
                     <DataGridTemplateColumn Width="1*" Header="Số lượng chênh lệch" CellTemplate="{StaticResource QuantityOfFifference}"/>
                     <DataGridTemplateColumn Width="1*" Header="Ghi chú" CellTemplate="{StaticResource Note}"/>
-                    <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chỉnh" CellTemplate="{StaticResource Option}"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <StackPanel Margin="10,0,0,0" Grid.Row="3" Orientation="Horizontal">
+                <TextBlock Text="Danh sách có" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Content="{Binding InvetoryTicketNumber}" FontSize="15" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                <TextBlock Text="phiếu kiểm kho!" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+            </StackPanel>
         </Grid>
     </Border>
 </UserControl>

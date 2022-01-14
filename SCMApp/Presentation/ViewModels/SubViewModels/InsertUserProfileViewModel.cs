@@ -26,7 +26,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p =>
             {
-                ValidateProperty();
+                ValidateAllProperty();
                 if (!HasErrors)
                 {
                     SaveAction();
@@ -193,8 +193,21 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             }
         }
 
-        protected override void ValidateProperty()
+        protected override void ValidateAllProperty()
         {
+            CleanUpError(nameof(UserFullName));
+            CleanUpError(nameof(UserName));
+            CleanUpError(nameof(UserEmail));
+            CleanUpError(nameof(UserPhoneNumber));
+            CleanUpError(nameof(UserBirthDay));
+            CleanUpError(nameof(Password));
+            CleanUpError(nameof(VerifyPassword));
+            CleanUpError(nameof(SelectedUserRole));
+            CleanUpError(nameof(SelectedDistrict));
+            CleanUpError(nameof(SelectedProvince));
+            CleanUpError(nameof(SelectedWard));
+            CleanUpError(nameof(StreetAddress));
+
             if (string.IsNullOrEmpty(UserFullName))
             {
                 AddError(nameof(UserFullName), "Họ và tên không được trống.");
@@ -224,6 +237,10 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             if (string.IsNullOrEmpty(Password))
             {
                 AddError(nameof(Password), "Mật khẩu không được trống.");
+            }
+            if (!string.IsNullOrEmpty(Password) && Password.Count() <= 5)
+            {
+                AddError(nameof(Password), "Mật khẩu phải đủ 6 ký tự.");
             }
             if (string.IsNullOrEmpty(VerifyPassword))
             {

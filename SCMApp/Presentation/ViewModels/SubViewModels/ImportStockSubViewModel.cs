@@ -5,6 +5,7 @@ using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
+using SCMApp.WebAPIClient.Request_Response;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -16,14 +17,17 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
     public class ImportStockSubViewModel : SubViewModelBase, IWindowViewBase
     {
         private readonly IItemWebAPI _itemWebAPI;
-        public ImportStockSubViewModel(IItemWebAPI itemWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly IImportStockWebAPI _importStockWebAPI;
+        public ImportStockSubViewModel(IItemWebAPI itemWebAPI, IImportStockWebAPI importStockWebAPI,
+            string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _itemWebAPI = itemWebAPI;
+            _importStockWebAPI = importStockWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p =>
             {
-                ValidateProperty();
+                ValidateAllProperty();
                 if (!HasErrors)
                 {
                     SaveAction();
@@ -101,18 +105,14 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             }
         }
 
-        public string Note
-        {
-            get;
-            set;
-        }
+        public string Note { get; set; }
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
 
         public ICommand MinusQuantityCommand { get; }
         public ICommand PlusQuantityCommand { get; }
 
-        protected override void ValidateProperty()
+        protected override void ValidateAllProperty()
         {
             CleanUpError(nameof(ImportStockListItem));
             if (ImportStockListItem.Count <= 0)
@@ -165,7 +165,19 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private void SaveAction()
         {
-
+            using (new WaitCursorScope())
+            {
+                var createImportStock = new CreateImportStockDTO()
+                {
+                    supplier =new SupplierId() { id = SelectedItem.supplier.id},
+                    item = new ItemId() {id = SelectedItem.id},
+                    quantity = TotalQuantityOfStock.Value,
+                    cost = TotalMoney,
+                    remark = Note,
+                };
+                var r = _importStockWebAPI.CreateImportStock(createImportStock, Token);
+            }
+            View.Close();
         }
     }
 }

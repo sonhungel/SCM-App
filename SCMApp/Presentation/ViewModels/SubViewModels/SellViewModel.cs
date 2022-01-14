@@ -28,7 +28,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p =>
             {
-                ValidateProperty();
+                ValidateAllProperty();
                 if (!HasErrors)
                 {
                     SaveAction();
@@ -147,7 +147,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             set;
         }
 
-        protected override void ValidateProperty()
+        protected override void ValidateAllProperty()
         {
             CleanUpError(nameof(SellListItem));
             CleanUpError(nameof(SelectedCustomer));
@@ -194,7 +194,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             }
             var invoice = new CreateInvoiceDTO()
             {
-                customer = new CustomerNumber() { customerNumber = SelectedCustomer.customerNumber },
+                customer = new CustomerNumber() { customerNumber = SelectedCustomer.customerNumber.Value },
                 invoiceDetailDtoList = listInvoiceDetail
             };
             using (new WaitCursorScope())

@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
@@ -21,7 +22,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p =>
             {
-                ValidateProperty();
+                ValidateAllProperty();
                 if (!HasErrors)
                 {
                     SaveAction();
@@ -30,6 +31,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
             ProvinceList = Address.Instance().ProvinceList;
             IsCreate = true;
+            IsUpdateByHRM = false;
             RoleList = new List<string>()
             {
                 "Quản lý","Nhân viên"
@@ -38,6 +40,9 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
+
+        public bool IsUpdateByHRM { get; set; }
+        public Visibility IsVisibleByHRM => IsUpdateByHRM ? Visibility.Hidden : Visibility.Visible;
 
         private UpdateUserDTO _updateModel { get; set; }
         private UserProfile _model;
@@ -229,7 +234,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             }
         }
 
-        protected override void ValidateProperty()
+        protected override void ValidateAllProperty()
         {
             CleanUpError(nameof(UserFullName));
             CleanUpError(nameof(UserName));
@@ -273,28 +278,42 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 AddError(nameof(UserBirthDay), "Ngày sinh không hợp lệ.");
             }
 
-            //if (string.IsNullOrEmpty(CurrentPassWord))
-            //{
-            //    AddError(nameof(CurrentPassWord), "Không được trống nếu đổi mật khẩu.");
-            //}
-            if (!string.IsNullOrEmpty(CurrentPassWord) && string.IsNullOrEmpty(NewPassword))
+            if (IsUpdateByHRM)
             {
-                AddError(nameof(NewPassword), "Mật khẩu mới không được trống nếu đổi.");
-            }
-            if (!string.IsNullOrEmpty(CurrentPassWord) && string.IsNullOrEmpty(VerifyPassword))
-            {
-                AddError(nameof(VerifyPassword), "Xác nhận mật khẩu mới không được trống nếu đổi.");
-            }
-            if (!string.IsNullOrEmpty(VerifyPassword) && !string.IsNullOrEmpty(NewPassword) && NewPassword != VerifyPassword)
-            {
-                AddError(nameof(VerifyPassword), "Mật khẩu và xác nhận mật khẩu không khớp.");
-            }
+                if (string.IsNullOrEmpty(VerifyPassword) && !string.IsNullOrEmpty(NewPassword))
+                {
+                    AddError(nameof(VerifyPassword), "Xác nhận mật khẩu không được trống.");
+                }
 
-            if ((!string.IsNullOrEmpty(VerifyPassword) || !string.IsNullOrEmpty(NewPassword)) && string.IsNullOrEmpty(CurrentPassWord))
-            {
-                AddError(nameof(CurrentPassWord), "Hãy nhập mật khẩu hiện tại nếu muốn đổi.");
+                if (!string.IsNullOrEmpty(VerifyPassword) && !string.IsNullOrEmpty(NewPassword) && NewPassword != VerifyPassword)
+                {
+                    AddError(nameof(VerifyPassword), "Mật khẩu và xác nhận mật khẩu không khớp.");
+                }
             }
+            else
+            {
+                if (!string.IsNullOrEmpty(CurrentPassWord) && string.IsNullOrEmpty(NewPassword))
+                {
+                    AddError(nameof(NewPassword), "Mật khẩu mới không được trống nếu đổi.");
+                }
+                if (!string.IsNullOrEmpty(CurrentPassWord) && string.IsNullOrEmpty(VerifyPassword))
+                {
+                    AddError(nameof(VerifyPassword), "Xác nhận mật khẩu mới không được trống nếu đổi.");
+                }
+                if (!string.IsNullOrEmpty(CurrentPassWord) && !string.IsNullOrEmpty(CurrentPassWord) && CurrentPassWord.Count() <= 5)
+                {
+                    AddError(nameof(CurrentPassWord), "Mật khẩu phải đủ 6 ký tự.");
+                }
+                if (!string.IsNullOrEmpty(VerifyPassword) && !string.IsNullOrEmpty(NewPassword) && NewPassword != VerifyPassword)
+                {
+                    AddError(nameof(VerifyPassword), "Mật khẩu và xác nhận mật khẩu không khớp.");
+                }
 
+                if ((!string.IsNullOrEmpty(VerifyPassword) || !string.IsNullOrEmpty(NewPassword)) && string.IsNullOrEmpty(CurrentPassWord))
+                {
+                    AddError(nameof(CurrentPassWord), "Hãy nhập mật khẩu hiện tại nếu muốn đổi.");
+                }
+            }
             if (string.IsNullOrEmpty(SelectedUserRole))
             {
                 AddError(nameof(SelectedUserRole), "Chức vụ không được trống.");

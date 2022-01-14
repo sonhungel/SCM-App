@@ -44,7 +44,15 @@ namespace SCMApp.CustomControls
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(TextBoxWithPlaceHolder));
 
+        public string PasswordText
+        {
+            get { return (string)GetValue(PasswordProperty); }
+            set { SetValue(PasswordProperty, value); }
+        }
 
+        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PasswordProperty =
+            DependencyProperty.Register("PasswordText", typeof(string), typeof(TextBoxWithPlaceHolder));
 
 
         public bool IsPassword

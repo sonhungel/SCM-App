@@ -14,6 +14,7 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto" MaxHeight="60"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -102,27 +103,19 @@
                     <DataTemplate x:Key="TotalPrice">
                         <TextBlock Text="{Binding TotalPrice}" Style="{StaticResource DataGridTextBlock}"/>
                     </DataTemplate>
-                    <DataTemplate x:Key="Option">
-                        <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
-                                Command="{Binding DataContext.DeleteOrderCommand, ElementName=OrderGrid}" CommandParameter="{Binding OrderCode}"
-                                Background="Transparent">
-                            <Button.Content>
-                                <Border Grid.Column="0" Background="Transparent">
-                                    <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                               Source="/Assets/Red_Bin.png" />
-                                </Border>
-                            </Button.Content>
-                        </Button>
-                    </DataTemplate>
                 </DataGrid.Resources>
                 <DataGrid.Columns >
                     <DataGridTemplateColumn Width="1*" Header="Mã hoá đơn" CellTemplate="{StaticResource OrderCode}"/>
                     <DataGridTemplateColumn Width="0.8*" Header="Thời gian" CellTemplate="{StaticResource OrderTime}"/>
                     <DataGridTemplateColumn Width="1.4*" Header="Khách hàng" CellTemplate="{StaticResource CustomerName}"/>
                     <DataGridTemplateColumn Width="1.2*" Header="Tổng tiền hàng" CellTemplate="{StaticResource TotalPrice}"/>
-                    <DataGridTemplateColumn Width="0.6*" Header="Tuỳ chọn" CellTemplate="{StaticResource Option}"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <StackPanel Margin="10,0,0,0" Grid.Row="3" Orientation="Horizontal">
+                <TextBlock Text="Danh sách có" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Content="{Binding OrderNumber}" FontSize="15" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                <TextBlock Text="hoá đơn!" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+            </StackPanel>
         </Grid>
     </Border>
 </UserControl>

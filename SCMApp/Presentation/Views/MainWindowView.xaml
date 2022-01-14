@@ -38,7 +38,7 @@
                     <!--#region Menu Grid-->
                     <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="Auto" MaxHeight="60"/>
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="60"/>
@@ -50,7 +50,7 @@
                         </Grid.RowDefinitions>
 
                         <!--Adding Menu buttons-->
-                        <Button Grid.Row="0" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="OverviewPageView">
+                        <Button Grid.Row="0" Background="Transparent" Visibility="{Binding isManager}" Height="60" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="OverviewPageView">
                             <Button.ToolTip>
                                 <TextBlock Text="Tổng quan" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>
@@ -98,7 +98,7 @@
                             <Image Source="/Assets/warehouse.png" Stretch="Uniform" Width="35"/>
                         </Button.Content>
                     </Button>
-                    <Button Grid.Row="6" Background="Transparent" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="ProfitPageView">
+                    <Button Grid.Row="6" Background="Transparent" Visibility="{Binding isManager}" BorderThickness="0" Command="{Binding ChangePageCommand}" CommandParameter="ProfitPageView">
                             <Button.ToolTip>
                                 <TextBlock Text="Tài chính" FontFamily="Segoe UI" FontWeight="SemiBold" Foreground="DarkSlateGray" FontSize="14"/>
                             </Button.ToolTip>

@@ -149,7 +149,7 @@
                         <Border Width="185" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
-                                    <TextBox x:Name="importPass" Padding="10,0,0,0"
+                                    <TextBox x:Name="importPass" Padding="10,0,0,0" MaxLength="6"
                                              Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                              Validation.ErrorTemplate="{StaticResource ErrorBorderTemplatePassword}"
                                                 Template="{StaticResource TextBoxBaseControlTemplate}"
@@ -173,7 +173,7 @@
                         <Border Width="185" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                 <Grid Height="Auto">
-                                    <TextBox x:Name="validatePass" Padding="10,0,0,0"
+                                    <TextBox x:Name="validatePass" Padding="10,0,0,0" MaxLength="6"
                                              Text="{Binding VerifyPassword, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                              Validation.ErrorTemplate="{StaticResource ErrorBorderTemplatePassword}"
                                          Template="{StaticResource TextBoxBaseControlTemplate}"

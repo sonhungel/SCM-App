@@ -1,4 +1,9 @@
-﻿using System; 
+﻿using SCMApp.Constants;
+using SCMApp.Models;
+using SCMApp.WebAPIClient.Request_Response;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
 {
@@ -8,14 +13,14 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
         {
         }
 
-        public void CreateImportStock()
+        public bool CreateImportStock(CreateImportStockDTO createImportStockDTO, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Post<GetOneResponse<Item>>(RouteConstants.ImportStockApi, createImportStockDTO, token)).Result.status == "OK";
         }
 
-        public void DeleteImportStock()
+        public IList<ImportStock> GetImportStocks(string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Get<GetAllResponse<ImportStock>>(RouteConstants.ImportStockApi, token)).Result.data;
         }
     }
 }

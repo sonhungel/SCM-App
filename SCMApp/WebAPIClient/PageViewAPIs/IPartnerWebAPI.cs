@@ -8,7 +8,7 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
     {
         bool CreateSupplier(CreateSupplierDTO createSupplierDTO, string token);
         IList<Partner> GetAllSupplier(string token);
-        bool UpdateSupplier(CreateSupplierDTO createSupplierDTO, string token);
+        bool UpdateSupplier(UpdateUserDTO updateUserDTO, string token);
         void DeleteSupplier();
     }
 }

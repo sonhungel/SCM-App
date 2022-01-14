@@ -92,31 +92,8 @@
                     </Border>
 
                     <Label Grid.Row="2" Grid.Column="0" Content="Mã nhà cung cấp" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                    <Border Grid.Row="3" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                        <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
-                            <Grid Height="Auto">
-                                <TextBox x:Name="importPartnerCode" Padding="10,0,0,0" IsEnabled="{Binding IsCreate}"
-                                         Text="{Binding PartnerCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus, 
-                                            Converter={StaticResource NumbericConverter}}"
-                                         Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
-                                         Template="{StaticResource TextBoxBaseControlTemplate}"
-                                         FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
-                                <TextBlock Margin="20,0,0,0" Text="Nhập mã nhà cung cấp..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">
-                                    <TextBlock.Style>
-                                        <Style TargetType="{x:Type TextBlock}">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=importPartnerCode}" Value="">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
-                            </Grid>
-                        </Border>
-                    </Border>
-
+                    <Label Grid.Row="3" Grid.Column="0" Foreground="#FF37A0EA" Content="{Binding PartnerCode}" Style="{StaticResource NormalLabel}" Padding="40,0,0,0"/>
+                   
                     <Label Grid.Row="4" Grid.Column="0" Content="Số điện thoại" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     <Border Grid.Row="5" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">

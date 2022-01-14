@@ -14,7 +14,7 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 
         public Partner Model;
 
-        public string PartnerCode => Model.supplierNumber;
+        public int? PartnerCode => Model.supplierNumber;
         public string PartnerName => Model.name;
         public string PartnerPhoneNumber => Model.phoneNumber;
         public string PartnerAddress

@@ -2,14 +2,13 @@
 
 namespace SCMApp.Models
 {
-    public class ImportStock
+    public class ImportStock: BusinessObjectBase
     {
-        public string ImportStockCode => "12345123";
-        public string StockName => "Bánh kem";
-
-        public DateTime ImportStockTime => DateTime.Now;
-        public string Supplier => "Shopee";
-        public int Cost => 400000;
-
+        public DateTime addedDate { get; set; }
+        public Partner supplier { get; set; }
+        public Item item { get; set; }
+        public int quantity { get; set; }
+        public int cost { get; set; }
+        public string remark { get; set; }
     }
 }

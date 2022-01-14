@@ -25,7 +25,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
             ClickStockCode = new RelayCommand(p => OpenStockView((int) p));
             OpenInventoryCheckViewCommand = new RelayCommand(p => OpenInvetoryTicket());
-            DeleteStockInventoryCommand = new RelayCommand(p => DeleteStockInventory((int)p));
+           
         }
 
        
@@ -46,9 +46,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
         public ICommand OpenInventoryCheckViewCommand { get; set; }
         public ICommand ClickStockCode { get; }
-        public ICommand DeleteStockInventoryCommand { get; set; }
 
         public ObservableCollection<InventoryViewModelItem> InventoryList { get; set; }
+
+        public int InvetoryTicketNumber => InventoryList.Count();
         public bool IsLoaded { get; set; }
 
         public void Construct()
@@ -76,15 +77,6 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         {
             ScreenManager.ShowInventoryTicket(View, Token);
         }
-        private void DeleteStockInventory(int p)
-        {
-            MessageBoxResult dialogResult = MessageBox.Show(View,"Bạn có muốn xoá đơn kiểm kho này ?",
-                "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (dialogResult == MessageBoxResult.Yes)
-            {
-                _inventoryWebAPI.DeleteInventoryTicket(Token);
-            }
-        }
-
+       
     }
 }

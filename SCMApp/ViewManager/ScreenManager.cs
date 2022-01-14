@@ -63,7 +63,7 @@ namespace SCMApp.ViewManager
             view.ShowDialog();
         }
 
-        public void ShowUserProfileView(Window parentWindow, UserProfile user, bool isCreate, string token)
+        public void ShowUserProfileView(Window parentWindow, UserProfile user, bool isCreate, bool updateByHRM, string token)
         {
             var view = new UserProfileView();
             var viewModel = new UserProfileViewModel(token, IoC.Get<IScreenManager>());
@@ -72,6 +72,7 @@ namespace SCMApp.ViewManager
                 viewModel.Model = user;
             }
             viewModel.IsCreate = isCreate;
+            viewModel.IsUpdateByHRM = updateByHRM;
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;
@@ -96,7 +97,7 @@ namespace SCMApp.ViewManager
         public void ShowImportStockView(Window parentWindow, string token)
         {
             var view = new ImportStockSubView();
-            var viewModel = new ImportStockSubViewModel(IoC.Get<IItemWebAPI>(), token, IoC.Get<IScreenManager>());
+            var viewModel = new ImportStockSubViewModel(IoC.Get<IItemWebAPI>(), IoC.Get<IImportStockWebAPI>(), token, IoC.Get<IScreenManager>());
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;

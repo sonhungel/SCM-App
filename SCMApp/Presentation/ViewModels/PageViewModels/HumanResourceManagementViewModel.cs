@@ -53,6 +53,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public UserProfile MainUser { get; set; }
         public bool IsLoaded { get ; set ; }
 
+        public int NumberUser => HRMList.Count();
         public void Construct()
         {
             IsLoaded = true;
@@ -83,7 +84,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         {
             // get user from list => edit
             var updatedUser = HRMList.SingleOrDefault(x => x.UserName == p).Model;
-            ScreenManager.ShowUserProfileView(View, updatedUser, false, Token);
+            ScreenManager.ShowUserProfileView(View, updatedUser, false,true, Token);
         }
 
         private void DeleteUser(string p)

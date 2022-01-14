@@ -16,6 +16,7 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         public int StockOriginPrice => Model.cost;
         public int StockRetailPrice => Model.salesPrice;
 
-        public int Quantity => Model.quantity;
+        public int Quantity => Model.availableQuantity;
+        public string Remark => Model.remark;
     }
 }

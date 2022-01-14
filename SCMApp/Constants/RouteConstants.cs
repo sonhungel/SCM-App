@@ -40,5 +40,8 @@ namespace SCMApp.Constants
         public const string GetAllInventoryTicket = "getAllInventoryCheck";
         public const string CreateInventoryTicket = "";
 
+        // import stock
+        public const string ImportStockApi = "api/supTicket";
+
     }
 }

@@ -39,9 +39,9 @@ namespace SCMApp.WebAPIClient.MainView
             return Task.Run(() => Get<GetOneResponse<UserProfile>>(username, token)).Result.data;
         }
 
-        public bool UpdateUser()
+        public bool UpdateUser(UpdateUserDTO updateUserDTO, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Put<GetOneResponse<UserProfile>>(RouteConstants.CreateNewItem, updateUserDTO, token)).Result.status == "OK";
         }
     }
 }

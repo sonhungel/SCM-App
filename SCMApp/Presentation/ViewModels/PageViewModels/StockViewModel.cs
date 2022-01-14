@@ -1,4 +1,5 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
@@ -15,10 +16,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
     public class StockViewModel : ViewModelBase, IPageViewModel
     {
         private readonly IItemWebAPI _itemWebAPI;
-        public StockViewModel(IItemWebAPI itemWebAPI,string token, IScreenManager screenManager) : base(token, screenManager)
+        public StockViewModel(IItemWebAPI itemWebAPI, UserProfile userProfile, string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _itemWebAPI = itemWebAPI;
             _isHaveNoData = true;
+            MainUser = userProfile;
             OpenStockDetailViewCommand = new RelayCommand(p => OpenStockDetailView());
             OpenInsertStockTypeViewCommand = new RelayCommand(p => OpenInsertStockTypeView());
             StockList = new ObservableCollection<StockViewModelItem>();
@@ -32,7 +34,12 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public ICommand EditStockCommand { get; set; }
         public ICommand DeleteStockCommand { get; set; }
 
+        public UserProfile MainUser { get; set; }
+
+        public Visibility isManager => MainUser.role == "Quản lý" ? Visibility.Visible : Visibility.Collapsed;
+
         public ObservableCollection<StockViewModelItem> StockList { get; set; }
+        public int StockNumber => StockList.Count();
         public string NamePage => CommonConstants.StockPageViewName;
 
         public string FunctionName => CommonConstants.StockFunctionName;

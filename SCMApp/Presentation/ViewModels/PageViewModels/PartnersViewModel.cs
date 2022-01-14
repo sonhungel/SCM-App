@@ -27,18 +27,20 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             CustomerList = new ObservableCollection<CustomerViewModelItem>();
             PartnerList = new ObservableCollection<PartnerViewModelItem>();
 
-            EditCustomerCommand = new RelayCommand(p => EditCustomer((string)p));
-            DeleteCustomerCommand = new RelayCommand(p => DeleteCustomer((string)p));
+            EditCustomerCommand = new RelayCommand(p => EditCustomer((int)p));
+            DeleteCustomerCommand = new RelayCommand(p => DeleteCustomer((int)p));
 
-            EditPartnerCommand = new RelayCommand(p => EditPartner((string)p));
-            DeletePartnerCommand = new RelayCommand(p => DeletePartner((string)p));
+            EditPartnerCommand = new RelayCommand(p => EditPartner((int)p));
+            DeletePartnerCommand = new RelayCommand(p => DeletePartner((int)p));
         }
 
         public ICommand OpenCustomerViewCommand { get; set; }
         public ICommand OpenPartnerViewCommand { get; set; }
 
         public ObservableCollection<CustomerViewModelItem> CustomerList { get; set; }
+        public int CustomerNumber => CustomerList.Count();
         public ObservableCollection<PartnerViewModelItem> PartnerList { get; set; }
+        public int PartnerNumber => PartnerList.Count();
 
         public ICommand EditCustomerCommand { get; set; }
         public ICommand DeleteCustomerCommand { get; set; }
@@ -81,12 +83,12 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             ScreenManager.ShowPartnerDetailView(View,null,true,Token); ;
         }
 
-        private void EditCustomer(string customerCode)
+        private void EditCustomer(int customerCode)
         {
             var customerUpdate = CustomerList.SingleOrDefault(x => x.CustomerCode == customerCode).Model;
             ScreenManager.ShowCustomerDetailView(View, customerUpdate,false, Token);
         }
-        private void DeleteCustomer(string customerCode)
+        private void DeleteCustomer(int customerCode)
         {
             MessageBoxResult dialogResult = MessageBox.Show(View,"Bạn có muốn xoá khách hàng này ra khỏi hệ thống ?", 
                 "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -95,12 +97,12 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             }
         }
 
-        private void EditPartner(string partnerCode)
+        private void EditPartner(int partnerCode)
         {
             var partner = PartnerList.SingleOrDefault(x => x.PartnerCode == partnerCode).Model;
             ScreenManager.ShowPartnerDetailView(View,partner,false, Token);
         }
-        private void DeletePartner(string partnerCode)
+        private void DeletePartner(int partnerCode)
         {
             MessageBoxResult dialogResult = MessageBox.Show(View, "Bạn có muốn xoá đối tác này ra khỏi hệ thống ?",
                 "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
