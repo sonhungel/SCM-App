@@ -188,7 +188,7 @@ namespace SCMApp.WebAPIClient
 
         protected StringContent CreateJsonContentFromObject(object value)
         {
-            //var postContent = new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, ApplicationJson);
+            var postContent1 = new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, ApplicationJson);
             var postContent = new StringContent(
                 JsonConvert.SerializeObject(value, new JsonSerializerSettings
                 {

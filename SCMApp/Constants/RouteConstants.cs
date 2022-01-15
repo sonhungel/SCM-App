@@ -8,6 +8,7 @@ namespace SCMApp.Constants
         public const string GetAllUser = "getAllUser";
         public const string CreateUser = "register";
         public const string UpdateUser = "update";
+        public const string UpdateByManager = "update/admin";
         public const string DeleteUser = "delete/{0}";
 
         //Item 

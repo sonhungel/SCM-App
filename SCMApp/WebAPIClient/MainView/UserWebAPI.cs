@@ -46,7 +46,7 @@ namespace SCMApp.WebAPIClient.MainView
 
         public bool UpdateUserByManager(UpdateUserByManagerDTO updateUserByManagerDTO, string token)
         {
-            return Task.Run(() => Put<GetOneResponse<UserProfile>>(RouteConstants.UpdateUser, updateUserByManagerDTO, token)).Result.status == "OK";
+            return Task.Run(() => Put<GetOneResponse<UserProfile>>(RouteConstants.UpdateByManager, updateUserByManagerDTO, token)).Result.status == "OK";
         }
     }
 }

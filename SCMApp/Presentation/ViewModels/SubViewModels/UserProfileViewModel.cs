@@ -375,18 +375,18 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 {
                     var updateUserByManager = new UpdateUserByManagerDTO()
                     {
-                        fullName = _model.fullName,
-                        username = _model.username,
-                        email = _model.email,
-                        role = _model.role,
+                        fullName = _updateModel.fullName,
+                        username = _updateModel.username,
+                        email = _updateModel.email,
+                        role = _updateModel.role,
                         password = NewPassword,
-                        phoneNumber = _model.phoneNumber,
-                        dateOfBirth = _model.dateOfBirth,
-                        province = _model.province,
-                        district = _model.district,
-                        ward = _model.ward,
-                        address = _model.address,
-                        version = _model.version,
+                        phoneNumber = _updateModel.phoneNumber,
+                        dateOfBirth = _updateModel.dateOfBirth,
+                        province = _updateModel.province,
+                        district = _updateModel.district,
+                        ward = _updateModel.ward,
+                        address = _updateModel.address,
+                        version = _updateModel.version,
                     };
                     var r = _userWebAPI.UpdateUserByManager(updateUserByManager, Token);
                 }
