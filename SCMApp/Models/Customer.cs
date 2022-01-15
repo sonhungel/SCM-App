@@ -1,7 +1,7 @@
 ﻿using System;
 namespace SCMApp.Models
 {
-    public class Customer
+    public class Customer: BusinessObjectBase
     {
         public int? customerNumber { get; set; }
         public string name { get; set; }

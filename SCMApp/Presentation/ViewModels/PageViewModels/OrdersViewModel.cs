@@ -60,6 +60,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                 }
             }
             IsHaveNoData = !OrderList.Any();
+            OnPropertyChanged(nameof(OrderNumber));
         }
 
         private void OpenSellView()

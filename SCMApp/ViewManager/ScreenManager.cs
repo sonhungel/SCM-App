@@ -66,7 +66,7 @@ namespace SCMApp.ViewManager
         public void ShowUserProfileView(Window parentWindow, UserProfile user, bool isCreate, bool updateByHRM, string token)
         {
             var view = new UserProfileView();
-            var viewModel = new UserProfileViewModel(token, IoC.Get<IScreenManager>());
+            var viewModel = new UserProfileViewModel(IoC.Get<IUserWebAPI>(),token, IoC.Get<IScreenManager>());
             if (user != null)
             {
                 viewModel.Model = user;

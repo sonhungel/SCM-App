@@ -65,7 +65,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                 {
                     if(user.username == MainUser.username)
                     {
-                        HRMList.Add(new HumanResourceManagementViewModelItem(user,Visibility.Hidden));
+                        //HRMList.Add(new HumanResourceManagementViewModelItem(user,Visibility.Hidden));
                         continue;
                     }    
                     HRMList.Add(new HumanResourceManagementViewModelItem(user, Visibility.Visible));
@@ -73,6 +73,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             }
             IsHaveNoData = !HRMList.Any();
             OnPropertyChanged(nameof(HRMList));
+            OnPropertyChanged(nameof(NumberUser));
         }
 
         private void OpenInsertUserProfileView()
@@ -93,7 +94,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                 "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
-                //_userWebAPI.DeleteUser();
+                using (new WaitCursorScope())
+                {
+                    var r = _userWebAPI.DeleteUser(p, Token);
+                }
             }
         }
     }

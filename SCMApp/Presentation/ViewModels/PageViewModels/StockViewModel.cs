@@ -71,6 +71,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                 }
             }
             IsHaveNoData = !StockList.Any();
+            OnPropertyChanged(nameof(StockNumber));
+
         }
         private void OpenStockDetailView()
         {
@@ -83,11 +85,6 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void EditStock(int stockCode)
         {
-            //Item updateItem = null;
-            //using (new WaitCursorScope())
-            //{
-            //    updateItem = _itemWebAPI.GetItemByItemNumber(stockCode.ToString(), Token);
-            //}
             var updateItem = StockList.SingleOrDefault(x => x.StockCode == stockCode).Model;
             ScreenManager.ShowStockDetailView(View, updateItem, false, Token);
         }
@@ -97,7 +94,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                 "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
-
+                using (new WaitCursorScope())
+                {
+                    var r = _itemWebAPI.DeleteItem(stockCode.ToString(), Token);
+                }
             }
         }
     }

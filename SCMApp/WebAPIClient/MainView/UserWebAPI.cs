@@ -19,9 +19,9 @@ namespace SCMApp.WebAPIClient.MainView
             return Task.Run(() => Post<GetOneResponse<UserProfile>>(RouteConstants.CreateUser, createUserDTO, string.Empty)).Result.status == "CREATED";
         }
 
-        public bool DeleteUser(string token)
+        public bool DeleteUser(string username, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Delete<GetOneResponse<Customer>>(string.Format(RouteConstants.DeleteUser, username), token)).Result.status == "OK";
         }
 
         public IList<UserProfile> GetAllUserProfile(string token)
@@ -41,7 +41,12 @@ namespace SCMApp.WebAPIClient.MainView
 
         public bool UpdateUser(UpdateUserDTO updateUserDTO, string token)
         {
-            return Task.Run(() => Put<GetOneResponse<UserProfile>>(RouteConstants.CreateNewItem, updateUserDTO, token)).Result.status == "OK";
+            return Task.Run(() => Put<GetOneResponse<UserProfile>>(RouteConstants.UpdateUser, updateUserDTO, token)).Result.status == "OK";
+        }
+
+        public bool UpdateUserByManager(UpdateUserByManagerDTO updateUserByManagerDTO, string token)
+        {
+            return Task.Run(() => Put<GetOneResponse<UserProfile>>(RouteConstants.UpdateUser, updateUserByManagerDTO, token)).Result.status == "OK";
         }
     }
 }

@@ -71,6 +71,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                     PartnerList.Add(new PartnerViewModelItem(partner));
                 }
             }
+            OnPropertyChanged(nameof(PartnerNumber));
+            OnPropertyChanged(nameof(CustomerNumber));
         }
 
         private void OpenCustomerView()
@@ -94,6 +96,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                 "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
+                using (new WaitCursorScope())
+                {
+                    var r = _customerWebAPI.DeleteCustomer(customerCode.ToString(), Token);
+                }
             }
         }
 
@@ -108,6 +114,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                 "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
+                using (new WaitCursorScope())
+                {
+                    var r = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
+                }
             }
         }
     }

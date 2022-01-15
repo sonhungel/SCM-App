@@ -217,7 +217,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 AddError(nameof(CustomerName), "Tên khách hàng không được trống.");
             }
-            if (string.IsNullOrEmpty(CustomerPhoneNumber) || CustomerPhoneNumber.Count() <= 8)
+            if (string.IsNullOrEmpty(CustomerPhoneNumber) || CustomerPhoneNumber.Count() <= 9)
             {
                 AddError(nameof(CustomerPhoneNumber), "Số điện thoại không được trống.");
             }
@@ -295,7 +295,26 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             }
             else
             {
-
+                using (new WaitCursorScope())
+                {
+                    var updateCustomer = new UpdateCustomerDTO()
+                    {
+                        id = Model.id,
+                        name = Model.name,
+                        phoneNumber = Model.phoneNumber,
+                        email = Model.email,
+                        dateOfBirth = Model.dateOfBirth,
+                        sex = Model.sex ? 1 : 0,
+                        province = Model.province,
+                        district = Model.district,
+                        ward = Model.ward,
+                        address = Model.address,
+                        taxNumber = Model.taxNumber,
+                        remark = Model.remark,
+                        version = Model.version
+                    };
+                    var r = _customerWebAPI.UpdateCustomer(updateCustomer, Token);
+                }
             }    
             View.Close();
         }

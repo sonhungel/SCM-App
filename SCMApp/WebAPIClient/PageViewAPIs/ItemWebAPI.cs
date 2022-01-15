@@ -20,9 +20,9 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
             return Task.Run(() => Post<GetOneResponse<Item>>(RouteConstants.CreateNewItem, createItemDTO, token)).Result.status == "OK";
         }
 
-        public string DeleteItem()
+        public bool DeleteItem(string item, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Delete<GetOneResponse<Item>>(string.Format(RouteConstants.DeleteItem, item), token)).Result.status == "OK";
         }
 
         public IList<Item> GetAllItem(string token)
@@ -37,7 +37,7 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public bool UpdateItem(UpdateItemDTO updateItemDTO, string token)
         {
-            return Task.Run(() => Put<GetOneResponse<Item>>(RouteConstants.CreateNewItem, updateItemDTO, token)).Result.status == "OK";
+            return Task.Run(() => Put<GetOneResponse<Item>>(RouteConstants.UpdateItem, updateItemDTO, token)).Result.status == "OK";
         }
     }
 }

@@ -98,7 +98,7 @@
                     <Border Grid.Row="5" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                         <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                             <Grid Height="Auto">
-                                <TextBox x:Name="importPhoneNumber" Padding="10,0,0,0" MaxLength="10"
+                                <TextBox x:Name="importPhoneNumber" Padding="10,0,0,0" MaxLength="11"
                                          Text="{Binding PartnerPhoneNumber, Mode=TwoWay, UpdateSourceTrigger=LostFocus, 
                                             Converter={StaticResource NumbericConverter}}"
                                          Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"

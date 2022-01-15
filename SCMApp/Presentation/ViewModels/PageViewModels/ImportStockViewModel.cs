@@ -61,6 +61,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                 }
             }
             IsHaveNoData = !ImportStockList.Any();
+            OnPropertyChanged(nameof(NumberImportItem));
         }
 
         private void OpenImportStockSubView()

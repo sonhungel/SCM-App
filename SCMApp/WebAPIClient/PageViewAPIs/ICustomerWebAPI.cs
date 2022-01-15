@@ -9,6 +9,6 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
         bool CreateCustomer(CreateCustomerDTO createCustomerDTO,string token);
         IList<Customer> GetAllCustomer(string token);
         bool UpdateCustomer(UpdateCustomerDTO updateCustomerDTO, string token);
-        bool DeleteCustomer(string token);
+        bool DeleteCustomer(string customer, string token);
     }
 }

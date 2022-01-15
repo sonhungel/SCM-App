@@ -12,7 +12,8 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
             Model = customer;
         }
         public Customer Model;
-        
+
+        public int Id => Model.id;
         public int? CustomerCode => Model.customerNumber;
         public string CustomerName => Model.name;
         public string CustomerPhoneNumber => Model.phoneNumber;

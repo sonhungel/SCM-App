@@ -21,9 +21,9 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
                 createSupplierDTO, token)).Result.status == "OK";
         }
 
-        public void DeleteSupplier()
+        public bool DeleteSupplier(string supplier, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Delete<GetOneResponse<Partner>>(string.Format(RouteConstants.DeleteSupplier, supplier), token)).Result.status == "OK";
         }
 
         public IList<Partner> GetAllSupplier(string token)
@@ -31,9 +31,10 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
             return Task.Run(() => Get<GetAllResponse<Partner>>(RouteConstants.GetAllPartner, token)).Result.data;
         }
 
-        public bool UpdateSupplier(UpdateUserDTO updateUserDTO, string token)
+        public bool UpdateSupplier(UpdateSupplierDTO updateSupplierDTO, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Put<GetOneResponse<Partner>>(RouteConstants.UpdatePartner,
+               updateSupplierDTO, token)).Result.status == "OK";
         }
     }
 }

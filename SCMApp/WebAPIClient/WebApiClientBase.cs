@@ -79,7 +79,7 @@ namespace SCMApp.WebAPIClient
         }
 
 
-        protected async Task<T> Delete<T>(string url, object value, string token, NameValueCollection queryParams = null)
+        protected async Task<T> Delete<T>(string url, string token, NameValueCollection queryParams = null)
         {
             string route = GetRoute(url, queryParams);
 

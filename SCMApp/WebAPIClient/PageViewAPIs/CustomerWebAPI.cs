@@ -21,9 +21,9 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
                 createCustomerDTO, token)).Result.status == "OK";
         }
 
-        public bool DeleteCustomer(string token)
+        public bool DeleteCustomer(string customer, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Delete<GetOneResponse<Customer>>(string.Format(RouteConstants.DeleteCustomer, customer), token)).Result.status == "OK";
         }
 
         public IList<Customer> GetAllCustomer(string token)
@@ -33,7 +33,8 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public bool UpdateCustomer(UpdateCustomerDTO updateCustomerDTO, string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Put<GetOneResponse<Partner>>(RouteConstants.UpdateCustomer,
+               updateCustomerDTO, token)).Result.status == "OK";
         }
     }
 }

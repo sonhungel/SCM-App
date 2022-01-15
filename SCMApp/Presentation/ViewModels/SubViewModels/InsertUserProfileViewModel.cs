@@ -220,9 +220,9 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 AddError(nameof(UserEmail), "Email không hợp lệ.");
             }
-            if (string.IsNullOrEmpty(UserPhoneNumber))
+            if (string.IsNullOrEmpty(UserPhoneNumber) || UserPhoneNumber.Count() <= 9)
             {
-                AddError(nameof(UserPhoneNumber), "Số điện thoại không được trống.");
+                AddError(nameof(UserPhoneNumber), "Số điện thoại không hợp lệ.");
             }
             if (!UserBirthDay.HasValue)
             {

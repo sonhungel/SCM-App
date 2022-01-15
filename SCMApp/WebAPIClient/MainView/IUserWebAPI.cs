@@ -11,6 +11,7 @@ namespace SCMApp.WebAPIClient.MainView
         IList<UserProfile> GetAllUserProfile(string token);
         bool CreateUser(CreateUserDTO createUserDTO, string token);
         bool UpdateUser(UpdateUserDTO updateUserDTO, string token);
-        bool DeleteUser(string token);
+        bool UpdateUserByManager(UpdateUserByManagerDTO updateUserByManagerDTO,string token);
+        bool DeleteUser(string username,string token);
     }
 }

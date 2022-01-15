@@ -10,6 +10,6 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
         Item GetItemByItemNumber(string numberRequest, string token);
         bool CreateItem(CreateItemDTO createItemDTO, string token);
         bool UpdateItem(UpdateItemDTO updateItemDTO, string token);
-        string DeleteItem();
+        bool DeleteItem(string item, string token);
     }
 }

@@ -196,7 +196,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 AddError(nameof(PartnerFullName), "Tên nhà cung cấp không hợp lệ.");
             }
-            if (string.IsNullOrEmpty(PartnerPhoneNumber) || PartnerPhoneNumber.Count() <= 8)
+            if (string.IsNullOrEmpty(PartnerPhoneNumber) || PartnerPhoneNumber.Count() <= 9)
             {
                 AddError(nameof(PartnerPhoneNumber), "Số điện thoại không hợp lệ.");
             }
@@ -245,7 +245,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 using (new WaitCursorScope())
                 {
-                    var createCustomer = new CreateSupplierDTO()
+                    var createSupplier = new CreateSupplierDTO()
                     {
                         supplierNumber = Model.supplierNumber == 0 ? null : Model.supplierNumber,
                         name = Model.name,
@@ -259,11 +259,29 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                         taxNumber = Model.taxNumber,
                         remark = Model.remark,
                     };
-                    var r = _partnerWebAPI.CreateSupplier(createCustomer, Token);
+                    var r = _partnerWebAPI.CreateSupplier(createSupplier, Token);
                 }
             }
-             else
+            else
             {
+                using (new WaitCursorScope())
+                {
+                    var updateSupplier = new UpdateSupplierDTO()
+                    {
+                        id = Model.id,
+                        name = Model.name,
+                        phoneNumber = Model.phoneNumber,
+                        email = Model.email,
+                        province = Model.province,
+                        district = Model.district,
+                        ward = Model.ward,
+                        address = Model.address,
+                        taxNumber = Model.taxNumber,
+                        remark = Model.remark,
+                        version = Model.version
+                    };
+                    var r = _partnerWebAPI.UpdateSupplier(updateSupplier, Token);
+                }
 
             }    
             View.Close();

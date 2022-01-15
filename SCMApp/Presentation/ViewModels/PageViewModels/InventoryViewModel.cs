@@ -65,6 +65,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                 }
             }
             IsHaveNoData = !InventoryList.Any();
+            OnPropertyChanged(nameof(InvetoryTicketNumber));
         }
 
         private void OpenStockView(int stockCode)

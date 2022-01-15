@@ -3,7 +3,9 @@ using SCMApp.Models;
 using SCMApp.Presentation.AddressItem;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
+using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
+using SCMApp.WebAPIClient.MainView;
 using SCMApp.WebAPIClient.Request_Response;
 using System;
 using System.Collections;
@@ -17,8 +19,10 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 {
     public class UserProfileViewModel : SubViewModelBase, IWindowViewBase
     {
-        public UserProfileViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly IUserWebAPI _userWebAPI;
+        public UserProfileViewModel(IUserWebAPI userWebAPI, string token, IScreenManager screenManager) : base(token, screenManager)
         {
+            _userWebAPI = userWebAPI;
             ICancelCommand = new RelayCommand(p => CancelAction());
             ISaveCommand = new RelayCommand(p =>
             {
@@ -46,19 +50,18 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         private UpdateUserDTO _updateModel { get; set; }
         private UserProfile _model;
-        public UserProfile Model 
-        { 
+        public UserProfile Model
+        {
             get => _model;
             set
             {
                 _model = value;
-                if(_updateModel == null)
+                if (_updateModel == null)
                 {
                     _updateModel = new UpdateUserDTO()
                     {
                         fullName = _model.fullName,
                         username = _model.username,
-                        currentPassword = _model.password,
                         email = _model.email,
                         role = _model.role,
                         phoneNumber = _model.phoneNumber,
@@ -66,9 +69,10 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                         province = _model.province,
                         district = _model.district,
                         ward = _model.ward,
-                        address = _model.address
+                        address = _model.address,
+                        version = _model.version,
                     };
-                }    
+                }
             }
         }
 
@@ -110,22 +114,39 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 OnPropertyChanged(nameof(UserPhoneNumber));
             }
         }
-        private string _currentPassword;
+
         public string CurrentPassWord
         {
-            get => _currentPassword;
+            get => _updateModel.oldPassword;
             set
             {
-                _currentPassword = value;
+                if (!IsUpdateByHRM)
+                {
+                    _updateModel.oldPassword = value;
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        _updateModel.oldPassword = null;
+                    }
+                }
+                
+                _updateModel.oldPassword = value;
+                if (string.IsNullOrEmpty(value))
+                {
+                    _updateModel.oldPassword = null;
+                }
                 OnPropertyChanged(nameof(CurrentPassWord));
             }
         }
         public string NewPassword
         {
-            get => _updateModel.newPassword;
+            get => _updateModel.password;
             set
             {
-                _updateModel.newPassword = value;
+                _updateModel.password = value;
+                if (string.IsNullOrEmpty(value))
+                {
+                    _updateModel.password = null;
+                }
                 OnPropertyChanged(nameof(NewPassword));
             }
         }
@@ -264,7 +285,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 AddError(nameof(UserEmail), "Email không hợp lệ.");
             }
-            if (string.IsNullOrEmpty(UserPhoneNumber) || UserPhoneNumber.Count() <= 8)
+            if (string.IsNullOrEmpty(UserPhoneNumber) || UserPhoneNumber.Count() <= 9)
             {
                 AddError(nameof(UserPhoneNumber), "Số điện thoại không hợp lệ.");
             }
@@ -348,6 +369,34 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         private void SaveAction()
         {
 
+            using (new WaitCursorScope())
+            {
+                if (IsUpdateByHRM)
+                {
+                    var updateUserByManager = new UpdateUserByManagerDTO()
+                    {
+                        fullName = _model.fullName,
+                        username = _model.username,
+                        email = _model.email,
+                        role = _model.role,
+                        password = NewPassword,
+                        phoneNumber = _model.phoneNumber,
+                        dateOfBirth = _model.dateOfBirth,
+                        province = _model.province,
+                        district = _model.district,
+                        ward = _model.ward,
+                        address = _model.address,
+                        version = _model.version,
+                    };
+                    var r = _userWebAPI.UpdateUserByManager(updateUserByManager, Token);
+                }
+                else
+                {
+                    var r = _userWebAPI.UpdateUser(_updateModel, Token);
+                }    
+            }
+
+            View.Close();
         }
     }
 }

@@ -108,7 +108,7 @@
                                     <Border Width="10"/>
                                     <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
                                             Command="{Binding DataContext.DeleteCustomerCommand, ElementName=CustomerGrid}" 
-                                            CommandParameter="{Binding CustomerCode}"
+                                            CommandParameter="{Binding Id}"
                                             Background="Transparent">
                                         <Button.Content>
                                             <Border Grid.Column="0" Background="Transparent">
@@ -237,7 +237,7 @@
                                     <Border Width="10"/>
                                     <Button Cursor="Hand" Foreground="Transparent" BorderThickness="0" Width="25"
                                             Command="{Binding DataContext.DeletePartnerCommand, ElementName=PartnerGrid}" 
-                                            CommandParameter="{Binding PartnerCode}"
+                                            CommandParameter="{Binding Id}"
                                             Background="Transparent">
                                         <Button.Content>
                                             <Border Grid.Column="0" Background="Transparent">
