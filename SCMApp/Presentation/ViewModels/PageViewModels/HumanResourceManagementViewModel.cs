@@ -1,4 +1,5 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Event_Delegate;
 using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
@@ -96,7 +97,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             {
                 using (new WaitCursorScope())
                 {
-                    var r = _userWebAPI.DeleteUser(p, Token);
+                    var result = _userWebAPI.DeleteUser(p, Token);
+                    ReloadAfterCloseSubView.Instance.Invoke(result);
                 }
             }
         }

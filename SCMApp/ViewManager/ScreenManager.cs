@@ -38,7 +38,7 @@ namespace SCMApp.ViewManager
         public void ShowMainView(Window parentWindow, UserProfile user, string token)
         {
             var view = new MainWindowView();
-            var viewModel = new MainWindowViewModel(token,IoC.Get<IScreenManager>());
+            var viewModel = new MainWindowViewModel(IoC.Get<IUserWebAPI>(),token,IoC.Get<IScreenManager>());
             viewModel.View = view;
             viewModel.MainUser = user;
             viewModel.InitAllPageViewModel();

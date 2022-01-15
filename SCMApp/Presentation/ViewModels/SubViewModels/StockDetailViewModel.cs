@@ -1,4 +1,5 @@
-﻿using SCMApp.Models;
+﻿using SCMApp.Event_Delegate;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.Views;
@@ -237,7 +238,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                         description = Model.description,
                         remark = Model.remark
                     };
-                    var r = _itemWebAPI.CreateItem(createItem, Token);
+                    var result = _itemWebAPI.CreateItem(createItem, Token);
+                    ReloadAfterCloseSubView.Instance.Invoke(result);
                 }
             }    
             else
@@ -253,7 +255,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                         minimumQuantity = Model.minimumQuantity,
                         version = Model.version
                     };
-                    var r = _itemWebAPI.UpdateItem(updateItem, Token);
+                    var result = _itemWebAPI.UpdateItem(updateItem, Token);
+                    ReloadAfterCloseSubView.Instance.Invoke(result);
                 }
             }    
             

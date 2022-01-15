@@ -1,4 +1,5 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Event_Delegate;
 using SCMApp.Helper;
 using SCMApp.Models;
 using SCMApp.Presentation.AddressItem;
@@ -300,7 +301,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             };
             using (new WaitCursorScope())
             {
-                var r = _userWebAPI.CreateUser(newUser,Token);
+                var result = _userWebAPI.CreateUser(newUser,Token);
+                ReloadAfterCloseSubView.Instance.Invoke(result);
             }
             View.Close();
         }

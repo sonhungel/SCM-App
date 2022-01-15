@@ -1,4 +1,5 @@
-﻿using SCMApp.Models;
+﻿using SCMApp.Event_Delegate;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.Views;
@@ -117,7 +118,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         {
             using (new WaitCursorScope())
             {
-                var createdInventoryTicket = _inventoryWebAPI.CreateInventoryTicket(_updateModel, Token);
+                var result = _inventoryWebAPI.CreateInventoryTicket(_updateModel, Token);
+                ReloadAfterCloseSubView.Instance.Invoke(result);
             }
             View.Close();
         }

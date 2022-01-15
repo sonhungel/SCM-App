@@ -1,4 +1,5 @@
-﻿using SCMApp.Models;
+﻿using SCMApp.Event_Delegate;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.Views;
@@ -81,7 +82,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         {
             using (new WaitCursorScope())
             {
-                var r = _itemTypeWebAPI.CreateItemtype(Model,Token);
+                var result = _itemTypeWebAPI.CreateItemtype(Model,Token);
+                ReloadAfterCloseSubView.Instance.Invoke(result);
             }
             View.Close();
         }

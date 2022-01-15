@@ -1,4 +1,5 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Event_Delegate;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
@@ -98,7 +99,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             {
                 using (new WaitCursorScope())
                 {
-                    var r = _customerWebAPI.DeleteCustomer(customerCode.ToString(), Token);
+                    var result = _customerWebAPI.DeleteCustomer(customerCode.ToString(), Token);
+                    ReloadAfterCloseSubView.Instance.Invoke(result);
                 }
             }
         }
@@ -116,7 +118,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             {
                 using (new WaitCursorScope())
                 {
-                    var r = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
+                    var result = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
+                    ReloadAfterCloseSubView.Instance.Invoke(result);
                 }
             }
         }

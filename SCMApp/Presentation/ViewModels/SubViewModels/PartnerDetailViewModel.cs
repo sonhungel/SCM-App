@@ -1,4 +1,5 @@
-﻿using SCMApp.Helper;
+﻿using SCMApp.Event_Delegate;
+using SCMApp.Helper;
 using SCMApp.Models;
 using SCMApp.Presentation.AddressItem;
 using SCMApp.Presentation.Commands;
@@ -280,9 +281,9 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                         remark = Model.remark,
                         version = Model.version
                     };
-                    var r = _partnerWebAPI.UpdateSupplier(updateSupplier, Token);
+                    var result = _partnerWebAPI.UpdateSupplier(updateSupplier, Token);
+                    ReloadAfterCloseSubView.Instance.Invoke(result);
                 }
-
             }    
             View.Close();
         }

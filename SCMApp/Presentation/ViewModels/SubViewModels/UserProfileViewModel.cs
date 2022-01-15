@@ -1,4 +1,5 @@
-﻿using SCMApp.Helper;
+﻿using SCMApp.Event_Delegate;
+using SCMApp.Helper;
 using SCMApp.Models;
 using SCMApp.Presentation.AddressItem;
 using SCMApp.Presentation.Commands;
@@ -388,11 +389,13 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                         address = _updateModel.address,
                         version = _updateModel.version,
                     };
-                    var r = _userWebAPI.UpdateUserByManager(updateUserByManager, Token);
+                    var result = _userWebAPI.UpdateUserByManager(updateUserByManager, Token);
+                    ReloadAfterCloseSubView.Instance.Invoke(result);
                 }
                 else
                 {
-                    var r = _userWebAPI.UpdateUser(_updateModel, Token);
+                    var result = _userWebAPI.UpdateUser(_updateModel, Token);
+                    ReloadAfterCloseSubView.ReloadMainUser.Invoke(result);
                 }    
             }
 

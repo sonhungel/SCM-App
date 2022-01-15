@@ -1,4 +1,5 @@
 ﻿using SCMApp.Constants;
+using SCMApp.Event_Delegate;
 using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
@@ -15,11 +16,15 @@ namespace SCMApp.Presentation.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel(string token, IScreenManager screenManager) : base(token, screenManager)
+        private readonly IUserWebAPI _userWebAPI;
+        public MainWindowViewModel(IUserWebAPI userWebAPI,string token, IScreenManager screenManager) : base(token, screenManager)
         {
+            _userWebAPI = userWebAPI;
             _allPageViewModels = new List<IPageViewModel>();
             OpenUserProfileCommand = new RelayCommand(p => OpenUserProfileView());
             MainUser = new UserProfile();
+            ReloadAfterCloseSubView.Instance = ReloadBaseNameOfPage;
+            ReloadAfterCloseSubView.ReloadMainUser = ReloadMainUser;
         }
 
         private IPageViewModel _currentPageViewModel;
@@ -101,6 +106,22 @@ namespace SCMApp.Presentation.ViewModels
         private void OpenUserProfileView()
         {
             ScreenManager.ShowUserProfileView(View, MainUser, false,false, Token);
+        }
+
+        private void ReloadBaseNameOfPage(bool isReloadCurrentPageView)
+        {
+            if(isReloadCurrentPageView)
+            {
+                CurrentPageViewModel.Construct();
+            }    
+        }
+
+        private void ReloadMainUser(bool reloadMainUser)
+        {
+            if(reloadMainUser)
+            {
+                MainUser = _userWebAPI.GetUserProfileBaseOnToken(MainUser.username, Token);
+            }    
         }
     }
 }

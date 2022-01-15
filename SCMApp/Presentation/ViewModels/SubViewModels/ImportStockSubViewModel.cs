@@ -1,4 +1,5 @@
-﻿using SCMApp.Models;
+﻿using SCMApp.Event_Delegate;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
@@ -175,7 +176,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                     cost = TotalMoney,
                     remark = Note,
                 };
-                var r = _importStockWebAPI.CreateImportStock(createImportStock, Token);
+                var result = _importStockWebAPI.CreateImportStock(createImportStock, Token);
+                ReloadAfterCloseSubView.Instance.Invoke(result);
             }
             View.Close();
         }

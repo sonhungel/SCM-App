@@ -1,4 +1,5 @@
-﻿using SCMApp.Models;
+﻿using SCMApp.Event_Delegate;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
@@ -199,7 +200,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             };
             using (new WaitCursorScope())
             {
-                var r = _invoiceWebAPI.CreateInvoice(invoice, Token);
+                var result = _invoiceWebAPI.CreateInvoice(invoice, Token);
+                ReloadAfterCloseSubView.Instance.Invoke(result);
             }
             View.Close();
         }
