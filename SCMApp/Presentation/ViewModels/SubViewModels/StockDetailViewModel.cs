@@ -162,6 +162,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         }
 
         public Visibility isShowTextBox => IsCreate ? Visibility.Hidden : Visibility.Visible;
+        public Visibility isShowCombobox => IsCreate ? Visibility.Visible : Visibility.Hidden;
 
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
