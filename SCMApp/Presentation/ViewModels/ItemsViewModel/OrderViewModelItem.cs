@@ -14,6 +14,6 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         public int OrderCode => Model.id;
         public string OrderTime => DateTimeHelper.DateTimeToStandardString(Model.addedDate);
         public string CustomerName => Model.customer.name;
-        public int TotalPrice => Model.paid;
+        public string TotalPrice => MoneyHelper.IntToStandardMoneyStringWithTail(Model.paid);
     }
 }

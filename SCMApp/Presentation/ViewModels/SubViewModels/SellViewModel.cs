@@ -1,4 +1,5 @@
 ﻿using SCMApp.Event_Delegate;
+using SCMApp.Helper;
 using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
@@ -100,30 +101,31 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 return quantity == 0 ? null : quantity;
             }
         }
+        private int totalMoney;
 
-        public int? TotalMoney
+        public string TotalMoney
         {
             get
             {
-                int totalMoney = 0;
+                totalMoney = 0;
                 var totalMoneyList = SellListItem.Select(x => x.TotalPrice).ToList();
                 totalMoneyList.ForEach(x =>
                 {
                     totalMoney += x;
                 });
-                return totalMoney == 0 ? null : totalMoney;
+                return MoneyHelper.IntToStandardMoneyStringWithTail(totalMoney);
             }
         }
-        public int? MoneyPaidBackForCustomer
+        public string MoneyPaidBackForCustomer
         {
             get
             {
                 int moneyPayBackForCustomer = 0;
-                if(MoneyCustomerPaid.HasValue && TotalMoney.HasValue && MoneyCustomerPaid.Value!=0)
+                if(MoneyCustomerPaid.HasValue && MoneyCustomerPaid.Value!=0)
                 {
-                    moneyPayBackForCustomer = MoneyCustomerPaid.Value - TotalMoney.Value;
-                }    
-                return moneyPayBackForCustomer;
+                    moneyPayBackForCustomer = MoneyCustomerPaid.Value - totalMoney;
+                }
+                return MoneyHelper.IntToStandardMoneyStringWithTail(moneyPayBackForCustomer);
 
             }
         }
@@ -168,7 +170,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 AddError(nameof(MoneyCustomerPaid), "Nhập số tiền khách trả.");
             }
-            if(MoneyCustomerPaid.HasValue && TotalMoney != 0 && MoneyCustomerPaid.Value < TotalMoney)
+            if(MoneyCustomerPaid.HasValue && totalMoney != 0 && MoneyCustomerPaid.Value < totalMoney)
             {
                 AddError(nameof(MoneyCustomerPaid), "Số tiền không hợp lệ.");
             }    

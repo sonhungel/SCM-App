@@ -1,4 +1,5 @@
 ﻿using SCMApp.Event_Delegate;
+using SCMApp.Helper;
 using SCMApp.Models;
 using System;
 using System.ComponentModel;
@@ -21,7 +22,9 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         public int StockCode => Model.itemNumber;
         public string StockName => Model.name;
         public int Price => Model.salesPrice;
+        public string PriceText => MoneyHelper.IntToStandardMoneyStringWithTail(Model.salesPrice);
         public int TotalPrice => Model.salesPrice* _quantity;
+        public string TotalPriceText => MoneyHelper.IntToStandardMoneyStringWithTail(Model.salesPrice * _quantity);
 
         public int QuantityLeftInStock { get; set; }
 

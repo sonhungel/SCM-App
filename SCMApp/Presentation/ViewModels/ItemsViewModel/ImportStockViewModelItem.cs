@@ -15,6 +15,6 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 
         public string ImportStockTime => DateTimeHelper.DateTimeToStandardString(Model.addedDate);
         public string Supplier => Model.supplier.name;
-        public int Cost => Model.cost;
+        public string Cost => MoneyHelper.IntToStandardMoneyStringWithTail(Model.cost);
     }
 }

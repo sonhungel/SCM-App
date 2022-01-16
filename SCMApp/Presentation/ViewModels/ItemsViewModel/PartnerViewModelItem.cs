@@ -28,7 +28,7 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
             }
         }
         
-        public int TotaMoneylWasBuy => Model.paid;
+        public string TotaMoneylWasBuy => MoneyHelper.IntToStandardMoneyStringWithTail(Model.paid);
         public string NumberOfTimeBuy => DateTimeHelper.DateTimeToStandardString(Model.LastTimeBuy);
     }
 }

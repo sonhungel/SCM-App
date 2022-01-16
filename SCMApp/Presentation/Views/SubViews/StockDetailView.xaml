@@ -125,7 +125,7 @@
                                 <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                     <Grid Height="Auto">
                                         <TextBox x:Name="importPrice" Text="{Binding StockCost, Mode=TwoWay, UpdateSourceTrigger=LostFocus
-                                            ,Converter={StaticResource NumbericConverter}}"
+                                            ,Converter={StaticResource MoneyConverter}}"
                                                  Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateStockPrice}"
                                                 Template="{StaticResource TextBoxBaseControlTemplate}"
                                                  Padding="10,0,0,0"
@@ -151,7 +151,7 @@
                                     <Grid Height="Auto">
                                         <TextBox x:Name="retailPrice" Padding="10,0,0,0"
                                                  Text="{Binding StockRetailPrice, Mode=TwoWay, UpdateSourceTrigger=LostFocus
-                                            ,Converter={StaticResource NumbericConverter}}"
+                                            ,Converter={StaticResource MoneyConverter}}"
                                                  Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateStockPrice}"
                                             Template="{StaticResource TextBoxBaseControlTemplate}"
                                                  FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>

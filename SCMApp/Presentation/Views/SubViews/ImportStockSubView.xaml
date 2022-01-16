@@ -101,10 +101,10 @@
                                     <TextBlock Text="{Binding StockName}" Style="{StaticResource DataGridTextBlock}"/>
                                 </DataTemplate>
                                 <DataTemplate x:Key="Price">
-                                    <TextBlock Text="{Binding Price}" Style="{StaticResource DataGridTextBlock}"/>
+                                    <TextBlock Text="{Binding PriceText}" Style="{StaticResource DataGridTextBlock}"/>
                                 </DataTemplate>
                                 <DataTemplate x:Key="TotalPrice">
-                                    <TextBlock Text="{Binding TotalPrice}" Style="{StaticResource DataGridTextBlock}"/>
+                                    <TextBlock Text="{Binding TotalPriceText}" Style="{StaticResource DataGridTextBlock}"/>
                                 </DataTemplate>
                                 <DataTemplate x:Key="Quantity">
                                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">

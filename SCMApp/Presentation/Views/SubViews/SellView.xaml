@@ -105,10 +105,10 @@
                                     <TextBlock Text="{Binding StockName}" Style="{StaticResource DataGridTextBlock}"/>
                                 </DataTemplate>
                                 <DataTemplate x:Key="Price">
-                                    <TextBlock Text="{Binding Price}" Style="{StaticResource DataGridTextBlock}"/>
+                                    <TextBlock Text="{Binding PriceText}" Style="{StaticResource DataGridTextBlock}"/>
                                 </DataTemplate>
                                 <DataTemplate x:Key="TotalPrice">
-                                    <TextBlock Text="{Binding TotalPrice}" Style="{StaticResource DataGridTextBlock}"/>
+                                    <TextBlock Text="{Binding TotalPriceText}" Style="{StaticResource DataGridTextBlock}"/>
                                 </DataTemplate>
                                 <DataTemplate x:Key="QuantityLeftInStock">
                                     <TextBlock Text="{Binding QuantityLeftInStock}" Style="{StaticResource DataGridTextBlock}"/>
@@ -164,10 +164,10 @@
                             </DataGrid.Resources>
                             <DataGrid.Columns >
                                 <DataGridTemplateColumn Width="45" Header="STT" CellTemplate="{StaticResource OrderNumber}"/>
-                                <DataGridTemplateColumn Width="120" Header="Mã hàng hoá" CellTemplate="{StaticResource StockCode}"/>
+                                <DataGridTemplateColumn Width="100" Header="Mã hàng hoá" CellTemplate="{StaticResource StockCode}"/>
                                 <DataGridTemplateColumn Width="150" Header="Tên hàng hoá" CellTemplate="{StaticResource StockName}"/>
                                 <DataGridTemplateColumn Width="85" Header="Số lượng" CellTemplate="{StaticResource Quantity}"/>
-                                <DataGridTemplateColumn Width="85" Header="Hiện có" CellTemplate="{StaticResource QuantityLeftInStock}"/>
+                                <DataGridTemplateColumn Width="70" Header="Hiện có" CellTemplate="{StaticResource QuantityLeftInStock}"/>
                                 <DataGridTemplateColumn Width="*" Header="Đơn giá" CellTemplate="{StaticResource Price}"/>
                                 <DataGridTemplateColumn Width="*" Header="Thành tiền" CellTemplate="{StaticResource TotalPrice}"/>
                             </DataGrid.Columns>
@@ -197,24 +197,24 @@
                         </Border>
 
                         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
-                            <Label Content="Tổng số lượng hàng hoá" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
-                            <Border Width="70"/>
+                            <Label Content="Tổng số lượng" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
+                            <Border Width="50"/>
                             <Label Content="{Binding TotalQuantityOfStock}" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                         </StackPanel>
                         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Tổng tiền hàng" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
-                            <Border Width="90"/>
+                            <Border Width="50"/>
                             <Label Content="{Binding TotalMoney}" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                         </StackPanel>
                         <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Tiền khách trả" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
-                            <Border Width="50"/>
-                            <Border CornerRadius="4" Width="130" Height="40" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
+                            <Border Width="30"/>
+                            <Border CornerRadius="4" Width="150" Height="40" Background="Transparent" BorderBrush="#999999" BorderThickness="1" Margin="5">
                                 <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">
                                     <Grid Height="Auto">
                                         <TextBox x:Name="MoneyMustPayForNCC" Padding="10,0,0,0"
                                                  Text="{Binding MoneyCustomerPaid, Mode=TwoWay, UpdateSourceTrigger=LostFocus,
-                                            Converter={StaticResource NumbericConverter}}"
+                                                 Converter={StaticResource MoneyConverter}}"
                                                  Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateForTextBoxAndComboBoxSell}"
                                          Template="{StaticResource TextBoxBaseControlTemplate}"
                                                  FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Left" BorderThickness="0" Background="Transparent"/>
@@ -235,7 +235,7 @@
                             </Border>
                         </StackPanel>
                         <StackPanel Grid.Row="5" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
-                            <Label Content="Tiền thừa trả khách" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
+                            <Label Content="Tiền thối" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                             <Border Width="50"/>
                             <Label Content="{Binding MoneyPaidBackForCustomer}" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                         </StackPanel>

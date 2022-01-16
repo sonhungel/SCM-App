@@ -1,4 +1,5 @@
-﻿using SCMApp.Models;
+﻿using SCMApp.Helper;
+using SCMApp.Models;
 
 namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 {
@@ -13,8 +14,8 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         public string StockName => Model.name;
         public int StockCode => Model.itemNumber;
 
-        public int StockOriginPrice => Model.cost;
-        public int StockRetailPrice => Model.salesPrice;
+        public string StockOriginPrice => MoneyHelper.IntToStandardMoneyStringWithTail(Model.cost);
+        public string StockRetailPrice => MoneyHelper.IntToStandardMoneyStringWithTail(Model.salesPrice);
 
         public int Quantity => Model.availableQuantity;
         public string Remark => Model.remark;

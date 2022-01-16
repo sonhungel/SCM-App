@@ -1,4 +1,5 @@
 ﻿using SCMApp.Event_Delegate;
+using SCMApp.Helper;
 using SCMApp.Models;
 using System;
 using System.ComponentModel;
@@ -28,8 +29,10 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
                 ReloadAfterCloseSubView.ReloadQuantityDelgate.Invoke(true);
             }
         }
-        public decimal Price => Model.cost;
-        public decimal TotalPrice => Model.cost * _quantity;
+        public int Price => Model.cost;
+        public string PriceText => MoneyHelper.IntToStandardMoneyStringWithTail(Model.cost);
+        public int TotalPrice => Model.cost * _quantity;
+        public string TotalPriceText => MoneyHelper.IntToStandardMoneyStringWithTail(Model.cost * _quantity);
 
         private void VerifyPropertyName(string propertyName)
         {

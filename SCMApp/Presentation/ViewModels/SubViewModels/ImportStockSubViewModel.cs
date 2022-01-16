@@ -1,4 +1,5 @@
 ﻿using SCMApp.Event_Delegate;
+using SCMApp.Helper;
 using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
@@ -92,18 +93,18 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 return quantity == 0 ? null : quantity;
             }
         }
-
-        public decimal TotalMoney
+        private int totalMoney;
+        public string TotalMoney
         {
             get
             {
-                decimal totalMoney = 0;
+                totalMoney = 0;
                 var totalMoneyList = ImportStockListItem.Select(x => x.TotalPrice).ToList();
                 totalMoneyList.ForEach(x =>
                 {
                     totalMoney += x;
                 });
-                return totalMoney;
+                return MoneyHelper.IntToStandardMoneyStringWithTail(totalMoney);
             }
         }
 
@@ -174,7 +175,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                     supplier =new SupplierId() { id = SelectedItem.supplier.id},
                     item = new ItemId() {id = SelectedItem.id},
                     quantity = TotalQuantityOfStock.Value,
-                    cost = TotalMoney,
+                    cost = totalMoney,
                     remark = Note,
                 };
                 var result = _importStockWebAPI.CreateImportStock(createImportStock, Token);
