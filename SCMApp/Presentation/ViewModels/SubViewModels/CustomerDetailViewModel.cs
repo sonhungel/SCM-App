@@ -291,7 +291,9 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                         taxNumber = Model.taxNumber,
                         remark = Model.remark,
                     };
-                    var r = _customerWebAPI.CreateCustomer(createCustomer, Token);
+                    var result = _customerWebAPI.CreateCustomer(createCustomer, Token);
+                    ReloadAfterCloseSubView.Instance.Invoke(result);
+
                 }
             }
             else
