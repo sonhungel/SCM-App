@@ -54,7 +54,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
 
         public int? StockCode => SelectedItem?.itemNumber;
         public string StockName => SelectedItem?.name;
-        public int? StockInventoryQuantity => SelectedItem?.quantity;
+        public int? StockInventoryQuantity => SelectedItem?.availableQuantity;
 
         public IList<Item> ListItem { get; set; }
         public Item SelectedItem
