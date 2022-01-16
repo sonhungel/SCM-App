@@ -46,6 +46,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 ListItem = _itemWebAPI.GetAllItem(token);
             }
             IsCreate = true;
+
+            ReloadAfterCloseSubView.ReloadQuantityDelgate = ReloadQuantity;
         }
 
         public ICommand ICancelCommand { get; }
@@ -234,6 +236,13 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 item.Quantity++;
             }
+            OnPropertyChanged(nameof(SellListItem));
+            OnPropertyChanged(nameof(TotalMoney));
+            OnPropertyChanged(nameof(TotalQuantityOfStock));
+        }
+
+        private void ReloadQuantity(bool rload)
+        {
             OnPropertyChanged(nameof(SellListItem));
             OnPropertyChanged(nameof(TotalMoney));
             OnPropertyChanged(nameof(TotalQuantityOfStock));

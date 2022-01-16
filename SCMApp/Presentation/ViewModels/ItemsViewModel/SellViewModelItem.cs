@@ -1,4 +1,5 @@
-﻿using SCMApp.Models;
+﻿using SCMApp.Event_Delegate;
+using SCMApp.Models;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -41,9 +42,9 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
                 OnPropertyChanged(nameof(Quantity));
                 OnPropertyChanged(nameof(IsVisiblePlusQuantity));
                 OnPropertyChanged(nameof(TotalPrice));
+                ReloadAfterCloseSubView.ReloadQuantityDelgate.Invoke(true);
             }
         }
-
         private void VerifyPropertyName(string propertyName)
         {
             // Verify that the property name matches a real,  
@@ -68,7 +69,6 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         private void OnPropertyChanged(string propertyName)
         {
             this.VerifyPropertyName(propertyName);
-
             PropertyChangedEventHandler handler = this.PropertyChanged;
             if (handler != null)
             {

@@ -1,4 +1,5 @@
-﻿using SCMApp.Models;
+﻿using SCMApp.Event_Delegate;
+using SCMApp.Models;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -24,6 +25,7 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
                 _quantity = value;
                 OnPropertyChanged(nameof(Quantity));
                 OnPropertyChanged(nameof(TotalPrice));
+                ReloadAfterCloseSubView.ReloadQuantityDelgate.Invoke(true);
             }
         }
         public decimal Price => Model.cost;

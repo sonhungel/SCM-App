@@ -43,6 +43,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 ListItem = _itemWebAPI.GetAllItem(token);
             }
             IsCreate = true;
+            ReloadAfterCloseSubView.ReloadQuantityDelgate = ReloadQuantity;
         }
         //import Model
 
@@ -180,6 +181,13 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 ReloadAfterCloseSubView.Instance.Invoke(result);
             }
             View.Close();
+        }
+
+        private void ReloadQuantity(bool rload)
+        {
+            OnPropertyChanged(nameof(ImportStockListItem));
+            OnPropertyChanged(nameof(TotalMoney));
+            OnPropertyChanged(nameof(TotalQuantityOfStock));
         }
     }
 }

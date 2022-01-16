@@ -173,7 +173,8 @@
                         </StackPanel>
 
                         <Label Grid.Row="8" Grid.Column="0" Content="Nhà cung cấp" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Border Grid.Row="9" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
+                        <Border Grid.Row="9" Grid.Column="0" CornerRadius="4" Visibility="{Binding isShowTextBox}"
+                                Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <ComboBox Grid.Row="5" Grid.Column="0" IsEnabled="{Binding IsCreate}"
                                       IsEditable="False" ItemsSource="{Binding Partners}" IsReadOnly="True"
                                       DisplayMemberPath="name" SelectedValuePath="name"
@@ -182,7 +183,9 @@
                                       SelectedItem="{Binding SelectedPartner, UpdateSourceTrigger=PropertyChanged}"
                                       Cursor="Hand" Style="{StaticResource RoundedComboBox}"/>
                         </Border>
-                        
+                        <Label Grid.Row="9" Grid.Column="0" Content="{Binding SelectedParterName}" Visibility="{Binding isShowTextBox}"
+                               Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+
                         <Label Grid.Row="0" Grid.Column="2" Content="Số lượng hàng trong kho" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Grid.Row="1" Grid.Column="2" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <Border Background="White" CornerRadius="10" HorizontalAlignment="Stretch">

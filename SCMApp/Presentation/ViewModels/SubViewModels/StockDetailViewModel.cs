@@ -7,6 +7,7 @@ using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
 using SCMApp.WebAPIClient.Request_Response;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SCMApp.Presentation.ViewModels.SubViewModels
@@ -68,13 +69,13 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public ItemType SelectedItemType 
         {
             get => Model.itemType;
-            
             set
             {
                 Model.itemType = value;
                 OnPropertyChangedNoInput();
             }
         }
+        public string SelectedParterName => Model.supplier?.name;
 
         public IList<Partner> Partners { get; set; }
         public Partner SelectedPartner
@@ -160,6 +161,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             }
         }
 
+        public Visibility isShowTextBox => IsCreate ? Visibility.Hidden : Visibility.Visible;
+
         public ICommand ICancelCommand { get; }
         public ICommand ISaveCommand { get; }
 
@@ -234,7 +237,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                         salesPrice = Model.salesPrice,
                         quantity = Model.quantity,
                         minimumQuantity = Model.minimumQuantity,
-                        supplier = new SupplierNumber(Model.supplier.id),
+                        supplier = new SupplierNumber(Model.supplier.supplierNumber.Value),
                         description = Model.description,
                         remark = Model.remark
                     };

@@ -130,7 +130,8 @@
                                             <Border Background="White" CornerRadius="5" HorizontalAlignment="Stretch">
                                                 <Grid Height="Auto">
                                                     <TextBox x:Name="Quantity" FontFamily="Segoe UI" FontWeight="SemiBold" 
-                                                             Text="{Binding Quantity, Converter={StaticResource NumberConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                             Text="{Binding Quantity, Converter={StaticResource NumbericConverter},
+                                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Center" BorderThickness="0" Background="Transparent"/>
                                                     <TextBlock Margin="10,0,0,0" Text="..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" 
                                                                TextAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" IsHitTestVisible="False">

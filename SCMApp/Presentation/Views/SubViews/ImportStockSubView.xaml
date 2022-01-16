@@ -123,7 +123,7 @@
                                             <Border Background="White" CornerRadius="5" HorizontalAlignment="Stretch">
                                                 <Grid Height="Auto">
                                                     <TextBox x:Name="Quantity" 
-                                                             Text="{Binding Quantity, Converter={StaticResource NumberConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                             Text="{Binding Quantity, Converter={StaticResource NumbericConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                              FontFamily="Segoe UI" FontWeight="SemiBold" 
                                                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" TextAlignment="Center" BorderThickness="0" Background="Transparent"/>
                                                     <TextBlock Margin="10,0,0,0" Text="..." FontFamily="Segoe UI" FontWeight="Bold" HorizontalAlignment="Left" 
@@ -182,7 +182,7 @@
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
                             <Label Content="Tổng số lượng hàng hoá" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
-                            <Border Width="90"/>
+                            <Border Width="40"/>
                             <Label Content="{Binding TotalQuantityOfStock}" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                         </StackPanel>
                         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" Orientation="Horizontal">
