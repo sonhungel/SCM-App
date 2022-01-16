@@ -121,7 +121,7 @@
                         <Label Content="Chức vụ:" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Width="10"/>
                         <Border CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <ComboBox Width="130" ItemsSource="{Binding RoleList}" IsEnabled="{Binding IsManager}" IsDropDownOpen="False"
+                            <ComboBox Width="130" ItemsSource="{Binding RoleList}" IsEnabled="{Binding IsCanUpdateUserRole}" IsDropDownOpen="False"
                                       SelectedItem="{Binding SelectedUserRole, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
                                        Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateForUserRole}"
                                       IsEditable="False" Cursor="Hand" IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>

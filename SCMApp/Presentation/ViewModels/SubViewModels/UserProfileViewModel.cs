@@ -49,6 +49,18 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
         public bool IsUpdateByHRM { get; set; }
         public Visibility IsVisibleByHRM => IsUpdateByHRM ? Visibility.Hidden : Visibility.Visible;
 
+        public bool IsCanUpdateUserRole
+        {
+            get
+            {
+                if (IsUpdateByHRM)
+                    return true;
+                if (Model.role == "Quản lý")
+                    return true;
+                return false;
+            }
+        }
+
         private UpdateUserDTO _updateModel { get; set; }
         private UserProfile _model;
         public UserProfile Model
@@ -76,8 +88,6 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
                 }
             }
         }
-
-        public bool IsManager => Model.role == "Quản lý" ? true : false;
 
         public string UserFullName
         {
