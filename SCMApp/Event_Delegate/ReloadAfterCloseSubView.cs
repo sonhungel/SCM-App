@@ -8,6 +8,7 @@ namespace SCMApp.Event_Delegate
 {
     public delegate void ReloadAfterCloseSubViewDelgate(bool isReloadCurrentPageView);
     public delegate void ReloadQuantityDelgate(bool isReloadQuantity);
+    public delegate void ConfirmDeleteSupplier(bool confirm);
     public class ReloadAfterCloseSubView
     {
         public static ReloadAfterCloseSubViewDelgate Instance;
@@ -15,5 +16,7 @@ namespace SCMApp.Event_Delegate
         public static ReloadAfterCloseSubViewDelgate ReloadMainUser;
 
         public static ReloadQuantityDelgate ReloadQuantityDelgate;
+
+        public static ConfirmDeleteSupplier ConfirmDeleteSupplier;
     }
 }

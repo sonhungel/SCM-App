@@ -58,8 +58,9 @@
                             <Label Content="Chọn loại hàng hoá" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                             <Border Width="25"/>
                             <Border Width="300" Margin="20,20,0,20" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                                <ComboBox IsEditable="False" Cursor="Hand" IsReadOnly="True" 
-                                          ItemsSource="{Binding ListItem}" DisplayMemberPath="name" SelectedItem="{Binding SelectedItem}"
+                            <ComboBox IsEditable="true" Cursor="Hand" IsTextSearchEnabled="True" 
+                                      ItemsSource="{Binding ListItem}" DisplayMemberPath="name" 
+                                      SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=LostFocus}"
                                       Style="{StaticResource RoundedComboBox}"/>
                             </Border>
                         </StackPanel>
@@ -190,9 +191,10 @@
                         </StackPanel>
                         
                         <Border Grid.Row="1" Margin="7" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <ComboBox IsEditable="False" Cursor="Hand" IsReadOnly="True" 
+                            <ComboBox IsEditable="True" Cursor="Hand"
                                       Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateForTextBoxAndComboBoxSell}"
-                                      ItemsSource="{Binding ListCustomer}" DisplayMemberPath="name" SelectedItem="{Binding SelectedCustomer}" 
+                                      ItemsSource="{Binding ListCustomer}" DisplayMemberPath="name" 
+                                      SelectedItem="{Binding SelectedCustomer, UpdateSourceTrigger=LostFocus}" 
                                       Style="{StaticResource RoundedComboBox}"/>
                         </Border>
 

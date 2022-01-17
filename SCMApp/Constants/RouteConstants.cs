@@ -52,5 +52,8 @@ namespace SCMApp.Constants
         // import stock
         public const string ImportStockApi = "api/supTicket";
 
+        //profit
+        public const string ProfitApi = "api/report";
+        public const string AllReport = "dailyReport";
     }
 }

@@ -58,9 +58,10 @@
                             <Label Content="Chọn hàng hoá" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                             <Border Width="25"/>
                             <Border Width="300" Margin="20,20,0,20" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                                <ComboBox IsEditable="False" Cursor="Hand" IsEnabled="{Binding IsHaveNoItemToImport}"
-                                          ItemsSource="{Binding ListItem}" DisplayMemberPath="name" SelectedItem="{Binding SelectedItem}"
-                                          IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                                <ComboBox IsEditable="True" Cursor="Hand" IsEnabled="{Binding IsHaveNoItemToImport}"
+                                          ItemsSource="{Binding ListItem}" DisplayMemberPath="name" 
+                                          SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=LostFocus}"
+                                          Style="{StaticResource RoundedComboBox}"/>
                             </Border>
                         </StackPanel>
 

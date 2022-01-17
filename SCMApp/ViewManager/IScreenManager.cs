@@ -1,4 +1,5 @@
 ﻿using SCMApp.Models;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace SCMApp.ViewManager
@@ -15,5 +16,6 @@ namespace SCMApp.ViewManager
         void ShowSellView(Window parentWindow, string token);
         void ShowInventoryTicket(Window parentWindow, string token);
         void ShowInsertStockType(Window parentWindow, string token);
+        void ShowWarningDeleteSupplier(IList<Item> items,Window parentWindow, string token);
     }
 }

@@ -82,7 +82,7 @@
             <DataGrid Name="StockGrid" VerticalAlignment="Top" Grid.Row="2" Margin="15,0,15,15" ItemsSource="{Binding StockList}"
                       Style="{StaticResource CustomDataGrid}" BorderBrush="#aaaaaa"
                       AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
-                      SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
+                      SelectionMode="Single" CanUserResizeColumns="True" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
                       CanUserReorderColumns="True">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">

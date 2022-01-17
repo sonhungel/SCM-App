@@ -53,11 +53,11 @@
                         <Label Content="Chọn hàng hoá" Style="{StaticResource NormalLabel}" Padding="5,0,0,0"/>
                         <Border Width="25"/>
                         <Border Width="300" Margin="20,7,0,7" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
-                            <ComboBox IsEditable="False" Cursor="Hand" 
+                            <ComboBox IsEditable="True" Cursor="Hand" 
                                           ItemsSource="{Binding ListItem}" DisplayMemberPath="name" 
-                                          SelectedItem="{Binding SelectedItem}"
+                                          SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=LostFocus}"
                                           Validation.ErrorTemplate="{StaticResource ErrorBorderTemplateForInventory}"
-                                          IsReadOnly="True" Style="{StaticResource RoundedComboBox}"/>
+                                          Style="{StaticResource RoundedComboBox}"/>
                         </Border>
                     </StackPanel>
 

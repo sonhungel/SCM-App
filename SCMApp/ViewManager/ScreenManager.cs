@@ -6,6 +6,7 @@ using SCMApp.Presentation.Views.SubViews;
 using SCMApp.WebAPIClient.MainView;
 using SCMApp.WebAPIClient.PageViewAPIs;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace SCMApp.ViewManager
@@ -130,6 +131,16 @@ namespace SCMApp.ViewManager
         {
             var view = new InsertStockTypeView();
             var viewModel = new InsertStockTypeViewModel(IoC.Get<IItemTypeWebAPI>(),token, IoC.Get<IScreenManager>());
+            viewModel.View = view;
+            view.DataContext = viewModel;
+            view.Owner = parentWindow;
+            view.ShowDialog();
+        }
+
+        public void ShowWarningDeleteSupplier(IList<Item> items, Window parentWindow, string token)
+        {
+            var view = new WarningView();
+            var viewModel = new WarningViewModel(items, token, IoC.Get<IScreenManager>());
             viewModel.View = view;
             view.DataContext = viewModel;
             view.Owner = parentWindow;

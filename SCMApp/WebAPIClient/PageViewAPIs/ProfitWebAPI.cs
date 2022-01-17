@@ -1,4 +1,8 @@
-﻿using System;
+﻿using SCMApp.Constants;
+using SCMApp.WebAPIClient.Request_Response;
+using System;
+using System.Threading.Tasks;
+
 namespace SCMApp.WebAPIClient.PageViewAPIs
 {
     public class ProfitWebAPI : WebApiClientBase, IProfitWebAPI
@@ -7,9 +11,11 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
         {
         }
 
-        public void GetProfitByCriteria()
+        public override string RoutePrefix => RouteConstants.ProfitApi;
+
+        public GetAllProfitResponseDTO GetProfitByCriteria(string token)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Get<GetOneResponse<GetAllProfitResponseDTO>>(RouteConstants.AllReport, token)).Result.data;
         }
     }
 }

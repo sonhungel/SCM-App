@@ -62,6 +62,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             get => Model.item;
             set
             {
+                if (value == null)
+                    return;
                 Model.item = value;
                 _updateModel.item.itemNumber = value.itemNumber;
                 OnPropertyChanged(nameof(StockCode));

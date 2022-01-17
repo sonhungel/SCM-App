@@ -55,6 +55,8 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             get => _selectedItem;
             set
             {
+                if (value == null)
+                    return;
                 _selectedItem = value;
                 if (ImportStockListItem.Any(x => x.StockCode == value.itemNumber))
                 {

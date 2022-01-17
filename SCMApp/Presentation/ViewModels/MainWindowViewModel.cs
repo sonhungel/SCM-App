@@ -84,7 +84,8 @@ namespace SCMApp.Presentation.ViewModels
             pageView = new OverviewViewModel(IoC.Get<IProfitWebAPI>(), IoC.Get<IUserWebAPI>(), IoC.Get<IInventoryWebAPI>(),
                 Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new PartnersViewModel(IoC.Get<ICustomerWebAPI>(), IoC.Get<IPartnerWebAPI>(),Token, ScreenManager) { View = this.View };
+            pageView = new PartnersViewModel(IoC.Get<IItemWebAPI>(),IoC.Get<ICustomerWebAPI>(), 
+                IoC.Get<IPartnerWebAPI>(),Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
             pageView = new ProfitViewModel(IoC.Get<IProfitWebAPI>(),Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);

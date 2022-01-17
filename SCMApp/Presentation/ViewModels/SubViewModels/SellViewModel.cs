@@ -64,7 +64,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             set
             {
                 _selectedItem = value;
-                if (SellListItem.Any(x => x.StockCode == value.itemNumber))
+                if (value == null || SellListItem.Any(x => x.StockCode == value?.itemNumber))
                 {
                     return;
                 }

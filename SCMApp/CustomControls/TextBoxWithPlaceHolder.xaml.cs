@@ -23,6 +23,14 @@ namespace SCMApp.CustomControls
             InitializeComponent();
         }
 
+        private bool _isPasswordChanging;
+
+        public static readonly DependencyProperty PasswordProperty =
+            DependencyProperty.Register("PasswordText", typeof(string), typeof(TextBoxWithPlaceHolder),
+                new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    PasswordPropertyChanged, null, false, UpdateSourceTrigger.PropertyChanged));
+
+
         public string PlaceHolder
         {
             get { return (string)GetValue(PlaceHolderProperty); }
@@ -51,8 +59,6 @@ namespace SCMApp.CustomControls
         }
 
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register("PasswordText", typeof(string), typeof(TextBoxWithPlaceHolder));
 
 
         public bool IsPassword
@@ -68,6 +74,25 @@ namespace SCMApp.CustomControls
         private void passbox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             email.Text = passbox.Password;
+            _isPasswordChanging = true;
+            PasswordText = passbox.Password;
+            _isPasswordChanging = false;
+        }
+
+        private static void PasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is TextBoxWithPlaceHolder passwordBox)
+            {
+                passwordBox.UpdatePassword();
+            }
+        }
+
+        private void UpdatePassword()
+        {
+            if (!_isPasswordChanging)
+            {
+                passbox.Password = PasswordText;
+            }
         }
     }
 }

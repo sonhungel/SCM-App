@@ -1,11 +1,13 @@
 ﻿using SCMApp.Constants;
 using SCMApp.Event_Delegate;
+using SCMApp.Models;
 using SCMApp.Presentation.Commands;
 using SCMApp.Presentation.ViewModels.Base;
 using SCMApp.Presentation.ViewModels.ItemsViewModel;
 using SCMApp.Presentation.Views;
 using SCMApp.ViewManager;
 using SCMApp.WebAPIClient.PageViewAPIs;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -17,11 +19,13 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
     {
         private readonly ICustomerWebAPI _customerWebAPI;
         private readonly IPartnerWebAPI _partnerWebAPI;
-        public PartnersViewModel(ICustomerWebAPI customerWebAPI, IPartnerWebAPI partnerWebAPI, 
+        private readonly IItemWebAPI _itemWebAPI;
+        public PartnersViewModel(IItemWebAPI itemWebAPI, ICustomerWebAPI customerWebAPI, IPartnerWebAPI partnerWebAPI, 
             string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _customerWebAPI = customerWebAPI;
             _partnerWebAPI = partnerWebAPI;
+            _itemWebAPI = itemWebAPI;
             OpenCustomerViewCommand = new RelayCommand(p => OpenCustomerView());
             OpenPartnerViewCommand = new RelayCommand(p => OpenPartnerView());
 
@@ -33,6 +37,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
             EditPartnerCommand = new RelayCommand(p => EditPartner((int)p));
             DeletePartnerCommand = new RelayCommand(p => DeletePartner((int)p));
+
+            _listAllItem = _itemWebAPI.GetAllItem(token);
+            _listSupplierOfInAllItem = _listAllItem.Select(x => x.supplier).DistinctBy(x => x.supplierNumber).ToList();
+            ReloadAfterCloseSubView.ConfirmDeleteSupplier = ConfirmDeleteSupplier;
         }
 
         public ICommand OpenCustomerViewCommand { get; set; }
@@ -42,6 +50,9 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         public int CustomerNumber => CustomerList.Count();
         public ObservableCollection<PartnerViewModelItem> PartnerList { get; set; }
         public int PartnerNumber => PartnerList.Count();
+
+        private IList<Partner> _listSupplierOfInAllItem;
+        private IList<Item> _listAllItem;
 
         public ICommand EditCustomerCommand { get; set; }
         public ICommand DeleteCustomerCommand { get; set; }
@@ -116,12 +127,37 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                 "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
-                using (new WaitCursorScope())
+                if (_listSupplierOfInAllItem.Any(x => x.id == partnerCode))
                 {
-                    var result = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
-                    ReloadAfterCloseSubView.Instance.Invoke(result);
+                    _confirmDeleteSupplier = false;
+                    using (var wait = new WaitCursorScope())
+                    {
+                        var listItemOfSupplier = _listAllItem.Where(x => x.supplier.id == partnerCode).ToList();
+                        wait.PauseWaitCursor();
+                        ScreenManager.ShowWarningDeleteSupplier(listItemOfSupplier, View, Token);
+                        if(_confirmDeleteSupplier)
+                        {
+                            var result = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
+                            ReloadAfterCloseSubView.Instance.Invoke(result);
+                        }
+                    }
+                }
+                else
+                {
+                    using (new WaitCursorScope())
+                    {
+                        var result = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
+                        ReloadAfterCloseSubView.Instance.Invoke(result);
+                    }
                 }
             }
+        }
+
+        private bool _confirmDeleteSupplier;
+
+        private void ConfirmDeleteSupplier(bool confirm)
+        {
+            _confirmDeleteSupplier = confirm;
         }
     }
 }

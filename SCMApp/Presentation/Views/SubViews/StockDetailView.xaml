@@ -107,7 +107,7 @@
                         <Label Grid.Row="4" Grid.Column="0" Content="Nhóm hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                         <Border Grid.Row="5" Grid.Column="0" CornerRadius="4" Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <ComboBox Grid.Row="5" Grid.Column="0" IsEnabled="{Binding IsCreate}"
-                                      IsEditable="False" ItemsSource="{Binding ItemTypes}" IsReadOnly="True"
+                                      IsEditable="True" ItemsSource="{Binding ItemTypes}"
                                       DisplayMemberPath="typeName" SelectedValuePath="typeName"
                                       Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
                                       SelectedValue="{Binding SelectedItemType.typeName, UpdateSourceTrigger=PropertyChanged}"
@@ -176,7 +176,7 @@
                         <Border Grid.Row="9" Grid.Column="0" CornerRadius="4" Visibility="{Binding isShowCombobox}"
                                 Background="Transparent" BorderBrush="#999999" BorderThickness="1">
                             <ComboBox Grid.Row="5" Grid.Column="0" IsEnabled="{Binding IsCreate}"
-                                      IsEditable="False" ItemsSource="{Binding Partners}" IsReadOnly="True"
+                                      IsEditable="True" ItemsSource="{Binding Partners}"
                                       DisplayMemberPath="name" SelectedValuePath="name"
                                       Validation.ErrorTemplate="{StaticResource ErrorBorderTemplate}"
                                       SelectedValue="{Binding SelectedPartner.name, UpdateSourceTrigger=PropertyChanged}"
