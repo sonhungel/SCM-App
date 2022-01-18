@@ -59,6 +59,7 @@
     <None Remove="Assets\music.png" />
     <None Remove="Assets\newdocument.png" />
     <None Remove="Assets\news4.jpg" />
+    <None Remove="Assets\next_page.png" />
     <None Remove="Assets\noimage.png" />
     <None Remove="Assets\notifcolor.png" />
     <None Remove="Assets\notifwhite.png" />
@@ -67,6 +68,7 @@
     <None Remove="Assets\play.png" />
     <None Remove="Assets\plus.png" />
     <None Remove="Assets\plus_black.png" />
+    <None Remove="Assets\previous_page.png" />
     <None Remove="Assets\profile1.jpg" />
     <None Remove="Assets\profilewhite.png" />
     <None Remove="Assets\profolder.png" />
@@ -90,7 +92,6 @@
     <None Remove="Assets\truck.png" />
     <None Remove="Assets\video.png" />
     <None Remove="Assets\warehouse.png" />
-    <None Remove="Assets\warning.jpg" />
     <None Remove="Assets\window-close.png" />
     <None Remove="Assets\zip.png" />
   </ItemGroup>
@@ -155,6 +156,9 @@
     <Resource Include="Assets\news4.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\next_page.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\partner.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -162,6 +166,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\plus_black.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\previous_page.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Red_Bin.png">
@@ -183,9 +190,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\warehouse.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\warning.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\window-close.png">

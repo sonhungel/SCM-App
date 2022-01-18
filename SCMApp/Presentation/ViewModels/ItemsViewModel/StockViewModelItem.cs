@@ -1,4 +1,5 @@
-﻿using SCMApp.Helper;
+﻿using SCMApp.Constants;
+using SCMApp.Helper;
 using SCMApp.Models;
 
 namespace SCMApp.Presentation.ViewModels.ItemsViewModel
@@ -19,5 +20,20 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 
         public int Quantity => Model.availableQuantity;
         public string Remark => Model.remark;
+        public string ColorRow
+        {
+            get
+            {
+                if (Model.availableQuantity <= Model.minimumQuantity)
+                {
+                    return CommonConstants.RED;
+                }
+                else if (Model.supplier.internalState == "DELETED")
+                {
+                    return CommonConstants.YELLOW;
+                }
+                return string.Empty;
+            }
+        }
     }
 }

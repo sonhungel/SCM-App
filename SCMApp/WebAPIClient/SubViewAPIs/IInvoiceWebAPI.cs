@@ -8,6 +8,6 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
     {
         bool CreateInvoice(CreateInvoiceDTO createInvoiceDTO, string token);
         void DeleteInvoice();
-        IList<Order> GetAllInvoice(string token);
+        GetAllInvoiceDTO GetAllInvoice(int pageNumber, string token);
     }
 }

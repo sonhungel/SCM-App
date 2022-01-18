@@ -73,23 +73,23 @@ namespace SCMApp.Presentation.ViewModels
 
         public void InitAllPageViewModel()
         {
-            IPageViewModel pageView = new HumanResourceManagementViewModel(IoC.Get<IUserWebAPI>(),MainUser, Token,ScreenManager) { View = this.View};
+            IPageViewModel pageView = new HumanResourceManagementViewModel(IoC.Get<IUserWebAPI>(), MainUser, Token, ScreenManager)
+            { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new ImportStockViewModel(IoC.Get<IImportStockWebAPI>(),Token, ScreenManager) { View = this.View };
+            pageView = new ImportStockViewModel(IoC.Get<IImportStockWebAPI>(), Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
             pageView = new InventoryViewModel(IoC.Get<IInventoryWebAPI>(),IoC.Get<IItemWebAPI>(), Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new OrdersViewModel(IoC.Get<IInvoiceWebAPI>(),Token, ScreenManager) { View = this.View };
+            pageView = new OrdersViewModel(IoC.Get<IInvoiceWebAPI>(), Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new OverviewViewModel(IoC.Get<IProfitWebAPI>(), IoC.Get<IUserWebAPI>(), IoC.Get<IInventoryWebAPI>(),
-                Token, ScreenManager) { View = this.View };
+            pageView = new OverviewViewModel(IoC.Get<IProfitWebAPI>(), Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
             pageView = new PartnersViewModel(IoC.Get<IItemWebAPI>(),IoC.Get<ICustomerWebAPI>(), 
                 IoC.Get<IPartnerWebAPI>(),Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new ProfitViewModel(IoC.Get<IProfitWebAPI>(),Token, ScreenManager) { View = this.View };
+            pageView = new ProfitViewModel(IoC.Get<IProfitWebAPI>(), Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
-            pageView = new StockViewModel(IoC.Get<IItemWebAPI>(),MainUser,Token, ScreenManager) { View = this.View };
+            pageView = new StockViewModel(IoC.Get<IItemWebAPI>(), MainUser, Token, ScreenManager) { View = this.View };
             _allPageViewModels.Add(pageView);
 
             if (MainUser.role == "Quản lý")

@@ -14,6 +14,7 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto" MaxHeight="60"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -112,6 +113,37 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Margin="10,0,0,0" Grid.Row="3" Orientation="Horizontal">
+                <Button Grid.Column="1" Cursor="Hand" Foreground="White" Width="50" Height="37" 
+                        IsEnabled="{Binding IsHasPreviousPage}"
+                        Style="{StaticResource Button3DRoundedForPage}" Background="#40a3e6"
+                        Command="{Binding PreviousPageCommand}">
+                    
+                    <Button.Content>
+                        <Grid>
+                            <Border Grid.Column="0" Background="Transparent" IsEnabled="{Binding IsHasPreviousPage}">
+                                <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" Source="/Assets/previous_page.png" />
+                            </Border>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Label Grid.Column="0" Content="{Binding PageNumber}" Width="50" HorizontalContentAlignment="Center"
+                       FontSize="15" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
+                <Button Grid.Column="1" Cursor="Hand" Foreground="White" Width="50" Height="37"
+                        IsEnabled="{Binding IsHasNextPage}"
+                        Style="{StaticResource Button3DRoundedForPage}" Background="#40a3e6"
+                        Command="{Binding NextPageCommand}">
+                    <Button.Content>
+                        <Grid>
+                            <Border Grid.Column="0" Background="Transparent" IsEnabled="{Binding IsHasNextPage}">
+                                <Image Height="20" Width="25" Stretch="Uniform" HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" Source="/Assets/next_page.png" />
+                            </Border>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0" Grid.Row="4" Orientation="Horizontal">
                 <TextBlock Text="Danh sách có" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
                 <Label Grid.Column="0" Content="{Binding OrderNumber}" FontSize="15" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center"/>
                 <TextBlock Text="hoá đơn!" FontSize="15" TextAlignment="Right" Foreground="DarkSlateGray" VerticalAlignment="Center"/>

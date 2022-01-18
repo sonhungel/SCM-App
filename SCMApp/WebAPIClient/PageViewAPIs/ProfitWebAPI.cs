@@ -13,9 +13,9 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public override string RoutePrefix => RouteConstants.ProfitApi;
 
-        public GetAllProfitResponseDTO GetProfitByCriteria(string token)
+        public GetDailyReportResponseDTO GetDailyReport(string token)
         {
-            return Task.Run(() => Get<GetOneResponse<GetAllProfitResponseDTO>>(RouteConstants.AllReport, token)).Result.data;
+            return Task.Run(() => Get<GetOneResponse<GetDailyReportResponseDTO>>(RouteConstants.AllReport, token)).Result.data;
         }
     }
 }

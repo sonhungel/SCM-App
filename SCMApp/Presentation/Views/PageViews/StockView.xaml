@@ -102,9 +102,15 @@
                         <Setter Property="Height" Value="44"/>
                         <Style.Triggers>
                             <Trigger Property="DataGridCell.IsSelected" Value="True" >
-                                <Setter Property="Background" Value="#f4f4f4"/>
+                                <Setter Property="Background" Value="#aacef2"/>
                                 <Setter Property="BorderThickness" Value="0"/>
                             </Trigger>
+                            <DataTrigger Binding="{Binding ColorRow}" Value="Red">
+                                <Setter Property="Background" Value="#faafaf"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ColorRow}" Value="Yellow">
+                                <Setter Property="Background" Value="#faecaf"/>
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
 

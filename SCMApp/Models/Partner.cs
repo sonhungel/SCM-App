@@ -18,5 +18,6 @@ namespace SCMApp.Models
         public string remark { get; set; }
         public int paid { get; set; }
         public DateTime? LastTimeBuy { get; set; }
+        public string internalState { get; set; }
     }
 }

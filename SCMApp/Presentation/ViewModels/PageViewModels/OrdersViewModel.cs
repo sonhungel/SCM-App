@@ -22,9 +22,15 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             OpenSellViewCommand = new RelayCommand(p => OpenSellView());
 
             OrderList = new ObservableCollection<OrderViewModelItem>();
+            PageNumber = 1;
+            NextPageCommand = new RelayCommand(p => NextViewAction());
+            PreviousPageCommand = new RelayCommand(p => PreviousAction());
         }
 
         public ICommand OpenSellViewCommand { get; set; }
+
+        public ICommand NextPageCommand { get; set; }
+        public ICommand PreviousPageCommand { get; set; }
 
         public string NamePage => CommonConstants.OrdersPageViewName;
 
@@ -46,6 +52,18 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         }
 
         public bool IsLoaded { get; set; }
+        public bool IsHasNextPage
+        {
+            get;set;
+        }
+        public bool IsHasPreviousPage
+        {
+            get; set;
+        }
+        public int PageNumber
+        {
+            get;set;
+        }
 
         public void Construct()
         {
@@ -53,19 +71,37 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             OrderList.Clear();
             using (new WaitCursorScope())
             {
-                var allInvoice = _invoiceWebAPI.GetAllInvoice(Token);
-                foreach (var invoice in allInvoice)
+                var dataInvoice = _invoiceWebAPI.GetAllInvoice(PageNumber-1,Token);
+                IsHasNextPage = dataInvoice.hasNext;
+                IsHasPreviousPage = dataInvoice.hasPrevious;
+
+                foreach (var invoice in dataInvoice.data)
                 {
                     OrderList.Add(new OrderViewModelItem(invoice));
                 }
             }
             IsHaveNoData = !OrderList.Any();
             OnPropertyChanged(nameof(OrderNumber));
+            OnPropertyChanged(nameof(IsHasNextPage));
+            OnPropertyChanged(nameof(IsHasPreviousPage));
+            OnPropertyChanged(nameof(PageNumber));
         }
 
         private void OpenSellView()
         {
             ScreenManager.ShowSellView(View, Token);
         }
+
+        private void NextViewAction()
+        {
+            PageNumber += 1;
+            Construct();
+        }
+        private void PreviousAction()
+        {
+            PageNumber -= 1;
+            Construct();
+        }
+
     }
 }

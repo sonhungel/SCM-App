@@ -8,10 +8,11 @@ namespace SCMApp.WebAPIClient.Request_Response
 {
     public class DailyReportDTO
     {
-        public int id { get; set; }
-        public DateTime date { get; set; }
+        public int? id { get; set; }
+        public DateTime? date { get; set; }
+        public int user { get; set; }
         public string status { get; set; }
-        public int paid { get; set; }
-        public int cost { get; set; }
+        public int? paid { get; set; }
+        public int? cost { get; set; }
     }
 }

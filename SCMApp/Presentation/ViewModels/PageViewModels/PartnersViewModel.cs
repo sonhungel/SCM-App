@@ -20,7 +20,7 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         private readonly ICustomerWebAPI _customerWebAPI;
         private readonly IPartnerWebAPI _partnerWebAPI;
         private readonly IItemWebAPI _itemWebAPI;
-        public PartnersViewModel(IItemWebAPI itemWebAPI, ICustomerWebAPI customerWebAPI, IPartnerWebAPI partnerWebAPI, 
+        public PartnersViewModel(IItemWebAPI itemWebAPI, ICustomerWebAPI customerWebAPI, IPartnerWebAPI partnerWebAPI,
             string token, IScreenManager screenManager) : base(token, screenManager)
         {
             _customerWebAPI = customerWebAPI;
@@ -94,17 +94,17 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
 
         private void OpenPartnerView()
         {
-            ScreenManager.ShowPartnerDetailView(View,null,true,Token); ;
+            ScreenManager.ShowPartnerDetailView(View, null, true, Token); ;
         }
 
         private void EditCustomer(int customerCode)
         {
             var customerUpdate = CustomerList.SingleOrDefault(x => x.CustomerCode == customerCode).Model;
-            ScreenManager.ShowCustomerDetailView(View, customerUpdate,false, Token);
+            ScreenManager.ShowCustomerDetailView(View, customerUpdate, false, Token);
         }
         private void DeleteCustomer(int customerCode)
         {
-            MessageBoxResult dialogResult = MessageBox.Show(View,"Bạn có muốn xoá khách hàng này ra khỏi hệ thống ?", 
+            MessageBoxResult dialogResult = MessageBox.Show(View, "Bạn có muốn xoá khách hàng này ra khỏi hệ thống ?",
                 "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (dialogResult == MessageBoxResult.Yes)
             {
@@ -119,38 +119,35 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
         private void EditPartner(int partnerCode)
         {
             var partner = PartnerList.SingleOrDefault(x => x.PartnerCode == partnerCode).Model;
-            ScreenManager.ShowPartnerDetailView(View,partner,false, Token);
+            ScreenManager.ShowPartnerDetailView(View, partner, false, Token);
         }
         private void DeletePartner(int partnerCode)
         {
-            MessageBoxResult dialogResult = MessageBox.Show(View, "Bạn có muốn xoá đối tác này ra khỏi hệ thống ?",
-                "Xác nhận hành động xoá", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (dialogResult == MessageBoxResult.Yes)
+
+            if (_listSupplierOfInAllItem.Any(x => x.id == partnerCode))
             {
-                if (_listSupplierOfInAllItem.Any(x => x.id == partnerCode))
+                _confirmDeleteSupplier = false;
+                using (var wait = new WaitCursorScope())
                 {
-                    _confirmDeleteSupplier = false;
-                    using (var wait = new WaitCursorScope())
+                    var listItemOfSupplier = _listAllItem.Where(x => x.supplier.id == partnerCode).ToList();
+                    wait.PauseWaitCursor();
+                    ScreenManager.ShowWarningDeleteSupplier(listItemOfSupplier, View, Token);
+                    if (_confirmDeleteSupplier)
                     {
-                        var listItemOfSupplier = _listAllItem.Where(x => x.supplier.id == partnerCode).ToList();
-                        wait.PauseWaitCursor();
-                        ScreenManager.ShowWarningDeleteSupplier(listItemOfSupplier, View, Token);
-                        if(_confirmDeleteSupplier)
-                        {
-                            var result = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
-                            ReloadAfterCloseSubView.Instance.Invoke(result);
-                        }
-                    }
-                }
-                else
-                {
-                    using (new WaitCursorScope())
-                    {
-                        var result = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
-                        ReloadAfterCloseSubView.Instance.Invoke(result);
+                        //var result = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
+                        //ReloadAfterCloseSubView.Instance.Invoke(result);
                     }
                 }
             }
+            else
+            {
+                using (new WaitCursorScope())
+                {
+                    //var result = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
+                    //ReloadAfterCloseSubView.Instance.Invoke(result);
+                }
+            }
+
         }
 
         private bool _confirmDeleteSupplier;

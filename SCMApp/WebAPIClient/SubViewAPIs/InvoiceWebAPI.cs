@@ -25,9 +25,9 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
             throw new NotImplementedException();
         }
 
-        public IList<Order> GetAllInvoice(string token)
+        public GetAllInvoiceDTO GetAllInvoice(int pageNumber,string token)
         {
-            return Task.Run(() => Get<GetAllResponse<Order>>(RouteConstants.GetAllInvoice, token)).Result.data;
+            return Task.Run(() => Get<GetOneResponse<GetAllInvoiceDTO>>(string.Format(RouteConstants.GetAllInvoice, pageNumber), token)).Result.data;
         }
     }
 }

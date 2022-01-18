@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace SCMApp.WebAPIClient.Request_Response
 {
-    public class GetAllProfitResponseDTO
+    public class GetDailyReportResponseDTO
     {
         public DailyReportDTO daily { get; set; }
+        public WeeklyReportDTO weekly { get; set; }
     }
 }

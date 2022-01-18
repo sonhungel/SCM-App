@@ -41,7 +41,7 @@ namespace SCMApp.Constants
 
         // Invoice
         public const string InvoiceApi = "api/invoices";
-        public const string GetAllInvoice = "getAllInvoice";
+        public const string GetAllInvoice = "getAllInvoice/{0}";
         public const string CreateInvoice = "createFull";
 
         //Inventory

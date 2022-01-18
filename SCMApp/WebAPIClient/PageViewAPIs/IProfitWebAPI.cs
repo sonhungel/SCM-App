@@ -1,11 +1,9 @@
-﻿
-
-using SCMApp.WebAPIClient.Request_Response;
+﻿using SCMApp.WebAPIClient.Request_Response;
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
 {
     public interface IProfitWebAPI
     {
-        GetAllProfitResponseDTO GetProfitByCriteria(string token);
+        GetDailyReportResponseDTO GetDailyReport(string token);
     }
 }

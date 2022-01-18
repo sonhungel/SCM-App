@@ -27,9 +27,9 @@
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <CustomControl:Card Grid.Column="0" Margin="15,0,0,0" text1="Doanh Thu" text2="{Binding TurnoverInDay}" 
+                    <CustomControl:Card Grid.Column="0" Margin="15,0,0,0" text1="Doanh Thu" text2="{Binding ProfitInDay}" 
                                         imageSource="/Assets/cash.png" BackGroundColor="#a0bd69"/>
-                    <CustomControl:Card Grid.Column="2" Margin="15,0,0,0" text1="Lợi nhuận" text2="{Binding ProfitInDay}"
+                    <CustomControl:Card Grid.Column="2" Margin="15,0,0,0" text1="Chi phí" text2="{Binding CostInDay}"
                                         imageSource="/Assets/cash-100.png" BackGroundColor="#579bd9"/>
                     <CustomControl:Card Grid.Column="4" Margin="15,0,0,0" text1="Số lượng nhân sự" text2="{Binding NumberOfUser}" 
                                         imageSource="/Assets/human.png" BackGroundColor="#b5483e"/>
@@ -42,7 +42,7 @@
                             <lvc:Axis Title="Thu chi trong tuần" Labels="{Binding BarLabels}"/>
                         </lvc:CartesianChart.AxisX>
                         <lvc:CartesianChart.AxisY>
-                            <lvc:Axis Title="Đơn vị Triêu VNĐ" LabelFormatter="{Binding Formatter}"/>
+                            <lvc:Axis Title="Đơn vị VNĐ" LabelFormatter="{Binding Formatter}"/>
                         </lvc:CartesianChart.AxisY>
                     </lvc:CartesianChart>
                 </Grid>
@@ -58,8 +58,6 @@
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -67,20 +65,14 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Row="0" Grid.Column="0" Content="Doanh thu" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="0" Grid.Column="2" Content="{Binding TurnoverInMonth}" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="1" Grid.Column="0" Content="Lợi nhuận" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="1" Grid.Column="2" Content="{Binding ProfitInMonth}" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="2" Grid.Column="0" Content="Tổng thu" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="2" Grid.Column="2" Content="{Binding IncomeInMonth}" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="3" Grid.Column="0" Content="Tổng chi" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="3" Grid.Column="2" Content="{Binding SpendingInMonth}" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="0" Grid.Column="2" Content="{Binding PaidInMonth}" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Tổng chi" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="1" Grid.Column="2" Content="{Binding SpendingInMonth}" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     </Grid>
                 </GroupBox>
                 <GroupBox Grid.Column="2" HeaderTemplate="{StaticResource TextBlock4ForGroupBoxHeader}">
                     <Grid Margin="40,0,40,0">
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
@@ -89,14 +81,10 @@
                             <ColumnDefinition Width="200"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Content="Tồn kho" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="0" Grid.Column="2" Content="{Binding InventoryQuantity}" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="1" Grid.Column="0" Content="Hết hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="1" Grid.Column="2" Content="{Binding OutOfStockQuantity}" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="2" Grid.Column="0" Content="Sắp hết hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="2" Grid.Column="2" Content="{Binding OutOfStockSoonQuantity}" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="3" Grid.Column="0" Content="Hàng bị lỗi kho" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
-                        <Label Grid.Row="3" Grid.Column="2" Content="{Binding DefectiveStockQuantity}" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Hết hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="0" Grid.Column="2" Content="{Binding OutOfStockQuantity}" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Sắp hết hàng" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
+                        <Label Grid.Row="1" Grid.Column="2" Content="{Binding OutOfStockSoonQuantity}" Style="{StaticResource NormalLabel}" Padding="10,0,0,0"/>
                     </Grid>
                 </GroupBox>
             </Grid>
