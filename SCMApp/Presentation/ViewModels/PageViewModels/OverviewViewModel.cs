@@ -23,6 +23,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             BarLabels = new[] { "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ Nhật" };
 
             Formatter = value => value.ToString("N");
+            _paidInMonth = 0;
+            _spendingInMonth = 0;
         }
         public string NamePage => CommonConstants.OverviewPageViewName;
 
@@ -44,10 +46,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             set;
         }
 
-        private int _paidInMonth;
+        private long _paidInMonth;
         public string PaidInMonth => MoneyHelper.IntToStandardMoneyStringWithTail(_paidInMonth);
 
-        private int _spendingInMonth;
+        private long _spendingInMonth;
         public string SpendingInMonth => MoneyHelper.IntToStandardMoneyStringWithTail(_spendingInMonth);
 
         public int OutOfStockQuantity
@@ -73,7 +75,11 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             var daily = result.daily;
             NumberOfUser = daily.user;
             CreateValueForChart(result.weekly);
-
+            var monthyly = result.monthly;
+            _paidInMonth = monthyly.paid;
+            _spendingInMonth = monthyly.cost;
+            OutOfStockQuantity = monthyly.itemsOutOfStock.Count();
+            OutOfStockSoonQuantity = monthyly.itemsWarning.Count();
 
             if (daily.paid.HasValue)
             {
@@ -83,6 +89,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             {
                 _costInDay = daily.cost.Value;
             }
+            OnPropertyChanged(nameof(PaidInMonth));
+            OnPropertyChanged(nameof(SpendingInMonth));
+            OnPropertyChanged(nameof(OutOfStockQuantity));
+            OnPropertyChanged(nameof(OutOfStockSoonQuantity));
 
         }
 

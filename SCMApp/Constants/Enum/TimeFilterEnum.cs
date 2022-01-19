@@ -12,8 +12,5 @@ namespace SCMApp.Constants.Enum
 
         [Display(Name = "Lọc theo Tháng")]
         Month,
-
-        [Display(Name = "Lọc theo Năm")]
-        Year
     }
 }

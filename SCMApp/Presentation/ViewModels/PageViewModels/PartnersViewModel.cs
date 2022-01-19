@@ -134,8 +134,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                     ScreenManager.ShowWarningDeleteSupplier(listItemOfSupplier, View, Token);
                     if (_confirmDeleteSupplier)
                     {
-                        //var result = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
-                        //ReloadAfterCloseSubView.Instance.Invoke(result);
+                        var result = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
+                        ReloadAfterCloseSubView.Instance.Invoke(result);
                     }
                 }
             }
@@ -143,8 +143,8 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             {
                 using (new WaitCursorScope())
                 {
-                    //var result = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
-                    //ReloadAfterCloseSubView.Instance.Invoke(result);
+                    var result = _partnerWebAPI.DeleteSupplier(partnerCode.ToString(), Token);
+                    ReloadAfterCloseSubView.Instance.Invoke(result);
                 }
             }
 

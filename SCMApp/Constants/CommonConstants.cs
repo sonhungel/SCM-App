@@ -35,15 +35,12 @@ namespace SCMApp.Constants
 
         // Profit
 
-        public const string TurnoverInWeek = "Lợi nhuận trong tuần";
-        public const string TurnoverInMonth = "Lợi nhuận trong tháng";
-        public const string TurnoverInYear = "Lợi nhuận trong năm";
+        public const string TurnoverInWeek = "Dòng tiền trong tuần";
+        public const string TurnoverInMonth = "Dòng tiền trong tháng";
 
         public static readonly string[] BarLabelsByWeek = { "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ Nhật" };
-        public static readonly string[] BarLabelsByMonth = { "Tuần 1", "Tuần 2", "Tuần 3", "Tuần 4" };
-        public static readonly string[] BarLabelsByYear = { "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5",
-                                                            "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10",
-                                                            "Tháng 11", "Tháng 12"};
+        public static readonly string[] BarLabelsByMonth = { "Tuần 1", "Tuần 2", "Tuần 3", "Tuần 4", "Tuần 5" };
+
 
         public static readonly char[] Numberic = { '0', '1', '2', '3','4', '5', '6', '7', '8', '9' };
 

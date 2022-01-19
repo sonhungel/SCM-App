@@ -44,7 +44,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             using (new WaitCursorScope())
             {
                 ListCustomer = _customerWebAPI.GetAllCustomer(token);
-                ListItem = _itemWebAPI.GetAllItem(token);
+                ListItem = _itemWebAPI.GetAllItem(token).Where(x => x.availableQuantity>0).ToList();
             }
             IsCreate = true;
 
@@ -174,6 +174,7 @@ namespace SCMApp.Presentation.ViewModels.SubViewModels
             {
                 AddError(nameof(MoneyCustomerPaid), "Số tiền không hợp lệ.");
             }    
+               
         }
 
         public bool IsCreate { get; set; }

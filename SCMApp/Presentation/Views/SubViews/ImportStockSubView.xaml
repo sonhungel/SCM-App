@@ -72,6 +72,15 @@
                                   AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
                                   SelectionMode="Single" CanUserResizeColumns="False" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
                                   CanUserReorderColumns="True">
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Setter Property="ToolTip">
+                                        <Setter.Value>
+                                            <TextBlock Text="{Binding ToolTipText}" Visibility="{Binding IsToolTipEnable}" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGrid.RowStyle>
                             <DataGrid.Resources>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="FontSize" Value="14"/>
@@ -93,6 +102,12 @@
                                             <Setter Property="Background" Value="#f4f4f4"/>
                                             <Setter Property="BorderThickness" Value="0"/>
                                         </Trigger>
+                                        <DataTrigger Binding="{Binding ColorRow}" Value="Red">
+                                            <Setter Property="Background" Value="#faafaf"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ColorRow}" Value="Yellow">
+                                            <Setter Property="Background" Value="#faecaf"/>
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                                 <DataTemplate x:Key="StockCode">

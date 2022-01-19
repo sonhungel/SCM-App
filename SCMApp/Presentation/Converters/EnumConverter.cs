@@ -26,8 +26,6 @@ namespace SCMApp.Presentation.Converters
                         return TimeFilterEnum.Week;
                     case "Lọc theo Tháng":
                         return TimeFilterEnum.Month;
-                    case "Lọc theo Năm":
-                        return TimeFilterEnum.Year;
                 }
             }    
             return value;
@@ -43,8 +41,6 @@ namespace SCMApp.Presentation.Converters
                         return TimeFilterEnum.Week;
                     case "Lọc theo Tháng":
                         return TimeFilterEnum.Month;
-                    case "Lọc theo Năm":
-                        return TimeFilterEnum.Year;
                 }
             }
             return value;

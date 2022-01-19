@@ -1,6 +1,7 @@
 ﻿using SCMApp.Constants;
 using SCMApp.WebAPIClient.Request_Response;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SCMApp.WebAPIClient.PageViewAPIs
@@ -13,9 +14,14 @@ namespace SCMApp.WebAPIClient.PageViewAPIs
 
         public override string RoutePrefix => RouteConstants.ProfitApi;
 
-        public GetDailyReportResponseDTO GetDailyReport(string token)
+        public GetReportResponseDTO GetDailyReport(string token)
         {
-            return Task.Run(() => Get<GetOneResponse<GetDailyReportResponseDTO>>(RouteConstants.AllReport, token)).Result.data;
+            return Task.Run(() => Get<GetOneResponse<GetReportResponseDTO>>(RouteConstants.AllReport, token)).Result.data;
+        }
+
+        public IList<IList<IList<MoreDetailDTO>>> GetMonthlyReport(string token)
+        {
+            return Task.Run(() => Get<GetAllResponse<IList<IList<MoreDetailDTO>>>>(RouteConstants.MonthlyReport, token)).Result.data;
         }
     }
 }

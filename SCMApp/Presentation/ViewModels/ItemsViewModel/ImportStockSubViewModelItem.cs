@@ -1,9 +1,11 @@
-﻿using SCMApp.Event_Delegate;
+﻿using SCMApp.Constants;
+using SCMApp.Event_Delegate;
 using SCMApp.Helper;
 using SCMApp.Models;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows;
 
 namespace SCMApp.Presentation.ViewModels.ItemsViewModel
 {
@@ -33,6 +35,20 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
         public string PriceText => MoneyHelper.IntToStandardMoneyStringWithTail(Model.cost);
         public int TotalPrice => Model.cost * _quantity;
         public string TotalPriceText => MoneyHelper.IntToStandardMoneyStringWithTail(Model.cost * _quantity);
+        public string ToolTipText { get; set; }
+        public Visibility IsToolTipEnable => !string.IsNullOrEmpty(ToolTipText) ? Visibility.Visible : Visibility.Hidden;
+        public string ColorRow
+        {
+            get
+            {   if (Model.supplier.internalState == "DELETED")
+                {
+                    ToolTipText = "Nhà cung cấp hiện đã bị xoá khỏi hệ thống!";
+                    OnPropertyChanged(nameof(ToolTipText));
+                    return CommonConstants.RED;
+                }
+                return string.Empty;
+            }
+        }
 
         private void VerifyPropertyName(string propertyName)
         {

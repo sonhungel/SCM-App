@@ -55,5 +55,6 @@ namespace SCMApp.Constants
         //profit
         public const string ProfitApi = "api/report";
         public const string AllReport = "dailyReport";
+        public const string MonthlyReport = "monthlyReport";
     }
 }
