@@ -44,7 +44,8 @@ namespace SCMApp.Constants
 
         public static readonly char[] Numberic = { '0', '1', '2', '3','4', '5', '6', '7', '8', '9' };
 
-        public const string RED = "Red";
-        public const string YELLOW = "Yellow";
+        public const string RED = "1";
+        public const string YELLOW = "2";
+        public const string BlUE = "3";
     }
 }

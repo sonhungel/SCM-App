@@ -84,6 +84,15 @@
                       AutoGenerateColumns="False" HeadersVisibility="Column" VerticalGridLinesBrush="#dddddd" GridLinesVisibility="Vertical" Background="White"
                       SelectionMode="Single" CanUserResizeColumns="True" CanUserAddRows="False" MaxHeight="500" MinHeight="300" CanUserSortColumns="True"
                       CanUserReorderColumns="True">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="ToolTip">
+                            <Setter.Value>
+                                <TextBlock Text="{Binding TooltipText}"/>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="FontSize" Value="14"/>
@@ -105,11 +114,14 @@
                                 <Setter Property="Background" Value="#aacef2"/>
                                 <Setter Property="BorderThickness" Value="0"/>
                             </Trigger>
-                            <DataTrigger Binding="{Binding ColorRow}" Value="Red">
+                            <DataTrigger Binding="{Binding ColorRow}" Value="1">
                                 <Setter Property="Background" Value="#faafaf"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding ColorRow}" Value="Yellow">
+                            <DataTrigger Binding="{Binding ColorRow}" Value="2">
                                 <Setter Property="Background" Value="#faecaf"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ColorRow}" Value="3">
+                                <Setter Property="Background" Value="#1ed494"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

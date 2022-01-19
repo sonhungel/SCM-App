@@ -71,6 +71,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
                     StockList.Add(new StockViewModelItem(item));
                 }
             }
+            var list = StockList.OrderBy(x => x.ColorRow).ToList();
+            StockList.Clear();
+            list.ForEach(x =>
+            StockList.Add(x));
             IsHaveNoData = !StockList.Any();
             OnPropertyChanged(nameof(StockNumber));
 

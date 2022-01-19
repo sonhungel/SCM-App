@@ -26,14 +26,23 @@ namespace SCMApp.Presentation.ViewModels.ItemsViewModel
             {
                 if (Model.availableQuantity <= Model.minimumQuantity)
                 {
+                    TooltipText = "Số lượng hiện có đang ít hơn số lượng tối thiểu!";
                     return CommonConstants.RED;
                 }
                 else if (Model.supplier.internalState == "DELETED")
                 {
+                    TooltipText = "Nhà cung cấp hiện đã bị xoá khỏi hệ thống!";
                     return CommonConstants.YELLOW;
                 }
-                return string.Empty;
+                else if (Model.availableQuantity > Model.minimumQuantity *10)
+                {
+                    TooltipText = "Số lượng hiện có đang nhiều, ưu tiên bán!";
+                    return CommonConstants.BlUE;
+                }
+                return "4";
             }
         }
+
+        public string TooltipText { get; set; }
     }
 }

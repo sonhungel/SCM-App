@@ -34,7 +34,7 @@
                         <RowDefinition Height="100*" />
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="1" Margin="10,0,0,0" >
-                        <Image Source="/Assets/WarningPNG.png" />
+                        <Image Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Assets/WarningPNG.png" />
                     </Grid>
                 </Grid>
 

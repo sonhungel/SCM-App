@@ -92,6 +92,7 @@
     <None Remove="Assets\truck.png" />
     <None Remove="Assets\video.png" />
     <None Remove="Assets\warehouse.png" />
+    <None Remove="Assets\WarningPNG.png" />
     <None Remove="Assets\window-close.png" />
     <None Remove="Assets\zip.png" />
   </ItemGroup>
@@ -190,6 +191,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\warehouse.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\WarningPNG.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\window-close.png">

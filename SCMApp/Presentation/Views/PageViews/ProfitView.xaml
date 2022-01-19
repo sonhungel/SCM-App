@@ -70,7 +70,7 @@
                         <lvc:Axis Title="Khung thời gian" Labels="{Binding BarLabels}"/>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis Title="Đơn vị Triêu VNĐ" LabelFormatter="{Binding FormatterCartesianChart}"/>
+                        <lvc:Axis Title="Đơn vị VNĐ" LabelFormatter="{Binding FormatterCartesianChart}"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
                 <Label Grid.Row="1" Grid.Column="1" Content="{Binding ProfitByFilterName}" 

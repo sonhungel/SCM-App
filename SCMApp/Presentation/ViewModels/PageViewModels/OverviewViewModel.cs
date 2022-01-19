@@ -94,6 +94,10 @@ namespace SCMApp.Presentation.ViewModels.PageViewModels
             OnPropertyChanged(nameof(OutOfStockQuantity));
             OnPropertyChanged(nameof(OutOfStockSoonQuantity));
 
+            OnPropertyChanged(nameof(NumberOfUser));
+            OnPropertyChanged(nameof(ProfitInDay));
+            OnPropertyChanged(nameof(CostInDay));
+
         }
 
         private void CreateValueForChart(WeeklyReportDTO weekly)
